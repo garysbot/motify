@@ -1,2 +1,952 @@
   [1m[35m (246.6ms)[0m  [1m[35mCREATE DATABASE "authenticate_me_development" ENCODING = 'unicode'[0m
   [1m[35m (152.3ms)[0m  [1m[35mCREATE DATABASE "authenticate_me_test" ENCODING = 'unicode'[0m
+  [1m[35m (65.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (42.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5498533444808527725)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20231106234732)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (39.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying NOT NULL, "username" character varying NOT NULL, "password_digest" character varying NOT NULL, "session_token" character varying NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_session_token" ON "users" ("session_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231106234732"]]
+  [1m[36mTRANSACTION (36.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (33.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2023-11-06 23:48:03.201782"], ["updated_at", "2023-11-06 23:48:03.201782"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(5498533444808527725)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "boris.berge"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "debora@cole.example"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "debora@cole.example"], ["username", "boris.berge"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-06 23:54:24.180763"], ["updated_at", "2023-11-06 23:54:24.180763"]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "boris.berge"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "debora@cole.example"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "boris.berge"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "debora@cole.example"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 1]]
+  [1m[36mTRANSACTION (6.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "usr"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "usr@email.io"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "usr@email.io"], ["username", "usr"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-06 23:55:35.951921"], ["updated_at", "2023-11-06 23:55:35.951921"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Destroy (0.4ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "usr"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "usr@email.io"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "usr@email.io"], ["username", "usr"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-06 23:56:21.126423"], ["updated_at", "2023-11-06 23:56:21.126423"]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "usr@email.io"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "usr@email.io"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "usr@email.io"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "usr@email.com"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "usr"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "usr"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 3]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "usr"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "usr@email.io"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "usr@email.io"], ["username", "usr"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-07 00:02:09.875908"], ["updated_at", "2023-11-07 00:02:09.875908"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "usr"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "usr@email.io"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "usr@email.io"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "usr@email.io"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 4]]
+  [1m[36mTRANSACTION (40.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "usr"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "usr@email.io"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "usr@email.io"], ["username", "usr"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-07 00:04:39.071538"], ["updated_at", "2023-11-07 00:04:39.071538"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "usr@email.io"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "usr@email.io"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "usr"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "usr"], ["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "usr@email.io"], ["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "[FILTERED]"], ["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-11-07 00:07:14.959077"], ["id", 5]]
+  [1m[36mTRANSACTION (40.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 5]]
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Demo-lition"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "demo@user.io"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "demo@user.io"], ["username", "Demo-lition"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-07 00:08:07.791599"], ["updated_at", "2023-11-07 00:08:07.791599"]]
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "fernando_crist"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "odell.mohr@grady.test"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "odell.mohr@grady.test"], ["username", "fernando_crist"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-07 00:08:09.094169"], ["updated_at", "2023-11-07 00:08:09.094169"]]
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "miriam_nitzsche"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "bradford_nitzsche@dibbert.test"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "bradford_nitzsche@dibbert.test"], ["username", "miriam_nitzsche"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-07 00:08:09.281416"], ["updated_at", "2023-11-07 00:08:09.281416"]]
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "corrine.sanford"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "wilfred.funk@lakin.example"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "wilfred.funk@lakin.example"], ["username", "corrine.sanford"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-07 00:08:09.467910"], ["updated_at", "2023-11-07 00:08:09.467910"]]
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jackeline"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "tasha@reinger.example"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "tasha@reinger.example"], ["username", "jackeline"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-07 00:08:09.649668"], ["updated_at", "2023-11-07 00:08:09.649668"]]
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "nathanial"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "francene.satterfield@willms.example"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "francene.satterfield@willms.example"], ["username", "nathanial"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-07 00:08:09.830854"], ["updated_at", "2023-11-07 00:08:09.830854"]]
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "federico_luettgen"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "lilli@kozey.example"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "lilli@kozey.example"], ["username", "federico_luettgen"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-07 00:08:10.012016"], ["updated_at", "2023-11-07 00:08:10.012016"]]
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "gerry.kovacek"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jacquie_schneider@nikolaus.example"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "jacquie_schneider@nikolaus.example"], ["username", "gerry.kovacek"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-07 00:08:10.192685"], ["updated_at", "2023-11-07 00:08:10.192685"]]
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "scot"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "major@lueilwitz.test"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "major@lueilwitz.test"], ["username", "scot"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-07 00:08:10.373435"], ["updated_at", "2023-11-07 00:08:10.373435"]]
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "ronny"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "rosann@ritchie.example"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "rosann@ritchie.example"], ["username", "ronny"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-07 00:08:10.553951"], ["updated_at", "2023-11-07 00:08:10.553951"]]
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "homer"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "albertha_connelly@rippin.example"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "albertha_connelly@rippin.example"], ["username", "homer"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-07 00:08:10.739930"], ["updated_at", "2023-11-07 00:08:10.739930"]]
+  [1m[36mTRANSACTION (82.2ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/" for ::1 at 2023-11-06 19:11:08 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/g/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.8/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/g/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.8/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.8ms | Allocations: 526)
+Completed 200 OK in 1001ms (Views: 5.2ms | ActiveRecord: 0.0ms | Allocations: 965800)
+
+
+Started POST "/api/test" for ::1 at 2023-11-06 19:11:20 -0500
+Processing by ApplicationController#test as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 200 OK in 18ms (Views: 0.6ms | ActiveRecord: 2.1ms | Allocations: 4855)
+
+
+Started POST "/api/test?login" for ::1 at 2023-11-06 19:11:28 -0500
+Processing by ApplicationController#test as */*
+  Parameters: {"login"=>nil}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `test'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Demo-lition"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "demo@user.io"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "[FILTERED]"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-11-07 00:11:28.726728"], ["id", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mTRANSACTION (41.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 200 OK in 67ms (Views: 0.1ms | ActiveRecord: 45.5ms | Allocations: 13092)
+
+
+Started POST "/api/test" for ::1 at 2023-11-06 19:11:38 -0500
+Processing by ApplicationController#test as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 200 OK in 8ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 831)
+
+
+Started POST "/api/test" for ::1 at 2023-11-06 19:11:43 -0500
+Processing by ApplicationController#test as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 778)
+
+
+Started POST "/api/test?logout" for ::1 at 2023-11-06 19:11:51 -0500
+Processing by ApplicationController#test as */*
+  Parameters: {"logout"=>nil}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms | Allocations: 2614)
+
+
+
+NoMethodError - undefined method `logged_in?' for #<ApplicationController:0x00000000004920>
+    current_user.reset_session_token! if logged_in?
+                                         ^^^^^^^^^^
+Did you mean?  logger:
+  app/controllers/application_controller.rb:14:in `logout!'
+  app/controllers/application_controller.rb:27:in `test'
+
+Started POST "/api/test?logout" for ::1 at 2023-11-06 19:12:07 -0500
+Processing by ApplicationController#test as */*
+  Parameters: {"logout"=>nil}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms | Allocations: 2486)
+
+
+
+NoMethodError - undefined method `logged_in?' for #<ApplicationController:0x00000000004970>
+    current_user.reset_session_token! if logged_in?
+                                         ^^^^^^^^^^
+Did you mean?  logger:
+  app/controllers/application_controller.rb:14:in `logout!'
+  app/controllers/application_controller.rb:27:in `test'
+
+Started POST "/api/test?logout" for ::1 at 2023-11-06 19:12:55 -0500
+Processing by ApplicationController#test as */*
+  Parameters: {"logout"=>nil}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Demo-lition"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "demo@user.io"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "[FILTERED]"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-11-07 00:12:55.467161"], ["id", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mTRANSACTION (41.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 200 OK in 60ms (Views: 0.1ms | ActiveRecord: 44.3ms | Allocations: 9667)
+
+
+Started POST "/api/test" for ::1 at 2023-11-06 19:13:03 -0500
+Processing by ApplicationController#test as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 870)
+
+
+Started GET "/" for ::1 at 2023-11-06 19:17:34 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/g/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.8/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/g/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.8/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.6ms | Allocations: 526)
+Completed 200 OK in 1074ms (Views: 5.4ms | ActiveRecord: 0.0ms | Allocations: 965797)
+
+
+Started POST "/api/session" for ::1 at 2023-11-06 19:17:50 -0500
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"credential"=>"Demo-lition", "password"=>"[FILTERED]", "session"=>{"credential"=>"Demo-lition", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Demo-lition"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:24:in `find_by_credentials'
+Completed 500 Internal Server Error in 196ms (ActiveRecord: 3.1ms | Allocations: 11843)
+
+
+
+NoMethodError - undefined method `login' for #<Api::SessionsController:0x00000000004a60>
+      login(@user)
+      ^^^^^
+Did you mean?  login!:
+  app/controllers/api/sessions_controller.rb:19:in `create'
+
+Started GET "/api/session" for ::1 at 2023-11-06 19:18:06 -0500
+Processing by Api::SessionsController#show as JSON
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 200 OK in 5ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 1371)
+
+
+Started DELETE "/api/session" for ::1 at 2023-11-06 19:18:13 -0500
+Processing by Api::SessionsController#destroy as JSON
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 872)
+
+
+Started GET "/api/session" for ::1 at 2023-11-06 19:18:18 -0500
+Processing by Api::SessionsController#show as JSON
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 869)
+
+
+Started POST "/api/session" for ::1 at 2023-11-06 19:20:51 -0500
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"credential"=>"Demo-lition", "password"=>"[FILTERED]", "session"=>{"credential"=>"Demo-lition", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Demo-lition"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:24:in `find_by_credentials'
+Completed 500 Internal Server Error in 187ms (ActiveRecord: 0.2ms | Allocations: 2955)
+
+
+
+NoMethodError - undefined method `login' for #<Api::SessionsController:0x00000000004c18>
+      login(@user)
+      ^^^^^
+Did you mean?  login!:
+  app/controllers/api/sessions_controller.rb:19:in `create'
+
+Started POST "/api/session" for ::1 at 2023-11-06 19:21:36 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"credential"=>"Demo-lition", "password"=>"[FILTERED]", "session"=>{"credential"=>"Demo-lition", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Demo-lition"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:24:in `find_by_credentials'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Demo-lition"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "demo@user.io"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "[FILTERED]"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-11-07 00:21:37.214549"], ["id", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+Completed 200 OK in 202ms (Views: 0.2ms | ActiveRecord: 4.7ms | Allocations: 16181)
+
+
+Started GET "/api/session" for ::1 at 2023-11-06 19:21:45 -0500
+Processing by Api::SessionsController#show as JSON
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 1235)
+
+
+Started DELETE "/api/session" for ::1 at 2023-11-06 19:21:53 -0500
+Processing by Api::SessionsController#destroy as JSON
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.2ms | Allocations: 815)
+
+
+
+ArgumentError - wrong number of arguments (given 1, expected 0):
+  app/controllers/application_controller.rb:13:in `logout!'
+  app/controllers/api/sessions_controller.rb:28:in `destroy'
+
+Started POST "/api/session" for ::1 at 2023-11-06 19:23:35 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"credential"=>"Demo-lition", "password"=>"[FILTERED]", "session"=>{"credential"=>"Demo-lition", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Demo-lition"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:24:in `find_by_credentials'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Demo-lition"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "demo@user.io"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "[FILTERED]"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-11-07 00:23:36.375300"], ["id", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+Completed 200 OK in 202ms (Views: 0.2ms | ActiveRecord: 4.9ms | Allocations: 16188)
+
+
+Started GET "/api/session" for ::1 at 2023-11-06 19:23:44 -0500
+Processing by Api::SessionsController#show as JSON
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1238)
+
+
+Started DELETE "/api/session" for ::1 at 2023-11-06 19:23:50 -0500
+Processing by Api::SessionsController#destroy as JSON
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.2ms | Allocations: 818)
+
+
+
+ArgumentError - wrong number of arguments (given 1, expected 0):
+  app/controllers/application_controller.rb:13:in `logout!'
+  app/controllers/api/sessions_controller.rb:28:in `destroy'
+
+Started POST "/api/session" for ::1 at 2023-11-06 19:27:12 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"credential"=>"Demo-lition", "password"=>"[FILTERED]", "session"=>{"credential"=>"Demo-lition", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Demo-lition"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:24:in `find_by_credentials'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Demo-lition"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "demo@user.io"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "[FILTERED]"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-11-07 00:27:12.685722"], ["id", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+Completed 200 OK in 204ms (Views: 0.2ms | ActiveRecord: 5.1ms | Allocations: 16191)
+
+
+Started GET "/api/session" for ::1 at 2023-11-06 19:27:19 -0500
+Processing by Api::SessionsController#show as JSON
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 1241)
+
+
+Started DELETE "/api/session" for ::1 at 2023-11-06 19:27:26 -0500
+Processing by Api::SessionsController#destroy as JSON
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Demo-lition"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "demo@user.io"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "[FILTERED]"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Update (0.2ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-11-07 00:27:26.218039"], ["id", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mTRANSACTION (9.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+Completed 200 OK in 17ms (Views: 0.1ms | ActiveRecord: 10.5ms | Allocations: 4959)
+
+
+Started GET "/api/session" for ::1 at 2023-11-06 19:27:30 -0500
+Processing by Api::SessionsController#show as JSON
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 911)
+
+
+Started POST "/api/users" for ::1 at 2023-11-06 19:28:47 -0500
+Processing by Api::UsersController#create as JSON
+  Parameters: {"email"=>"coolemail@hotmail.net", "username"=>"cooluser", "password"=>"[FILTERED]", "user"=>{"email"=>"coolemail@hotmail.net", "username"=>"cooluser", "password"=>"[FILTERED]"}}
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 300)
+
+
+Started GET "/api/session" for ::1 at 2023-11-06 19:29:50 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::SessionsController#show as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 200 OK in 11ms (Views: 0.2ms | ActiveRecord: 1.5ms | Allocations: 5031)
+
+
+Started GET "/api/session" for ::1 at 2023-11-06 19:32:30 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::SessionsController#show as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 200 OK in 11ms (Views: 0.4ms | ActiveRecord: 1.4ms | Allocations: 5040)
+
+
+Started GET "/api/session" for ::1 at 2023-11-06 19:32:58 -0500
+Processing by Api::SessionsController#show as JSON
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 933)
+
+
+Started GET "/api/session" for ::1 at 2023-11-06 19:33:27 -0500
+Processing by Api::SessionsController#show as JSON
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 889)
+
+
+Started GET "/api/session" for ::1 at 2023-11-06 19:33:38 -0500
+Processing by Api::SessionsController#show as JSON
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 898)
+
+
+Started GET "/api/session" for ::1 at 2023-11-06 19:36:15 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::SessionsController#show as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 200 OK in 11ms (Views: 0.2ms | ActiveRecord: 1.5ms | Allocations: 5019)
+
+
+Started GET "/api/session" for ::1 at 2023-11-06 19:36:53 -0500
+Processing by Api::SessionsController#show as JSON
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.8ms | Allocations: 3008)
+
+
+Started GET "/api/session" for ::1 at 2023-11-06 19:38:44 -0500
+Processing by Api::SessionsController#show as JSON
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 0.7ms | Allocations: 2985)
+
+
+Started GET "/api/session" for ::1 at 2023-11-06 19:39:09 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::SessionsController#show as JSON
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 200 OK in 11ms (Views: 0.5ms | ActiveRecord: 2.2ms | Allocations: 5041)
+
+
+Started POST "/api/users" for ::1 at 2023-11-06 19:40:52 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#create as JSON
+  Parameters: {"user"=>{"email"=>"coolemail@hotmail.net", "username"=>"cooluser", "password"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:7:in `create'
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "cooluser"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:7:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "coolemail@hotmail.net"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:7:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:7:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "coolemail@hotmail.net"], ["username", "cooluser"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-07 00:40:53.199943"], ["updated_at", "2023-11-07 00:40:53.199943"]]
+  ↳ app/controllers/api/users_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (41.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "cooluser"], ["id", 12], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "coolemail@hotmail.net"], ["id", 12], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "[FILTERED]"], ["id", 12], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Update (0.2ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-11-07 00:40:53.246912"], ["id", 12]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+Completed 200 OK in 249ms (Views: 0.3ms | ActiveRecord: 45.5ms | Allocations: 17986)
+
+
+Started GET "/" for ::1 at 2023-11-06 19:56:09 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/g/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.8/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/g/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.8/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.6ms | Allocations: 526)
+Completed 200 OK in 1131ms (Views: 5.7ms | ActiveRecord: 0.0ms | Allocations: 965786)
+
+
+Started POST "/api/test" for ::1 at 2023-11-06 19:56:56 -0500
+  
+ActionController::RoutingError (No route matches [POST] "/api/test"):
+  
+Started POST "/api/users" for ::1 at 2023-11-06 19:57:07 -0500
+Processing by Api::UsersController#create as JSON
+  Parameters: {"user"=>{"email"=>"coolemail@hotmail.net", "username"=>"cooluser", "password"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:7:in `create'
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "cooluser"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:7:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "coolemail@hotmail.net"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:7:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:7:in `create'
+Failed to save user: ["Username has already been taken", "Email has already been taken"]
+Completed 422 Unprocessable Entity in 202ms (Views: 0.2ms | ActiveRecord: 2.6ms | Allocations: 13560)
+
+
+Started POST "/api/test" for ::1 at 2023-11-06 19:57:13 -0500
+  
+ActionController::RoutingError (No route matches [POST] "/api/test"):
+  
+Started GET "/api/session" for ::1 at 2023-11-06 19:57:18 -0500
+Processing by Api::SessionsController#show as JSON
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.2ms | Allocations: 3237)
+
+
+
+ActionView::MissingTemplate - Missing template api/users/show with {:locale=>[:en], :formats=>[:json], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :jbuilder]}.
+Searched in:
+  * "/Users/g/Documents/+App-Academy/aa-project-two-full-stack/user-auth/authenticate-me/app/views":
+  app/controllers/api/sessions_controller.rb:5:in `show'
+
+Started GET "/api/session" for ::1 at 2023-11-06 19:57:24 -0500
+Processing by Api::SessionsController#show as JSON
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.2ms | Allocations: 1614)
+
+
+
+ActionView::MissingTemplate - Missing template api/users/show with {:locale=>[:en], :formats=>[:json], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :jbuilder]}.
+Searched in:
+  * "/Users/g/Documents/+App-Academy/aa-project-two-full-stack/user-auth/authenticate-me/app/views":
+  app/controllers/api/sessions_controller.rb:5:in `show'
+
+Started POST "/api/test?login" for ::1 at 2023-11-06 19:57:32 -0500
+  
+ActionController::RoutingError (No route matches [POST] "/api/test"):
+  
+Started POST "/api/test?login" for ::1 at 2023-11-06 19:57:53 -0500
+Processing by ApplicationController#test as */*
+  Parameters: {"login"=>nil}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `test'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Demo-lition"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "demo@user.io"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "[FILTERED]"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-11-07 00:57:53.681798"], ["id", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mTRANSACTION (6.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 10.1ms | Allocations: 11851)
+
+
+
+ActionView::MissingTemplate - Missing template api/users/show with {:locale=>[:en], :formats=>[:html, :text, :js, :css, :ics, :csv, :vcf, :vtt, :png, :jpeg, :gif, :bmp, :tiff, :svg, :mpeg, :mp3, :ogg, :m4a, :webm, :mp4, :otf, :ttf, :woff, :woff2, :xml, :rss, :atom, :yaml, :multipart_form, :url_encoded_form, :json, :pdf, :zip, :gzip], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :jbuilder]}.
+Searched in:
+  * "/Users/g/Documents/+App-Academy/aa-project-two-full-stack/user-auth/authenticate-me/app/views":
+  app/controllers/application_controller.rb:35:in `test'
+
+Started POST "/api/test?login" for ::1 at 2023-11-06 19:57:55 -0500
+Processing by ApplicationController#test as */*
+  Parameters: {"login"=>nil}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `test'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Demo-lition"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "demo@user.io"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "[FILTERED]"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-11-07 00:57:55.133290"], ["id", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 2.2ms | Allocations: 6536)
+
+
+
+ActionView::MissingTemplate - Missing template api/users/show with {:locale=>[:en], :formats=>[:html, :text, :js, :css, :ics, :csv, :vcf, :vtt, :png, :jpeg, :gif, :bmp, :tiff, :svg, :mpeg, :mp3, :ogg, :m4a, :webm, :mp4, :otf, :ttf, :woff, :woff2, :xml, :rss, :atom, :yaml, :multipart_form, :url_encoded_form, :json, :pdf, :zip, :gzip], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :jbuilder]}.
+Searched in:
+  * "/Users/g/Documents/+App-Academy/aa-project-two-full-stack/user-auth/authenticate-me/app/views":
+  app/controllers/application_controller.rb:35:in `test'
+
+Started POST "/api/test?login" for ::1 at 2023-11-06 19:58:09 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#test as */*
+  Parameters: {"login"=>nil}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `test'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Demo-lition"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "demo@user.io"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "[FILTERED]"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-11-07 00:58:09.383853"], ["id", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mTRANSACTION (15.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 500 Internal Server Error in 48ms (ActiveRecord: 20.5ms | Allocations: 19584)
+
+
+
+ActionView::MissingTemplate - Missing template api/users/show with {:locale=>[:en], :formats=>[:html, :text, :js, :css, :ics, :csv, :vcf, :vtt, :png, :jpeg, :gif, :bmp, :tiff, :svg, :mpeg, :mp3, :ogg, :m4a, :webm, :mp4, :otf, :ttf, :woff, :woff2, :xml, :rss, :atom, :yaml, :multipart_form, :url_encoded_form, :json, :pdf, :zip, :gzip], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :jbuilder]}.
+Searched in:
+  * "/Users/g/Documents/+App-Academy/aa-project-two-full-stack/user-auth/authenticate-me/app/views":
+  app/controllers/application_controller.rb:35:in `test'
+
+Started POST "/api/test?login" for ::1 at 2023-11-06 19:58:49 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#test as */*
+  Parameters: {"login"=>nil}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `test'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Demo-lition"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "demo@user.io"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "[FILTERED]"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-11-07 00:58:49.395564"], ["id", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mTRANSACTION (39.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 200 OK in 65ms (Views: 0.2ms | ActiveRecord: 44.7ms | Allocations: 17073)
+
+
+Started GET "/" for ::1 at 2023-11-06 20:01:21 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/g/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.8/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/g/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.8/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.7ms | Allocations: 526)
+Completed 200 OK in 1120ms (Views: 5.2ms | ActiveRecord: 0.0ms | Allocations: 965792)
+
+
+Started POST "/api/test?login" for ::1 at 2023-11-06 20:01:29 -0500
+Processing by ApplicationController#test as */*
+  Parameters: {"login"=>nil}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `test'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Demo-lition"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "demo@user.io"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "[FILTERED]"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-11-07 01:01:29.358377"], ["id", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mTRANSACTION (40.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  Rendering api/users/show.json.builder
+  Rendered api/users/show.json.builder (Duration: 344.6ms | Allocations: 7158)
+Completed 500 Internal Server Error in 419ms (ActiveRecord: 45.3ms | Allocations: 24886)
+
+
+
+NameError - undefined local variable or method `json' for #<ActionView::Base:0x00000000004ba0>
+Did you mean?  JSON:
+  app/views/api/users/show.json.builder:1
+  app/controllers/application_controller.rb:36:in `test'
+
+Started POST "/api/test?login" for ::1 at 2023-11-06 20:03:06 -0500
+Processing by ApplicationController#test as */*
+  Parameters: {"login"=>nil}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `test'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Demo-lition"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "demo@user.io"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "[FILTERED]"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-11-07 01:03:06.581605"], ["id", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 200 OK in 17ms (Views: 0.2ms | ActiveRecord: 3.8ms | Allocations: 9812)
+
+
+Started GET "/api/session" for ::1 at 2023-11-06 20:09:23 -0500
+Processing by Api::SessionsController#show as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendering api/users/show.json.builder
+  Rendered api/users/show.json.builder (Duration: 4.6ms | Allocations: 4593)
+Completed 500 Internal Server Error in 40ms (ActiveRecord: 24.0ms | Allocations: 12184)
+
+
+
+NameError - undefined local variable or method `json' for #<ActionView::Base:0x00000000005f50>
+Did you mean?  JSON:
+  app/views/api/users/show.json.builder:1
+  app/controllers/api/sessions_controller.rb:5:in `show'
+
+Started GET "/api/session" for ::1 at 2023-11-06 20:09:42 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::SessionsController#show as JSON
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendering api/users/show.json.builder
+  Rendered api/users/show.json.builder (Duration: 10.1ms | Allocations: 7354)
+Completed 500 Internal Server Error in 1001ms (ActiveRecord: 4.5ms | Allocations: 982223)
+
+
+
+NameError - undefined local variable or method `json' for #<ActionView::Base:0x00000000004948>
+Did you mean?  JSON:
+  app/views/api/users/show.json.builder:1
+  app/controllers/api/sessions_controller.rb:5:in `show'
+
+Started GET "/api/session" for ::1 at 2023-11-06 20:11:05 -0500
+Processing by Api::SessionsController#show as JSON
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Completed 200 OK in 8ms (Views: 0.2ms | ActiveRecord: 2.0ms | Allocations: 4950)
+
+
+Started POST "/api/test" for ::1 at 2023-11-06 20:11:31 -0500
+Processing by ApplicationController#test as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1025)
+
+
+Started POST "/api/test" for ::1 at 2023-11-06 20:11:37 -0500
+Processing by ApplicationController#test as */*
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 1ms (ActiveRecord: 0.0ms | Allocations: 817)
+
+
+
+ActionController::InvalidAuthenticityToken - Can't verify CSRF token authenticity.:
+
+Started POST "/api/test?login" for ::1 at 2023-11-06 20:11:50 -0500
+Processing by ApplicationController#test as */*
+  Parameters: {"login"=>nil}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:33:in `test'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Demo-lition"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (3.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "demo@user.io"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "[FILTERED]"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Update (0.5ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-11-07 01:11:50.996746"], ["id", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Completed 200 OK in 18ms (Views: 0.2ms | ActiveRecord: 5.7ms | Allocations: 7418)
+
+
+Started POST "/api/test" for ::1 at 2023-11-06 20:11:58 -0500
+Processing by ApplicationController#test as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 839)
+
+
+Started POST "/api/test?logout" for ::1 at 2023-11-06 20:12:06 -0500
+Processing by ApplicationController#test as */*
+  Parameters: {"logout"=>nil}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Demo-lition"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "demo@user.io"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "[FILTERED]"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-11-07 01:12:06.328344"], ["id", 1]]
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:32:in `reset_session_token!'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Completed 200 OK in 13ms (Views: 0.1ms | ActiveRecord: 2.5ms | Allocations: 5583)
+
+
+Started POST "/api/test" for ::1 at 2023-11-06 20:12:11 -0500
+Processing by ApplicationController#test as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 928)
+
+
+Started GET "/" for ::1 at 2023-11-06 20:12:48 -0500
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/g/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.8/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/g/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.8/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.8ms | Allocations: 331)
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.0ms | Allocations: 1412)
+
+
+Started POST "/api/test" for ::1 at 2023-11-06 20:13:07 -0500
+Processing by ApplicationController#test as */*
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 1ms (ActiveRecord: 0.0ms | Allocations: 756)
+
+
+
+ActionController::InvalidAuthenticityToken - Can't verify CSRF token authenticity.:
+
+Started POST "/api/test" for ::1 at 2023-11-06 20:15:05 -0500
+
+SyntaxError - syntax error, unexpected end-of-input, expecting `end':
+  app/controllers/application_controller.rb:78:in `'
+
+Started POST "/api/test" for ::1 at 2023-11-06 20:15:33 -0500
+
+SyntaxError - syntax error, unexpected end-of-input, expecting `end':
+  app/controllers/application_controller.rb:78:in `'
+
+Started POST "/api/test" for ::1 at 2023-11-06 20:16:22 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#test as */*
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 4ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 1291)
+
+
+Started GET "/api/session" for ::1 at 2023-11-06 20:16:47 -0500
+Processing by Api::SessionsController#show as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:15:in `current_user'
+Completed 200 OK in 8ms (Views: 0.1ms | ActiveRecord: 1.3ms | Allocations: 4806)
+
+
+Started GET "/api/session" for ::1 at 2023-11-06 20:17:05 -0500
+Processing by Api::SessionsController#show as JSON
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 1.8ms | Allocations: 439)
+
+NameError - undefined local variable or method `banana' for #<Api::SessionsController:0x000000000051b8>
+
+    banana
+    ^^^^^^:
+	app/controllers/api/sessions_controller.rb:4:in `show'
+
+Completed 500 Internal Server Error in 1112ms (Views: 1108.9ms | ActiveRecord: 0.0ms | Allocations: 968821)
+
+
