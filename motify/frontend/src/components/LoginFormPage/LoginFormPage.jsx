@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
-import './LoginForm.css';
+import styles from './LoginForm.module.css';
 
 
 
@@ -35,15 +35,15 @@ function LoginFormPage() {
 
   return (
     <>
-    <div className='login'>
-        <div className='logo-container'>
-          <div className='logo'/>
+    <div className={styles.login}>
+        <div className={styles['logo-container']}>
+          <div className={styles['logo']}/>
         </div>
 
-        <div className='form-bg'>
-          <div className='form-container'>
+        <div className={styles['form-bg']}>
+          <div className={styles['form-container']}>
 
-            <h1 className='form-name'>Log in to Motify</h1>
+            <h1 className={styles['form-name']}>Log in to Motify</h1>
 
             <hr/>
             <form onSubmit={handleSubmit}>
@@ -51,7 +51,7 @@ function LoginFormPage() {
                 {errors.map(error => <li key={error}>{error}</li>)}
               </ul>
 
-              <label className='form-label'>
+              <label className={styles['form-label']}>
                 Email or username
               </label>
               <input
@@ -63,7 +63,7 @@ function LoginFormPage() {
               />
               <br/>
 
-              <label className='form-label'>
+              <label className={styles['form-label']}>
                 Password
               </label>
               <input
@@ -76,18 +76,18 @@ function LoginFormPage() {
               <button type="submit">Log In</button>
             </form>
 
-            <div className='login-helper'>
-              <p className='link-hover'><Link to='https://google.com'>Forgot your password?</Link></p>
+            <div className={styles['login-helper']}>
+              <p className={styles['link-hover']}><Link to='https://google.com'>Forgot your password?</Link></p>
               <hr/>
-              <div className='new-user-container'>
-                <p className='helper-text'>Don't have an account?</p>
-                <p className='link-hover'><Link to='https://google.com'>Sign up for Motify</Link></p>
+              <div className={styles['new-user-container']}>
+                <p className={styles['helper-text']}>Don't have an account?</p>
+                <p className={styles['link-hover']}><Link to='https://google.com'>Sign up for Motify</Link></p>
               </div>
             </div>
           </div>
         </div>
 
-        <p className='captcha'>This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</p>
+        <p className={styles['captcha']}>This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</p>
       </div>
     </>
   );
