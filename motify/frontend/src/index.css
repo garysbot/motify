@@ -1,7 +1,52 @@
 /* TODO Add site wide styles */
+/* @import '../node_modules/reset-css/reset.css'; */
+
 @font-face {
   font-family: 'CircularSpotifyBold';
   src: url('./__static/fonts/CircularSpotifyText-Bold.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
+}
+
+@font-face {
+  font-family: 'CircularSpotifyBook';
+  src: url('./__static/fonts/CircularSpotifyText-Book.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, label, input, span {
+  font-family: 'CircularSpotifyBold', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
+p {
+  font-family: 'CircularSpotifyBook', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+label {
+  font-size: 0.875rem;
+}
+
+body {
+  font-size: 1rem;
+  background: linear-gradient(#1C1C1C, #000000 );
+}
+
+input::placeholder {
+  color: gray;
+  font-family: 'CircularSpotifyBook', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-size: 1rem;
+  padding-top: 0.5rem;
 }
