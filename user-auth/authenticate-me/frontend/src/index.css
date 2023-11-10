@@ -1,1 +1,7 @@
 /* TODO Add site wide styles */
+@font-face {
+  font-family: 'CircularSpotifyBold';
+  src: url('./__static/fonts/CircularSpotifyText-Bold.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}

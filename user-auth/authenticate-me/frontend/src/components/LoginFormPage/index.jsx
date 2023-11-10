@@ -49,6 +49,7 @@ function LoginFormPage() {
             required
           />
         </label>
+        <br/>
         <label>
           Password
           <input
