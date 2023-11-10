@@ -41,7 +41,7 @@ label {
 
 body {
   font-size: 1rem;
-  background: linear-gradient(#1C1C1C, #000000 );
+  /* background: linear-gradient(#1C1C1C, #000000 ); */
 }
 
 input::placeholder {

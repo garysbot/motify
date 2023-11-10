@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../../store/session";
+import './SignUpFormOne.css'
 
 function SignupFormPageOne() {
   const dispatch = useDispatch();
@@ -37,49 +38,46 @@ function SignupFormPageOne() {
 
   return (
     <>
-      <h1>Sign up to start listening</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map(error => <li key={error}>{error}</li>)}
-        </ul>
-        <label>
-          Email address
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        {/* <label>
-          Username
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Confirm Password
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </label> */}
-        <button type="submit">Sign Up</button>
-      </form>
+      <div>
+        <div className='logo'/>
+      </div>
+      <div className="main-form-container">
+        
+
+        <div className="form-container">
+          <h1>Sign up to start listening</h1>
+
+          <form onSubmit={handleSubmit}>
+            <ul>
+              {errors.map(error => <li key={error}>{error}</li>)}
+            </ul>
+
+            <label>
+              Email address
+              <input
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder='name@domain.com'
+                required
+              />
+            </label>
+            
+            <button type="submit">Next</button>
+          </form>
+
+          <div className="login-container">
+            <p>Already have an account?</p>
+            <p>Log in here.</p>
+          </div>
+
+        </div>
+
+        <div className="signup-footer">
+          <p>This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service Apply.</p>
+        </div>
+
+      </div>
     </>
   );
 }
