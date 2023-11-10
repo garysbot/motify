@@ -1,12 +1,9 @@
-body {
-  background: linear-gradient(#1C1C1C, #000000);
-}
-
 .login {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 8.25rem;
+  background: linear-gradient(#1C1C1C, #000000);
 }
 
 .logo-container {
@@ -30,6 +27,14 @@ body {
   background-size: contain;
 }
 
+hr {
+  margin-top: 3rem;
+}
+
+form {
+  margin-top: 2.5rem;
+}
+
 .form-bg {
   background-color: #000000;
   color: white;
@@ -42,6 +47,18 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 1.5rem;
+}
+
+.form-container button {
+  font-family: 'CircularSpotifyBold';
+  font-size: 1rem;
+  background-color: #1DB954;
+  max-width: 20rem;
+  height: 50px;
+  border-radius: 30px;
+  margin-top: 3rem;
+  border-style: none;
 }
 
 .form-container form {
@@ -76,7 +93,7 @@ form input {
   padding-inline: 0.875rem;
 }
 
-form button {
+/* form button {
   font-family: 'CircularSpotifyBold';
   font-size: 1rem;
   background-color: #1DB954;
@@ -85,7 +102,7 @@ form button {
   border-radius: 30px;
   margin-top: 3rem;
   border-style: none;
-}
+} */
 
 .login-helper {
   font-size: 1rem;
