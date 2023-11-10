@@ -3572,3 +3572,11 @@ Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-10 13:55:36 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-10 14:07:12 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-10 14:07:13 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
