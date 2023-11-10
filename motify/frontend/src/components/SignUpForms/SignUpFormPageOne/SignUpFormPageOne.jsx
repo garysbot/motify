@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import * as sessionActions from "../../../store/session";
 import './SignUpFormOne.css'
 
@@ -38,45 +38,47 @@ function SignupFormPageOne() {
 
   return (
     <>
-      <div>
-        <div className='logo'/>
-      </div>
-      <div className="main-form-container">
-        
+    <div className="bg-container">
+        <div>
+          <div className='logo'/>
+        </div>
+        <div className="main-form-container">
+            <div className="header-container">
+              <h1>Sign up to start listening</h1>
+            </div>
 
-        <div className="form-container">
-          <h1>Sign up to start listening</h1>
+          <div className="form-container">
+            <form onSubmit={handleSubmit}>
+              <ul>
+                {errors.map(error => <li key={error}>{error}</li>)}
+              </ul>
 
-          <form onSubmit={handleSubmit}>
-            <ul>
-              {errors.map(error => <li key={error}>{error}</li>)}
-            </ul>
+              <label>
+                Email address
+                <input
+                  type="text"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder='name@domain.com'
+                  required
+                />
+              </label>
+              
+              <button type="submit" className='next-button'>Next</button>
+              <hr/>
+            </form>
 
-            <label>
-              Email address
-              <input
-                type="text"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder='name@domain.com'
-                required
-              />
-            </label>
-            
-            <button type="submit">Next</button>
-          </form>
+            <div className="login-container">
+              <p className="existing-user">Already have an account? <Link to='/login'>Log in here.</Link></p>
+            </div>
 
-          <div className="login-container">
-            <p>Already have an account?</p>
-            <p>Log in here.</p>
+          </div>
+
+          <div className="signup-footer">
+            <p>This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service Apply.</p>
           </div>
 
         </div>
-
-        <div className="signup-footer">
-          <p>This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service Apply.</p>
-        </div>
-
       </div>
     </>
   );

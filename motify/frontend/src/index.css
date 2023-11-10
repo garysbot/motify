@@ -1,6 +1,12 @@
 /* TODO Add site wide styles */
 /* @import '../node_modules/reset-css/reset.css'; */
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 @font-face {
   font-family: 'CircularSpotifyBold';
   src: url('./__static/fonts/CircularSpotifyText-Bold.otf') format('opentype');
