@@ -1,24 +1,4 @@
-.login {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 8.25rem;
-  background: linear-gradient(#1C1C1C, #000000);
-  width: 100vw;
-  height: 100vh;
-}
-
-.logo-container {
-  background-color: #000000;
-  width: 100%;
-  height: 100px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-}
-
-.logo {
+.form-page-header-logo {
   width: 115px;
   height: 36px;
   margin-left: 50px;
@@ -29,128 +9,21 @@
   background-size: contain;
 }
 
-hr {
-  margin-top: 3rem;
-}
-
-form {
-  margin-top: 2.5rem;
-}
-
-.form-bg {
+.form-page-header-logo-container-black {
   background-color: #000000;
-  color: white;
-  border-radius: 0.5rem;
-  width: 45rem;
-  height: 45rem;
+  width: 100%;
+  height: 100px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
-.form-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 1.5rem;
-}
-
-.form-container button {
-  font-family: 'CircularSpotifyBold';
-  font-size: 1rem;
-  background-color: #1DB954;
-  max-width: 20rem;
-  height: 50px;
-  border-radius: 30px;
-  margin-top: 3rem;
-  border-style: none;
-}
-
-.form-container form {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-container hr {
-  width: 33rem;
-  border-color: rgb(14, 14, 14);
-  border-top-style: solid;
-  border-top: 1px;
-}
-
-.form-name {
-  padding-top: 2.2rem;
-}
-
-form input {
-  width: 20rem;
-  height: 50px;
-  border-radius: 0.35rem;
-  margin-top: 0.55rem;
-  margin-bottom: 0rem;
-  background-color: #121212;
-  border-color: #727272;
-  border-width: 1px;
-  border-style: solid;
-  color: white;
-  font-size: 1rem;
-  font-family: 'CircularSpotifyBook', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-  padding-inline: 0.875rem;
-}
-
-/* form button {
-  font-family: 'CircularSpotifyBold';
-  font-size: 1rem;
-  background-color: #1DB954;
-  max-width: 20rem;
-  height: 50px;
-  border-radius: 30px;
-  margin-top: 3rem;
-  border-style: none;
-} */
-
-.login-helper {
-  font-size: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.helper-text {
-  color: grey;
-}
-
-.captcha {
-  color: #A7A7A7;
-  font-size: 0.6875rem;
-  font-family: 'CircularSpotifyBook';
-  padding-top: 2.25rem;
-  margin-bottom: 2rem;
-}
-
-.link-hover {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
-.link-hover a {
-  font-style: underline;
-  color: white;
-}
-
-.link-hover a:hover {
-  color: #1db954
-}
-
-
-.new-user-container {
-  padding-top: 0.5rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0.35rem;
-
-}
-
-@media (max-width: 600px) { /* Adjust 600px to the breakpoint you need */
-  .new-user-container {
-    flex-direction: column; /* Stack elements vertically on small screens */
-  }
+.form-page-header-logo-container-transparent {
+  width: 100%;
+  height: 100px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
