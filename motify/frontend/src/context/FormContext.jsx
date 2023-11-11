@@ -50,6 +50,17 @@ export const FormProvider = ({ children }) => {
     marketingOptIn,
     ...requiredInputs } = data
 
+  // ! next/prev button handlers
+  const handlePrev = () => {
+    console.log(`handlePrev invoked`)
+    setPage(prev => prev - 1)
+  }
+
+  const handleNext = () => {
+      console.log(`handleNext invoked`)
+      setPage(prev => prev + 1)
+  }
+
   const canSubmit = [...Object.values(requiredInputs)].every(Boolean) &&
     page === Object.keys(formPage).length - 1
 
@@ -84,4 +95,12 @@ export const FormProvider = ({ children }) => {
 
   const submitHide = page !== Object.keys(formPage).length - 1 && "remove-button"
 
+  return (
+    <FormContext.Provider value={{ formPage, page, setPage, data, setData, canSubmit, handleChange, disableNext, prevHide, nextHide, submitHide, handlePrev, handleNext }}>
+        {children}
+    </FormContext.Provider>
+)
+
 };
+
+export default FormContext 

@@ -1,0 +1,63 @@
+/* * Page Background */
+.login-form-page-bg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 8.25rem;
+  background: linear-gradient(#1C1C1C, #000000);
+  width: 100vw;
+  height: 100vh;
+}
+
+
+
+.form-bg {
+  background-color: #000000;
+  border-radius: 0.5rem;
+  width: 45rem;
+  height: 50rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.captcha {
+  color: #A7A7A7;
+  font-size: 0.6875rem;
+  font-family: 'CircularSpotifyBook';
+  padding-top: 2.25rem;
+  margin-bottom: 2rem;
+  position: absolute;
+  bottom: 0;
+}
+
+.login-link-hover {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.login-link-hover a {
+  color: white;
+  font-style: underline;
+}
+
+.login-link-hover a:hover {
+  color: #1db954
+}
+
+
+.new-user-container {
+  padding-top: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.35rem;
+
+}
+
+@media (max-width: 600px) { /* Adjust 600px to the breakpoint you need */
+  .new-user-container {
+    flex-direction: column; /* Stack elements vertically on small screens */
+  }
+}

@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
-import styles from './LoginForm.module.css';
+import styles from './LoginForm.css';
+import FormPageHeader from '../Forms/FormPageHeader';
 
 
 function LoginFormPage() {
@@ -34,60 +35,61 @@ function LoginFormPage() {
 
   return (
     <>
-    <div className={styles.login}>
-        <div className={styles['logo-container']}>
-          <div className={styles['logo']}/>
-        </div>
+    <div className='login-form-page-bg'>
+      <FormPageHeader bgColor="black" />
+      <div className='form-bg'>
+        <div className='form-container'>
 
-        <div className={styles['form-bg']}>
-          <div className={styles['form-container']}>
+          <h1>Log in to Motify</h1>
 
-            <h1 className={styles['form-name']}>Log in to Motify</h1>
+          <hr/>
 
-            <hr/>
-            <form onSubmit={handleSubmit}>
-              <ul>
-                {errors.map(error => <li key={error}>{error}</li>)}
-              </ul>
+          <form onSubmit={handleSubmit}>
+            <ul>
+              {errors.map(error => <li key={error}>{error}</li>)}
+            </ul>
 
-              <label className={styles['form-label']}>
-                Email or username
-              </label>
-              <input
-                  type="text"
-                  value={credential}
-                  onChange={(e) => setCredential(e.target.value)}
-                  placeholder='Email or username'
-                  required
-              />
-              <br/>
+            <label>
+              Email or username
+            </label>
+            <input
+                type="text"
+                value={credential}
+                onChange={(e) => setCredential(e.target.value)}
+                placeholder='Email or username'
+                required
+            />
+            <br/>
 
-              <label className={styles['form-label']}>
-                Password
-              </label>
-              <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder='Password'
-                  required
-              />
-              <button type="submit">Log In</button>
-            </form>
+            <label>
+              Password
+            </label>
+            <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder='Password'
+                required
+            />
+            <button type="submit">Log In</button>
+          </form>
 
-            <div className={styles['login-helper']}>
-              <p className={styles['link-hover']}><Link to='https://google.com'>Forgot your password?</Link></p>
-              <hr/>
-              <div className={styles['new-user-container']}>
-                <p className={styles['helper-text']}>Don't have an account?</p>
-                <p className={styles['link-hover']}><Link to='/signup'>Sign up for Motify</Link></p>
-              </div>
-            </div>
+          
+
+          <p className='login-link-hover'><Link to='https://google.com'>Forgot your password?</Link></p>
+
+          <hr/>
+
+          <div className='new-user-container'>
+            <p className='helper-text'>Don't have an account?</p>
+            <p className='login-link-hover'><Link to='/signup'>Sign up for Motify</Link></p>
           </div>
-        </div>
 
-        <p className={styles['captcha']}>This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</p>
+        </div>
       </div>
+
+      <p className='captcha'>This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</p>
+    </div>
     </>
   );
 }

@@ -1,0 +1,81 @@
+/* * FormInputs.jsx */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-container h1 {
+  padding-bottom: 3rem;
+}
+
+.form-field-container label {
+  display: flex;
+  flex-direction: column;
+  max-width: 22rem;
+}
+
+.header-container {
+  padding-top: 4rem;
+  display: flex;
+  /* flex-direction: column; */
+  /* align-items: left; */
+  max-width: 22rem;
+  color: white;
+  line-height: 3rem;
+}
+
+.signup-container {
+  padding-top: 8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 22rem;
+  line-height: 3.25rem;
+}
+
+.signup-container .helper-text {
+  align-self: flex-start;
+  line-height: 1.25rem;
+  padding-top: 0.5rem;
+}
+
+.signup-container label{
+  font-size: 1rem;
+}
+
+.form-title {
+  font-family: 'CircularSpotifyBold';
+  align-self: flex-start;
+}
+
+.form-details-field {
+  padding-top: 1.5rem;
+  display: flex;
+}
+
+.form-detail-labels {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.form-details-field .helper-text {
+  padding-top: 0.5rem;
+  margin-top: 0;
+}
+
+.helper-text span {
+  font-style: underline;
+}
+
+.form-details-field-dob{
+  
+}
