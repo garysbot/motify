@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import LoginFormPage from './components/LoginFormPage';
-import SignupFormPageOne from './components/SignUpForms/SignUpFormPageOne';
+import SignupFormPage from './components/SignUpForms/SignUpFormPage';
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
         <LoginFormPage />
       </Route>
       <Route path="/signup">
-        <SignupFormPageOne />
+        <SignupFormPage />
       </Route>
     </Switch>
   );
