@@ -80,7 +80,7 @@ function LoginFormPage() {
               <hr/>
               <div className={styles['new-user-container']}>
                 <p className={styles['helper-text']}>Don't have an account?</p>
-                <p className={styles['link-hover']}><Link to='https://google.com'>Sign up for Motify</Link></p>
+                <p className={styles['link-hover']}><Link to='/signup'>Sign up for Motify</Link></p>
               </div>
             </div>
           </div>
