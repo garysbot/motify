@@ -23,6 +23,10 @@
   max-width: 22rem;
 }
 
+.form-field-full-width input {
+  width: 22rem
+}
+
 .header-container {
   padding-top: 4rem;
   display: flex;
@@ -60,11 +64,8 @@
 .form-details-field {
   padding-top: 1.5rem;
   display: flex;
-}
-
-.form-detail-labels {
-  font-size: 0.75rem;
-  line-height: 1rem;
+  width: 22rem;
+  flex-direction: column;
 }
 
 .form-details-field .helper-text {
@@ -82,7 +83,7 @@
 }
 
 .form-details-field-dob select {
-  width: 22rem;
+  width: 10rem;
   height: 50px;
   border-radius: 0.35rem;
   margin-top: 0.55rem;
@@ -97,21 +98,28 @@
   padding-inline: 0.875rem;
 }
 
+/* Existing CSS */
+/* ... */
+
+/* Adjusted and updated CSS styles */
 .dob-container {
-  display: flex;
-  width: 10rem; /* Set max width of row */
+  display: flex
 }
 
 .dropdown-width {
-  width: 1rem; /* Set width for dropdown */
+  width: 10rem;
+  /* flex-grow: 1;  */
 }
 
-.mm-yy-container {
-  display: flex;
-  /* flex-grow: .125; Fill remaining space */
+.dd-yy-container {
+  /* display: flex; */
+  flex-grow: 2;
 }
 
-.mm-input, .yy-input {
-  /* flex: 0.125; Equal width for both fields */
-  /* width: 0.25rem; */
+.dd-input {
+  width: 3.75rem; /* Adjusting width to half of container minus a small gap */
+}
+
+.yy-input {
+  width: 5.625rem;
 }

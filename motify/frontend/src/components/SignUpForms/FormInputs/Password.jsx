@@ -7,7 +7,7 @@ const Password = () => {
     <>
     <div className="signup-container">
       <p className="helper-text">Step 1 of 3</p>
-      <label className="header-label">
+      <label className="form-field-full-width">
         Create a Password
         <input
           type="password"
