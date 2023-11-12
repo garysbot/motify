@@ -3,13 +3,13 @@ class Api::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    debugger
     if @user.save
       login!(@user)
       # redirect_to users_url
       render 'api/users/show'
     else
-      render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
+      Rails.logger.info(@user.errors.full_messages.to_sentence)
+      render json: { errors: @user.errors.full_messages }
     end
   end
 
@@ -18,7 +18,7 @@ class Api::UsersController < ApplicationController
   private
   
   def user_params
-    params.require(:user).permit(:email, :username, :password)
+    params.require(:user).permit(:email, :username, :password, :birth_date, :gender, :optinmarketing)
   end
 
 end
