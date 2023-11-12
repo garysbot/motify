@@ -6,7 +6,7 @@ const Details = () => {
   const { data, handleChange } = useFormContext();
 
   const handleDobChange = (e) => {
-    const newDob = { ...data.dob, [e.target.name]: e.target.value };
+    const newDob = { ...data.birth_date, [e.target.name]: e.target.value };
 
     const convertMonthToNumber = (monthString) => {
       switch(monthString){
@@ -42,7 +42,7 @@ const Details = () => {
     // Assuming 'month' is a string like "January", you might need to convert it to a numeric value
     const dobString = `${newDob.year}-${convertMonthToNumber(newDob.month)}-${newDob.day}`;
 
-    handleChange({ target: { name: 'dob', value: dobString } });
+    handleChange({ target: { name: 'birth_date', value: dobString } });
   }
 
   return (
@@ -70,7 +70,7 @@ const Details = () => {
             Date of birth
             <p className="helper-text">Why do we need your date of birth? <span>Learn more.</span></p>
             <div className="dob-container"> {/* Added container for DOB fields */}
-              <select className="dropdown-width" name="month" onChange={handleDobChange} value={data.dob?.month || ''}> {/* Modified class name */}
+              <select className="dropdown-width" name="month" onChange={handleDobChange} value={data.birth_date?.month || ''}> {/* Modified class name */}
                 <option>January</option>
                 <option>February</option>
                 <option>March</option>
@@ -85,8 +85,8 @@ const Details = () => {
                 <option>December</option>
               </select>
               <div className="dd-yy-container"> {/* Added container for month and year fields */}
-                <input className="dd-input text-input" placeholder="dd" onChange={handleDobChange} value={data.dob.day}/> {/* Added class name */}
-                <input className="yy-input text-input" placeholder="yy" onChange={handleDobChange} value={data.dob.year}/> {/* Added class name */}
+                <input className="dd-input text-input" placeholder="dd" onChange={handleDobChange} value={data.birth_date.day}/> {/* Added class name */}
+                <input className="yy-input text-input" placeholder="yy" onChange={handleDobChange} value={data.birth_date.year}/> {/* Added class name */}
               </div>
             </div>
           </label>

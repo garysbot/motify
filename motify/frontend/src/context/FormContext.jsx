@@ -18,9 +18,9 @@ export const FormProvider = ({ children }) => {
     email: '',
     password: '',
     name: '',
-    dob: '',
+    birth_date: '',
     gender: '',
-    marketingOptIn: false
+    optinmarketing: false
   })
 
   // ! handleChange for form components
@@ -45,9 +45,9 @@ export const FormProvider = ({ children }) => {
     email,
     password,
     name,
-    dob,
+    birth_date,
     gender,
-    marketingOptIn,
+    optinmarketing,
     ...requiredInputs } = data
 
   // ! next/prev button handlers
@@ -77,14 +77,14 @@ export const FormProvider = ({ children }) => {
   const canNextPage3 = Object.keys(data)
     .filter(key => 
       key === 'name' || 
-      key === 'dob' ||
+      key === 'birth_date' ||
       key === 'gender'
       )
       .map(key => data[key])
       .every(Boolean)
 
   const canNextPage4 = Object.keys(data)
-    .filter(key => key === 'marketingOptIn')
+    .filter(key => key === 'optinmarketing')
     .map(key => data[key])
     .every(Boolean)
 
