@@ -1,0 +1,157 @@
+/* * FormInputs.jsx */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-container h1 {
+  padding-bottom: 3rem;
+}
+
+.form-field-container label {
+  display: flex;
+  flex-direction: column;
+  max-width: 22rem;
+}
+
+.form-field-full-width input {
+  width: 22rem
+}
+
+.header-container {
+  padding-top: 4rem;
+  display: flex;
+  /* flex-direction: column; */
+  /* align-items: left; */
+  max-width: 22rem;
+  color: white;
+  line-height: 3rem;
+}
+
+.signup-container {
+  padding-top: 8rem;
+  display: flex;
+  flex-direction: column;
+  width: 22rem;
+  line-height: 3.25rem;
+}
+
+.signup-container .helper-text {
+  align-self: flex-start;
+  line-height: 1.5rem;
+  padding-top: 0.5rem;
+}
+
+.signup-container label{
+  font-size: 1rem;
+}
+
+.form-title {
+  font-family: 'CircularSpotifyBold';
+  align-self: flex-start;
+}
+
+.form-details-field {
+  display: flex;
+  width: 22rem;
+  flex-direction: column;
+}
+
+.form-details-field .helper-text {
+  padding-top: 0.5rem;
+  margin-top: 0;
+}
+
+.helper-text span {
+  font-style: underline;
+}
+
+.form-details-field-dob {
+  width: 22rem;
+  padding-top: 1rem;
+}
+
+.form-details-field-dob select {
+  width: 10rem;
+  height: 50px;
+  border-radius: 0.35rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0rem;
+  background-color: #121212;
+  border-color: #727272;
+  border-width: 1px;
+  border-style: solid;
+  color: white;
+  font-size: 1rem;
+  font-family: 'CircularSpotifyBook', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  padding-inline: 0.875rem;
+}
+
+/* Existing CSS */
+/* ... */
+
+/* Adjusted and updated CSS styles */
+.dob-container {
+  width: 100%;
+  display: flex
+}
+
+.dropdown-width {
+  max-width: 10rem;
+  /* flex-grow: 1;  */
+}
+
+.dd-yy-container {
+  display: flex;
+  /* max-width: 12rem; */
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.dd-input {
+  width: 3.75rem; /* Adjusting width to half of container minus a small gap */
+  /* flex-shrink: 1; */
+}
+
+.yy-input {
+  width: 7.625rem;
+  /* flex-grow: 2; */
+}
+
+.form-details-field {
+  display: flex;
+  flex-direction: column;
+  width: 22rem;
+}
+
+.question-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 1rem;
+}
+
+.radio-options-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.optin-container {
+  background-color: #232323;
+  border-radius: 0.35rem;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+  
+}

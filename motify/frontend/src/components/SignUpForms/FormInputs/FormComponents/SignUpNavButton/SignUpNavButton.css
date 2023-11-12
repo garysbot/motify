@@ -1,0 +1,17 @@
+.sign-up-buttons-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sign-up-buttons .next .prev {
+
+}
+
+.next {
+
+}
+
+.prev {
+
+}

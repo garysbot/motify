@@ -19,7 +19,10 @@ ApplicationRecord.transaction do
   User.create!(
     username: 'Demo-lition', 
     email: 'demo@user.io', 
-    password: 'password'
+    password: 'password',
+    birth_date: DateTime.new(1990, 1, 1),
+    gender: 'Man',
+    optinmarketing: true
   )
 
   # More users
@@ -27,7 +30,10 @@ ApplicationRecord.transaction do
     User.create!({
       username: Faker::Internet.unique.username(specifier: 3),
       email: Faker::Internet.unique.email,
-      password: 'password'
+      password: 'password',
+      birth_date: DateTime.new(rand(1970..2005), rand(1..12), rand(1..28)),
+      gender: ['Male', 'Female', 'Other'].sample,
+      optinmarketing: [true, false].sample
     }) 
   end
 
