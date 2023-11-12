@@ -1,0 +1,23 @@
+.play-bar-container {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  height: 5.375rem;
+  background-color: #000000;
+}
+
+.play-button {
+  width: 115px;
+  height: 36px;
+  margin-left: 50px;
+  margin-top: 32px;
+  /* margin-bottom: 35px; */
+  background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' %3F%3E%3Csvg fill='%23fff' height='48' viewBox='0 0 48 48' width='48' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h48v48H0z' fill='none'/%3E%3Cpath d='M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm-4 29V15l12 9-12 9z'/%3E%3C/svg%3E");  background-repeat: no-repeat;
+  background-size: contain;
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.play-button:hover {
+  width: 135px;
+  height: 42px;
+}

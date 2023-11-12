@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { FormProvider } from './context/FormContext';
 import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from './components/SignUpForms/SignUpFormPage';
+import UserHomePage from './components/UserHomePage/UserHomePage';
 
 
 function App() {
@@ -15,6 +16,9 @@ function App() {
         <FormProvider>
           <SignupFormPage />
         </FormProvider>
+      </Route>
+      <Route path="/" exact>
+        <UserHomePage />
       </Route>
     </Switch>
   );
