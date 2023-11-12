@@ -42,7 +42,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 22rem;
+  width: 22rem;
   line-height: 3.25rem;
 }
 
@@ -103,23 +103,29 @@
 
 /* Adjusted and updated CSS styles */
 .dob-container {
+  width: 100%;
   display: flex
 }
 
 .dropdown-width {
-  width: 10rem;
+  max-width: 10rem;
   /* flex-grow: 1;  */
 }
 
 .dd-yy-container {
-  /* display: flex; */
-  flex-grow: 2;
+  display: flex;
+  /* max-width: 12rem; */
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-left: 0.5rem;
 }
 
 .dd-input {
   width: 3.75rem; /* Adjusting width to half of container minus a small gap */
+  /* flex-shrink: 1; */
 }
 
 .yy-input {
-  width: 5.625rem;
+  width: 7.625rem;
+  /* flex-grow: 2; */
 }

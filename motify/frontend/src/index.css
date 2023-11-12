@@ -87,7 +87,7 @@ input::placeholder {
   padding-inline: 0.875rem;
 } */
 
-input {
+.text-input {
   /* width: 22rem; */
   height: 50px;
   border-radius: 0.35rem;
