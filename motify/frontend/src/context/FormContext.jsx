@@ -17,7 +17,7 @@ export const FormProvider = ({ children }) => {
   const [data, setData] = useState({
     email: '',
     password: '',
-    name: '',
+    username: '',
     birth_date: '',
     gender: '',
     optinmarketing: false
@@ -44,7 +44,7 @@ export const FormProvider = ({ children }) => {
   const {
     email,
     password,
-    name,
+    username,
     birth_date,
     gender,
     optinmarketing,
