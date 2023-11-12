@@ -5,6 +5,7 @@ const Details = () => {
 
   return (
     <>
+      {console.log(`Details page opened`)}
       <div className="signup-container">
         <p className="helper-text">Step 2 of 3</p>
         <p className="form-title">Tell us about yourself</p>

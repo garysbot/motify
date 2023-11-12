@@ -149,7 +149,9 @@
   justify-content: space-between;
 }
 
-.radio-label {
+.optin-container {
+  background-color: #232323;
+  padding: 1rem;
   
 }
 

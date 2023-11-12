@@ -7,6 +7,7 @@ const Email = () => {
 
   return (
     <>
+    {console.log(`Email page opened`)}
 
     <div className="signup-container">
 

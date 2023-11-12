@@ -5,6 +5,7 @@ const Password = () => {
 
   return (
     <>
+    {console.log(`Password page opened`)}
     <div className="signup-container">
       <p className="helper-text">Step 1 of 3</p>
       <label className="form-field-full-width">
