@@ -4,7 +4,6 @@ import { Redirect, Link } from "react-router-dom";
 import * as sessionActions from "../../../store/session";
 import './SignUpFormPage.css'
 
-import useFormContext from "../../../hooks/useFormContext.jsx"
 import FormInputs from "../FormInputs/FormInputs";
 import FormPageHeader from "../FormInputs/FormComponents/FormPageHeader/FormPageHeader.jsx";
 
@@ -12,16 +11,8 @@ function SignupFormPage() {
   const sessionUser = useSelector(state => state.session.user);
   const [errors, setErrors] = useState([]);
 
-  const {
-    page,
-    setPage,
-    data,
-    formType,
-    canSubmit
-  } = useFormContext()
-
   // ! Don't forget to reactivate because loggedin users shouldn't be able to sign up
-  // if (sessionUser) return <Redirect to="/" />;
+  if (sessionUser) return <Redirect to="/" />;
 
   return (
     <>
