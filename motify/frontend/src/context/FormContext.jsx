@@ -83,12 +83,18 @@ export const FormProvider = ({ children }) => {
       .map(key => data[key])
       .every(Boolean)
 
+  const canNextPage4 = Object.keys(data)
+    .filter(key => key === 'marketingOptIn')
+    .map(key => data[key])
+    .every(Boolean)
+
   const disableNext =
     (page === Object.keys(formPage).length - 1)
     || (page === 0 && !canNextPage1)
     || (page === 1 && !canNextPage2)
     || (page === 2 && !canNextPage3)
 
+    
   const prevHide = page === 0 && "remove-button"
 
   const nextHide = page === Object.keys(formPage).length - 1 && "remove-button"

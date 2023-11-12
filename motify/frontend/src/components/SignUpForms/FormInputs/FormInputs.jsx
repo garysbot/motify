@@ -14,7 +14,7 @@ const FormInputs = () => {
         0: <Email />,
         1: <Password />,
         2: <Details />,
-        // 3: <MarketingOptIn />
+        3: <MarketingOptIn />
     }
 
     const content = (

@@ -29,7 +29,7 @@ function SignupFormPage() {
 
           <FormPageHeader bgColor='transparent'/>
 
-            <form>
+            <form onSubmit={(e) => e.preventDefault()}>
               <ul>
                 {errors.map(error => <li key={error}>{error}</li>)}
               </ul>
