@@ -51,13 +51,30 @@ const Details = () => {
         </div>
 
         <div className="form-details-field">
-          <label className="form-detail-labels">
-            Gender
-          </label>
-          <p className="helper-text">We use your gender to help personalize our content recommendations and ads for you.</p>
-          <input
-            type="radio"
-          />
+          <div className="question-container">
+            <label>
+              Gender
+            </label>
+            <p className="helper-text">We use your gender to help personalize our content recommendations and ads for you.</p>
+          </div>
+          
+          <div className="radio-options-container">
+            <label className="radio-label">
+              <input type="radio" value='man' name="gender"/> Man
+            </label>
+            <label className="radio-label">
+              <input type="radio" value='woman' name="gender"/> Woman
+            </label>
+            <label className="radio-label">
+              <input type="radio" value='non-binary' name="gender"/> Non-binary
+            </label>
+            <label className="radio-label">
+              <input type="radio" value='something-else' name="gender"/> Something else
+            </label>
+            <label className="radio-label">
+              <input type="radio" value='undisclosed' name="gender"/> Prefer not to say
+            </label>
+          </div>
 
         </div>
 

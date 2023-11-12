@@ -57,6 +57,7 @@ function LoginFormPage() {
                 value={credential}
                 onChange={(e) => setCredential(e.target.value)}
                 placeholder='Email or username'
+                className='text-input'
                 required
             />
             <br/>
@@ -68,6 +69,7 @@ function LoginFormPage() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                className='text-input'
                 placeholder='Password'
                 required
             />
