@@ -71,8 +71,24 @@ input::placeholder {
   flex-direction: column;
 }
 
-.form-container input {
+/* .form-container input {
   width: 22rem;
+  height: 50px;
+  border-radius: 0.35rem;
+  margin-top: 0.55rem;
+  margin-bottom: 0rem;
+  background-color: #121212;
+  border-color: #727272;
+  border-width: 1px;
+  border-style: solid;
+  color: white;
+  font-size: 1rem;
+  font-family: 'CircularSpotifyBook', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  padding-inline: 0.875rem;
+} */
+
+input {
+  /* width: 22rem; */
   height: 50px;
   border-radius: 0.35rem;
   margin-top: 0.55rem;

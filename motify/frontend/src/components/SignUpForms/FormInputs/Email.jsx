@@ -14,7 +14,7 @@ const Email = () => {
 
       <div className="form-field-container">
 
-        <label className="form-field">
+        <label className="form-field-full-width">
           Email address
           <input
             type="text"

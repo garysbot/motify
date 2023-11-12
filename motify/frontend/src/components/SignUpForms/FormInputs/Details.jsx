@@ -10,7 +10,7 @@ const Details = () => {
         <p className="form-title">Tell us about yourself</p>
 
         <div className="form-details-field">
-          <label className="form-detail-labels">
+          <label className="form-field-full-width">
             Name
             <p className="helper-text">This name will appear on your profile</p>
             <input
@@ -29,15 +29,37 @@ const Details = () => {
             <div className="dob-container"> {/* Added container for DOB fields */}
               <select className="dropdown-width"> {/* Modified class name */}
                 <option>January</option>
-                {/* ... other month options */}
+                <option>February</option>
+                <option>March</option>
+                <option>April</option>
+                <option>May</option>
+                <option>June</option>
+                <option>July</option>
+                <option>August</option>
+                <option>September</option>
+                <option>October</option>
+                <option>November</option>
+                <option>December</option>
               </select>
-              <div className="mm-yy-container"> {/* Added container for month and year fields */}
-                <input className="mm-input" placeholder="MM" /> {/* Added class name */}
-                <input className="yy-input" placeholder="YY" /> {/* Added class name */}
+              <div className="dd-yy-container"> {/* Added container for month and year fields */}
+                <input className="dd-input" placeholder="dd" /> {/* Added class name */}
+                <input className="yy-input" placeholder="yy" /> {/* Added class name */}
               </div>
             </div>
           </label>
         </div>
+
+        <div className="form-details-field">
+          <label className="form-detail-labels">
+            Gender
+          </label>
+          <p className="helper-text">We use your gender to help personalize our content recommendations and ads for you.</p>
+          <input
+            type="radio"
+          />
+
+        </div>
+
       </div>
     </>
   );
