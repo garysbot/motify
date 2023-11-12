@@ -1,4 +1,6 @@
 import useFormContext from "../../../hooks/useFormContext";
+import SignUpStepHeader from "./FormComponents/SignUpStepHeader/SignUpStepHeader";
+
 
 const MarketingOptIn = () => {
   const { data, handleChange } = useFormContext();
@@ -7,8 +9,7 @@ const MarketingOptIn = () => {
     <>
       {console.log(`MarketingOptIn page opened`)}
       <div className="signup-container">
-        <p className="helper-text">Step 3 of 3</p>
-        <p className="form-title">Terms & Conditions</p>
+        <SignUpStepHeader/>
 
       <div className="optin-container">
         <p className="optin-helper-text helper-text">Share my registration data with Spotify's content providers for marketing purposes.</p>

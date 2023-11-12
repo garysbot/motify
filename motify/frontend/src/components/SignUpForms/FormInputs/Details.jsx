@@ -1,4 +1,6 @@
 import useFormContext from "../../../hooks/useFormContext";
+import SignUpStepHeader from "./FormComponents/SignUpStepHeader/SignUpStepHeader";
+
 
 const Details = () => {
   const { data, handleChange } = useFormContext();
@@ -7,8 +9,7 @@ const Details = () => {
     <>
       {console.log(`Details page opened`)}
       <div className="signup-container">
-        <p className="helper-text">Step 2 of 3</p>
-        <p className="form-title">Tell us about yourself</p>
+        <SignUpStepHeader />
 
         <div className="form-details-field">
           <label className="form-field-full-width">

@@ -1,4 +1,5 @@
 import useFormContext from "../../../hooks/useFormContext";
+import SignUpStepHeader from "./FormComponents/SignUpStepHeader/SignUpStepHeader";
 
 const Password = () => {
   const { data, handleChange } = useFormContext();
@@ -7,9 +8,9 @@ const Password = () => {
     <>
     {console.log(`Password page opened`)}
     <div className="signup-container">
-      <p className="helper-text">Step 1 of 3</p>
+      <SignUpStepHeader/>
+
       <label className="form-field-full-width">
-        Create a Password
         <input
           type="password"
           // value={data.password}
