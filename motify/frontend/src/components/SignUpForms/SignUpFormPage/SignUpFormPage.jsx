@@ -6,7 +6,7 @@ import './SignUpFormPage.css'
 
 import useFormContext from "../../../hooks/useFormContext.jsx"
 import FormInputs from "../FormInputs/FormInputs";
-import FormPageHeader from "../../Forms/FormPageHeader.jsx";
+import FormPageHeader from "../FormInputs/FormComponents/FormPageHeader/FormPageHeader.jsx";
 
 function SignupFormPage() {
   const sessionUser = useSelector(state => state.session.user);
@@ -24,19 +24,19 @@ function SignupFormPage() {
 
   return (
     <>
-    <div className="background">
+      <div className="background">
         <div className="main-form-container">
 
-          <FormPageHeader bgColor='transparent'/>
+          <FormPageHeader bgColor='transparent' />
 
-            <form onSubmit={(e) => e.preventDefault()}>
-              <ul>
-                {errors.map(error => <li key={error}>{error}</li>)}
-              </ul>
-              
-              <FormInputs/>
+          <form onSubmit={(e) => e.preventDefault()}>
+            <ul>
+              {errors.map(error => <li key={error}>{error}</li>)}
+            </ul>
 
-            </form>
+            <FormInputs />
+
+          </form>
 
           <div className="signup-footer">
             <p>This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service Apply.</p>
