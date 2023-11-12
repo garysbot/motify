@@ -1,5 +1,9 @@
 import { Link } from 'react-router-dom'
 import useFormContext from "../../../hooks/useFormContext"
+// ! Form Sub-Components
+import SignUpButtons from './FormComponents/SignUpNavButton/SignUpNavButton'
+
+// ! Form Fields
 import Email from "../FormInputs/Email"
 import Password from "../FormInputs/Password"
 import Details from "../FormInputs/Details"
@@ -8,7 +12,7 @@ import './FormInputs.css'
 
 const FormInputs = () => {
 
-    const { page, handleNext, handlePrev } = useFormContext()
+    const { page } = useFormContext()
 
     const display = {
         0: <Email />,
@@ -19,12 +23,10 @@ const FormInputs = () => {
 
     const content = (
         <div className='form-container'>
-            {/* <Email /> */}
             {display[page]}
+            <SignUpButtons />
             <div className="form-container">
-                <button type="submit" onClick={handleNext}>Next</button>
-                <button type="submit" onClick={handlePrev}>Prev</button>
-                <hr/>
+                <hr />
                 <p className="login-link-hover">Already have an account? <Link to='/login'>Log in here.</Link></p>
             </div>
         </div>
