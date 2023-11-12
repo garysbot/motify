@@ -7,7 +7,7 @@ const Email = () => {
 
   return (
     <>
-    {console.log(`Email page opened`)}
+    {/* {console.log(`Email page opened`)} */}
 
     <div className="signup-container">
 
@@ -19,7 +19,8 @@ const Email = () => {
           Email address
           <input
             type="text"
-            // value={data.email}
+            name="email"
+            value={data.email}
             onChange={handleChange}
             placeholder='name@domain.com'
             required

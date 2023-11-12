@@ -6,14 +6,15 @@ const Password = () => {
 
   return (
     <>
-    {console.log(`Password page opened`)}
+    {/* {console.log(`Password page opened`)} */}
     <div className="signup-container">
       <SignUpStepHeader/>
 
       <label className="form-field-full-width">
         <input
           type="password"
-          // value={data.password}
+          name="password"
+          value={data.password}
           onChange={handleChange}
           required
           className="text-input"

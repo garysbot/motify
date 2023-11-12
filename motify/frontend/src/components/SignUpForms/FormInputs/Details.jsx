@@ -5,9 +5,49 @@ import SignUpStepHeader from "./FormComponents/SignUpStepHeader/SignUpStepHeader
 const Details = () => {
   const { data, handleChange } = useFormContext();
 
+  const handleDobChange = (e) => {
+    const newDob = { ...data.dob, [e.target.name]: e.target.value };
+
+    const convertMonthToNumber = (monthString) => {
+      switch(monthString){
+        case 'January':
+          return '01'
+        case 'February':
+          return '02'  
+        case 'March':
+          return '03'
+        case 'April':
+          return '04'  
+        case 'May':
+          return '05'
+        case 'June':
+          return '06'  
+        case 'July':
+          return '07'
+        case 'August':
+          return '08'  
+        case 'September':
+          return '09'  
+        case 'October':
+          return '10'  
+        case 'November':
+          return '11'  
+        case 'December':
+          return '12'  
+        default:
+          break;              
+      }
+    }
+
+    // Assuming 'month' is a string like "January", you might need to convert it to a numeric value
+    const dobString = `${newDob.year}-${convertMonthToNumber(newDob.month)}-${newDob.day}`;
+
+    handleChange({ target: { name: 'dob', value: dobString } });
+  }
+
   return (
     <>
-      {console.log(`Details page opened`)}
+      {/* {console.log(`Details page opened`)} */}
       <div className="signup-container">
         <SignUpStepHeader />
 
@@ -17,7 +57,7 @@ const Details = () => {
             <p className="helper-text">This name will appear on your profile</p>
             <input
               type="text"
-              // value={data.password}
+              value={data.username}
               onChange={handleChange}
               required
               className="text-input"
@@ -30,7 +70,7 @@ const Details = () => {
             Date of birth
             <p className="helper-text">Why do we need your date of birth? <span>Learn more.</span></p>
             <div className="dob-container"> {/* Added container for DOB fields */}
-              <select className="dropdown-width"> {/* Modified class name */}
+              <select className="dropdown-width" name="month" onChange={handleDobChange} value={data.dob?.month || ''}> {/* Modified class name */}
                 <option>January</option>
                 <option>February</option>
                 <option>March</option>
@@ -45,8 +85,8 @@ const Details = () => {
                 <option>December</option>
               </select>
               <div className="dd-yy-container"> {/* Added container for month and year fields */}
-                <input className="dd-input text-input" placeholder="dd" /> {/* Added class name */}
-                <input className="yy-input text-input" placeholder="yy" /> {/* Added class name */}
+                <input className="dd-input text-input" placeholder="dd" onChange={handleDobChange} value={data.dob.day}/> {/* Added class name */}
+                <input className="yy-input text-input" placeholder="yy" onChange={handleDobChange} value={data.dob.year}/> {/* Added class name */}
               </div>
             </div>
           </label>
@@ -62,19 +102,19 @@ const Details = () => {
           
           <div className="radio-options-container">
             <label className="radio-label">
-              <input type="radio" value='man' name="gender"/> Man
+              <input type="radio" value='man' name="gender" onChange={handleChange} checked={data.gender === 'man'}/> Man
             </label>
             <label className="radio-label">
-              <input type="radio" value='woman' name="gender"/> Woman
+              <input type="radio" value='woman' name="gender" onChange={handleChange} checked={data.gender === 'woman'}/> Woman
             </label>
             <label className="radio-label">
-              <input type="radio" value='non-binary' name="gender"/> Non-binary
+              <input type="radio" value='non-binary' name="gender" onChange={handleChange} checked={data.gender === 'non-binary'}/> Non-binary
             </label>
             <label className="radio-label">
-              <input type="radio" value='something-else' name="gender"/> Something else
+              <input type="radio" value='something-else' name="gender" onChange={handleChange} checked={data.gender === 'something-else'}/> Something else
             </label>
             <label className="radio-label">
-              <input type="radio" value='undisclosed' name="gender"/> Prefer not to say
+              <input type="radio" value='undisclosed' name="gender" onChange={handleChange} checked={data.gender === 'undisclosed'}/> Prefer not to say
             </label>
           </div>
 
