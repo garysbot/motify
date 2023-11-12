@@ -7,8 +7,9 @@ class Api::UsersController < ApplicationController
       login!(@user)
       # redirect_to users_url
       render 'api/users/show'
-    # else
-    #   render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
+    else
+      Rails.logger.info(@user.errors.full_messages.to_sentence)
+      render json: { errors: @user.errors.full_messages }
     end
   end
 

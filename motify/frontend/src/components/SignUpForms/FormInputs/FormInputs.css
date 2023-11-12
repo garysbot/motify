@@ -47,7 +47,7 @@
 
 .signup-container .helper-text {
   align-self: flex-start;
-  line-height: 1.25rem;
+  line-height: 1.5rem;
   padding-top: 0.5rem;
 }
 
@@ -61,7 +61,6 @@
 }
 
 .form-details-field {
-  padding-top: 1.5rem;
   display: flex;
   width: 22rem;
   flex-direction: column;
@@ -85,7 +84,7 @@
   width: 10rem;
   height: 50px;
   border-radius: 0.35rem;
-  margin-top: 0.55rem;
+  margin-top: 0.5rem;
   margin-bottom: 0rem;
   background-color: #121212;
   border-color: #727272;
@@ -130,7 +129,6 @@
 }
 
 .form-details-field {
-  padding-top: 1.5rem;
   display: flex;
   flex-direction: column;
   width: 22rem;
@@ -140,6 +138,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin-top: 1rem;
 }
 
 .radio-options-container {
@@ -156,4 +155,3 @@
   gap: 1rem;
   
 }
-

@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_12_170749) do
     t.string "session_token", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "birth_date", null: false
+    t.string "birth_date", null: false
     t.string "gender", null: false
     t.boolean "optinmarketing", default: false
     t.index ["email"], name: "index_users_on_email", unique: true

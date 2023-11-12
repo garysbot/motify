@@ -7,56 +7,29 @@ const Details = () => {
 
   const handleDobChange = (e) => {
     const newDob = { ...data.birth_date, [e.target.name]: e.target.value };
-
-    const convertMonthToNumber = (monthString) => {
-      switch(monthString){
-        case 'January':
-          return '01'
-        case 'February':
-          return '02'  
-        case 'March':
-          return '03'
-        case 'April':
-          return '04'  
-        case 'May':
-          return '05'
-        case 'June':
-          return '06'  
-        case 'July':
-          return '07'
-        case 'August':
-          return '08'  
-        case 'September':
-          return '09'  
-        case 'October':
-          return '10'  
-        case 'November':
-          return '11'  
-        case 'December':
-          return '12'  
-        default:
-          break;              
-      }
+  
+    const dobString = `${newDob.year}-${newDob.month}-${newDob.day}`;
+  
+    // Validate the date string before updating the state
+    if (dobString) {
+      handleChange({ target: { name: 'birth_date', value: dobString } });
     }
+  };
+  
 
-    // Assuming 'month' is a string like "January", you might need to convert it to a numeric value
-    const dobString = `${newDob.year}-${convertMonthToNumber(newDob.month)}-${newDob.day}`;
-
-    handleChange({ target: { name: 'birth_date', value: dobString } });
-  }
 
   return (
     <>
       {/* {console.log(`Details page opened`)} */}
       <div className="signup-container">
         <SignUpStepHeader />
-
-        <div className="form-details-field">
+        <div className="form-details-field name-label">
           <label className="form-field-full-width">
             Name
-            <p className="helper-text">This name will appear on your profile</p>
+            <p className="helper-text name-helper">This name will appear on your profile</p>
             <input
               type="text"
+              name="username"
               value={data.username}
               onChange={handleChange}
               required
@@ -70,7 +43,7 @@ const Details = () => {
             Date of birth
             <p className="helper-text">Why do we need your date of birth? <span>Learn more.</span></p>
             <div className="dob-container"> {/* Added container for DOB fields */}
-              <select className="dropdown-width" name="month" onChange={handleDobChange} value={data.birth_date?.month || ''}> {/* Modified class name */}
+              <select className="dropdown-width" name="month" onChange={handleDobChange} value={data.birth_date.m}> {/* Modified class name */}
                 <option>January</option>
                 <option>February</option>
                 <option>March</option>
