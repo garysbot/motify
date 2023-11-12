@@ -22,7 +22,7 @@ ApplicationRecord.transaction do
     password: 'password',
     birth_date: DateTime.new(1990, 1, 1),
     gender: 'Man',
-    optin_marketing: true
+    optinmarketing: true
   )
 
   # More users
@@ -33,7 +33,7 @@ ApplicationRecord.transaction do
       password: 'password',
       birth_date: DateTime.new(rand(1970..2005), rand(1..12), rand(1..28)),
       gender: ['Male', 'Female', 'Other'].sample,
-      optin_marketing: [true, false].sample
+      optinmarketing: [true, false].sample
     }) 
   end
 

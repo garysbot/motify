@@ -12,10 +12,10 @@ const SignUpButtons = () => {
         user: {
           email: data.email,
           password: data.password,
-          username: data.username, // Ensure this field is in your form
-          dob: data.dob, // Ensure your Rails controller permits this parameter
-          gender: data.gender, // Ensure your Rails controller permits this parameter
-          marketingOptIn: data.marketingOptIn, // Ensure your Rails controller permits this parameter
+          username: data.username, 
+          birth_date: data.birth_date, 
+          gender: data.gender, 
+          optinmarketing: data.optinmarketing
         },
       };
   

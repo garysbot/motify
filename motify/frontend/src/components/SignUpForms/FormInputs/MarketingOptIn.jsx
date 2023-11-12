@@ -15,8 +15,8 @@ const MarketingOptIn = () => {
         <label className="checkbox-label">
           <input
             type="checkbox"
-            name="marketingOptIn"
-            checked={data.marketingOptIn}
+            name="optinmarketing"
+            checked={data.optinmarketing}
             onChange={handleChange}
             className="checkbox-input"
           />
