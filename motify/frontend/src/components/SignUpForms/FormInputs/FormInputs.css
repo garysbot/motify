@@ -76,6 +76,42 @@
   font-style: underline;
 }
 
-.form-details-field-dob{
-  
+.form-details-field-dob {
+  width: 22rem;
+  padding-top: 1rem;
+}
+
+.form-details-field-dob select {
+  width: 22rem;
+  height: 50px;
+  border-radius: 0.35rem;
+  margin-top: 0.55rem;
+  margin-bottom: 0rem;
+  background-color: #121212;
+  border-color: #727272;
+  border-width: 1px;
+  border-style: solid;
+  color: white;
+  font-size: 1rem;
+  font-family: 'CircularSpotifyBook', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  padding-inline: 0.875rem;
+}
+
+.dob-container {
+  display: flex;
+  width: 10rem; /* Set max width of row */
+}
+
+.dropdown-width {
+  width: 1rem; /* Set width for dropdown */
+}
+
+.mm-yy-container {
+  display: flex;
+  /* flex-grow: .125; Fill remaining space */
+}
+
+.mm-input, .yy-input {
+  /* flex: 0.125; Equal width for both fields */
+  /* width: 0.25rem; */
 }
