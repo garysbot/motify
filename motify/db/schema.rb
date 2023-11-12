@@ -10,9 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_12_170749) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_12_212528) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "songs", force: :cascade do |t|
+    t.bigint "artist", null: false
+    t.bigint "album", null: false
+    t.integer "duration", null: false
+    t.integer "album_track_num", null: false
+    t.string "title", null: false
+    t.boolean "explicit", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["album"], name: "index_songs_on_album"
+    t.index ["artist"], name: "index_songs_on_artist"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
