@@ -9985,3 +9985,156 @@ Can't verify CSRF token authenticity.
 Completed 422 Unprocessable Entity in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 923)
 
 
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 12:37:05 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 12:37:06 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 12:37:08 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 12:37:09 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/api/users" for 127.0.0.1 at 2023-11-12 12:37:38 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/api/users"):
+  
+Started DELETE "/api/users" for 127.0.0.1 at 2023-11-12 12:37:44 -0500
+  
+ActionController::RoutingError (No route matches [DELETE] "/api/users"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 12:39:26 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 12:39:27 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 12:39:30 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 12:39:31 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 12:42:28 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 12:42:29 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/api/users" for 127.0.0.1 at 2023-11-12 12:43:50 -0500
+Processing by Api::UsersController#create as JSON
+  Parameters: {"user"=>{"email"=>"", "password"=>"[FILTERED]", "dob"=>"", "gender"=>"", "marketingOptIn"=>false}}
+[31mUnpermitted parameter: :marketing_opt_in. Context: { controller: Api::UsersController, action: create, request: #<ActionDispatch::Request:0x000000010bc0bed8>, params: {"user"=>{"email"=>"", "password"=>"[FILTERED]", "dob"=>"", "gender"=>"", "marketingOptIn"=>false}, "format"=>:json, "controller"=>"api/users", "action"=>"create"} }[0m
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.7ms | Allocations: 240)
+
+ActiveModel::UnknownAttributeError - unknown attribute 'dob' for User.
+
+          raise UnknownAttributeError.new(self, k.to_s)
+          ^^^^^:
+	app/controllers/api/users_controller.rb:5:in `create'
+
+Completed 500 Internal Server Error in 5ms (Views: 1.9ms | ActiveRecord: 0.0ms | Allocations: 3193)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 12:43:59 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 12:45:18 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 12:45:20 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 12:46:00 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 12:46:01 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 12:46:47 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 12:46:48 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 12:46:56 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 12:46:58 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 13:00:16 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 13:00:17 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/api/users" for 127.0.0.1 at 2023-11-12 13:00:58 -0500
+Processing by Api::UsersController#create as JSON
+  Parameters: {"user"=>{"email"=>"gary@garygrows.com", "password"=>"[FILTERED]", "dob"=>{""=>"3"}, "gender"=>"woman", "marketingOptIn"=>true}}
+[31mUnpermitted parameters: :dob, :marketing_opt_in. Context: { controller: Api::UsersController, action: create, request: #<ActionDispatch::Request:0x000000010aa228c0>, params: {"user"=>{"email"=>"gary@garygrows.com", "password"=>"[FILTERED]", "dob"=>{""=>"3"}, "gender"=>"woman", "marketingOptIn"=>true}, "format"=>:json, "controller"=>"api/users", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "gary@garygrows.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+Completed 422 Unprocessable Entity in 202ms (Views: 0.1ms | ActiveRecord: 11.2ms | Allocations: 8455)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 13:14:29 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 13:14:29 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 13:14:30 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/api/users" for 127.0.0.1 at 2023-11-12 13:15:30 -0500
+Processing by Api::UsersController#create as JSON
+  Parameters: {"user"=>{"email"=>"garyjdas@jdsf.com", "password"=>"[FILTERED]", "dob"=>"undefined-undefined-undefined", "gender"=>"woman", "marketingOptIn"=>true}}
+[31mUnpermitted parameter: :marketing_opt_in. Context: { controller: Api::UsersController, action: create, request: #<ActionDispatch::Request:0x000000010ade20c8>, params: {"user"=>{"email"=>"garyjdas@jdsf.com", "password"=>"[FILTERED]", "dob"=>"undefined-undefined-undefined", "gender"=>"woman", "marketingOptIn"=>true}, "format"=>:json, "controller"=>"api/users", "action"=>"create"} }[0m
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.1ms | Allocations: 111)
+
+ActiveModel::UnknownAttributeError - unknown attribute 'dob' for User.
+
+          raise UnknownAttributeError.new(self, k.to_s)
+          ^^^^^:
+	app/controllers/api/users_controller.rb:5:in `create'
+
+Completed 500 Internal Server Error in 186ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 2136)
+
+

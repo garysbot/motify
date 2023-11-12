@@ -52,13 +52,13 @@ export const FormProvider = ({ children }) => {
 
   // ! next/prev button handlers
   const handlePrev = () => {
-    console.log(`handlePrev invoked`)
+    // console.log(`handlePrev invoked`)
     setPage(prev => prev - 1)
   }
 
   const handleNext = () => {
-      console.log(`handleNext invoked`)
-      setPage(prev => prev + 1)
+    // console.log(`handleNext invoked`)
+    setPage(prev => prev + 1)
   }
 
   const canSubmit = [...Object.values(requiredInputs)].every(Boolean) &&

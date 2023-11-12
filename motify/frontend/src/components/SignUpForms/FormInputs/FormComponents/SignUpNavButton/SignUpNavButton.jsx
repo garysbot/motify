@@ -61,7 +61,7 @@ const SignUpButtons = () => {
 
   return (
     <>
-      {console.log(page)}
+      {/* {console.log(page)} */}
       <div className="sign-up-buttons-container">
         <button onClick={handleType} className={`sign-up-buttons ${classType}`}>{buttonType}</button>
         {}

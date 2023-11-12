@@ -7,11 +7,20 @@ const MarketingOptIn = () => {
 
   return (
     <>
-      {console.log(`MarketingOptIn page opened`)}
+      {/* {console.log(`MarketingOptIn page opened`)} */}
       <div className="signup-container">
         <SignUpStepHeader/>
 
       <div className="optin-container">
+        <label className="checkbox-label">
+          <input
+            type="checkbox"
+            name="marketingOptIn"
+            checked={data.marketingOptIn}
+            onChange={handleChange}
+            className="checkbox-input"
+          />
+          </label>
         <p className="optin-helper-text helper-text">Share my registration data with Spotify's content providers for marketing purposes.</p>
       </div>
       

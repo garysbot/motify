@@ -20,7 +20,8 @@ function SignupFormPage() {
     canSubmit
   } = useFormContext()
 
-  if (sessionUser) return <Redirect to="/" />;
+  // ! Don't forget to reactivate because loggedin users shouldn't be able to sign up
+  // if (sessionUser) return <Redirect to="/" />;
 
   return (
     <>

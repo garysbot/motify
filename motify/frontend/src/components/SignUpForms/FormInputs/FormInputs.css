@@ -150,7 +150,10 @@
 
 .optin-container {
   background-color: #232323;
+  border-radius: 0.35rem;
   padding: 1rem;
+  display: flex;
+  gap: 1rem;
   
 }
 
