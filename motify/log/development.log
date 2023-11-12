@@ -8821,3 +8821,18 @@ Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 08:33:26 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
+Started GET "/api/session" for 127.0.0.1 at 2023-11-12 08:50:43 -0500
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 08:50:43 -0500
+Processing by Api::SessionsController#show as JSON
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:15:in `current_user'
+Completed 200 OK in 197ms (Views: 0.1ms | ActiveRecord: 179.4ms | Allocations: 8375)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 08:50:44 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
