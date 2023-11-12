@@ -14,6 +14,7 @@ const Password = () => {
           // value={data.password}
           onChange={handleChange}
           required
+          className="text-input"
         />
       </label>
         <p className="helper-text">

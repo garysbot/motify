@@ -22,6 +22,7 @@ const Email = () => {
             onChange={handleChange}
             placeholder='name@domain.com'
             required
+            className="text-input"
             />
         </label>
 

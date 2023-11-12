@@ -18,6 +18,7 @@ const Details = () => {
               // value={data.password}
               onChange={handleChange}
               required
+              className="text-input"
             />
           </label>
         </div>
@@ -42,8 +43,8 @@ const Details = () => {
                 <option>December</option>
               </select>
               <div className="dd-yy-container"> {/* Added container for month and year fields */}
-                <input className="dd-input" placeholder="dd" /> {/* Added class name */}
-                <input className="yy-input" placeholder="yy" /> {/* Added class name */}
+                <input className="dd-input text-input" placeholder="dd" /> {/* Added class name */}
+                <input className="yy-input text-input" placeholder="yy" /> {/* Added class name */}
               </div>
             </div>
           </label>
