@@ -9,7 +9,8 @@ const Details = () => {
     usernameError,
     monthError,
     dayError,
-    yearError 
+    yearError,
+    genderError 
   } = useFormContext();
 
   const handleDobChange = (e) => {
@@ -124,6 +125,13 @@ const Details = () => {
               <input type="radio" value='undisclosed' name="gender" onChange={handleChange} checked={data.gender === 'undisclosed'}/> Prefer not to say
             </label>
           </div>
+          {
+            genderError &&  
+            <div className='field-error-container'>
+              <div className='field-error-icon'></div>
+              <p className='field-error-text'>{genderError}</p>
+            </div>
+          }
 
         </div>
 
