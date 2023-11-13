@@ -13,7 +13,7 @@ function LoginFormPage() {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return <Redirect to="/" />;
+  // if (sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,15 +40,20 @@ function LoginFormPage() {
         <div className='form-bg'>
           <div className='form-container'>
 
-            <h1>Log in to Motify</h1>
+            <h1 className='header-container'>Log in to Motify</h1>
 
+            { errors ? errors.map(error => 
+                <div className='login-page-error-container'>
+                  <div className='login-page-error-icon'></div>
+                  <p className='login-page-error-text'>{error}</p>
+                </div>
+              )
+              : null
+            }
+  
             <hr />
 
             <form onSubmit={handleSubmit}>
-              <ul>
-                {errors.map(error => <li key={error}>{error}</li>)}
-              </ul>
-
               <label>
                 Email or username
               </label>
@@ -59,9 +64,8 @@ function LoginFormPage() {
                 placeholder='Email or username'
                 className='text-input'
                 required
-              />
+                />
               <br />
-
               <label>
                 Password
               </label>
@@ -72,7 +76,7 @@ function LoginFormPage() {
                 className='text-input'
                 placeholder='Password'
                 required
-              />
+                />
               <button type="submit">Log In</button>
             </form>
 
