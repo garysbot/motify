@@ -5,12 +5,20 @@ const UserHomePage = () => {
   return (
     <>
     <div className="user-home-page-bg">
+
+      <div className='user-home-page-announcements-container'>
+        <div className='user-home-page-announcement'>
+        {/* Hide Announcements */}
+        {/* Announcement Banner */}
+        {/* Links for Announcement Banner */}
+        </div>
+      </div>
       
-      <div className='mini-recently-played-container'>
+      <div className='user-home-page-mini-recent-card-container'>
         {/* ! // Dynamic Headline */}
         <h2>Good afternoon</h2>
-        <div className='mini-recently-played-cards-container'>
-          <div className='mini-recently-played-card'>
+        <div className='user-home-page-mini-recent-cards-index'>
+          <div className='user-home-page-mini-recent-card'>
             {/* Card Image */}
             {/* Card Title */}
             {/* On Hover Play/Pause Button */}
@@ -22,11 +30,12 @@ const UserHomePage = () => {
         </div>
       </div>
 
-      <div className='your-shows-container'>
+      <div className='user-home-page-card-container'>
+        {/* // TODO Dynamic H2 */}
         <h2>Your Shows</h2>
         <p>Show All</p>
-        <div className='your-shows-cards-container'>
-          <div className='your-shows-card'>
+        <div className='user-home-page-cards-index'>
+          <div className='user-home-page-card'>
             {/* Card Image */}
             {/* Card Title */}
             {/* On Hover Play/Pause Button */}
@@ -38,21 +47,6 @@ const UserHomePage = () => {
         </div>
       </div>
 
-      <div className='made-for-you-container'>
-        <h2>Made For You</h2>
-        <p>Show All</p>
-        <div className='made-for-you-cards-container'>
-          <div className='made-for-you-card'>
-            {/* Card Image */}
-            {/* Card Title */}
-            {/* On Hover Play/Pause Button */}
-            {/* Boolean -> True = show play anim / False = do not show */}
-            {/* Max - 3x per row; 2x rows */}
-            {/* Min - 2x per row; 3x rows */}
-          </div>
-
-        </div>
-      </div>
 
       <PlayBar />
     </div>
