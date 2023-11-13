@@ -1,10 +1,16 @@
 import useFormContext from "../../../../../hooks/useFormContext";
 import './SignUpNavButton.css'
 import csrfFetch from '../../../../../store/csrf';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { signup as signupAction } from '../../../../../store/session'
 
 const SignUpButtons = () => {
-  const { page, handleNext, handlePrev, data, canSubmit } = useFormContext();
+  const { page, handleNext, handlePrev, data, canSubmit, handleChange } = useFormContext();
   let buttonType, classType, handleType
+
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleSubmit = async () => {
     if (canSubmit) {
@@ -34,6 +40,8 @@ const SignUpButtons = () => {
         // Handle success (e.g., redirect or show success message)
         console.log('Form submitted successfully:', responseData);
         // Add your success handling code here
+        history.push('/testing');
+        
       } catch (error) {
         // Handle errors (e.g., show error message to the user)
         console.error('Error submitting form:', error.message);
@@ -63,8 +71,13 @@ const SignUpButtons = () => {
     <>
       {/* {console.log(page)} */}
       <div className="sign-up-buttons-container">
-        <button onClick={handleType} className={`sign-up-buttons ${classType}`}>{buttonType}</button>
-        {}
+        <button
+          onClick={handleType} 
+          className={`sign-up-buttons ${classType}`}
+          onChange={handleChange}
+        >
+          {buttonType}
+        </button>
       </div>
     </>
   );

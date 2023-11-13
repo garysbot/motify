@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
-import styles from './LoginForm.css';
+import './LoginForm.css';
 import FormPageHeader from '../SignUpForms/FormInputs/FormComponents/FormPageHeader/FormPageHeader';
 
 
@@ -14,6 +14,10 @@ function LoginFormPage() {
   const [errors, setErrors] = useState([]);
 
   // if (sessionUser) return <Redirect to="/" />;
+
+  const demoLogin = () => {
+    return dispatch(sessionActions.login({ credential: 'demo@user.io', password: 'password' }))
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,15 +44,20 @@ function LoginFormPage() {
         <div className='form-bg'>
           <div className='form-container'>
 
-            <h1>Log in to Motify</h1>
+            <h1 className='header-container'>Log in to Motify</h1>
 
+            { errors ? errors.map(error => 
+                <div className='login-page-error-container'>
+                  <div className='login-page-error-icon'></div>
+                  <p className='login-page-error-text'>{error}</p>
+                </div>
+              )
+              : null
+            }
+  
             <hr />
 
             <form onSubmit={handleSubmit}>
-              <ul>
-                {errors.map(error => <li key={error}>{error}</li>)}
-              </ul>
-
               <label>
                 Email or username
               </label>
@@ -59,9 +68,8 @@ function LoginFormPage() {
                 placeholder='Email or username'
                 className='text-input'
                 required
-              />
+                />
               <br />
-
               <label>
                 Password
               </label>
@@ -72,13 +80,13 @@ function LoginFormPage() {
                 className='text-input'
                 placeholder='Password'
                 required
-              />
+                />
               <button type="submit">Log In</button>
             </form>
 
 
 
-            <p className='login-link-hover'><Link to='https://google.com'>Forgot your password?</Link></p>
+            <p className='demo-login'><p onClick={demoLogin}>Demo Account Login</p></p>
 
             <hr />
 

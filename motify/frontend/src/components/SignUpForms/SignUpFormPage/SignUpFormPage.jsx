@@ -9,28 +9,21 @@ import FormPageHeader from "../FormInputs/FormComponents/FormPageHeader/FormPage
 
 function SignupFormPage() {
   const sessionUser = useSelector(state => state.session.user);
-  const [errors, setErrors] = useState([]);
 
   // ! Don't forget to reactivate because loggedin users shouldn't be able to sign up
-  // if (sessionUser) return <Redirect to="/" />;
+  if (sessionUser) return <Redirect to="/" />;
 
   return (
     <>
-      <div className="background">
-        <div className="main-form-container">
-
+      <div className="sign-up-form-background">
+        <div className="sign-up-form-container">
           <FormPageHeader bgColor='transparent' />
 
           <form onSubmit={(e) => e.preventDefault()}>
-            <ul>
-              {errors.map(error => <li key={error}>{error}</li>)}
-            </ul>
-
             <FormInputs />
-
           </form>
 
-          <div className="signup-footer">
+          <div className="sign-up-page-footer">
             <p>This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service Apply.</p>
           </div>
 
