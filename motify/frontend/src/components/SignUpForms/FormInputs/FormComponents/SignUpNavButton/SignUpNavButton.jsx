@@ -3,7 +3,7 @@ import './SignUpNavButton.css'
 import csrfFetch from '../../../../../store/csrf';
 
 const SignUpButtons = () => {
-  const { page, handleNext, handlePrev, data, canSubmit } = useFormContext();
+  const { page, handleNext, handlePrev, data, canSubmit, handleChange } = useFormContext();
   let buttonType, classType, handleType
 
   const handleSubmit = async () => {
@@ -63,8 +63,13 @@ const SignUpButtons = () => {
     <>
       {/* {console.log(page)} */}
       <div className="sign-up-buttons-container">
-        <button onClick={handleType} className={`sign-up-buttons ${classType}`}>{buttonType}</button>
-        {}
+        <button
+          onClick={handleType} 
+          className={`sign-up-buttons ${classType}`}
+          onChange={handleChange}
+        >
+          {buttonType}
+        </button>
       </div>
     </>
   );

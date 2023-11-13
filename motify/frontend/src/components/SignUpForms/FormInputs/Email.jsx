@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import useFormContext from "../../../hooks/useFormContext";
 import './FormInputs.css'
 
 const Email = () => {
-  const { data, handleChange } = useFormContext();
+  const { data, handleChange, emailError } = useFormContext();
 
   return (
     <>
@@ -27,6 +27,13 @@ const Email = () => {
             className="text-input"
             />
         </label>
+        {/* //! Error Handling for Email */}
+        { emailError &&  
+            <div className='field-error-container'>
+              <div className='field-error-icon'></div>
+              <p className='field-error-text'>{emailError}</p>
+            </div>
+        }
 
       </div>
 

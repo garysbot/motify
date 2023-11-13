@@ -25,20 +25,52 @@ export const FormProvider = ({ children }) => {
 
   // ! handleChange for form components
   // checks React tag attrib "type" and "name" to deploy correct data setter
+  // const handleChange = e => {
+  //   const type = e.target.type
+
+  //   const name = e.target.name
+
+  //   const value = type === "checkbox"
+  //       ? e.target.checked
+  //       : e.target.value
+
+  //   setData(prevData => ({
+  //       ...prevData,
+  //       [name]: value
+  //   }))
+  // }
+
+  const [emailError, setEmailError] = useState()
+  
+  // ! Updated handleChange with email validation
   const handleChange = e => {
-    const type = e.target.type
-
-    const name = e.target.name
-
-    const value = type === "checkbox"
-        ? e.target.checked
-        : e.target.value
-
-    setData(prevData => ({
+    const type = e.target.type;
+    const name = e.target.name;
+    const value = type === "checkbox" ? e.target.checked : e.target.value;
+  
+    // Email validation function
+    const validateEmail = (email) => {
+      const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+  
+      if (!emailRegex.test(email)) {
+        setEmailError(`This email is invalid. Make sure it's written like example@email.com`);
+        return false;
+      }
+      setEmailError('');
+        return true;
+      };
+  
+      // Check if the changed field is 'email' and validate it
+      if (name === 'email') {
+        validateEmail(value);
+      }
+    
+      setData(prevData => ({
         ...prevData,
         [name]: value
-    }))
+      }));
   }
+  
 
   // ^ Validating all required fields are filled out before allowing submit?
   const {
@@ -102,7 +134,7 @@ export const FormProvider = ({ children }) => {
   const submitHide = page !== Object.keys(formPage).length - 1 && "remove-button"
 
   return (
-    <FormContext.Provider value={{ formPage, page, setPage, data, setData, canSubmit, handleChange, disableNext, prevHide, nextHide, submitHide, handlePrev, handleNext }}>
+    <FormContext.Provider value={{ formPage, page, setPage, data, setData, canSubmit, handleChange, disableNext, prevHide, nextHide, submitHide, handlePrev, handleNext, emailError, setEmailError }}>
         {children}
     </FormContext.Provider>
 )
