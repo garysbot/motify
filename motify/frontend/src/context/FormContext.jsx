@@ -128,6 +128,20 @@ export const FormProvider = ({ children }) => {
       return true;
     }
   }
+
+  const validateGender = (gender) => {
+    const GENDERS = [
+      'man', 'woman', 'non-binary', 'something-else', 'undisclosed'
+    ]
+    if (GENDERS.includes(gender)) {
+      setGenderError('');
+      return true
+    } else {
+      setGenderError('Select a gender.')
+      return false;
+    }
+
+  }
   
   // Handle Change -> real-time error validation
   const handleChange = e => {
@@ -235,7 +249,7 @@ export const FormProvider = ({ children }) => {
   const submitHide = page !== Object.keys(formPage).length - 1 && "remove-button"
 
   return (
-    <FormContext.Provider value={{ formPage, page, setPage, data, setData, canSubmit, handleChange, disableNext, prevHide, nextHide, submitHide, handlePrev, handleNext, emailError, setEmailError, passwordError, setPasswordError, usernameError, setUsernameError, monthError, setMonthError, dayError, setDayError, yearError, setYearError }}>
+    <FormContext.Provider value={{ formPage, page, setPage, data, setData, canSubmit, handleChange, disableNext, prevHide, nextHide, submitHide, handlePrev, handleNext, emailError, setEmailError, passwordError, setPasswordError, usernameError, setUsernameError, monthError, setMonthError, dayError, setDayError, yearError, setYearError, genderError, setGenderError }}>
         {children}
     </FormContext.Provider>
 )
