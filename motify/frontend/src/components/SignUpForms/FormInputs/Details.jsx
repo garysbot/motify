@@ -3,21 +3,24 @@ import SignUpStepHeader from "./FormComponents/SignUpStepHeader/SignUpStepHeader
 
 
 const Details = () => {
-  const { data, handleChange } = useFormContext();
+  const { 
+    data, 
+    handleChange, 
+    usernameError,
+    monthError,
+    dayError,
+    yearError 
+  } = useFormContext();
 
   const handleDobChange = (e) => {
     const newDob = { ...data.birth_date, [e.target.name]: e.target.value };
-  
     const dobString = `${newDob.year}-${newDob.month}-${newDob.day}`;
-  
     // Validate the date string before updating the state
     if (dobString) {
       handleChange({ target: { name: 'birth_date', value: dobString } });
     }
   };
   
-
-
   return (
     <>
       {/* {console.log(`Details page opened`)} */}
@@ -36,6 +39,13 @@ const Details = () => {
               className="text-input"
             />
           </label>
+          {/* //! Error Handling for Name */}
+          { usernameError &&  
+            <div className='field-error-container'>
+              <div className='field-error-icon'></div>
+              <p className='field-error-text'>{usernameError}</p>
+            </div>
+          }
         </div>
 
         <div className="form-details-field-dob">
@@ -43,7 +53,7 @@ const Details = () => {
             Date of birth
             <p className="helper-text">Why do we need your date of birth? <span>Learn more.</span></p>
             <div className="dob-container"> {/* Added container for DOB fields */}
-              <select className="dropdown-width" name="month" onChange={handleDobChange} value={data.birth_date.m}> {/* Modified class name */}
+              <select className="dropdown-width" name="month" onChange={handleChange} value={data.birth_date.m}> {/* Modified class name */}
                 <option>January</option>
                 <option>February</option>
                 <option>March</option>
@@ -57,11 +67,35 @@ const Details = () => {
                 <option>November</option>
                 <option>December</option>
               </select>
-              <div className="dd-yy-container"> {/* Added container for month and year fields */}
-                <input className="dd-input text-input" placeholder="dd" onChange={handleDobChange} value={data.birth_date.day}/> {/* Added class name */}
-                <input className="yy-input text-input" placeholder="yy" onChange={handleDobChange} value={data.birth_date.year}/> {/* Added class name */}
+              
+              <div className="dd-yy-container">
+                <input className="dd-input text-input" name="day" placeholder="dd" onChange={handleChange} value={data.birth_date.day}/>
+
+                <input className="yy-input text-input" name="year" placeholder="yy" onChange={handleChange} value={data.birth_date.year}/>
+
               </div>
             </div>
+            {/* //! Error Handling for Month */}
+            { monthError &&  
+                <div className='field-error-container'>
+                  <div className='field-error-icon'></div>
+                  <p className='field-error-text'>{monthError}</p>
+                </div>
+            }
+            {/* //! Error Handling for Day */}
+            { dayError &&  
+              <div className='field-error-container'>
+                <div className='field-error-icon'></div>
+                <p className='field-error-text'>{dayError}</p>
+              </div>
+            }
+            {/* //! Error Handling for Year */}
+            { yearError &&  
+              <div className='field-error-container'>
+                <div className='field-error-icon'></div>
+                <p className='field-error-text'>{yearError}</p>
+              </div>
+            }
           </label>
         </div>
 
