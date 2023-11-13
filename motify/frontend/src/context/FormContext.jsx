@@ -48,7 +48,7 @@ export const FormProvider = ({ children }) => {
   const validateEmail = (email) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
-    if (!emailRegex.test(email) && email.length >= 5) {
+    if (!emailRegex.test(email) && email.length >= 0) {
       setEmailError(`This email is invalid. Make sure it's written like example@email.com`);
       return false;
     }
@@ -175,6 +175,9 @@ export const FormProvider = ({ children }) => {
         console.log(`switch case worked for year`)
         validateYear(value)
         break;
+      case 'gender':
+        validateGender(value)
+        break;
       default:
         break;
     }
@@ -198,14 +201,38 @@ export const FormProvider = ({ children }) => {
     ...requiredInputs } = data
 
   // ! next/prev button handlers
-  const handlePrev = () => {
-    // console.log(`handlePrev invoked`)
-    setPage(prev => prev - 1)
+  // const handlePrev = () => {
+  //   // console.log(`handlePrev invoked`)
+  //   setPage(prev => prev - 1)
+  // }
+
+  // const handleNext = () => {
+  //   console.log(`handleNext invoked`)
+  //   console.log(`Page 1 to Page 2? ${canNextPage1}`)
+  //   console.log(`Page 2 to Page 3? ${canNextPage2}`)
+  //   console.log(`Page 3 to Page 4? ${canNextPage3}`)
+  //   if (canNextPage1){
+  //     setPage(prev => prev + 1)
+  //     if (canNextPage2){
+  //       setPage(prev => prev + 1)
+  //     }
+  //   }
+  // }
+
+  // ~ Updated handleNext for frontend error validation next button control
+  const handleNext = () => {
+    console.log(`The status of !disablenext() is: ${!disableNext()}`)
+    console.log(`The value we're validating is data.year: ${data.day}`)
+    if (!disableNext()) {
+      setPage(prev => prev + 1);
+    }
   }
 
-  const handleNext = () => {
-    // console.log(`handleNext invoked`)
-    setPage(prev => prev + 1)
+  // ~ Updated handleNext for frontend error validation next button control
+  const handlePrev = () => {
+    if (page > 0) {
+      setPage(prev => prev - 1);
+    }
   }
 
   const canSubmit = [...Object.values(requiredInputs)].every(Boolean) &&
@@ -235,12 +262,28 @@ export const FormProvider = ({ children }) => {
     .map(key => data[key])
     .every(Boolean)
 
-  const disableNext =
-    (page === Object.keys(formPage).length - 1)
-    || (page === 0 && !canNextPage1)
-    || (page === 1 && !canNextPage2)
-    || (page === 2 && !canNextPage3)
+  // const disableNext =
+  //   (page === Object.keys(formPage).length - 1)
+  //   || (page === 0 && !canNextPage1)
+  //   || (page === 1 && !canNextPage2)
+  //   || (page === 2 && !canNextPage3)
+  
+  // ~ Updated handleNext for frontend error validation next button control
+  const disableNext = () => {
+    if (page === Object.keys(formPage).length - 1) return true; // true if on last page
 
+    switch (page) {
+      case 0:
+        return !!emailError || !data.email; // Disable next button if email error or nan
+      case 1:
+        return !!passwordError || !data.password; // Disable next if password error or nan
+      case 2:
+        return !!usernameError || !data.username || !!monthError || !data.month || !!dayError || !data.day || !!yearError || !data.year
+        // return !!usernameError || !data.username || !!monthError || !data.month || !!dayError || !data.day || !!yearError || !data.year || !!genderError || !data.gender
+      default:
+        return false;
+    }
+  };
     
   const prevHide = page === 0 && "remove-button"
 
