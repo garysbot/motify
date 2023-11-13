@@ -11562,702 +11562,1555 @@ Completed 200 OK in 1215ms (Views: 1012.9ms | ActiveRecord: 4.9ms | Allocations:
 
 
   [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
-  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5498533444808527725)[0m
-  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
-Migrating to CreateSongs (20231112212528)
-  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
-  [1m[35m (27.5ms)[0m  [1m[35mCREATE TABLE "songs" ("id" bigserial primary key, "artist" bigint NOT NULL, "album" bigint NOT NULL, "duration" integer NOT NULL, "album_track_num" integer NOT NULL, "title" character varying NOT NULL, "explicit" boolean NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
-  [1m[35m (0.6ms)[0m  [1m[35mCREATE INDEX "index_songs_on_artist" ON "songs" ("artist")[0m
-  [1m[35m (0.7ms)[0m  [1m[35mCREATE INDEX "index_songs_on_album" ON "songs" ("album")[0m
-  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231112212528"]]
-  [1m[36mTRANSACTION (22.5ms)[0m  [1m[35mCOMMIT[0m
-  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
-  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(5498533444808527725)[0m
-  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
-Started POST "/api/users" for 127.0.0.1 at 2023-11-12 16:32:36 -0500
-  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
-Processing by Api::UsersController#create as JSON
-  Parameters: {"user"=>{"email"=>"tester@hskda.com", "password"=>"[FILTERED]", "username"=>"asdfdf", "birth_date"=>"undefined-undefined-undefined", "gender"=>"woman", "optinmarketing"=>true}}
-  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
-  ↳ app/controllers/api/users_controller.rb:6:in `create'
-  [1m[36mUser Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdfdf"], ["LIMIT", 1]]
-  ↳ app/controllers/api/users_controller.rb:6:in `create'
-  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "tester@hskda.com"], ["LIMIT", 1]]
-  ↳ app/controllers/api/users_controller.rb:6:in `create'
-  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
-  ↳ app/controllers/api/users_controller.rb:6:in `create'
-  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
-  ↳ app/controllers/api/users_controller.rb:6:in `create'
-Username has already been taken and Email has already been taken
-Completed 200 OK in 187ms (Views: 0.1ms | ActiveRecord: 1.4ms | Allocations: 9072)
-
-
-Started POST "/api/users" for 127.0.0.1 at 2023-11-12 16:32:38 -0500
-Processing by Api::UsersController#create as JSON
-  Parameters: {"user"=>{"email"=>"tester@hskda.com", "password"=>"[FILTERED]", "username"=>"asdfdf", "birth_date"=>"undefined-undefined-undefined", "gender"=>"woman", "optinmarketing"=>true}}
-  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
-  ↳ app/controllers/api/users_controller.rb:6:in `create'
-  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdfdf"], ["LIMIT", 1]]
-  ↳ app/controllers/api/users_controller.rb:6:in `create'
-  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "tester@hskda.com"], ["LIMIT", 1]]
-  ↳ app/controllers/api/users_controller.rb:6:in `create'
-  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
-  ↳ app/controllers/api/users_controller.rb:6:in `create'
-  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
-  ↳ app/controllers/api/users_controller.rb:6:in `create'
-Username has already been taken and Email has already been taken
-Completed 200 OK in 185ms (Views: 0.1ms | ActiveRecord: 0.6ms | Allocations: 5773)
-
-
-Started GET "/" for ::1 at 2023-11-12 16:33:59 -0500
-Processing by Rails::WelcomeController#index as HTML
-  Rendering /Users/g/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.8/lib/rails/templates/rails/welcome/index.html.erb
-  Rendered /Users/g/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.8/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.7ms | Allocations: 333)
-Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.0ms | Allocations: 1428)
-
-
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 16:34:07 -0500
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:06:30 -0500
+Started GET "/api/session" for 127.0.0.1 at 2023-11-13 09:06:30 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
-Started GET "/api/session" for 127.0.0.1 at 2023-11-12 16:39:20 -0500
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 16:39:20 -0500
+Processing by Api::SessionsController#show as JSON
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:06:30 -0500
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:15:in `current_user'
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
+Completed 200 OK in 39ms (Views: 0.2ms | ActiveRecord: 9.0ms | Allocations: 17231)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:06:31 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:06:31 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:07:41 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:07:42 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:08:27 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:08:29 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:08:30 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:08:37 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:08:38 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:13:31 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:13:33 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:13:35 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:13:35 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:13:36 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:13:52 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:13:53 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:13:56 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:13:57 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/api/session" for 127.0.0.1 at 2023-11-13 09:14:00 -0500
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"credential"=>"dsf", "password"=>"[FILTERED]", "session"=>{"credential"=>"dsf", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "dsf"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:23:in `find_by_credentials'
+Completed 401 Unauthorized in 28ms (Views: 0.2ms | ActiveRecord: 12.3ms | Allocations: 6553)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:18:42 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:18:44 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/api/session" for 127.0.0.1 at 2023-11-13 09:23:47 -0500
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"credential"=>"sdfdsf", "password"=>"[FILTERED]", "session"=>{"credential"=>"sdfdsf", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "sdfdsf"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:23:in `find_by_credentials'
+Completed 401 Unauthorized in 21ms (Views: 0.2ms | ActiveRecord: 8.1ms | Allocations: 6025)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:24:50 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:24:51 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/api/session" for 127.0.0.1 at 2023-11-13 09:24:59 -0500
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"credential"=>"afdsf", "password"=>"[FILTERED]", "session"=>{"credential"=>"afdsf", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "afdsf"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:23:in `find_by_credentials'
+Completed 401 Unauthorized in 2ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 902)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-11-13 09:26:22 -0500
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"credential"=>"afdsf", "password"=>"[FILTERED]", "session"=>{"credential"=>"afdsf", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "afdsf"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:23:in `find_by_credentials'
+Completed 401 Unauthorized in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 859)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:28:10 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:28:11 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/api/session" for 127.0.0.1 at 2023-11-13 09:28:13 -0500
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"credential"=>"sdfdsf", "password"=>"[FILTERED]", "session"=>{"credential"=>"sdfdsf", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "sdfdsf"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:23:in `find_by_credentials'
+Completed 401 Unauthorized in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 848)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:28:27 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:28:28 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/api/session" for 127.0.0.1 at 2023-11-13 09:28:30 -0500
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"credential"=>"asdfsdaf", "password"=>"[FILTERED]", "session"=>{"credential"=>"asdfsdaf", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdfsdaf"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:23:in `find_by_credentials'
+Completed 401 Unauthorized in 2ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 857)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:30:39 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:30:40 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/api/session" for 127.0.0.1 at 2023-11-13 09:30:51 -0500
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"credential"=>"dsf", "password"=>"[FILTERED]", "session"=>{"credential"=>"dsf", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "dsf"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:23:in `find_by_credentials'
+Completed 401 Unauthorized in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 827)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:31:13 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:31:14 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:31:49 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:31:50 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:33:17 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:33:19 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/api/session" for 127.0.0.1 at 2023-11-13 09:33:20 -0500
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"credential"=>"dsfsdf", "password"=>"[FILTERED]", "session"=>{"credential"=>"dsfsdf", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "dsfsdf"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:23:in `find_by_credentials'
+Completed 401 Unauthorized in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 872)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-11-13 09:43:50 -0500
+Processing by Api::SessionsController#show as JSON
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:43:50 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:15:in `current_user'
+Completed 200 OK in 33ms (Views: 0.2ms | ActiveRecord: 18.0ms | Allocations: 11316)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:43:51 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/api/session" for 127.0.0.1 at 2023-11-13 09:44:17 -0500
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"credential"=>"dsfsdf", "password"=>"[FILTERED]", "session"=>{"credential"=>"dsfsdf", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "dsfsdf"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:23:in `find_by_credentials'
+Completed 401 Unauthorized in 2ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 826)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:44:19 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:44:20 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/api/session" for 127.0.0.1 at 2023-11-13 09:44:22 -0500
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"credential"=>"asdfdasf", "password"=>"[FILTERED]", "session"=>{"credential"=>"asdfdasf", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdfdasf"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:23:in `find_by_credentials'
+Completed 401 Unauthorized in 2ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 851)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-11-13 09:44:24 -0500
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"credential"=>"asdfdasf", "password"=>"[FILTERED]", "session"=>{"credential"=>"asdfdasf", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdfdasf"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:23:in `find_by_credentials'
+Completed 401 Unauthorized in 5ms (Views: 0.1ms | ActiveRecord: 0.4ms | Allocations: 837)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-11-13 10:12:19 -0500
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"credential"=>"gdsfsd", "password"=>"[FILTERED]", "session"=>{"credential"=>"gdsfsd", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "gdsfsd"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:23:in `find_by_credentials'
+Completed 401 Unauthorized in 46ms (Views: 1.2ms | ActiveRecord: 11.1ms | Allocations: 3836)
+
+
+Started GET "/__vite_ping" for 127.0.0.1 at 2023-11-13 10:30:16 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/__vite_ping"):
+  
+Started GET "/__vite_ping" for 127.0.0.1 at 2023-11-13 10:30:17 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/__vite_ping"):
+  
+Started GET "/__vite_ping" for 127.0.0.1 at 2023-11-13 10:30:18 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/__vite_ping"):
+  
+Started GET "/__vite_ping" for 127.0.0.1 at 2023-11-13 10:30:19 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/__vite_ping"):
+  
+Started GET "/__vite_ping" for 127.0.0.1 at 2023-11-13 10:30:20 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/__vite_ping"):
+  
+Started GET "/__vite_ping" for 127.0.0.1 at 2023-11-13 10:30:21 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/__vite_ping"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 10:30:22 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 10:30:23 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:08:35 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:08:36 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:08:51 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:08:52 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:08:53 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:08:54 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:10:25 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:10:26 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/api/session" for 127.0.0.1 at 2023-11-13 11:10:27 -0500
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"credential"=>"dsf", "password"=>"[FILTERED]", "session"=>{"credential"=>"dsf", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "dsf"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:23:in `find_by_credentials'
+Completed 401 Unauthorized in 21ms (Views: 0.1ms | ActiveRecord: 10.5ms | Allocations: 3806)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-11-13 11:12:36 -0500
 Processing by Api::SessionsController#show as JSON
   [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
   ↳ app/controllers/application_controller.rb:15:in `current_user'
-Completed 200 OK in 68ms (Views: 0.2ms | ActiveRecord: 5.5ms | Allocations: 8127)
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 0.6ms | Allocations: 979)
 
 
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 16:39:21 -0500
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:12:36 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:31:55 -0500
-Started GET "/api/session" for 127.0.0.1 at 2023-11-12 17:31:55 -0500
-  [1m[36mActiveRecord::SchemaMigration Pluck (6.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:12:37 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:31:56 -0500
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:23:13 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:23:14 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:23:20 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:23:21 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:26:30 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:26:31 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:41:04 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:41:05 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:43:56 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:43:57 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:48:52 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:48:52 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:48:54 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:48:54 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:54:07 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:54:08 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:54:15 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:54:16 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:54:41 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 11:54:42 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+  [1m[36mUser Load (2.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 13:31:58 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 13:31:59 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 13:32:49 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 13:32:50 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 13:35:34 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 13:35:35 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 13:36:00 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 13:36:01 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/main.9f86e96065f02e3150e2.hot-update.json" for 127.0.0.1 at 2023-11-13 13:36:23 -0500
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 13:36:23 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/main.9f86e96065f02e3150e2.hot-update.json"):
+  
+Started GET "/api/session" for 127.0.0.1 at 2023-11-13 13:36:23 -0500
+Started GET "/main.9f86e96065f02e3150e2.hot-update.json" for 127.0.0.1 at 2023-11-13 13:36:23 -0500
 Processing by Api::SessionsController#show as JSON
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-  [1m[36mUser Load (472.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
   ↳ app/controllers/application_controller.rb:15:in `current_user'
-Completed 200 OK in 954ms (Views: 0.2ms | ActiveRecord: 894.3ms | Allocations: 807375)
+  
+ActionController::RoutingError (No route matches [GET] "/main.9f86e96065f02e3150e2.hot-update.json"):
+  
+Completed 200 OK in 40ms (Views: 0.2ms | ActiveRecord: 8.8ms | Allocations: 16830)
 
 
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:31:57 -0500
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 13:36:23 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:31:57 -0500
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 13:36:23 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:32:07 -0500
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 13:36:23 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:32:08 -0500
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 13:36:24 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:32:11 -0500
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 13:36:25 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:32:12 -0500
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 13:36:25 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
-Started DELETE "/api/users" for 127.0.0.1 at 2023-11-12 17:32:37 -0500
-  
-ActionController::RoutingError (No route matches [DELETE] "/api/users"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:32:39 -0500
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 13:36:25 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:32:40 -0500
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 13:36:37 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
-Started GET "/api/session" for 127.0.0.1 at 2023-11-12 17:36:20 -0500
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 13:36:39 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 13:36:54 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 13:36:55 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 13:36:55 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 13:36:56 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 13:36:59 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 13:37:00 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 13:48:44 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 13:48:46 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 13:49:47 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 13:49:48 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:07:34 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:07:35 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:07:39 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:07:40 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:07:44 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:07:45 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:08:24 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:08:26 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:08:39 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:08:40 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:09:47 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:09:48 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:10:48 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:10:49 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:11:41 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:11:42 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:12:03 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:12:04 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:33:32 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:33:33 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:34:01 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:34:02 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:34:22 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:34:23 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:35:39 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:35:40 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:44:10 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:44:11 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:47:40 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:47:41 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/api/session" for 127.0.0.1 at 2023-11-13 14:48:21 -0500
 Processing by Api::SessionsController#show as JSON
-  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:48:21 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+  [1m[36mUser Load (59.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
   ↳ app/controllers/application_controller.rb:15:in `current_user'
-Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 1085)
+Completed 200 OK in 96ms (Views: 0.3ms | ActiveRecord: 68.9ms | Allocations: 9342)
 
 
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:36:20 -0500
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:48:22 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:36:21 -0500
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:48:24 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:36:22 -0500
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:48:25 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:36:23 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:36:23 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:36:23 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:36:24 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:36:31 -0500
-Started GET "/api/session" for 127.0.0.1 at 2023-11-12 17:36:31 -0500
-  [1m[36mActiveRecord::SchemaMigration Pluck (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Processing by Api::SessionsController#show as JSON
-  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
-  ↳ app/controllers/application_controller.rb:15:in `current_user'
-Completed 200 OK in 55ms (Views: 0.5ms | ActiveRecord: 35.3ms | Allocations: 11947)
-
-
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:36:32 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/main.0432486b157e018abd48.hot-update.json" for 127.0.0.1 at 2023-11-12 17:36:32 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/main.0432486b157e018abd48.hot-update.json"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:36:33 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:36:34 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:36:41 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:36:42 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/api/session" for 127.0.0.1 at 2023-11-12 17:36:49 -0500
-Processing by Api::SessionsController#show as JSON
-  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
-  ↳ app/controllers/application_controller.rb:15:in `current_user'
-Completed 200 OK in 5ms (Views: 0.4ms | ActiveRecord: 0.3ms | Allocations: 1086)
-
-
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:36:49 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:36:50 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:38:03 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:38:04 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:39:17 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:39:17 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:39:18 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:39:18 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:51:08 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:51:08 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:51:09 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:51:09 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:51:19 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:51:20 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:51:20 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:51:21 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:54:29 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:54:30 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:55:08 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:55:08 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:55:10 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:55:10 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:58:58 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 17:58:59 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 18:02:16 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 18:02:17 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 18:02:18 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 18:02:19 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
-  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
-  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
-  [1m[36mActiveRecord::InternalMetadata Pluck (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
-  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
-  [1m[36mActiveRecord::InternalMetadata Pluck (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
-  [1m[35m (69.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "authenticate_me_development"[0m
-  [1m[35m (27.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "authenticate_me_test"[0m
-  [1m[35m (102.1ms)[0m  [1m[35mCREATE DATABASE "authenticate_me_development" ENCODING = 'unicode'[0m
-  [1m[35m (85.2ms)[0m  [1m[35mCREATE DATABASE "authenticate_me_test" ENCODING = 'unicode'[0m
-  [1m[35mSQL (0.2ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
-  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "songs" CASCADE[0m
-  [1m[35m (4.2ms)[0m  [1m[35mCREATE TABLE "songs" ("id" bigserial primary key, "artist" bigint NOT NULL, "album" bigint NOT NULL, "duration" integer NOT NULL, "album_track_num" integer NOT NULL, "title" character varying NOT NULL, "explicit" boolean NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
-  [1m[35m (0.9ms)[0m  [1m[35mCREATE INDEX "index_songs_on_album" ON "songs" ("album")[0m
-  [1m[35m (0.7ms)[0m  [1m[35mCREATE INDEX "index_songs_on_artist" ON "songs" ("artist")[0m
-  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
-  [1m[35m (2.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying NOT NULL, "username" character varying NOT NULL, "password_digest" character varying NOT NULL, "session_token" character varying NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "birth_date" character varying NOT NULL, "gender" character varying NOT NULL, "optinmarketing" boolean DEFAULT FALSE)[0m
-  [1m[35m (1.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
-  [1m[35m (0.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_session_token" ON "users" ("session_token")[0m
-  [1m[35m (1.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")[0m
-  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
-  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
-  [1m[35m (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20231112212528)[0m
-  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
-(20231106234732),
-(20231112170749);
-
-[0m
-  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
-  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
-  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
-  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2023-11-12 23:06:44.480919"], ["updated_at", "2023-11-12 23:06:44.480919"]]
-  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
-  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
-  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
-  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
-  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "7e8d6f80b1454fa672d2d57530551eedad9130be"], ["created_at", "2023-11-12 23:06:44.487663"], ["updated_at", "2023-11-12 23:06:44.487663"]]
-  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
-  [1m[35mSQL (0.1ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
-  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "songs" CASCADE[0m
-  [1m[35m (4.3ms)[0m  [1m[35mCREATE TABLE "songs" ("id" bigserial primary key, "artist" bigint NOT NULL, "album" bigint NOT NULL, "duration" integer NOT NULL, "album_track_num" integer NOT NULL, "title" character varying NOT NULL, "explicit" boolean NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
-  [1m[35m (0.8ms)[0m  [1m[35mCREATE INDEX "index_songs_on_album" ON "songs" ("album")[0m
-  [1m[35m (0.8ms)[0m  [1m[35mCREATE INDEX "index_songs_on_artist" ON "songs" ("artist")[0m
-  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
-  [1m[35m (3.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying NOT NULL, "username" character varying NOT NULL, "password_digest" character varying NOT NULL, "session_token" character varying NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "birth_date" character varying NOT NULL, "gender" character varying NOT NULL, "optinmarketing" boolean DEFAULT FALSE)[0m
-  [1m[35m (1.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
-  [1m[35m (1.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_session_token" ON "users" ("session_token")[0m
-  [1m[35m (1.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")[0m
-  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
-  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
-  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20231112212528)[0m
-  [1m[35m (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
-(20231106234732),
-(20231112170749);
-
-[0m
-  [1m[35m (2.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
-  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
-  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
-  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2023-11-12 23:06:44.540701"], ["updated_at", "2023-11-12 23:06:44.540701"]]
-  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
-  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
-  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
-  [1m[36mActiveRecord::InternalMetadata Update (0.3ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2023-11-12 23:06:44.545347"], ["key", "environment"]]
-  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
-  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
-  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
-  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "7e8d6f80b1454fa672d2d57530551eedad9130be"], ["created_at", "2023-11-12 23:06:44.549613"], ["updated_at", "2023-11-12 23:06:44.549613"]]
-  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
-  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
-  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
-  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
-  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Demo-lition"], ["LIMIT", 1]]
-  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "demo@user.io"], ["LIMIT", 1]]
-  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
-  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at", "birth_date", "gender", "optinmarketing") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["email", "demo@user.io"], ["username", "Demo-lition"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-12 23:06:44.811312"], ["updated_at", "2023-11-12 23:06:44.811312"], ["birth_date", "1990-01-01T00:00:00+00:00"], ["gender", "Man"], ["optinmarketing", true]]
-  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "keila.kunde"], ["LIMIT", 1]]
-  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "sudie.dickinson@emmerich-casper.test"], ["LIMIT", 1]]
-  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
-  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at", "birth_date", "gender", "optinmarketing") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["email", "sudie.dickinson@emmerich-casper.test"], ["username", "keila.kunde"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-12 23:06:46.022374"], ["updated_at", "2023-11-12 23:06:46.022374"], ["birth_date", "1988-03-28T00:00:00+00:00"], ["gender", "Female"], ["optinmarketing", false]]
-  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "joel.bins"], ["LIMIT", 1]]
-  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "art@zieme.test"], ["LIMIT", 1]]
-  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
-  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at", "birth_date", "gender", "optinmarketing") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["email", "art@zieme.test"], ["username", "joel.bins"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-12 23:06:46.211118"], ["updated_at", "2023-11-12 23:06:46.211118"], ["birth_date", "1984-10-12T00:00:00+00:00"], ["gender", "Male"], ["optinmarketing", true]]
-  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "nita"], ["LIMIT", 1]]
-  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "maxima.waters@abshire.example"], ["LIMIT", 1]]
-  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
-  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at", "birth_date", "gender", "optinmarketing") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["email", "maxima.waters@abshire.example"], ["username", "nita"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-12 23:06:46.391234"], ["updated_at", "2023-11-12 23:06:46.391234"], ["birth_date", "1982-08-15T00:00:00+00:00"], ["gender", "Other"], ["optinmarketing", true]]
-  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "myron_hoeger"], ["LIMIT", 1]]
-  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "tyron@barrows-zulauf.test"], ["LIMIT", 1]]
-  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
-  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at", "birth_date", "gender", "optinmarketing") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["email", "tyron@barrows-zulauf.test"], ["username", "myron_hoeger"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-12 23:06:46.586070"], ["updated_at", "2023-11-12 23:06:46.586070"], ["birth_date", "2003-04-10T00:00:00+00:00"], ["gender", "Male"], ["optinmarketing", true]]
-  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "wendy"], ["LIMIT", 1]]
-  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "luther.kuphal@hahn.example"], ["LIMIT", 1]]
-  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
-  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at", "birth_date", "gender", "optinmarketing") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["email", "luther.kuphal@hahn.example"], ["username", "wendy"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-12 23:06:46.791179"], ["updated_at", "2023-11-12 23:06:46.791179"], ["birth_date", "1995-04-15T00:00:00+00:00"], ["gender", "Female"], ["optinmarketing", true]]
-  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jackson.rutherford"], ["LIMIT", 1]]
-  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "maria@ankunding-jaskolski.test"], ["LIMIT", 1]]
-  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
-  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at", "birth_date", "gender", "optinmarketing") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["email", "maria@ankunding-jaskolski.test"], ["username", "jackson.rutherford"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-12 23:06:46.990030"], ["updated_at", "2023-11-12 23:06:46.990030"], ["birth_date", "1980-10-02T00:00:00+00:00"], ["gender", "Male"], ["optinmarketing", false]]
-  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "carlie.gutmann"], ["LIMIT", 1]]
-  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "arden_christiansen@stanton-littel.example"], ["LIMIT", 1]]
-  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
-  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at", "birth_date", "gender", "optinmarketing") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["email", "arden_christiansen@stanton-littel.example"], ["username", "carlie.gutmann"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-12 23:06:47.202022"], ["updated_at", "2023-11-12 23:06:47.202022"], ["birth_date", "1986-12-04T00:00:00+00:00"], ["gender", "Other"], ["optinmarketing", false]]
-  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "josef_ernser"], ["LIMIT", 1]]
-  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "nakita_rice@wilderman-weber.test"], ["LIMIT", 1]]
-  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
-  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at", "birth_date", "gender", "optinmarketing") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["email", "nakita_rice@wilderman-weber.test"], ["username", "josef_ernser"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-12 23:06:47.412970"], ["updated_at", "2023-11-12 23:06:47.412970"], ["birth_date", "1999-04-07T00:00:00+00:00"], ["gender", "Male"], ["optinmarketing", false]]
-  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "clement"], ["LIMIT", 1]]
-  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "milan@hoppe-kohler.test"], ["LIMIT", 1]]
-  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
-  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at", "birth_date", "gender", "optinmarketing") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["email", "milan@hoppe-kohler.test"], ["username", "clement"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-12 23:06:47.610409"], ["updated_at", "2023-11-12 23:06:47.610409"], ["birth_date", "1975-08-26T00:00:00+00:00"], ["gender", "Female"], ["optinmarketing", false]]
-  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "percy.medhurst"], ["LIMIT", 1]]
-  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "theo@aufderhar.example"], ["LIMIT", 1]]
-  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
-  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at", "birth_date", "gender", "optinmarketing") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["email", "theo@aufderhar.example"], ["username", "percy.medhurst"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-12 23:06:47.816648"], ["updated_at", "2023-11-12 23:06:47.816648"], ["birth_date", "1983-01-05T00:00:00+00:00"], ["gender", "Other"], ["optinmarketing", false]]
-  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
-  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5498533444808527725)[0m
-  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
-  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
-  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(5498533444808527725)[0m
-  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 18:07:02 -0500
-Started GET "/api/session" for 127.0.0.1 at 2023-11-12 18:07:02 -0500
-  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Processing by Api::SessionsController#show as JSON
-  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
-  ↳ app/controllers/application_controller.rb:15:in `current_user'
-Completed 200 OK in 15ms (Views: 0.2ms | ActiveRecord: 2.5ms | Allocations: 5378)
-
-
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 18:07:03 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/api/session" for 127.0.0.1 at 2023-11-12 18:07:05 -0500
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 18:07:05 -0500
-Processing by Api::SessionsController#show as JSON
-  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
-  ↳ app/controllers/application_controller.rb:15:in `current_user'
-Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1076)
-
-
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 18:07:06 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-12 18:07:13 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 08:46:08 -0500
-Started GET "/api/session" for 127.0.0.1 at 2023-11-13 08:46:08 -0500
-  [1m[36mActiveRecord::SchemaMigration Pluck (2.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 08:46:08 -0500
-Processing by Api::SessionsController#show as JSON
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-  [1m[36mUser Load (19.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
-  ↳ app/controllers/application_controller.rb:15:in `current_user'
-Completed 200 OK in 37ms (Views: 0.2ms | ActiveRecord: 21.6ms | Allocations: 16187)
-
-
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 08:46:09 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/api/session" for 127.0.0.1 at 2023-11-13 08:51:02 -0500
-Processing by Api::SessionsController#show as JSON
-  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
-  ↳ app/controllers/application_controller.rb:15:in `current_user'
-Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.6ms | Allocations: 1110)
-
-
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 08:51:02 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 08:51:03 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/api/session" for 127.0.0.1 at 2023-11-13 08:52:08 -0500
-Processing by Api::SessionsController#show as JSON
-  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
-  ↳ app/controllers/application_controller.rb:15:in `current_user'
-Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 972)
-
-
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 08:52:08 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 08:52:09 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/api/session" for 127.0.0.1 at 2023-11-13 08:55:52 -0500
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 08:55:52 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Processing by Api::SessionsController#show as JSON
-  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
-  ↳ app/controllers/application_controller.rb:15:in `current_user'
-Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 951)
-
-
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 08:55:53 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started POST "/api/users" for 127.0.0.1 at 2023-11-13 08:57:04 -0500
+Started POST "/api/users" for 127.0.0.1 at 2023-11-13 14:58:53 -0500
 Processing by Api::UsersController#create as JSON
-  Parameters: {"user"=>{"email"=>"gary@fuck.com", "password"=>"[FILTERED]", "username"=>"garygarygary", "birth_date"=>"undefined-undefined-undefined", "gender"=>"man", "optinmarketing"=>true}}
-  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  Parameters: {"user"=>{"email"=>"", "password"=>"[FILTERED]", "username"=>"", "birth_date"=>"", "gender"=>"", "optinmarketing"=>false}}
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mBEGIN[0m
   ↳ app/controllers/api/users_controller.rb:6:in `create'
-  [1m[36mUser Exists? (2.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "garygarygary"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (1.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", ""], ["LIMIT", 1]]
   ↳ app/controllers/api/users_controller.rb:6:in `create'
-  [1m[36mUser Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "gary@fuck.com"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", ""], ["LIMIT", 1]]
   ↳ app/controllers/api/users_controller.rb:6:in `create'
   [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
   ↳ app/controllers/api/users_controller.rb:6:in `create'
-  [1m[36mUser Create (3.8ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at", "birth_date", "gender", "optinmarketing") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["email", "gary@fuck.com"], ["username", "garygarygary"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-13 13:57:04.569691"], ["updated_at", "2023-11-13 13:57:04.569691"], ["birth_date", "undefined-undefined-undefined"], ["gender", "man"], ["optinmarketing", true]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+Password can't be blank, Username is too short (minimum is 3 characters), Email is too short (minimum is 3 characters), and Email is invalid
+Completed 200 OK in 33ms (Views: 0.2ms | ActiveRecord: 10.4ms | Allocations: 11608)
+
+
+Started POST "/api/users" for 127.0.0.1 at 2023-11-13 14:58:54 -0500
+Processing by Api::UsersController#create as JSON
+  Parameters: {"user"=>{"email"=>"", "password"=>"[FILTERED]", "username"=>"", "birth_date"=>"", "gender"=>"", "optinmarketing"=>false}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", ""], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", ""], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+Password can't be blank, Username is too short (minimum is 3 characters), Email is too short (minimum is 3 characters), and Email is invalid
+Completed 200 OK in 9ms (Views: 0.1ms | ActiveRecord: 0.9ms | Allocations: 7109)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:58:56 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:58:57 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:59:18 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 14:59:19 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:04:21 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:04:22 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:05:16 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:05:17 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:06:18 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:06:19 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:09:17 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:09:18 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:10:00 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:10:01 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:10:33 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:10:34 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:11:42 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:11:43 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:13:00 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:13:00 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:13:00 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:13:01 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:14:47 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:14:48 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:17:14 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:17:15 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:23:16 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:23:17 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/api/users" for 127.0.0.1 at 2023-11-13 15:26:33 -0500
+Processing by Api::UsersController#create as JSON
+  Parameters: {"user"=>{"email"=>"frontenduserautherrorhandling@test.com", "password"=>"[FILTERED]", "username"=>"frontenduserautherrorhandling", "birth_date"=>"", "gender"=>"undisclosed", "optinmarketing"=>true}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "frontenduserautherrorhandling"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "frontenduserautherrorhandling@test.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Create (6.8ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at", "birth_date", "gender", "optinmarketing") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["email", "frontenduserautherrorhandling@test.com"], ["username", "frontenduserautherrorhandling"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-13 20:26:33.546137"], ["updated_at", "2023-11-13 20:26:33.546137"], ["birth_date", ""], ["gender", "undisclosed"], ["optinmarketing", true]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "frontenduserautherrorhandling"], ["id", 14], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "frontenduserautherrorhandling@test.com"], ["id", 14], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "[FILTERED]"], ["id", 14], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Update (2.2ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-11-13 20:26:33.562158"], ["id", 14]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/show.json.jbuilder (Duration: 1.1ms | Allocations: 423)
+Completed 200 OK in 238ms (Views: 3.4ms | ActiveRecord: 21.9ms | Allocations: 14218)
+
+
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:29:41 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:29:42 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:29:48 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:29:48 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:29:49 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:29:57 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:29:57 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:29:58 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/api/users" for 127.0.0.1 at 2023-11-13 15:31:31 -0500
+Processing by Api::UsersController#create as JSON
+  Parameters: {"user"=>{"email"=>"gary@spmething.com", "password"=>"[FILTERED]", "username"=>"", "birth_date"=>"", "gender"=>"", "optinmarketing"=>false}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", ""], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "gary@spmething.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+Password can't be blank and Username is too short (minimum is 3 characters)
+Completed 200 OK in 9ms (Views: 0.1ms | ActiveRecord: 0.9ms | Allocations: 6042)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:33:17 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:33:18 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:33:53 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:33:54 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/api/users" for 127.0.0.1 at 2023-11-13 15:34:05 -0500
+Processing by Api::UsersController#create as JSON
+  Parameters: {"user"=>{"email"=>"adfdsf@dfjs.com", "password"=>"[FILTERED]", "username"=>"", "birth_date"=>"", "gender"=>"", "optinmarketing"=>false}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", ""], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "adfdsf@dfjs.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+Password can't be blank and Username is too short (minimum is 3 characters)
+Completed 200 OK in 8ms (Views: 0.1ms | ActiveRecord: 0.8ms | Allocations: 5770)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:34:07 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:34:07 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:34:08 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:47:48 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:47:49 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:51:31 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:51:32 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:53:12 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:53:13 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:53:31 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:53:32 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:53:43 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:53:44 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:55:50 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:55:50 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:55:50 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:55:51 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:55:51 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:55:51 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:55:55 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:55:55 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:55:55 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:55:56 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:55:56 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:55:56 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:26:21 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:26:22 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:26:34 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:26:35 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:26:59 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:27:00 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:29:06 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:29:07 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:30:19 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:30:20 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:30:58 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:30:59 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:32:14 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:32:15 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:32:57 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:32:58 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:33:09 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:33:10 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:34:53 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:34:54 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:37:19 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:37:20 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:38:00 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:38:01 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:40:04 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:40:04 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:40:05 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:40:26 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:40:27 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:43:21 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:43:23 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:43:37 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:43:38 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:44:02 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:44:02 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:44:03 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:46:12 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:46:13 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:46:35 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:46:36 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:47:48 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:47:50 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/api/users" for 127.0.0.1 at 2023-11-13 16:48:01 -0500
+Processing by Api::UsersController#create as JSON
+  Parameters: {"user"=>{"email"=>"dsfsdf@kjdfsd.com", "password"=>"[FILTERED]", "username"=>"dsfjsd", "birth_date"=>"", "gender"=>"man", "optinmarketing"=>true}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "dsfjsd"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "dsfsdf@kjdfsd.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Create (1.0ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at", "birth_date", "gender", "optinmarketing") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["email", "dsfsdf@kjdfsd.com"], ["username", "dsfjsd"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-13 21:48:01.923720"], ["updated_at", "2023-11-13 21:48:01.923720"], ["birth_date", ""], ["gender", "man"], ["optinmarketing", true]]
   ↳ app/controllers/api/users_controller.rb:6:in `create'
   [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
   ↳ app/controllers/api/users_controller.rb:6:in `create'
   [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
-  ↳ app/models/user.rb:32:in `reset_session_token!'
-  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "garygarygary"], ["id", 12], ["LIMIT", 1]]
-  ↳ app/models/user.rb:32:in `reset_session_token!'
-  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "gary@fuck.com"], ["id", 12], ["LIMIT", 1]]
-  ↳ app/models/user.rb:32:in `reset_session_token!'
-  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "[FILTERED]"], ["id", 12], ["LIMIT", 1]]
-  ↳ app/models/user.rb:32:in `reset_session_token!'
-  [1m[36mUser Update (1.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-11-13 13:57:04.581107"], ["id", 12]]
-  ↳ app/models/user.rb:32:in `reset_session_token!'
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "dsfjsd"], ["id", 15], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "dsfsdf@kjdfsd.com"], ["id", 15], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "[FILTERED]"], ["id", 15], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-11-13 21:48:01.931517"], ["id", 15]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
   [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
-  ↳ app/models/user.rb:32:in `reset_session_token!'
+  ↳ app/models/user.rb:31:in `reset_session_token!'
   Rendering api/users/show.json.jbuilder
-  Rendered api/users/show.json.jbuilder (Duration: 1.1ms | Allocations: 437)
-Completed 200 OK in 277ms (Views: 2.8ms | ActiveRecord: 19.4ms | Allocations: 18835)
+  Rendered api/users/show.json.jbuilder (Duration: 0.3ms | Allocations: 247)
+Completed 200 OK in 225ms (Views: 0.8ms | ActiveRecord: 17.7ms | Allocations: 12189)
 
 
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 08:58:20 -0500
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:51:26 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
-Started GET "/api/session" for 127.0.0.1 at 2023-11-13 08:59:24 -0500
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 08:59:24 -0500
-Processing by Api::SessionsController#show as JSON
-  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
-  ↳ app/controllers/application_controller.rb:15:in `current_user'
-Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 1470)
-
-
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:51:26 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 08:59:25 -0500
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:51:27 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 08:59:28 -0500
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:53:13 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 08:59:29 -0500
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:53:14 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 08:59:32 -0500
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:53:54 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 08:59:33 -0500
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:53:54 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
-Started GET "/" for ::1 at 2023-11-13 08:59:40 -0500
-Processing by Rails::WelcomeController#index as HTML
-  Rendering /Users/g/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.8/lib/rails/templates/rails/welcome/index.html.erb
-  Rendered /Users/g/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.8/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.5ms | Allocations: 284)
-Completed 200 OK in 4ms (Views: 2.7ms | ActiveRecord: 0.0ms | Allocations: 1309)
-
-
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:00:21 -0500
-Started GET "/api/session" for 127.0.0.1 at 2023-11-13 09:00:21 -0500
-  [1m[36mActiveRecord::SchemaMigration Pluck (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:53:55 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
-Processing by Api::SessionsController#show as JSON
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:53:55 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:57:11 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:57:12 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started DELETE "/api/session" for 127.0.0.1 at 2023-11-13 16:57:17 -0500
+Processing by Api::SessionsController#destroy as JSON
+  Parameters: {"session"=>{}}
   [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
   ↳ app/controllers/application_controller.rb:15:in `current_user'
-Completed 200 OK in 25ms (Views: 0.4ms | ActiveRecord: 4.7ms | Allocations: 11986)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "dsfjsd"], ["id", 15], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "dsfsdf@kjdfsd.com"], ["id", 15], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "[FILTERED]"], ["id", 15], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-11-13 21:57:17.793107"], ["id", 15]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+Completed 200 OK in 26ms (Views: 0.1ms | ActiveRecord: 9.4ms | Allocations: 8027)
 
 
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:00:22 -0500
+Started GET "/api/session" for 127.0.0.1 at 2023-11-13 16:57:19 -0500
+Processing by Api::SessionsController#show as JSON
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:15:in `current_user'
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 993)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:57:20 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:00:25 -0500
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:57:21 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:00:26 -0500
+Started GET "/api/session" for 127.0.0.1 at 2023-11-13 16:57:22 -0500
+Processing by Api::SessionsController#show as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:15:in `current_user'
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.4ms | Allocations: 1116)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:57:22 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:00:43 -0500
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:57:23 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:00:44 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:01:04 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:01:05 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:01:07 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:01:08 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
-  
-Started POST "/api/users" for 127.0.0.1 at 2023-11-13 09:01:26 -0500
-Processing by Api::UsersController#create as JSON
-  Parameters: {"user"=>{"email"=>"sdfdsfds@sdfsdfj.com", "password"=>"[FILTERED]", "username"=>"asdfdfasdf", "birth_date"=>"undefined-undefined-undefined", "gender"=>"man", "optinmarketing"=>true}}
+Started POST "/api/session" for 127.0.0.1 at 2023-11-13 16:57:25 -0500
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"credential"=>"demo@user.io", "password"=>"[FILTERED]", "session"=>{"credential"=>"demo@user.io", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "demo@user.io"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:23:in `find_by_credentials'
   [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
-  ↳ app/controllers/api/users_controller.rb:6:in `create'
-  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdfdfasdf"], ["LIMIT", 1]]
-  ↳ app/controllers/api/users_controller.rb:6:in `create'
-  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "sdfdsfds@sdfsdfj.com"], ["LIMIT", 1]]
-  ↳ app/controllers/api/users_controller.rb:6:in `create'
-  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
-  ↳ app/controllers/api/users_controller.rb:6:in `create'
-  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at", "birth_date", "gender", "optinmarketing") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["email", "sdfdsfds@sdfsdfj.com"], ["username", "asdfdfasdf"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-13 14:01:26.269220"], ["updated_at", "2023-11-13 14:01:26.269220"], ["birth_date", "undefined-undefined-undefined"], ["gender", "man"], ["optinmarketing", true]]
-  ↳ app/controllers/api/users_controller.rb:6:in `create'
-  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
-  ↳ app/controllers/api/users_controller.rb:6:in `create'
-  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
-  ↳ app/models/user.rb:32:in `reset_session_token!'
-  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "asdfdfasdf"], ["id", 13], ["LIMIT", 1]]
-  ↳ app/models/user.rb:32:in `reset_session_token!'
-  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "sdfdsfds@sdfsdfj.com"], ["id", 13], ["LIMIT", 1]]
-  ↳ app/models/user.rb:32:in `reset_session_token!'
-  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "[FILTERED]"], ["id", 13], ["LIMIT", 1]]
-  ↳ app/models/user.rb:32:in `reset_session_token!'
-  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-11-13 14:01:26.275411"], ["id", 13]]
-  ↳ app/models/user.rb:32:in `reset_session_token!'
-  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
-  ↳ app/models/user.rb:32:in `reset_session_token!'
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Demo-lition"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "demo@user.io"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "[FILTERED]"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Update (0.2ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-11-13 21:57:25.413813"], ["id", 1]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:31:in `reset_session_token!'
   Rendering api/users/show.json.jbuilder
-  Rendered api/users/show.json.jbuilder (Duration: 1.9ms | Allocations: 611)
-Completed 200 OK in 1426ms (Views: 1208.3ms | ActiveRecord: 2.4ms | Allocations: 976509)
+  Rendered api/users/show.json.jbuilder (Duration: 0.3ms | Allocations: 299)
+Completed 200 OK in 198ms (Views: 1.0ms | ActiveRecord: 1.7ms | Allocations: 5768)
 
 
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:02:08 -0500
+Started DELETE "/api/session" for 127.0.0.1 at 2023-11-13 16:57:55 -0500
+Processing by Api::SessionsController#destroy as JSON
+  Parameters: {"session"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:15:in `current_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Demo-lition"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "demo@user.io"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "[FILTERED]"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-11-13 21:57:55.802692"], ["id", 1]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+Completed 200 OK in 10ms (Views: 0.1ms | ActiveRecord: 1.8ms | Allocations: 5286)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-11-13 16:58:01 -0500
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:58:01 -0500
+Processing by Api::SessionsController#show as JSON
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:15:in `current_user'
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 981)
+
+
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
-Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 09:02:09 -0500
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:58:02 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 17:13:25 -0500
+Started GET "/api/session" for 127.0.0.1 at 2023-11-13 17:13:25 -0500
+Processing by Api::SessionsController#show as JSON
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:15:in `current_user'
+Completed 200 OK in 23ms (Views: 0.1ms | ActiveRecord: 9.2ms | Allocations: 8310)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 17:13:26 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/api/users" for 127.0.0.1 at 2023-11-13 17:14:00 -0500
+Processing by Api::UsersController#create as JSON
+  Parameters: {"user"=>{"email"=>"success@success.com", "password"=>"[FILTERED]", "username"=>"gary", "birth_date"=>"", "gender"=>"woman", "optinmarketing"=>true}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "gary"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "success@success.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at", "birth_date", "gender", "optinmarketing") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["email", "success@success.com"], ["username", "gary"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-13 22:14:00.816276"], ["updated_at", "2023-11-13 22:14:00.816276"], ["birth_date", ""], ["gender", "woman"], ["optinmarketing", true]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "gary"], ["id", 16], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "success@success.com"], ["id", 16], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "[FILTERED]"], ["id", 16], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-11-13 22:14:00.825513"], ["id", 16]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/show.json.jbuilder (Duration: 0.4ms | Allocations: 244)
+Completed 200 OK in 207ms (Views: 0.7ms | ActiveRecord: 5.4ms | Allocations: 9074)
+
+
+Started DELETE "/api/session" for 127.0.0.1 at 2023-11-13 17:14:11 -0500
+Processing by Api::SessionsController#destroy as JSON
+  Parameters: {"session"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:15:in `current_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "gary"], ["id", 16], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "success@success.com"], ["id", 16], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "[FILTERED]"], ["id", 16], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-11-13 22:14:11.713056"], ["id", 16]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+Completed 200 OK in 10ms (Views: 0.1ms | ActiveRecord: 1.3ms | Allocations: 4996)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-11-13 17:14:13 -0500
+Processing by Api::SessionsController#show as JSON
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:15:in `current_user'
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 951)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 17:14:13 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 17:14:14 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/api/session" for 127.0.0.1 at 2023-11-13 17:14:15 -0500
+Processing by Api::SessionsController#show as JSON
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:15:in `current_user'
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 960)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 17:14:15 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 17:14:16 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/api/users" for 127.0.0.1 at 2023-11-13 17:14:54 -0500
+Processing by Api::UsersController#create as JSON
+  Parameters: {"user"=>{"email"=>"dsfdsfds@dsjfsd.com", "password"=>"[FILTERED]", "username"=>"dsfdsf", "birth_date"=>"", "gender"=>"man", "optinmarketing"=>true}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "dsfdsf"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "dsfdsfds@dsjfsd.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "session_token", "created_at", "updated_at", "birth_date", "gender", "optinmarketing") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["email", "dsfdsfds@dsjfsd.com"], ["username", "dsfdsf"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-11-13 22:14:55.063595"], ["updated_at", "2023-11-13 22:14:55.063595"], ["birth_date", ""], ["gender", "man"], ["optinmarketing", true]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "dsfdsf"], ["id", 17], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "dsfdsfds@dsjfsd.com"], ["id", 17], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "[FILTERED]"], ["id", 17], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mUser Update (0.2ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-11-13 22:14:55.073622"], ["id", 17]]
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:31:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/show.json.jbuilder (Duration: 0.3ms | Allocations: 244)
+Completed 200 OK in 218ms (Views: 0.8ms | ActiveRecord: 3.3ms | Allocations: 9017)
+
+

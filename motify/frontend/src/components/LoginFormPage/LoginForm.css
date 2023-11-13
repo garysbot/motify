@@ -9,6 +9,12 @@
   height: 100vh;
 }
 
+.background {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
 
 
 .form-bg {
@@ -60,4 +66,34 @@
   .new-user-container {
     flex-direction: column; /* Stack elements vertically on small screens */
   }
+}
+
+.login-page-error-container {
+  background-color: #E91429;
+  width: 45rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  margin-top: 3.125rem;
+}
+
+.login-page-error-icon {
+  width: 1.5625rem;
+  height: 1.5625rem;
+  background-image: url('data:image/svg+xml,<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" role="img" height="24" width="24" aria-hidden="false" aria-label="Error:" class="Svg-sc-ytk21e-0 uPxdw Icon-sc-1mveit9-0 fOutFo" viewBox="0 0 24 24" data-encore-id="icon"><title>Error:</title><path d="M11 18v-2h2v2h-2zm0-4V6h2v8h-2z" fill="%23FFFFFF"></path><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM1 12C1 5.925 5.925 1 12 1s11 4.925 11 11-4.925 11-11 11S1 18.075 1 12z" fill="%23FFFFFF"></path></svg>');
+}
+
+.login-page-error-text {
+  font-size: 0.825rem;
+  padding: 0.825rem;
+}
+
+.demo-login p {
+  margin-top: 1rem;
+  text-decoration: underline;
+}
+.demo-login p:hover{
+  color:#1db954;
+  text-decoration: underline;
 }
