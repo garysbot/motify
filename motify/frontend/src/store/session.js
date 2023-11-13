@@ -56,6 +56,21 @@ export const login = ({ credential, password }) => async dispatch => {
   return response;
 };
 
+export const logout = () => async dispatch => {
+  const response = await csrfFetch("/api/session", {
+    method: "DELETE"
+  });
+  // Check if logout is successful; you can also add error handling as needed
+  if (response.ok) {
+    // Remove the current user from the sessionStorage
+    storeCurrentUser(null);
+    // Dispatch an action to update the Redux store
+    dispatch(removeCurrentUser());
+  }
+  return response;
+};
+
+
 export const restoreSession = () => async dispatch => {
   const response = await csrfFetch("/api/session");
   storeCSRFToken(response);
