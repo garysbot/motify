@@ -13,7 +13,11 @@ function LoginFormPage() {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  // if (sessionUser) return <Redirect to="/" />;
+  if (sessionUser) return <Redirect to="/" />;
+
+  const demoLogin = () => {
+    return dispatch(sessionActions.login({ credential: 'demo@user.io', password: 'password' }))
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -82,7 +86,7 @@ function LoginFormPage() {
 
 
 
-            <p className='login-link-hover'><Link to='https://google.com'>Forgot your password?</Link></p>
+            <p className='demo-login'><p onClick={demoLogin}>Demo Account Login</p></p>
 
             <hr />
 
