@@ -12451,3 +12451,301 @@ Completed 200 OK in 238ms (Views: 3.4ms | ActiveRecord: 21.9ms | Allocations: 14
 
 
   [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:29:41 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:29:42 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:29:48 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:29:48 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:29:49 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:29:57 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:29:57 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:29:58 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/api/users" for 127.0.0.1 at 2023-11-13 15:31:31 -0500
+Processing by Api::UsersController#create as JSON
+  Parameters: {"user"=>{"email"=>"gary@spmething.com", "password"=>"[FILTERED]", "username"=>"", "birth_date"=>"", "gender"=>"", "optinmarketing"=>false}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", ""], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "gary@spmething.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+Password can't be blank and Username is too short (minimum is 3 characters)
+Completed 200 OK in 9ms (Views: 0.1ms | ActiveRecord: 0.9ms | Allocations: 6042)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:33:17 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:33:18 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:33:53 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:33:54 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/api/users" for 127.0.0.1 at 2023-11-13 15:34:05 -0500
+Processing by Api::UsersController#create as JSON
+  Parameters: {"user"=>{"email"=>"adfdsf@dfjs.com", "password"=>"[FILTERED]", "username"=>"", "birth_date"=>"", "gender"=>"", "optinmarketing"=>false}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", ""], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "adfdsf@dfjs.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+Password can't be blank and Username is too short (minimum is 3 characters)
+Completed 200 OK in 8ms (Views: 0.1ms | ActiveRecord: 0.8ms | Allocations: 5770)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:34:07 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:34:07 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:34:08 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:47:48 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:47:49 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:51:31 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:51:32 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:53:12 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:53:13 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:53:31 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:53:32 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:53:43 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:53:44 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:55:50 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:55:50 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:55:50 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:55:51 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:55:51 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:55:51 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:55:55 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:55:55 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:55:55 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:55:56 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:55:56 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 15:55:56 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:26:21 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:26:22 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:26:34 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:26:35 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:26:59 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:27:00 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:29:06 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:29:07 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:30:19 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:30:20 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:30:58 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:30:59 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:32:14 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:32:15 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:32:57 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:32:58 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:33:09 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:33:10 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:34:53 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:34:54 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:37:19 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:37:20 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:38:00 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:38:01 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:40:04 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:40:04 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:40:05 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:40:26 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-13 16:40:27 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
