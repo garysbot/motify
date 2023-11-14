@@ -9,14 +9,14 @@
 
 @font-face {
   font-family: 'CircularSpotifyBold';
-  src: url('./__static/fonts/CircularSpotifyText-Bold.otf') format('opentype');
+  src: url('./static/fonts/CircularSpotifyText-Bold.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'CircularSpotifyBook';
-  src: url('./__static/fonts/CircularSpotifyText-Book.otf') format('opentype');
+  src: url('./static/fonts/CircularSpotifyText-Book.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
