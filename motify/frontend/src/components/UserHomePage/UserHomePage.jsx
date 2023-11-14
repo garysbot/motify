@@ -2,22 +2,39 @@ import './UserHomePage.css'
 import PlayBar from '../PlayBar/PlayBar';
 
 const UserHomePage = () => {
+  // onClick handler for active-inactive Home & Search buttons in sidebar-mini-home
+
   return (
     <>
-      <div className="user-home-page-bg">
-        <div className='user-home-page-announcements-container'>
-          <div className='user-home-page-announcement'>
-          {/* Hide Announcements */}
-          {/* Announcement Banner */}
-          {/* Links for Announcement Banner */}
+      <body className="user-home-container">
+        <div className='user-home-sidebar'>
+          
+          <div className='sidebar-mini-home'>{/* sidebar-mini-home */}
+            <div className="mini-home-icon"></div><p>Home</p>
+            <div className='mini-home-search'></div><p>Search</p>
+          </div>
+
+          <div className='sidebar-library'>{/* sidebar-library */}
+            <p>Library</p>
           </div>
         </div>
-        
-        <div className='user-home-page-mini-recent-card-container'>
-          {/* ! // Dynamic Headline */}
-          <h2>Good afternoon</h2>
-          <div className='user-home-page-mini-recent-cards-index'>
-            <div className='user-home-page-mini-recent-card'>
+
+        <div className='user-home-mainbody'>
+          <div className='user-home-userbar'>{/* user-home-userbar */}
+            <div className='userbar-back-arrow'></div>
+            <div className='userbar-profile-menu-container'>
+              {/* add profile pic to the div */}
+              {/* logout button */}
+            </div>
+          </div>
+          
+          <div className='user-home-content'>{/* user-home-content */}
+            <div className='content-announcement-container'>
+            </div>
+
+            <div className='content-recent-container'>
+              <h2>Good afternoon</h2>
+              {/* ! // Dynamic Headline */}
               {/* Card Image */}
               {/* Card Title */}
               {/* On Hover Play/Pause Button */}
@@ -25,30 +42,11 @@ const UserHomePage = () => {
               {/* Max - 3x per row; 2x rows */}
               {/* Min - 2x per row; 3x rows */}
             </div>
-          </div>
-        </div>
-        
-        <div className="background">
-          <div className="user-home-page-sidebar">
-            <div className="user-home-page-mini-home-search">
-              <p>Home</p>
-              <p>Search</p>
-              <div className="user-home-page-home-icon"></div>
-            </div>
             
-            <div className="user-home-page-library">
-              <p>Library</p>
-            </div>
-
-          </div>
-        </div>
-
-        <div className='user-home-page-card-container'>
-          {/* // TODO Dynamic H2 */}
-          <h2>Your Shows</h2>
-          <p>Show All</p>
-          <div className='user-home-page-cards-index'>
-            <div className='user-home-page-card'>
+            <div className='content-cards-container'>
+              {/* // TODO Dynamic H2 */}
+              <h2>Your Shows</h2>
+              <p>Show All</p>
               {/* Card Image */}
               {/* Card Title */}
               {/* On Hover Play/Pause Button */}
@@ -59,7 +57,7 @@ const UserHomePage = () => {
           </div>
         </div>
         <PlayBar />
-      </div>
+      </body>
     </>
   );
 }
