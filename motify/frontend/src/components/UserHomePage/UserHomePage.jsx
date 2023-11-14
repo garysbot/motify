@@ -21,15 +21,10 @@ const UserHomePage = () => {
 
         <div className='user-home-mainbody'>
           <div className='user-home-userbar'>{/* user-home-userbar */}
-            <div className='userbar-back-arrow'>
-              I'm a back arrow
-              <h1>{`<`}</h1>
-            </div>
-            <div className='userbar-profile-menu-container'>
-              {/* add profile pic to the div */}
-              {/* logout button */}
-              <h1>😊</h1>
-            </div>
+            <h1 className='userbar-back-arrow'>{`<`}</h1>
+            <h1 className='userbar-profile-menu-container'>{`😊`}</h1>
+            {/* add profile pic to the div */}
+            {/* logout button */}
           </div>
           
           <div className='user-home-content'>{/* user-home-content */}
