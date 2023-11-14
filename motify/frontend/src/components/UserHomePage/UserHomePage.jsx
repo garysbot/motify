@@ -25,6 +25,17 @@ const UserHomePage = () => {
             {/* Boolean -> True = show play anim / False = do not show */}
             {/* Max - 3x per row; 2x rows */}
             {/* Min - 2x per row; 3x rows */}
+      <div className="background">
+        <div className="user-home-page-sidebar">
+          <div className="user-home-page-mini-home-search">
+            
+            <p>Home</p>
+            <p>Search</p>
+            <div className="user-home-page-home-icon"></div>
+          </div>
+          
+          <div className="user-home-page-library">
+            <p>Library</p>
           </div>
 
         </div>
@@ -53,5 +64,11 @@ const UserHomePage = () => {
     </>
   );
 }
+
+export default UserHomePage;
+    </>
+  );
+
+};
 
 export default UserHomePage;
