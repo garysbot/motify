@@ -1,0 +1,39 @@
+.user-home-page-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.user-home-page-mini-home-search {
+  background-color: #121212;
+  color: #B3B3B3;
+  height: 15rem;
+  width: 21rem;
+  border-radius: 0.5rem;
+}
+
+
+.user-home-page-mini-home-search h4:active {
+  color: white;
+
+}
+
+.user-home-page-library {
+  background-color: #121212;
+  color: white;
+  height: 100rem;
+  width: 21rem;
+  overflow-y: auto;
+}
+
+user-home-page-home-icon {
+  /* width: 10.5rem; */
+  /* height: 10.5rem; */
+  /* margin-top: 10rem; */
+  background-image: url('data:image/svg+xml,<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" data-encore-id="icon" role="img" aria-hidden="true" class="Svg-sc-ytk21e-0 iYxpxA home-active-icon" viewBox="0 0 24 24" width="24" height="24" ><path d="M13.5 1.515a3 3 0 0 0-3 0L3 5.845a2 2 0 0 0-1 1.732V21a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-6h4v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V7.577a2 2 0 0 0-1-1.732l-7.5-4.33z" fill="%23FFFFFF"></path></svg>');
+  /* margin-bottom: 0.725rem; */
+  background-repeat: no-repeat;
+  /* background-size: contain; */
+}
