@@ -1,41 +1,43 @@
+/* ! Main Container --------------- */
 .user-home-container {
   background-color: #000000;
   background-size: cover;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
+  display: flex;
 }
 
-.user-home-page-sidebar {
+/* ! ------------------------------ */
+
+/* * SIDEBAR ---------------------- */
+.user-home-sidebar {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 0.5rem;
-  height: 100vh;
+  height: 100%;
   overflow-y: auto;
+  max-width: 20rem;
 }
 
-.user-home-page-mini-home-search {
+.sidebar-mini-home {
   background-color: #121212;
   color: #B3B3B3;
-  height: 15rem;
-  width: 21rem;
+  height: 7rem;
+  width: 20rem;
   border-radius: 0.5rem;
 }
 
-
-.user-home-page-mini-home-search h4:active {
-  color: white;
-
-}
-
-.user-home-page-library {
+.sidebar-library {
   background-color: #121212;
   color: white;
-  height: 100rem;
-  width: 21rem;
+  height: 100vh;
+  /* width: 20rem; */
   overflow-y: auto;
+  flex-grow: 1;
 }
 
-user-home-page-home-icon {
+.mini-home-icon {
   /* width: 10.5rem; */
   /* height: 10.5rem; */
   /* margin-top: 10rem; */
@@ -43,4 +45,25 @@ user-home-page-home-icon {
   /* margin-bottom: 0.725rem; */
   background-repeat: no-repeat;
   /* background-size: contain; */
+}
+
+/* * SIDEBAR ---------------------- */
+
+/* ~ Userbar ---------------------- */
+.user-home-mainbody {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem;
+}
+
+.user-home-userbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 10rem;
+  padding: 1rem;
+}
+
+.userbar-profile-menu-container {
+  align-self: flex-start;
 }
