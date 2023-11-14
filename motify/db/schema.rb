@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_12_212528) do
     t.bigint "artist", null: false
     t.bigint "album", null: false
     t.integer "duration", null: false
-    t.integer "album_track_num", null: false
+    t.integer "album_track_num", null: false 
     t.string "title", null: false
     t.boolean "explicit", null: false
     t.datetime "created_at", null: false

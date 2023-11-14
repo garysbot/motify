@@ -1,9 +1,10 @@
 .play-bar-container {
   width: 100%;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   height: 5.375rem;
   background-color: #000000;
+  z-index: 100;
 }
 
 .play-button {

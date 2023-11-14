@@ -2,39 +2,55 @@
 .user-home-container {
   background-color: #000000;
   background-size: cover;
-  width: 100vw;
-  height: 100%;
+  width: 100%;
+  height: calc(100vh - 5.375rem);
   display: flex;
+  flex-wrap: nowrap;
+  box-sizing: border-box;
+  padding-right: 1rem;
+  position: relative;
 }
 
 /* ! ------------------------------ */
 
 /* * SIDEBAR ---------------------- */
 .user-home-sidebar {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 0.5rem;
   height: 100%;
   overflow-y: auto;
-  max-width: 20rem;
+  max-width: 35%;
+  padding-left: 1rem;
+  padding-top: 1rem;
+  flex: 1;
 }
 
 .sidebar-mini-home {
+  box-sizing: border-box;
   background-color: #121212;
   color: #B3B3B3;
   height: 7rem;
-  width: 20rem;
+  width: 100%;
   border-radius: 0.5rem;
+  padding-left: 1.5rem;
+  padding-top: 1rem;
 }
 
 .sidebar-library {
+  box-sizing: border-box;
   background-color: #121212;
   color: white;
   height: 100vh;
   /* width: 20rem; */
   overflow-y: auto;
   flex-grow: 1;
+  padding-left: 1.5rem;
+  padding-top: 1rem;
+  width: 100%;
+  border-radius: 0.5rem;
 }
 
 .mini-home-icon {
@@ -51,19 +67,55 @@
 
 /* ~ Userbar ---------------------- */
 .user-home-mainbody {
+  box-sizing: border-box;
+  background-color: #121212;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  padding: 1rem;
+  max-width: 65%;
+  /* padding: 1rem; */
+  /* padding-inline-start: 1.5rem; */
+  margin-top: 1rem;
+  margin-left: 1rem;
+  border-radius: 0.5rem;
+  flex: 2;
+  height: 100%;
+  /* padding-right: 1rem; */
+
 }
 
 .user-home-userbar {
+  box-sizing: border-box;
   display: flex;
+  /* flex-direction: row; */
   justify-content: space-between;
-  gap: 10rem;
-  padding: 1rem;
+  align-items: center;
+  padding-top: 1rem;
+  padding-left: 1.25rem;
+  padding-bottom: 1rem;
+  padding-right: 1.25rem;
+  width: 100%;
+  height: 3.625rem;
+  background-color: red;
+  border-radius: 0.5rem;
 }
 
-.userbar-profile-menu-container {
-  align-self: flex-start;
+.user-home-userbar .userbar-back-arrow {
 }
+
+.user-home-userbar .userbar-profile-menu-container {
+}
+
+
+/* ^ Content ----------------------------- */
+
+.user-home-content {
+  box-sizing: border-box;
+  max-width: 100%;
+  height: 100vh;
+  padding-top: 1rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  overflow-y: auto;
+}
+
+/* ^ Content ----------------------------- */
