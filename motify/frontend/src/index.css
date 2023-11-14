@@ -53,11 +53,25 @@ body {
   color: white;
 }
 
+
 input::placeholder {
   color: gray;
   font-family: 'CircularSpotifyBook', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   font-size: 1rem;
   padding-top: 0.5rem;
+}
+
+.background {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
+}
+
+.standard-div-background {
+  background-color: #121212;
+  border-radius: 0.5rem;
 }
 
 .helper-text {
