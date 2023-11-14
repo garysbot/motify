@@ -66,6 +66,7 @@ export const logout = () => async dispatch => {
     storeCurrentUser(null);
     // Dispatch an action to update the Redux store
     dispatch(removeCurrentUser());
+
   }
   return response;
 };
