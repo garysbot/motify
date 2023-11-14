@@ -154,4 +154,16 @@
   overflow-y: auto;
 }
 
+.content-cards-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-cards {
+  align-self: flex-start;
+}
+
+
+
+
 /* ^ Content ----------------------------- */
