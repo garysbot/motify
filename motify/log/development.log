@@ -17236,3 +17236,31 @@ Processing by Api::SessionsController#create as JSON
 Completed 200 OK in 200ms (Views: 0.9ms | ActiveRecord: 1.9ms | Allocations: 5348)
 
 
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-14 16:29:59 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-14 16:30:00 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-14 16:30:10 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-14 16:30:11 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-14 16:30:12 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-14 16:30:12 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-11-14 16:30:13 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
