@@ -21,6 +21,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'CircularSpotifyLight';
+  src: url('./static/fonts/CircularSpotifyText-Light.otf') format ('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html, body {
   height: 100%;
   width: 100%;
@@ -31,28 +38,33 @@ html, body {
 
 h1, h2, h3, h4, h5, label, input, span {
   font-family: 'CircularSpotifyBold', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  color: white;
 }
+
+li {
+  font-family: 'CircularSpotifyBook', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 p {
   font-family: 'CircularSpotifyBook', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-  color: white;
 }
 
 h1 {
   font-size: 3rem;
-  color: white;
 }
 
 label {
   font-size: 1rem;
-  color:white;
 }
 
 body {
   font-size: 1rem;
   color: white;
+  font-family: 'CircularSpotifyLight', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
-
 
 input::placeholder {
   color: gray;

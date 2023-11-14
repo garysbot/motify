@@ -8,7 +8,12 @@ import { ReactComponent as LibraryActive } from '../../static/icons/library-acti
 import { ReactComponent as LibraryInactive } from '../../static/icons/library-inactive.svg'
 import { ReactComponent as PlusActive } from '../../static/icons/plus-active.svg'
 import { ReactComponent as RightLineArrowActive } from '../../static/icons/right-line-arrow-active.svg'
-
+import { ReactComponent as LeftArrowActive } from '../../static/icons/left-arrow-active.svg'
+import { ReactComponent as LeftArrowInactive } from '../../static/icons/left-arrow-inactive.svg'
+import { ReactComponent as RightArrowInactive } from '../../static/icons/right-arrow-inactive.svg'
+import { ReactComponent as RightArrowActive } from '../../static/icons/right-arrow-active.svg'
+import tempProf from '../../static/temp-prof.png'
+import ProfileIcon from './ProfileIcon/ProfileIcon';
 
 const UserHomePage = () => {
   // onClick handler for active-inactive Home & Search buttons in sidebar-mini-home
@@ -34,10 +39,15 @@ const UserHomePage = () => {
 
         <div className='user-home-mainbody'>
           <div className='user-home-userbar'>{/* user-home-userbar */}
-            <h1 className='userbar-back-arrow'>{`<`}</h1>
-            <h1 className='userbar-profile-menu-container'>{`😊`}</h1>
-            {/* add profile pic to the div */}
-            {/* logout button */}
+            <div className='userbar-arrow-nav'>
+              <LeftArrowActive/>
+              <RightArrowActive/>
+            </div>
+            
+            <div className='userbar-profile-container'>
+              <ProfileIcon/>
+            </div>
+
           </div>
           
           <div className='user-home-content'>{/* user-home-content */}

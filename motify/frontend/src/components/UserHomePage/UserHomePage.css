@@ -7,7 +7,7 @@
   display: flex;
   flex-wrap: nowrap;
   box-sizing: border-box;
-  padding-right: 1rem;
+  padding-right: 0.5rem;
   position: relative;
 }
 
@@ -33,9 +33,9 @@
   gap: 0.5rem;
   height: 100%;
   overflow-y: auto;
-  max-width: 35%;
-  padding-left: 1rem;
-  padding-top: 1rem;
+  max-width: 20%;
+  padding-left: 0.5rem;
+  padding-top: 0.5rem;
   flex: 1;
 }
 
@@ -81,10 +81,10 @@
   background-color: #121212;
   display: flex;
   flex-direction: column;
-  max-width: 65%;
+  max-width: 80%;
   /* padding: 1rem; */
   /* padding-inline-start: 1.5rem; */
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   margin-left: 1rem;
   border-radius: 0.5rem;
   flex: 2;
@@ -106,15 +106,41 @@
   width: 100%;
   height: 3.625rem;
   background-color: red;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.userbar-arrow-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.userbar-profile-container {
+
+}
+
+.userbar-profile-pic {
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.userbar-profile-menu {
+  position: absolute;
+  top: 3.5rem;
+  right: 1.75rem;
+  background-color: #3E3E3E;
   border-radius: 0.5rem;
+  width: 11rem;
+  height: 14rem;
 }
 
-.user-home-userbar .userbar-back-arrow {
+.userbar-profile-menu li {
+  list-style: none;
+  padding: 1rem;
 }
-
-.user-home-userbar .userbar-profile-menu-container {
-}
-
 
 /* ^ Content ----------------------------- */
 
