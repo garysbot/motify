@@ -1,5 +1,14 @@
 import './UserHomePage.css'
 import PlayBar from '../PlayBar/PlayBar';
+import { ReactComponent as HomeActive } from '../../static/icons/home-active.svg';
+import { ReactComponent as HomeInactive } from '../../static/icons/home-inactive.svg';
+import { ReactComponent as SearchActive } from '../../static/icons/search-active.svg'
+import { ReactComponent as SearchInactive } from '../../static/icons/search-inactive.svg'
+import { ReactComponent as LibraryActive } from '../../static/icons/library-active.svg'
+import { ReactComponent as LibraryInactive } from '../../static/icons/library-inactive.svg'
+import { ReactComponent as PlusActive } from '../../static/icons/plus-active.svg'
+import { ReactComponent as RightLineArrowActive } from '../../static/icons/right-line-arrow-active.svg'
+
 
 const UserHomePage = () => {
   // onClick handler for active-inactive Home & Search buttons in sidebar-mini-home
@@ -10,12 +19,16 @@ const UserHomePage = () => {
         <div className='user-home-sidebar'>
           
           <div className='sidebar-mini-home'>{/* sidebar-mini-home */}
-            <div className="mini-home-icon"></div><p>Home</p>
-            <div className='mini-home-search'></div><p>Search</p>
+            <div className="mini-home-icon row-align"><HomeActive/><p>Home</p></div>
+            <div className='mini-home-search row-align'><SearchInactive/><p>Search</p></div>
           </div>
 
           <div className='sidebar-library'>{/* sidebar-library */}
-            <p>Library</p>
+            <div className='library-icon row-align'>
+              <LibraryActive/><p>Your Library</p>
+              <PlusActive/>
+              <RightLineArrowActive/>
+            </div>
           </div>
         </div>
 
