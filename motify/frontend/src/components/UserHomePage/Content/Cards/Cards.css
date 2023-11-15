@@ -1,0 +1,46 @@
+.content-cards-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-cards {
+  display: flex;
+  align-self: flex-start;
+  padding-top: 1rem;
+}
+
+.vertical-content-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 10rem;
+  height: 14.55rem;
+  background-color: #181818;
+  border-radius: 0.5rem;
+}
+
+.vertical-cover {
+  height: 8.25rem;
+  width: 8.25rem;
+  align-self: center;
+  margin-top: 0.825rem;
+  /* padding-top: 0.825rem; */
+  border-radius: 0.5rem;
+}
+
+.vertical-text {
+  padding-top: 0.75rem;
+  padding-left: 0.875rem;
+}
+
+.vertical-title {
+  font-family: 'CircularSpotifyBold';
+  font-size: 0.875rem;
+}
+
+.vertical-artist {
+  font-family: 'CircularSpotifyBook';
+  color: #a7a7a7;
+  font-size: 0.75rem;
+  padding-top: 0.25rem;
+}

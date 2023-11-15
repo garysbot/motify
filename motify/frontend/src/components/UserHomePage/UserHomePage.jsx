@@ -15,6 +15,8 @@ import { ReactComponent as RightArrowActive } from '../../static/icons/right-arr
 import tempProf from '../../static/temp-prof.png'
 import ProfileIcon from './ProfileIcon/ProfileIcon';
 
+import Cards from './Content/Cards/Cards';
+
 const UserHomePage = () => {
   // onClick handler for active-inactive Home & Search buttons in sidebar-mini-home
 
@@ -50,10 +52,9 @@ const UserHomePage = () => {
 
           </div>
           
-          <div className='user-home-content'>{/* user-home-content */}
-            <div className='content-announcement-container'>
-            </div>
-
+          <div className='user-home-content'>
+            <Cards/>
+            {/* <div className='content-announcement-container'></div> */}
             {/* <div className='content-recent-container'>
               {/* // TODO Dynamic Headline */}
               {/* <h2>Good afternoon</h2> */}
@@ -68,24 +69,6 @@ const UserHomePage = () => {
               {/* Max - 3x per row; 2x rows */}
               {/* Min - 2x per row; 3x rows */}
             {/* </div> */}
-            
-            <div className='content-cards-container'>
-              {/* // TODO Dynamic H2 */}
-              <h2>Albums</h2>
-              <div className='content-cards'>
-                <div className='vertical-content-card'>
-                  Album Cover Image Here
-                </div>
-                <p>Album Title Here</p>
-                <p>Artist Name Here</p>
-              </div>
-              {/* Card Image */}
-              {/* Card Title */}
-              {/* On Hover Play/Pause Button */}
-              {/* Boolean -> True = show play anim / False = do not show */}
-              {/* Max - 3x per row; 2x rows */}
-              {/* Min - 2x per row; 3x rows */}
-            </div>
           </div>
         </div>
 

@@ -10,15 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_12_212528) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_15_155148) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "albums", force: :cascade do |t|
+    t.bigint "artist_id", null: false
+    t.string "title", null: false
+    t.string "genre", null: false
+    t.string "cover_img", null: false
+    t.bigint "release_date", null: false
+    t.string "record_company"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_id"], name: "index_albums_on_artist_id"
+    t.index ["title"], name: "index_albums_on_title", unique: true
+  end
+
+  create_table "artists", force: :cascade do |t|
+    t.string "artist_name", null: false
+    t.string "genre", null: false
+    t.boolean "verified", default: false, null: false
+    t.text "about_blurb", null: false
+    t.string "about_img", null: false
+    t.bigint "global_ranking"
+    t.bigint "monthly_listeners"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_name"], name: "index_artists_on_artist_name", unique: true
+  end
 
   create_table "songs", force: :cascade do |t|
     t.bigint "artist", null: false
     t.bigint "album", null: false
     t.integer "duration", null: false
-    t.integer "album_track_num", null: false 
+    t.integer "album_track_num", null: false
     t.string "title", null: false
     t.boolean "explicit", null: false
     t.datetime "created_at", null: false
@@ -42,4 +68,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_12_212528) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "albums", "artists"
 end
