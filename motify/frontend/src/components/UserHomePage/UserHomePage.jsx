@@ -53,7 +53,8 @@ const UserHomePage = () => {
           </div>
           
           <div className='user-home-content'>
-            <Cards contentType='artists'/>
+            {/* Album Show Page Will Go Here */}
+            <Cards contentType='albums'/>
             <Cards contentType='songs'/>
             <Cards contentType='albums'/>
           </div>

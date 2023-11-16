@@ -72,7 +72,6 @@ const Cards = ({ contentType }) => {
             )
           )
         )
-        break;
       default:
         contentTitle = 'Your Music'
         break;
