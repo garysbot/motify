@@ -1,1 +1,5 @@
-json.array! @songs, partial: "songs/song", as: :song
+json.array! @songs do |song|
+  json.extract! song, :id, :duration, :title, :explicit
+  json.album_title song.album.title
+  json.artist_name song.artist.artist_name
+end
