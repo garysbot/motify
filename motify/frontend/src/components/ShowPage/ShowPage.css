@@ -17,6 +17,8 @@
   display: flex;
   padding-top: 2.25rem;
   padding-bottom: 1.75rem;
+  gap: 1.5rem;
+  align-items: center;
 }
 
 .show-play-button-container {
@@ -37,8 +39,9 @@
   left: 18px;
 }
 
-.circle-svg {
-
+.like-button {
+  width: 60px;
+  height: 60px;
 }
 
 .show-songs-header {
@@ -46,12 +49,55 @@
   height: 2.25rem;
   width: 100%;
   gap: 1.25rem;
+  padding-left: 1.75rem;
+  padding-bottom: 3rem;
+}
+
+
+.header-text {
+  font-family: 'CircularSpotifyBook';
+  font-size: 0.875rem;
+  opacity: 80%;
+}
+
+
+.show-songs-table {
+  font-size: 0.875rem;
+  opacity: 80%;
+  font-family: 'CircularSpotifyBook';
 }
 
 .show-songs-row {
   display: flex;
-  gap: 10rem;
   align-items: center;
+  padding-left: 1.75rem;
+  justify-content: space-between;
+}
+
+.track-num,
+.song-title-artist {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.track-num {
+  margin-right: 25px;
+}
+
+.song-title-artist {
+  width: 100%;
+}
+
+.song-title-artist-name {
+  opacity: 70%;
+}
+
+.like-button-duration {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-right: 2.5rem;
 }
 
 .details-artist {

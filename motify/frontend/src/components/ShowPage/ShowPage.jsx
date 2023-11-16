@@ -1,6 +1,12 @@
 import './ShowPage.css'
 import { useAlbum } from './ShowHooks/useAlbum';
+import { ReactSVG } from 'react-svg';
 import kendrickAlbumCover from '../../static/albums/covers/kendrick.png'
+import likeButton from '../../static/playbar/show/show-play-bar-like-button.svg'
+import playButton from '../../static/playbar/show/show-play-bar-play-button.svg';
+import menuDots from '../../static/playbar/show/show-play-bar-dotmenu-button.svg'
+import lilLikeButton from '../../static/playbar/show/show-songs-table-like-button.svg'
+
 
 const ShowPage = () => {
   const album = useAlbum(129)
@@ -9,7 +15,6 @@ const ShowPage = () => {
     return <div>Loading...</div>;
   }
 
-  // console.log(album);
   return (
     <>
       <div className='show-banner'>
@@ -29,46 +34,45 @@ const ShowPage = () => {
       <div className='show-play-bar'>
         
         <div className='show-play-button-container'>
-          <svg className='svg-image play-svg' width="24"  height="24" >
-            <path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path>
-          </svg>
+          <ReactSVG src={playButton} className='svg-image play-svg'/>
           <svg className='svg-image circle-svg' width="60" height="60">
             <circle cx="30" cy="30" r="30" fill="#1DB954" />
           </svg>
         </div>
 
-
-        {/* Play Button */}
-        {/* Like || Follow Button */}
-        {/* Menu Dots */}
+        <ReactSVG src={likeButton}/>
+        <ReactSVG src={menuDots}/>
       </div>
       
       <div className='show-content'>
         <div className='show-songs-header'>
           {/* Album/Playlist Table Header */}
-          <p>#</p>
-          <p>Title</p>
+          <p className='header-text'>#</p>
+          <p className='header-text'>Title</p>
           {/* Time Button */}
         </div>
       
         <div className='show-songs-table'>
           <div className='show-songs-row'>
-            {/* Track Num */}
-
-            <p>1</p>
-            {/* Song Title & Artist Name */}
+            <div className='track-num'>
+              {/* Track Num */}
+              <p>1</p>
+            </div>
             <div className='song-title-artist'>
               {
                 album.songs.map((song)=>
                   <>
                   <p>{song.title}</p>
                   {/* <p>{song.explicit && <p>Curses</p>}</p> */}
-                  <p>{album.artistName}</p>
+                  <p className='song-title-artist-name'>{album.artistName}</p>
                   </>
                 )
               }
             </div>
-            <p>4:15</p>
+            <div className='like-button-duration'>
+              <ReactSVG src={lilLikeButton}/>
+              <p>4:15</p>
+            </div>
           </div>
 
         </div>
