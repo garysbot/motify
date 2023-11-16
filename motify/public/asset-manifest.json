@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.89f8bbf8.css",
+    "main.js": "/static/js/main.b3a37b29.js",
+    "static/media/CircularSpotifyText-Bold.otf": "/static/media/CircularSpotifyText-Bold.f8952626140be9495d1b.otf",
+    "static/media/CircularSpotifyText-Book.otf": "/static/media/CircularSpotifyText-Book.27bc05ead5cc509ef2ba.otf",
+    "index.html": "/index.html",
+    "main.89f8bbf8.css.map": "/static/css/main.89f8bbf8.css.map",
+    "main.b3a37b29.js.map": "/static/js/main.b3a37b29.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.89f8bbf8.css",
+    "static/js/main.b3a37b29.js"
+  ]
+}
