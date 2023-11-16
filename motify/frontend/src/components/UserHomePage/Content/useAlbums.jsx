@@ -10,6 +10,7 @@ export const useAlbums = () => {
       const data = await response.json();
       setAlbums(data);
     };
+    // console.log(`albums`)
 
     fetchAlbums();
   }, []);
