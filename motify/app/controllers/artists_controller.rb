@@ -1,26 +1,26 @@
 class ArtistsController < ApplicationController
   before_action :set_artist, only: %i[ show ]
 
-  # GET /songs
-  # GET /songs.json
+  # GET /artists
+  # GET /artists.json
   def index
-    @songs = Song.all
+    @artists = Artist.all
   end
 
-  # GET /songs/1
-  # GET /songs/1.json
+  # GET /artists/1
+  # GET /artists/1.json
   def show
-    @song = Song.find(params[:id])
+    @artist = Artist.find(params[:id])
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_song
-      @song = Song.find(params[:id])
+    def set_artist
+      @artist = Artist.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
-    def song_params
-      params.require(:song).permit(:artist_id, :album_id, :duration, :title, :explicit)
+    def artist_params
+      params.require(:artist).permit(:artist_name, :verified, :about_blurb, :about_img, :global_ranking, :monthly_listeners)
     end
 end

@@ -10,7 +10,7 @@ class Song < ApplicationRecord
   # Validations
   validates :artist_id, presence: true
   validates :album_id, presence: true
-  validates :length, presence: true
+  validates :duration, presence: true
   validates :title, presence: true
   validates :explicit, inclusion: { in: [true, false] }
 end
