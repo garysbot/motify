@@ -2,48 +2,91 @@ import './Cards.css'
 import Cover1 from '../../../../static/albums/covers/cover-midjourney-1.png'
 import { useAlbums } from '../useAlbums'
 import { useSongs } from '../useSongs'
+import { useArtists } from '../useArtists'
 
-const Cards = () => {
+const Cards = ({ contentType }) => {
 
   const albums = useAlbums();
   const songs = useSongs();
+  const artists = useArtists();
 
   // If albums is not yet defined (e.g., before data fetching completes), handle it appropriately
-  if (!albums) {
-    return <div>Loading...</div>; // or some other loading state
+ // Loading states
+  if (!albums || !songs || !artists) {
+    return <div>Loading...</div>;
   }
 
-  if (!songs) {
-    return <div>Loading...</div>; // or some other loading state
+  let contentTitle;
+  switch (contentType) {
+    case 'albums':
+      contentTitle = 'Albums';
+      break;
+    case 'songs':
+      contentTitle = 'Songs';
+      break;
+    case 'artists':
+      contentTitle = 'Artists';
+      break;
+    default:
+      contentTitle = 'Your Music';
+      break;
   }
 
-
-
-  return (
-    <>
-      <h2>Albums</h2>
-        {/* Max - 3x per row; 2x rows */}
-        {/* Min - 2x per row; 3x rows */}
-      <div className='content-cards'>
-        <div className='content-cards-container'>
-          {
-            Object.values(albums).map((album)=> (
+  const renderCards = () => {
+    switch (contentType) {
+      case 'albums':
+        contentTitle = 'Albums'
+        return (
+          Object.values(albums).map((album)=> 
+            (
               <div className='vertical-content-card' key={album.id}>
                 <img src={Cover1} alt='' className='vertical-cover'/>
                 <p className='vertical-title'>{album.title}</p>
                 <p className='vertical-artist'>{album.artistName}</p>
               </div>
             ))
-          }
-          {
-            Object.values(songs).map((song)=> (
+          )
+      case 'songs':
+        contentTitle = 'Songs'
+        return (
+          Object.values(songs).map((song) => 
+            (
               <div className='vertical-content-card' key={song.id}>
                 <img src={Cover1} alt='' className='vertical-cover'/>
                 <p className='vertical-title'>{song.title}</p>
                 <p className='vertical-artist'>{song.artistName}</p>
               </div>
-            ))
-          }
+            )
+          )
+        )
+      case 'artists':
+        contentTitle = 'Artists'
+        return (
+          Object.values(artists).map((artist) => 
+            (
+              <div className='vertical-content-card' key={artist.id}>
+                <img src={Cover1} alt='' className='vertical-cover'/>
+                <p className='vertical-title'>{artist.artistName}</p>
+                <p className='vertical-artist'>Artist</p>
+              </div>
+            )
+          )
+        )
+        break;
+      default:
+        contentTitle = 'Your Music'
+        break;
+    }
+  }
+
+  return (
+    <>
+      <h2 className='cards-content-title'>{contentTitle}</h2>
+        {/* Max - 3x per row; 2x rows */}
+        {/* Min - 2x per row; 3x rows */}
+      <div className='content-cards'>
+        <div className='content-cards-container'>
+          {renderCards()}
         </div>
       </div>
     </>
