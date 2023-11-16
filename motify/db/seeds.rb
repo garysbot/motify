@@ -72,14 +72,15 @@ ApplicationRecord.transaction do
     
       number_of_songs.times do
         Song.create(
-          artist: Artist.all.sample.id,  # Use artist ID
-          album: album_ids.sample,      # Use album ID
+          artist: Artist.all.sample,  # Use artist object
+          album_id: album_ids.sample, # Use album ID
           title: Faker::Music::RockBand.song,
           duration: rand(120..300),
           explicit: [true, false].sample
         )
       end
     end
+    
     # Create artists, albums, and songs
     create_mock_artists(10)
     create_mock_albums(50)
