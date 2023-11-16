@@ -10,6 +10,7 @@ class AlbumsController < ApplicationController
   # GET /albums/1
   # GET /albums/1.json
   def show
+    @album = Album.find(params[:id])
   end
 
   private
@@ -20,6 +21,6 @@ class AlbumsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def album_params
-      params.require(:album).permit(:artist_id, :title, )
+      params.require(:album).permit(:artist_id, :title, :genre, :cover_img, :release_date, :record_company )
     end
 end
