@@ -18,28 +18,31 @@ const ShowPage = () => {
         <div className='banner-details'>
           <p>Album</p>
           <h1>{album.title}</h1>
-          <p>{album.artistName} {album.releaseDate}</p>
-          {
-            album.songs.map((song)=>
-              <>
-              <p>hi?</p>
-              <p>Title:{song.title}</p>
-              </>
-            )
-          }
-
-          <p>Kendrick Lamar - 2022 - 19 songs, 1hr 18 mins</p>
-          {/* Artist Name */}
-          {/* Release Year */}
-          {/* Num Songs */}
-          {/* Total Length */}
+          <p className='details-artist'>
+            {album.artistName} ◦ 
+            {album.releaseDate} ◦ 
+            {`${Object.values(album.songs).length} songs, 1 hr 18 min`}
+          </p>
         </div>
       </div>
+
       <div className='show-play-bar'>
+        
+        <div className='show-play-button-container'>
+          <svg className='svg-image play-svg' width="24"  height="24" >
+            <path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path>
+          </svg>
+          <svg className='svg-image circle-svg' width="60" height="60">
+            <circle cx="30" cy="30" r="30" fill="#1DB954" />
+          </svg>
+        </div>
+
+
         {/* Play Button */}
         {/* Like || Follow Button */}
         {/* Menu Dots */}
       </div>
+      
       <div className='show-content'>
         <div className='show-songs-header'>
           {/* Album/Playlist Table Header */}
@@ -47,18 +50,24 @@ const ShowPage = () => {
           <p>Title</p>
           {/* Time Button */}
         </div>
+      
         <div className='show-songs-table'>
           <div className='show-songs-row'>
             {/* Track Num */}
+
             <p>1</p>
             {/* Song Title & Artist Name */}
             <div className='song-title-artist'>
-              <p>United in Grief</p>
-              {/* explicit or not */}
-              <p>Kendrick Lamar</p>
+              {
+                album.songs.map((song)=>
+                  <>
+                  <p>{song.title}</p>
+                  {/* <p>{song.explicit && <p>Curses</p>}</p> */}
+                  <p>{album.artistName}</p>
+                  </>
+                )
+              }
             </div>
-            {/* Liked/NotLiked */}
-            {/* Duration */}
             <p>4:15</p>
           </div>
 

@@ -13,9 +13,39 @@
   padding-left: 1.5rem;
 }
 
+.show-play-bar {
+  display: flex;
+  padding-top: 2.25rem;
+  padding-bottom: 1.75rem;
+}
+
+.show-play-button-container {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+.svg-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.play-svg {
+  z-index: 1;
+  top: 18px;
+  left: 18px;
+}
+
+.circle-svg {
+
+}
+
 .show-songs-header {
   display: flex;
   height: 2.25rem;
+  width: 100%;
+  gap: 1.25rem;
 }
 
 .show-songs-row {
@@ -23,3 +53,11 @@
   gap: 10rem;
   align-items: center;
 }
+
+.details-artist {
+  font-family: 'CircularSpotifyBook';
+  font-size: 0.825rem;
+  color: #FFFFFF;
+  opacity: 80%;
+}
+
