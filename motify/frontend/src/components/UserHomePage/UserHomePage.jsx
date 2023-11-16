@@ -53,22 +53,9 @@ const UserHomePage = () => {
           </div>
           
           <div className='user-home-content'>
-            <Cards/>
-            {/* <div className='content-announcement-container'></div> */}
-            {/* <div className='content-recent-container'>
-              {/* // TODO Dynamic Headline */}
-              {/* <h2>Good afternoon</h2> */}
-              {/* <div className='horizontal-card-container'> */}
-                {/* <div className='horizontal-card'><img src="" alt="card"/></div> */}
-                {/* <p className='horizontal-card-title'>For All The Dogs</p> */}
-              {/* </div> */}
-              {/* Card Image */}
-              {/* Card Title */}
-              {/* On Hover Play/Pause Button */}
-              {/* Boolean -> True = show play anim / False = do not show */}
-              {/* Max - 3x per row; 2x rows */}
-              {/* Min - 2x per row; 3x rows */}
-            {/* </div> */}
+            <Cards contentType='artists'/>
+            <Cards contentType='songs'/>
+            <Cards contentType='albums'/>
           </div>
         </div>
 
