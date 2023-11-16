@@ -1,0 +1,25 @@
+.show-banner {
+  display: flex;
+  align-items: flex-end;
+  /* background-color: blue; */
+}
+
+.album-cover-img {
+  width: 14.375rem;
+  height: 14.375rem;
+}
+
+.banner-details {
+  padding-left: 1.5rem;
+}
+
+.show-songs-header {
+  display: flex;
+  height: 2.25rem;
+}
+
+.show-songs-row {
+  display: flex;
+  gap: 10rem;
+  align-items: center;
+}
