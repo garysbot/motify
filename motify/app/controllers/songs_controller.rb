@@ -4,7 +4,7 @@ class SongsController < ApplicationController
   # GET /songs
   # GET /songs.json
   def index
-    @songs = Song.all
+    @songs = Song.includes(:album, :artist).all
   end
 
   # GET /songs/1
