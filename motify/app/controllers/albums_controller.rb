@@ -4,7 +4,8 @@ class AlbumsController < ApplicationController
   # GET /albums
   # GET /albums.json
   def index
-    @albums = Album.all
+    @albums = Album.includes(:songs, :artist).all
+    # .includes(:songs, :artist) preloads associated songs and artist
   end
 
   # GET /albums/1
