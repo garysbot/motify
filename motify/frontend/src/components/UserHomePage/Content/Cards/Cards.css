@@ -1,6 +1,7 @@
 .content-cards-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  gap: 1.25rem;
 }
 
 .content-cards {
@@ -36,6 +37,12 @@
 .vertical-title {
   font-family: 'CircularSpotifyBold';
   font-size: 0.875rem;
+  padding-top: 0.75rem;
+  padding-left: 0.75rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 9.25rem;
 }
 
 .vertical-artist {
@@ -43,4 +50,9 @@
   color: #a7a7a7;
   font-size: 0.75rem;
   padding-top: 0.25rem;
+  padding-left: 0.75rem;
+  max-width: 8.75rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
