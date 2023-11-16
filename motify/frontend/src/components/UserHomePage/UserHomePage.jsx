@@ -16,6 +16,7 @@ import tempProf from '../../static/temp-prof.png'
 import ProfileIcon from './ProfileIcon/ProfileIcon';
 
 import Cards from './Content/Cards/Cards';
+import ShowPage from '../ShowPage/ShowPage';
 
 const UserHomePage = () => {
   // onClick handler for active-inactive Home & Search buttons in sidebar-mini-home
@@ -54,9 +55,10 @@ const UserHomePage = () => {
           
           <div className='user-home-content'>
             {/* Album Show Page Will Go Here */}
-            <Cards contentType='albums'/>
-            <Cards contentType='songs'/>
-            <Cards contentType='albums'/>
+            <ShowPage/>
+            {/* <Cards contentType='albums'/> */}
+            {/* <Cards contentType='songs'/> */}
+            {/* <Cards contentType='albums'/> */}
           </div>
         </div>
 
