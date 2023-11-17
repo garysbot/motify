@@ -6,14 +6,17 @@ import likeButton from '../../static/playbar/show/show-play-bar-like-button.svg'
 import playButton from '../../static/playbar/show/show-play-bar-play-button.svg';
 import menuDots from '../../static/playbar/show/show-play-bar-dotmenu-button.svg'
 import lilLikeButton from '../../static/playbar/show/show-songs-table-like-button.svg'
+import { useState } from 'react';
 
 
 const ShowPage = () => {
+  const [hoveredTrack, setHoveredTrack] = useState(null);
   const album = useAlbum(129)
 
   if (!album) {
     return <div>Loading...</div>;
   }
+
 
   return (
     <>
@@ -56,10 +59,19 @@ const ShowPage = () => {
           {
             album.songs.map((song, trackNum) => 
               <>
-                <div className='show-songs-row-container'>
+                <div
+                  className='show-songs-row-container'
+                  onMouseEnter={() => setHoveredTrack(trackNum)}
+                  onMouseLeave={() => setHoveredTrack(null)}
+                >
                   <div className='row-start'>
                     <div className='track-num'>
-                      <p>{trackNum}</p>
+                      {
+                        hoveredTrack === trackNum ? (
+                          <ReactSVG src="../../static/icons/lil-play.svg" className='anim-play-button' />
+                        ) : (
+                        <p>{trackNum}</p>
+                      )}
                     </div>
                     <div className='song-title-artist-container'>
                       <p className='song-title'>
