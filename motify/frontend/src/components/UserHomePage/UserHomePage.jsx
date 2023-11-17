@@ -1,13 +1,5 @@
 import './UserHomePage.css'
 import PlayBar from '../PlayBar/PlayBar';
-import { ReactComponent as HomeActive } from '../../static/icons/home-active.svg';
-import { ReactComponent as HomeInactive } from '../../static/icons/home-inactive.svg';
-import { ReactComponent as SearchActive } from '../../static/icons/search-active.svg'
-import { ReactComponent as SearchInactive } from '../../static/icons/search-inactive.svg'
-import { ReactComponent as LibraryActive } from '../../static/icons/library-active.svg'
-import { ReactComponent as LibraryInactive } from '../../static/icons/library-inactive.svg'
-import { ReactComponent as PlusActive } from '../../static/icons/plus-active.svg'
-import { ReactComponent as RightLineArrowActive } from '../../static/icons/right-line-arrow-active.svg'
 import { ReactComponent as LeftArrowActive } from '../../static/icons/left-arrow-active.svg'
 import { ReactComponent as LeftArrowInactive } from '../../static/icons/left-arrow-inactive.svg'
 import { ReactComponent as RightArrowInactive } from '../../static/icons/right-arrow-inactive.svg'
@@ -18,6 +10,8 @@ import ProfileIcon from './ProfileIcon/ProfileIcon';
 import Cards from './Content/Cards/Cards';
 import ShowPage from '../ShowPage/ShowPage';
 
+import Icon from '../Icons/Icons.jsx';
+
 const UserHomePage = () => {
   // onClick handler for active-inactive Home & Search buttons in sidebar-mini-home
 
@@ -27,15 +21,18 @@ const UserHomePage = () => {
         <div className='user-home-sidebar'>
           
           <div className='sidebar-mini-home'>{/* sidebar-mini-home */}
-            <div className="mini-home-icon row-align"><HomeActive/><p>Home</p></div>
-            <div className='mini-home-search row-align'><SearchInactive/><p>Search</p></div>
+            <div className="mini-home-icon row-align">
+              <Icon iconType='HomeActive'/><p>Home</p>
+            </div>
+            <div className='mini-home-search row-align'>
+              <Icon iconType='SearchInactive'/><p>Search</p>
+            </div>
           </div>
 
           <div className='sidebar-library'>{/* sidebar-library */}
             <div className='library-icon row-align'>
-              <LibraryActive/><p>Your Library</p>
-              <PlusActive/>
-              <RightLineArrowActive/>
+              <Icon iconType='LibraryActive'/><p>Your Library</p>
+              <Icon iconType='PlusActive'/>
             </div>
           </div>
         </div>
@@ -43,6 +40,7 @@ const UserHomePage = () => {
         <div className='user-home-mainbody'>
           <div className='user-home-userbar'>{/* user-home-userbar */}
             <div className='userbar-arrow-nav'>
+              <Icon iconType='LeftArrow'/>
               <LeftArrowActive/>
               <RightArrowActive/>
             </div>
