@@ -53,27 +53,37 @@ const ShowPage = () => {
         </div>
       
         <div className='show-songs-table'>
-          <div className='show-songs-row'>
-            <div className='track-num'>
-              {/* Track Num */}
-              <p>1</p>
-            </div>
-            <div className='song-title-artist'>
-              {
-                album.songs.map((song)=>
-                  <>
-                  <p>{song.title}</p>
-                  {/* <p>{song.explicit && <p>Curses</p>}</p> */}
-                  <p className='song-title-artist-name'>{album.artistName}</p>
-                  </>
-                )
-              }
-            </div>
-            <div className='like-button-duration'>
-              <ReactSVG src={lilLikeButton}/>
-              <p>4:15</p>
-            </div>
-          </div>
+          {
+            album.songs.map((song, trackNum) => 
+              <>
+                <div className='show-songs-row-container'>
+                  <div className='row-start'>
+                    <div className='track-num'>
+                      <p>{trackNum}</p>
+                    </div>
+                    <div className='song-title-artist-container'>
+                      <p className='song-title'>
+                        {song.title}
+                      </p>
+                      {/* Explicit */}
+                      <p className='song-title-artist-name'>
+                        {album.artistName}  
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className='row-end'>
+                    <div className='like-button-duration'>
+                      <ReactSVG src={lilLikeButton} className='lil-like-button'/>
+                      <p>{song.duration}</p>
+                    </div>
+                  </div>
+
+                </div>
+              </>
+            )
+          }
+
 
         </div>
       </div>

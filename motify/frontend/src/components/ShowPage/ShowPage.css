@@ -13,6 +13,13 @@
   padding-left: 1.5rem;
 }
 
+.details-artist {
+  font-family: 'CircularSpotifyBook';
+  font-size: 0.825rem;
+  color: #FFFFFF;
+  opacity: 80%;
+}
+
 .show-play-bar {
   display: flex;
   padding-top: 2.25rem;
@@ -48,7 +55,7 @@
   display: flex;
   height: 2.25rem;
   width: 100%;
-  gap: 1.25rem;
+  gap: 1.5rem;
   padding-left: 1.75rem;
   padding-bottom: 3rem;
 }
@@ -67,43 +74,65 @@
   font-family: 'CircularSpotifyBook';
 }
 
-.show-songs-row {
+.show-songs-row-container {
   display: flex;
   align-items: center;
-  padding-left: 1.75rem;
   justify-content: space-between;
+  /* padding-top: 0.5rem; */
+  /* padding-bottom: 0.5rem; */
+  padding-left: 1.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  gap: 1.5rem;
+  width: 100%;
+  transition: background-color 0.1s ease;
+  border-radius: 0.5rem;
 }
 
-.track-num,
-.song-title-artist {
+.show-songs-row-container:hover {
+  background-color: #2A2A2A;
+}
+
+.row-start {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  gap: 1.5rem;
+  align-items: center;
+  width: 70%;
 }
 
 .track-num {
-  margin-right: 25px;
+  /* margin-right: 0.5rem; */
+  width: 1.25%;
 }
 
-.song-title-artist {
-  width: 100%;
+.song-title-artist-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* This aligns the content to the left */
+  /* justify-content: flex-start; */
+  width: 90%;
+}
+
+.song-title, .song-title-artist-name {
+  margin: 0; /* Remove default paragraph margins if necessary */
 }
 
 .song-title-artist-name {
   opacity: 70%;
 }
 
+
+
 .like-button-duration {
   display: flex;
   gap: 2rem;
-  justify-content: center;
+  justify-content: space-between;
   margin-right: 2.5rem;
+  width: 5rem;
 }
 
-.details-artist {
-  font-family: 'CircularSpotifyBook';
-  font-size: 0.825rem;
-  color: #FFFFFF;
-  opacity: 80%;
+.lil-like-button {
+  justify-self: flex-start;
 }
+
 
