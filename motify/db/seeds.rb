@@ -60,7 +60,7 @@ ApplicationRecord.transaction do
           title: Faker::Music.album,
           genre: Faker::Music.genre,
           cover_img: Faker::LoremFlickr.image(size: "300x300", search_terms: ['album']),
-          release_date: Faker::Date.backward(days: 3650).to_time.to_i,
+          release_date: rand(1900..2023),
           record_company: Faker::Company.name
         )
       end

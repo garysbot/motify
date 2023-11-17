@@ -18,6 +18,9 @@
   font-size: 0.825rem;
   color: #FFFFFF;
   opacity: 80%;
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
 }
 
 .show-play-bar {
@@ -32,6 +35,10 @@
   position: relative;
   width: 60px;
   height: 60px;
+}
+
+.lilDot {
+  padding: 0rem 0.25rem;
 }
 
 .svg-image {
@@ -53,11 +60,17 @@
 
 .show-songs-header {
   display: flex;
-  height: 2.25rem;
+  height: 3rem;
   width: 100%;
   gap: 1.5rem;
   padding-left: 1.75rem;
-  padding-bottom: 3rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #121212;
+  margin-top: 0;
+  padding-top: 0;
+  align-items: center;
 }
 
 
@@ -125,20 +138,43 @@
 
 .like-button-duration {
   display: flex;
-  gap: 2rem;
+  gap: 2.5rem;
   justify-content: space-between;
+  align-items: center;
   margin-right: 2.5rem;
   width: 5rem;
 }
 
 .lil-like-button {
   justify-self: flex-start;
+  width: 5%;
 }
 
+.duration-text {
+  width: 95%;
+}
 
 .anim-play-button {
   width: 12px;
   height: 12px;
   background-size: contain;
   background-repeat: no-repeat;
+}
+
+.show-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.show-content hr {
+  border: none; /* Removes default border */
+  height: 1px; /* Sets the height of the line */
+  background-color: #333; /* Sets the color of the line */
+  margin-top: 10px; /* Space above the line */
+  margin-bottom: 10px; /* Space below the line */
+  /* width: 90%; */
+  text-align: center;
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
 }
