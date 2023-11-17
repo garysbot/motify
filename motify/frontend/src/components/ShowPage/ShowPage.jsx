@@ -7,7 +7,7 @@ import playButton from '../../static/playbar/show/show-play-bar-play-button.svg'
 import menuDots from '../../static/playbar/show/show-play-bar-dotmenu-button.svg'
 import lilLikeButton from '../../static/playbar/show/show-songs-table-like-button.svg'
 import { useState } from 'react';
-
+import lilPlayButton from '../../static/icons/noun-play-1009801.svg'
 
 const ShowPage = () => {
   const [hoveredTrack, setHoveredTrack] = useState(null);
@@ -68,7 +68,7 @@ const ShowPage = () => {
                     <div className='track-num'>
                       {
                         hoveredTrack === trackNum ? (
-                          <ReactSVG src="../../static/icons/lil-play.svg" className='anim-play-button' />
+                          <ReactSVG src={lilPlayButton} className='anim-play-button' />
                         ) : (
                         <p>{trackNum}</p>
                       )}
