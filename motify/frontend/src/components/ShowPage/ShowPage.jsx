@@ -92,7 +92,7 @@ const ShowPage = () => {
                       <ReactSVG src={lilLikeButton} className='lil-like-button'/>
                       <p className='duration-text'>
                         {
-                          `${Math.floor(song.duration / 60)}: ${String(song.duration % 60).padStart(2, '0')}`
+                          `${Math.floor(song.duration / 60)}:${String(song.duration % 60).padStart(2, '0')}`
                         }
                       </p>
                     </div>
