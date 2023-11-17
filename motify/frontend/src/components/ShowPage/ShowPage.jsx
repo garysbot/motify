@@ -8,10 +8,11 @@ import menuDots from '../../static/playbar/show/show-play-bar-dotmenu-button.svg
 import lilLikeButton from '../../static/playbar/show/show-songs-table-like-button.svg'
 import { useState } from 'react';
 import lilPlayButton from '../../static/icons/noun-play-1009801.svg'
+import lilDot from '../../static/icons/dot.svg'
 
 const ShowPage = () => {
   const [hoveredTrack, setHoveredTrack] = useState(null);
-  const album = useAlbum(129)
+  const album = useAlbum(12)
 
   if (!album) {
     return <div>Loading...</div>;
@@ -22,13 +23,15 @@ const ShowPage = () => {
     <>
       <div className='show-banner'>
         {/* Add BG to this Div? */}
-        <img src={kendrickAlbumCover} className='album-cover-img'></img>
+        <img src={kendrickAlbumCover} alt='' className='album-cover-img'></img>
         <div className='banner-details'>
           <p>Album</p>
           <h1>{album.title}</h1>
           <p className='details-artist'>
-            {album.artistName} ◦ 
-            {album.releaseDate} ◦ 
+            {album.artistName}
+            <ReactSVG src={lilDot} className='lilDot'/>
+            {album.releaseDate}
+            <ReactSVG src={lilDot} className='lilDot'/>
             {`${Object.values(album.songs).length} songs, 1 hr 18 min`}
           </p>
         </div>
@@ -54,7 +57,7 @@ const ShowPage = () => {
           <p className='header-text'>Title</p>
           {/* Time Button */}
         </div>
-      
+        <hr></hr>
         <div className='show-songs-table'>
           {
             album.songs.map((song, trackNum) => 
@@ -87,7 +90,11 @@ const ShowPage = () => {
                   <div className='row-end'>
                     <div className='like-button-duration'>
                       <ReactSVG src={lilLikeButton} className='lil-like-button'/>
-                      <p>{song.duration}</p>
+                      <p className='duration-text'>
+                        {
+                          `${Math.floor(song.duration / 60)}: ${String(song.duration % 60).padStart(2, '0')}`
+                        }
+                      </p>
                     </div>
                   </div>
 
