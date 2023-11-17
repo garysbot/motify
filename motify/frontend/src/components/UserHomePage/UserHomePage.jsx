@@ -1,8 +1,7 @@
 import './UserHomePage.css'
 import PlayBar from '../PlayBar/PlayBar';
+import { Route, Switch } from 'react-router-dom'
 import { ReactComponent as LeftArrowActive } from '../../static/icons/left-arrow-active.svg'
-import { ReactComponent as LeftArrowInactive } from '../../static/icons/left-arrow-inactive.svg'
-import { ReactComponent as RightArrowInactive } from '../../static/icons/right-arrow-inactive.svg'
 import { ReactComponent as RightArrowActive } from '../../static/icons/right-arrow-active.svg'
 import tempProf from '../../static/temp-prof.png'
 import ProfileIcon from './ProfileIcon/ProfileIcon';
@@ -11,6 +10,7 @@ import Cards from './Content/Cards/Cards';
 import ShowPage from '../ShowPage/ShowPage';
 
 import Icon from '../Icons/Icons.jsx';
+import HomePage from './HomePage/'
 
 const UserHomePage = () => {
   // onClick handler for active-inactive Home & Search buttons in sidebar-mini-home
@@ -19,8 +19,8 @@ const UserHomePage = () => {
     <>
       <body className="user-home-container">
         <div className='user-home-sidebar'>
-          
-          <div className='sidebar-mini-home'>{/* sidebar-mini-home */}
+
+          <div className='sidebar-mini-home'>
             <div className="mini-home-icon row-align">
               <Icon iconType='HomeActive'/><p>Home</p>
             </div>
@@ -29,10 +29,14 @@ const UserHomePage = () => {
             </div>
           </div>
 
-          <div className='sidebar-library'>{/* sidebar-library */}
-            <div className='library-icon row-align'>
-              <Icon iconType='LibraryActive'/><p>Your Library</p>
-              <Icon iconType='PlusActive'/>
+          <div className='sidebar-library'>
+            <div className='library-header row-align'>
+              <Icon iconType='LibraryActive'/>
+              <p>Your Library</p>
+              {/* <Icon iconType='PlusActive'/> */}
+            </div>
+            <div className='library-content'>
+              {/* Subcomponents in here */}
             </div>
           </div>
         </div>
@@ -52,11 +56,17 @@ const UserHomePage = () => {
           </div>
           
           <div className='user-home-content'>
+
+            <Switch>
+              <Route path="/home">
+                <HomePage/>
+              </Route>
+              <Route path="/album">
+                <ShowPage/>
+              </Route>
+            </Switch>
+
             {/* Album Show Page Will Go Here */}
-            <ShowPage/>
-            {/* <Cards contentType='albums'/> */}
-            {/* <Cards contentType='songs'/> */}
-            {/* <Cards contentType='albums'/> */}
           </div>
         </div>
 

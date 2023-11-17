@@ -17,7 +17,10 @@ function App() {
           <SignupFormPage />
         </FormProvider>
       </Route>
-      <Route path="/" exact>
+      <Route path="/home" exact>
+        <UserHomePage />
+      </Route>
+      <Route path="/album" exact>
         <UserHomePage />
       </Route>
     </Switch>

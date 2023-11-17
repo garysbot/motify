@@ -40,7 +40,7 @@ const SignUpButtons = () => {
         // Handle success (e.g., redirect or show success message)
         console.log('Form submitted successfully:', responseData);
         // Add your success handling code here
-        history.push('/');
+        history.push('/home/profile');
         
       } catch (error) {
         // Handle errors (e.g., show error message to the user)
