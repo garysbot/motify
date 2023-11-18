@@ -7,7 +7,8 @@ import { ReactComponent as PrevButton } from '../../static/icons/prev.svg'
 import { ReactComponent as NextButton } from '../../static/icons/next.svg'
 import { ReactComponent as RepeatButtonInactive } from '../../static/icons/repeat-inactive.svg'
 import { ReactComponent as RepeatButtonActive } from '../../static/icons/repeat-active.svg'
-
+import { ReactComponent as QueueButtonInactive } from '../../static/icons/queue-inactive.svg'
+import { ReactComponent as VolumeButton } from '../../static/icons/volume.svg'
 
 const PlayBarContent = ({ contentType }) => {
   const content = {
@@ -19,7 +20,9 @@ const PlayBarContent = ({ contentType }) => {
     PrevButton,
     NextButton,
     RepeatButtonActive,
-    RepeatButtonInactive
+    RepeatButtonInactive,
+    QueueButtonInactive,
+    VolumeButton
   }
 
   const ContentComponent = content[contentType]

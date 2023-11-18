@@ -13,14 +13,26 @@
 .song-details-container {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
   width: 20%;
+  margin-left: 1rem;
 }
 
 .song-details-cover {
   width: 55px;
   height: 55px;
   border-radius: 0.5rem;
+  margin-right: 1rem;
+}
+
+.song-details h3 {
+  font-family: 'CircularSpotifyBook';
+  font-size: 1rem;
+}
+
+.song-details p {
+  font-size: 0.75rem;
+  color: #A7a7a7
 }
 
 .controls-duration-container {
@@ -126,4 +138,21 @@
 
 .play-pause-button .svg-image .circle-svg {
   fill: white;
+}
+
+.queue-volume-container {
+  display: flex;
+}
+
+.volume-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.volume-line {
+  width: 5rem;
+  height: 4px;
+  border-radius: 1rem;
+  background-color: #4d4d4d;
 }
