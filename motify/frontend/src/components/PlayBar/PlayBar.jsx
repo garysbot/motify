@@ -12,7 +12,7 @@ const PlayBar = ({ song }) => {
           <img src={kendrickAlbumCover} alt='' className='song-details-cover'></img>
           <div className='song-details'>
             {/* Song Title */}
-            <p>trademark usa</p>
+            <h3>trademark usa</h3>
             {/* Artist */}
             <p>Baby Keem</p>
           </div>
@@ -46,11 +46,10 @@ const PlayBar = ({ song }) => {
         </div>
 
         <div className='queue-volume-container'>
-          <p>Queue</p>          
+          <PlayBarContent contentType='QueueButtonInactive'/>
           <div className='volume-container'>
-            <p>Volume</p>
-            <p>------</p>
-            <p>O</p>
+            <PlayBarContent contentType='VolumeButton'/>
+            <div className='volume-line'></div>            
           </div>
         </div>
       </div>
