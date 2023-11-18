@@ -21,16 +21,20 @@ const PlayBar = ({ song }) => {
 
         <div className='controls-duration-container'>
           <div className='controls-container'>
-            <p>Shuffle</p>
-            <p>Previous</p>
+            {/* <p>Shuffle</p> */}
+            {/* <p>Previous</p> */}
             <div className='play-pause-button'>
-              <p>Play</p>
-              {/* pause */}
-              {/* circle */}
+              <div className='play-button-content'>
+                <PlayBarContent contentType='PauseButton' classname='play-bar-play'/>
+                {/* <PlayBarContent contentType='PlayButton' className='play-bar-play'/> */}
+              </div>
+              <div className='play-button-circle-content'>
+                <PlayBarContent contentType='PlayButtonCircle'/>
+              </div>
             </div>
 
-            <p>Next</p>
-            <p>Repeat</p>
+            {/* <p>Next</p> */}
+            {/* <p>Repeat</p> */}
           </div>
 
           <div className='duration-container'>
