@@ -21,7 +21,8 @@ const PlayBar = ({ song }) => {
 
         <div className='controls-duration-container'>
           <div className='controls-container'>
-            {/* <p>Shuffle</p> */}
+            <PlayBarContent contentType='ShuffleButton'/>
+            <PlayBarContent contentType='PrevButton'/>
             {/* <p>Previous</p> */}
             <div className='play-pause-button'>
               <div className='play-button-content'>
@@ -33,15 +34,14 @@ const PlayBar = ({ song }) => {
               </div>
             </div>
 
-            {/* <p>Next</p> */}
-            {/* <p>Repeat</p> */}
+            <PlayBarContent contentType='NextButton'/>
+            <PlayBarContent contentType='RepeatButtonInactive'/>
           </div>
 
           <div className='duration-container'>
-            {/* Current Song Position */}
-            {/* Duration Line */}
-            <hr></hr>
-            {/* Remaining Song Position */}
+            <p>0:00</p>
+            <div className='duration-line'></div>
+            <p>6:09</p>
           </div>
         </div>
 
