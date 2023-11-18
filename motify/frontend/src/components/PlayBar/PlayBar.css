@@ -5,6 +5,40 @@
   height: 5.375rem;
   background-color: #000000;
   z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.song-details-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 20%;
+}
+
+.song-details-cover {
+  width: 55px;
+  height: 55px;
+  border-radius: 0.5rem;
+}
+
+.controls-duration-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  height: 5.375rem;
+}
+
+.controls-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.duration-container hr{
+  width: 100px;
 }
 
 .play-button {
@@ -21,4 +55,14 @@
 .play-button:hover {
   width: 135px;
   height: 42px;
+}
+
+.queue-volume-container {
+  width: 20%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.volume-container {
+  display: flex;
 }

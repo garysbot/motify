@@ -11,7 +11,7 @@ function SignupFormPage() {
   const sessionUser = useSelector(state => state.session.user);
 
   // ! Don't forget to reactivate because loggedin users shouldn't be able to sign up
-  if (sessionUser) return <Redirect to="/" />;
+  if (sessionUser) return <Redirect to="/home" />;
 
   return (
     <>

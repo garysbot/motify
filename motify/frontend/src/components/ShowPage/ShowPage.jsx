@@ -46,8 +46,8 @@ const ShowPage = () => {
           </svg>
         </div>
 
-        <ReactSVG src={likeButton}/>
-        <ReactSVG src={menuDots}/>
+        {/* <ReactSVG src={likeButton}/> */}
+        {/* <ReactSVG src={menuDots}/> */}
       </div>
       
       <div className='show-content'>
