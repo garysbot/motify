@@ -12,7 +12,8 @@
     "react-router-dom": "^5.3.4",
     "react-scripts": "5.0.1",
     "react-svg": "^16.1.30",
-    "reset-css": "^5.0.2"
+    "reset-css": "^5.0.2",
+    "youtube-dl-exec": "^2.4.17"
   },
   "scripts": {
     "start": "react-scripts start",
