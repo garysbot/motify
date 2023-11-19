@@ -1,9 +1,10 @@
 import './PlayBar.css'
 import Icon from '../Icons/Icons.jsx';
 import SongDetails from './SongDetails.jsx';
+import { useSelector } from 'react-redux';
 
 const PlayBar = ({ currentSong }) => {
-
+  // const currentSong = useSelector(state => state.audio.currentSong)
   return (
     <>
       <div className='play-bar-container'>

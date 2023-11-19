@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleDropdown } from '../../../store/uireducer';
+import { toggleDropdown } from '../../../store/uiReducer.js';
 import '../UserHomePage.css'
 import Dropdown from './Dropdown/Dropdown.jsx';
 import tempProf from '../../../static/temp-prof.png'

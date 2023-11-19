@@ -9,7 +9,10 @@ import SidebarLibrary from './Sidebar/SidebarLibrary.jsx';
 import Userbar from './Userbar/Userbar.jsx';
 import PlayBar from '../PlayBar/PlayBar.jsx';
 
+// For testing the passing of a song object through to the playbar
+
 const UserHomePage = () => {
+
   return (
     <>
       <body className="user-home-container">

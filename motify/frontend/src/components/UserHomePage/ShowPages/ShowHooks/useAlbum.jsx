@@ -1,3 +1,5 @@
+import csrfFetch from "../../../../store/csrf";
+
 import { useEffect, useState } from "react"
 
 export const useAlbum = (albumId) => {
@@ -6,7 +8,7 @@ export const useAlbum = (albumId) => {
 
   useEffect(()=>{
     const fetchAlbum = async () => {
-      const response = await fetch (`/albums/${albumId}`)
+      const response = await csrfFetch (`/albums/${albumId}`)
       const data = await response.json();
       setAlbum(data);
     };

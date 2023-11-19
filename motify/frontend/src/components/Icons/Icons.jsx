@@ -36,7 +36,7 @@ const Icon = ({ iconType }) => {
     LibraryActive,
     LibraryInactive,
     PlusActive,
-    LeftArrow,
+    LeftArrow,  
     kendrickAlbumCover,
     PlayButton,
     PlayButtonCircle,

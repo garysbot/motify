@@ -2,8 +2,6 @@ import './ShowAlbumPage.css'
 import { useAlbum } from './ShowHooks/useAlbum';
 import { ReactSVG } from 'react-svg';
 import playButton from '../../../static/playbar/show/show-play-bar-play-button.svg';
-import menuDots from '../../../static/playbar/show/show-play-bar-dotmenu-button.svg'
-// import lilLikeButton from '../../../static/playbar/show/show-songs-table-like-button.svg'
 import { useState } from 'react';
 import lilPlayButton from '../../../static/icons/noun-play-1009801.svg'
 import lilDot from '../../../static/icons/dot.svg'
@@ -55,9 +53,6 @@ const ShowPage = () => {
             <circle cx="30" cy="30" r="30" fill="#1DB954" />
           </svg>
         </div>
-
-        {/* <ReactSVG src={likeButton}/> */}
-        {/* <ReactSVG src={menuDots}/> */}
       </div>
       
       <div className='show-content'>
