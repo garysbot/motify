@@ -12,11 +12,13 @@ const Cards = ({ contentType }) => {
   const artists = useArtists();
   const album = useAlbum(1);
 
+  
   // If albums is not yet defined (e.g., before data fetching completes), handle it appropriately
- // Loading states
+  // Loading states
   if (!albums || !songs || !artists) {
     return <div>Loading...</div>;
   }
+
 
   let contentTitle;
   switch (contentType) {
@@ -47,33 +49,33 @@ const Cards = ({ contentType }) => {
                 <p className='vertical-artist'>{album.artistName}</p>
               </div>
             ))
-          )
+        )
+        
       case 'songs':
         contentTitle = 'Songs'
         return (
-          Object.values(songs).map((song) => 
-            (
-              <div className='vertical-content-card' key={song.id}>
-                <img src={Cover1} alt='' className='vertical-cover'/>
-                <p className='vertical-title'>{song.title}</p>
-                <p className='vertical-artist'>{song.artistName}</p>
-              </div>
-            )
-          )
+        Object.values(songs).map((song) => 
+          (
+            <div className='vertical-content-card' key={song.id}>
+              <img src={Cover1} alt='' className='vertical-cover'/>
+              <p className='vertical-title'>{song.title}</p>
+              <p className='vertical-artist'>{song.artistName}</p>
+            </div>
+          ))
         )
+
       case 'artists':
         contentTitle = 'Artists'
         return (
           Object.values(artists).map((artist) => 
             (
               <div className='vertical-content-card' key={artist.id}>
-                <img src={Cover1} alt='' className='vertical-cover'/>
+                <img src={artist.aboutImg} alt='' className='vertical-cover'/>
                 <p className='vertical-title'>{artist.artistName}</p>
                 <p className='vertical-artist'>Artist</p>
               </div>
-            )
+            ))
           )
-        )
       default:
         contentTitle = 'Your Music'
         break;
