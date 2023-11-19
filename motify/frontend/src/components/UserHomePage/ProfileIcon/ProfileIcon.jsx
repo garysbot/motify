@@ -12,7 +12,7 @@ const ProfileIcon = () => {
   // Detect click outside of menu to close it
   const dropdownRef = useRef(null);
 
-  useEffect(()=> {
+  useEffect(() => {
     function handleClickOutside(e) {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
         dispatch(toggleDropdown())
@@ -29,7 +29,7 @@ const ProfileIcon = () => {
 
   }, [isDropdownOpen, dispatch])
 
-  const handleClick =() => {
+  const handleClick = () => {
     dispatch(toggleDropdown());
   };
 
@@ -37,12 +37,12 @@ const ProfileIcon = () => {
     <div>
       <div onClick={handleClick}>
         <img
-          src={tempProf} 
+          src={tempProf}
           alt='temp-prof-pic'
           className='userbar-profile-pic'
         />
       </div>
-      { isDropdownOpen && <div ref={dropdownRef}><DropdownMenu /></div> }
+      {isDropdownOpen && <div ref={dropdownRef}><DropdownMenu /></div>}
     </div>
   );
 
