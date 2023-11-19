@@ -1,10 +1,52 @@
 import './PlayBar.css'
 import kendrickAlbumCover from '../../static/albums/covers/kendrick.png'
 import PlayBarContent from './PlayBarContent';
+import React, { useRef, useState, useEffect } from 'react';
+import { ReactComponent as PlayButton } from '../../static/playbar/show/show-play-bar-play-button.svg'
+import { ReactComponent as PauseButton } from '../../static/playbar/show/show-play-bar-pause-button.svg'
+import { ReactSVG } from 'react-svg';
 
 
+const PlayBar = ({ currentSong }) => {
 
-const PlayBar = ({ song }) => {
+  const audioRef = useRef(new Audio());
+  const [isPlaying, setIsPlaying] = useState(true);
+
+  useEffect(() => {
+    if (currentSong) {
+      audioRef.current.src = currentSong;
+    }
+  }, [currentSong])
+
+  useEffect(() => {
+    audioRef.current.onplay = () => setIsPlaying(true);
+    audioRef.current.onpause = () => setIsPlaying(false);
+    audioRef.current.onerror = () => {
+        // Handle audio playback errors
+    };
+  }, []);
+
+  const playAudio = () => {
+    if (currentSong) {
+      console.log(`Play Clicked`)
+      audioRef.current.play();
+    }
+  };
+
+  const pauseAudio = () => {
+    console.log(`Pause Clicked`)
+    audioRef.current.pause();
+  };
+
+  const handleClick = () => {
+    if (isPlaying) {
+      pauseAudio();
+    } else {
+      playAudio();
+    }
+  }
+
+
   return (
     <>
       <div className='play-bar-container'>
@@ -26,8 +68,14 @@ const PlayBar = ({ song }) => {
             {/* <p>Previous</p> */}
             <div className='play-pause-button'>
               <div className='play-button-content'>
-                <PlayBarContent contentType='PauseButton' classname='play-bar-play'/>
-                {/* <PlayBarContent contentType='PlayButton' className='play-bar-play'/> */}
+                <button onClick={handleClick}>
+                  {
+                    isPlaying ? 
+                      <PlayBarContent contentType="PauseButton"/>
+                      :
+                      <PlayBarContent contentType='PlayButton'/>
+                  }
+                </button>
               </div>
               <div className='play-button-circle-content'>
                 <PlayBarContent contentType='PlayButtonCircle'/>
