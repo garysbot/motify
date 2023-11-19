@@ -1,33 +1,23 @@
-// Function
-import { useRef, useState, useEffect } from 'react'
-// Temp
-// Icons
-import kendrickAlbumCover from '../../static/albums/covers/kendrick.png'
-
 import { ReactComponent as HomeActive } from '../../static/icons/home-active.svg';
 import { ReactComponent as HomeInactive } from '../../static/icons/home-inactive.svg';
-import { ReactComponent as SearchActive } from '../../static/icons/search-active.svg'
-import { ReactComponent as SearchInactive } from '../../static/icons/search-inactive.svg'
-import { ReactComponent as LibraryActive } from '../../static/icons/library-active.svg'
-import { ReactComponent as LibraryInactive } from '../../static/icons/library-inactive.svg'
-import { ReactComponent as PlusActive } from '../../static/icons/plus-active.svg'
-import { ReactComponent as LeftArrow } from '../../static/icons/left-arrow.svg'
+import { ReactComponent as SearchActive } from '../../static/icons/search-active.svg';
+import { ReactComponent as SearchInactive } from '../../static/icons/search-inactive.svg';
+import { ReactComponent as LibraryActive } from '../../static/icons/library-active.svg';
+import { ReactComponent as LibraryInactive } from '../../static/icons/library-inactive.svg';
+import { ReactComponent as PlusActive } from '../../static/icons/plus-active.svg';
+import { ReactComponent as LeftArrow } from '../../static/icons/left-arrow.svg';
+import { ReactComponent as PlayButton } from '../../static/playbar/show/show-play-bar-play-button.svg';
+import { ReactComponent as PlayButtonCircle } from '../../static/playbar/show/show-play-bar-play-circle.svg';
+import { ReactComponent as PauseButton } from '../../static/playbar/show/show-play-bar-pause-button.svg';
+import { ReactComponent as ShuffleButton } from '../../static/icons/shuffle.svg';
+import { ReactComponent as PrevButton } from '../../static/icons/prev.svg';
+import { ReactComponent as NextButton } from '../../static/icons/next.svg';
+import { ReactComponent as RepeatButtonInactive } from '../../static/icons/repeat-inactive.svg';
+import { ReactComponent as RepeatButtonActive } from '../../static/icons/repeat-active.svg';
+import { ReactComponent as QueueButtonInactive } from '../../static/icons/queue-inactive.svg';
+import { ReactComponent as VolumeButton } from '../../static/icons/volume.svg';
 
-
-
-import { ReactComponent as PlayButton } from '../../static/playbar/show/show-play-bar-play-button.svg'
-import { ReactComponent as PlayButtonCircle } from '../../static/playbar/show/show-play-bar-play-circle.svg'
-import { ReactComponent as PauseButton } from '../../static/playbar/show/show-play-bar-pause-button.svg'
-import { ReactComponent as ShuffleButton } from '../../static/icons/shuffle.svg'
-import { ReactComponent as PrevButton } from '../../static/icons/prev.svg'
-import { ReactComponent as NextButton } from '../../static/icons/next.svg'
-import { ReactComponent as RepeatButtonInactive } from '../../static/icons/repeat-inactive.svg'
-import { ReactComponent as RepeatButtonActive } from '../../static/icons/repeat-active.svg'
-import { ReactComponent as QueueButtonInactive } from '../../static/icons/queue-inactive.svg'
-import { ReactComponent as VolumeButton } from '../../static/icons/volume.svg'
-
-const Icon = ({ iconType }) => {
-
+const Icon = ({ iconType, onClick }) => {
   const icons = {
     HomeActive,
     HomeInactive,
@@ -36,8 +26,7 @@ const Icon = ({ iconType }) => {
     LibraryActive,
     LibraryInactive,
     PlusActive,
-    LeftArrow,  
-    kendrickAlbumCover,
+    LeftArrow,
     PlayButton,
     PlayButtonCircle,
     PauseButton,
@@ -47,11 +36,11 @@ const Icon = ({ iconType }) => {
     RepeatButtonActive,
     RepeatButtonInactive,
     QueueButtonInactive,
-    VolumeButton
-  }
+    VolumeButton,
+  };
 
-  const IconComponent = icons[iconType]
-  return <IconComponent />
+  const IconComponent = icons[iconType];
+  return <IconComponent onClick={onClick} />;
 }
 
 export default Icon;

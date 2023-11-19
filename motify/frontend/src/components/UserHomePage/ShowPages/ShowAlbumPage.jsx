@@ -1,17 +1,27 @@
 import './ShowAlbumPage.css'
-import { useAlbum } from './ShowHooks/useAlbum';
+import { useSelector, useDispatch } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 import playButton from '../../../static/playbar/show/show-play-bar-play-button.svg';
-import { useState } from 'react';
 import lilPlayButton from '../../../static/icons/noun-play-1009801.svg'
 import lilDot from '../../../static/icons/dot.svg'
+import { useAlbum } from './ShowHooks/useAlbum';
+import { useState } from 'react';
 import { useArtist } from './ShowHooks/useArtist.jsx'
+import { receiveSong, togglePlay } from '../../../store/audioActions'; // Import relevant actions
 
 
 const ShowPage = () => {
   const [hoveredTrack, setHoveredTrack] = useState(null);
+  const dispatch = useDispatch();
   const artist = useArtist(1);
   const album = useAlbum(1)
+  const currentSong = useSelector(state => state.audio.currentSong); // Accessing current song
+
+  // Function to handle play button click
+  const handlePlaySong = (song) => {
+    dispatch(receiveSong(song)); // Dispatch receiveSong action
+    dispatch(togglePlay()); // Dispatch togglePlay action to play the song
+  };
 
   if (!album) {
     return <div>Loading...</div>;
@@ -71,6 +81,7 @@ const ShowPage = () => {
                   className='show-songs-row-container'
                   onMouseEnter={() => setHoveredTrack(trackNum)}
                   onMouseLeave={() => setHoveredTrack(null)}
+                  onClick={() => handlePlaySong(song)}
                 >
                   <div className='row-start'>
                     <div className='track-num'>

@@ -1,24 +1,48 @@
-import './PlayBar.css'
+import './PlayBar.css';
 import Icon from '../Icons/Icons.jsx';
 import SongDetails from './SongDetails.jsx';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { togglePlay, changeTrack, setVolume } from '../../store/audioActions'; // Import action creators
 
-const PlayBar = ({ currentSong }) => {
-  // const currentSong = useSelector(state => state.audio.currentSong)
+const PlayBar = () => {
+  const dispatch = useDispatch();
+  const currentSong = useSelector(state => state.audio.currentSong); // Use selector to get current song
+  const isPlaying = useSelector(state => state.audio.isPlaying); // Use selector to get play state
+  const volume = useSelector(state => state.audio.volume); // Use selector to get volume
+
+  // Play/Pause toggle
+  const handlePlayPause = () => {
+    dispatch(togglePlay());
+  };
+
+  // Next track
+  const handleNextTrack = () => {
+    dispatch(changeTrack('next'));
+  };
+
+  // Previous track
+  const handlePrevTrack = () => {
+    dispatch(changeTrack('previous'));
+  };
+
+  // Volume control (this is just a placeholder, you need a method to set the volume)
+  const handleVolumeChange = (newVolume) => {
+    dispatch(setVolume(newVolume));
+  };
+
   return (
     <>
       <div className='play-bar-container'>
         <SongDetails currentSong={currentSong}/>
-      
+
         <div className='controls-duration-container'>
           <div className='controls-container'>
-            {/* <Icon iconType='ShuffleButton'/> */}
-            <Icon iconType='PrevButton'/>
+            <Icon iconType='PrevButton' onClick={handlePrevTrack}/>
 
-            <div className='play-pause-button'>
+            <div className='play-pause-button' onClick={handlePlayPause}>
               <div className='play-button-content'>
                 <Icon
-                  iconType='PlayButton' 
+                  iconType={isPlaying ? 'PauseButton' : 'PlayButton'} 
                   currentSong={currentSong} 
                   className='play-pause-button'
                 />
@@ -28,14 +52,12 @@ const PlayBar = ({ currentSong }) => {
               </div>
             </div>
 
-            <Icon iconType='NextButton'/>
-            <Icon iconType='RepeatButtonInactive'/>
+            <Icon iconType='NextButton' onClick={handleNextTrack}/>
+            <Icon iconType='RepeatButtonInactive'/> {/* You can add functionality here as well */}
           </div>
 
           <div className='duration-container'>
-            <p>0:00</p>
-            <div className='duration-line'></div>
-            <p>6:09</p>
+            {/* Duration logic goes here */}
           </div>
         </div>
 
@@ -43,7 +65,7 @@ const PlayBar = ({ currentSong }) => {
           <Icon iconType='QueueButtonInactive'/>
           <div className='volume-container'>
             <Icon iconType='VolumeButton'/>
-            <div className='volume-line'></div>            
+            <div className='volume-line' onClick={() => handleVolumeChange(0.5)}></div> {/* Example volume change */}
           </div>
         </div>
       </div>
