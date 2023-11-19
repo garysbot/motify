@@ -1,43 +1,34 @@
 import './PlayBar.css'
-import kendrickAlbumCover from '../../static/albums/covers/kendrick.png'
-import PlayBarIcon from './PlayBarIcon';
+import Icon from '../Icons/Icons.jsx';
+import SongDetails from './SongDetails.jsx';
 
 const PlayBar = ({ currentSong }) => {
 
   return (
     <>
       <div className='play-bar-container'>
-        <div className='song-details-container'>
-          <img src={kendrickAlbumCover} alt='' className='song-details-cover'></img>
-          <div className='song-details'>
-            {/* Song Title */}
-            <h3>trademark usa</h3>
-            {/* Artist */}
-            <p>Baby Keem</p>
-          </div>
-          {/* Like Button */}
-        </div>
-
+        <SongDetails currentSong={currentSong}/>
+      
         <div className='controls-duration-container'>
           <div className='controls-container'>
-            <PlayBarIcon icon='ShuffleButton'/>
-            <PlayBarIcon icon='PrevButton'/>
+            {/* <Icon iconType='ShuffleButton'/> */}
+            <Icon iconType='PrevButton'/>
 
             <div className='play-pause-button'>
               <div className='play-button-content'>
-                <PlayBarIcon
-                  icon='PlayButton' 
+                <Icon
+                  iconType='PlayButton' 
                   currentSong={currentSong} 
                   className='play-pause-button'
                 />
               </div>
               <div className='play-button-circle-content'>
-                <PlayBarIcon icon='PlayButtonCircle'/>
+                <Icon iconType='PlayButtonCircle'/>
               </div>
             </div>
 
-            <PlayBarIcon icon='NextButton'/>
-            <PlayBarIcon icon='RepeatButtonInactive'/>
+            <Icon iconType='NextButton'/>
+            <Icon iconType='RepeatButtonInactive'/>
           </div>
 
           <div className='duration-container'>
@@ -48,9 +39,9 @@ const PlayBar = ({ currentSong }) => {
         </div>
 
         <div className='queue-volume-container'>
-          <PlayBarIcon icon='QueueButtonInactive'/>
+          <Icon iconType='QueueButtonInactive'/>
           <div className='volume-container'>
-            <PlayBarIcon icon='VolumeButton'/>
+            <Icon iconType='VolumeButton'/>
             <div className='volume-line'></div>            
           </div>
         </div>

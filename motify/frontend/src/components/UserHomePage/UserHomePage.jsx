@@ -2,7 +2,7 @@ import './UserHomePage.css'
 import { Route, Switch } from 'react-router-dom'
 
 import HomePage from './HomePage/index.jsx'
-import ShowPage from './ShowPage/ShowPage.jsx';
+import ShowAlbumPage from './ShowPages/ShowAlbumPage.jsx';
 
 import SidebarMiniHome from './Sidebar/SidebarMiniHome.jsx';
 import SidebarLibrary from './Sidebar/SidebarLibrary.jsx';
@@ -26,7 +26,7 @@ const UserHomePage = () => {
                 <HomePage />
               </Route>
               <Route path="/album">
-                <ShowPage />
+                <ShowAlbumPage />
               </Route>
             </Switch>
           </div>

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { FormProvider } from './context/FormContext';
-import LoginFormPage from './components/LoginFormPage';
-import SignupFormPage from './components/SignUpForms/SignUpFormPage';
+import LoginFormPage from './components/Forms/LoginFormPage/LoginFormPage.jsx';
+import SignupFormPage from './components/Forms/SignUpForms/SignUpFormPage';
 import UserHomePage from './components/UserHomePage/UserHomePage';
 
 
