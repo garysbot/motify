@@ -74,12 +74,11 @@ const PlayBarContent = ({ contentType, currentSong }) => {
 
   const ContentComponent = content[contentType]
 
-  if (contentType === 'PlayButton' || contentType === 'PauseButton') {
+  if (contentType === 'PlayButton') {
     return (
       <>
         <button
           onClick={handleClick}
-          // className='play-pause-button'
         >
           <ContentComponent />
         </button>

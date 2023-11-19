@@ -25,7 +25,11 @@ const PlayBar = ({ currentSong }) => {
 
             <div className='play-pause-button'>
               <div className='play-button-content'>
-                <PlayBarContent contentType='PlayButton' currentSong={currentSong} className='play-pause-button'/>
+                <PlayBarContent
+                  contentType='PlayButton' 
+                  currentSong={currentSong} 
+                  className='play-pause-button'
+                />
               </div>
               <div className='play-button-circle-content'>
                 <PlayBarContent contentType='PlayButtonCircle'/>
