@@ -1,6 +1,6 @@
 import './PlayBar.css'
 import kendrickAlbumCover from '../../static/albums/covers/kendrick.png'
-import PlayBarContent from './PlayBarContent';
+import PlayBarIcon from './PlayBarIcon';
 
 const PlayBar = ({ currentSong }) => {
 
@@ -20,24 +20,24 @@ const PlayBar = ({ currentSong }) => {
 
         <div className='controls-duration-container'>
           <div className='controls-container'>
-            <PlayBarContent contentType='ShuffleButton'/>
-            <PlayBarContent contentType='PrevButton'/>
+            <PlayBarIcon icon='ShuffleButton'/>
+            <PlayBarIcon icon='PrevButton'/>
 
             <div className='play-pause-button'>
               <div className='play-button-content'>
-                <PlayBarContent
-                  contentType='PlayButton' 
+                <PlayBarIcon
+                  icon='PlayButton' 
                   currentSong={currentSong} 
                   className='play-pause-button'
                 />
               </div>
               <div className='play-button-circle-content'>
-                <PlayBarContent contentType='PlayButtonCircle'/>
+                <PlayBarIcon icon='PlayButtonCircle'/>
               </div>
             </div>
 
-            <PlayBarContent contentType='NextButton'/>
-            <PlayBarContent contentType='RepeatButtonInactive'/>
+            <PlayBarIcon icon='NextButton'/>
+            <PlayBarIcon icon='RepeatButtonInactive'/>
           </div>
 
           <div className='duration-container'>
@@ -48,9 +48,9 @@ const PlayBar = ({ currentSong }) => {
         </div>
 
         <div className='queue-volume-container'>
-          <PlayBarContent contentType='QueueButtonInactive'/>
+          <PlayBarIcon icon='QueueButtonInactive'/>
           <div className='volume-container'>
-            <PlayBarContent contentType='VolumeButton'/>
+            <PlayBarIcon icon='VolumeButton'/>
             <div className='volume-line'></div>            
           </div>
         </div>
