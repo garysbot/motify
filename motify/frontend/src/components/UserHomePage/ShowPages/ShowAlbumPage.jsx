@@ -28,7 +28,6 @@ const ShowPage = () => {
     backgroundPosition: 'center',
     height: '300px',
     width: '100%'
-
   }
 
 
