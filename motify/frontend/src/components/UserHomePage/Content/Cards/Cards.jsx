@@ -3,12 +3,14 @@ import Cover1 from '../../../../static/albums/covers/cover-midjourney-1.png'
 import { useAlbums } from '../useAlbums'
 import { useSongs } from '../useSongs'
 import { useArtists } from '../useArtists'
+import { useAlbum } from '../../ShowPages/ShowHooks/useAlbum'
 
 const Cards = ({ contentType }) => {
 
   const albums = useAlbums();
   const songs = useSongs();
   const artists = useArtists();
+  const album = useAlbum(1);
 
   // If albums is not yet defined (e.g., before data fetching completes), handle it appropriately
  // Loading states
@@ -40,7 +42,7 @@ const Cards = ({ contentType }) => {
           Object.values(albums).map((album)=> 
             (
               <div className='vertical-content-card' key={album.id}>
-                <img src={Cover1} alt='' className='vertical-cover'/>
+                <img src={album.coverImg} alt='' className='vertical-cover'/>
                 <p className='vertical-title'>{album.title}</p>
                 <p className='vertical-artist'>{album.artistName}</p>
               </div>

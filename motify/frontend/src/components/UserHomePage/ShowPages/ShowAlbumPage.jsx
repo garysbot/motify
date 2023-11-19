@@ -1,11 +1,9 @@
 import './ShowAlbumPage.css'
 import { useAlbum } from './ShowHooks/useAlbum';
 import { ReactSVG } from 'react-svg';
-import kendrickAlbumCover from '../../../static/albums/covers/kendrick.png'
-import likeButton from '../../../static/playbar/show/show-play-bar-like-button.svg'
 import playButton from '../../../static/playbar/show/show-play-bar-play-button.svg';
 import menuDots from '../../../static/playbar/show/show-play-bar-dotmenu-button.svg'
-import lilLikeButton from '../../../static/playbar/show/show-songs-table-like-button.svg'
+// import lilLikeButton from '../../../static/playbar/show/show-songs-table-like-button.svg'
 import { useState } from 'react';
 import lilPlayButton from '../../../static/icons/noun-play-1009801.svg'
 import lilDot from '../../../static/icons/dot.svg'
@@ -101,7 +99,7 @@ const ShowPage = () => {
                   
                   <div className='row-end'>
                     <div className='like-button-duration'>
-                      <ReactSVG src={lilLikeButton} className='lil-like-button'/>
+                      {/* <ReactSVG src={lilLikeButton} className='lil-like-button'/> */}
                       <p className='duration-text'>
                         {
                           `${Math.floor(song.duration / 60)}:${String(song.duration % 60).padStart(2, '0')}`
