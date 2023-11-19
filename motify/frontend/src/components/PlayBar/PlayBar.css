@@ -156,3 +156,8 @@
   border-radius: 1rem;
   background-color: #4d4d4d;
 }
+
+button {
+  border-style: none;
+  background-color: rgba(0, 0, 0, 0);
+}
