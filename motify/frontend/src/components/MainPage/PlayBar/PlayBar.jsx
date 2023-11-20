@@ -2,7 +2,7 @@ import { useRef, useEffect } from 'react';
 import './PlayBar.css';
 import Icon from '../../Icons/Icons.jsx';
 import { useSelector, useDispatch } from 'react-redux';
-import { togglePlay, changeTrack, setVolume, receiveSong } from '../../../store/audioActions.js';
+import { togglePlay, setVolume, receiveSong, setSongPosition } from '../../../store/audioActions.js';
 
 const PlayBar = () => {
   const dispatch = useDispatch();
@@ -12,6 +12,7 @@ const PlayBar = () => {
   const currentSong = useSelector(state => state.audio.currentSong);
   const isPlaying = useSelector(state => state.audio.isPlaying);
   const volume = useSelector(state => state.audio.volume);
+  const songPosition = useSelector(state => state.audio.songPosition);
 
   useEffect(() => {
     if (currentSong) {
@@ -23,6 +24,28 @@ const PlayBar = () => {
       }
     }
   }, [currentSong, isPlaying]);
+
+  // Song Progress Bar
+  useEffect(() => {
+    const audio = audioRef.current;
+
+    const updateTime = () => {
+      dispatch(setSongPosition(audio.currentTime));
+    };
+
+    audio.addEventListener('timeupdate', updateTime);
+
+    return () => {
+      audio.removeEventListener('timeupdate', updateTime);
+    };
+  }, [dispatch]);
+
+  const handleProgressBarChange = (event) => {
+    const newTime = Number(event.target.value);
+    audioRef.current.currentTime = newTime;
+    dispatch(setSongPosition(newTime));
+  };
+
 
   // Play/Pause toggle
   const handlePlayPause = () => {
@@ -97,9 +120,14 @@ const PlayBar = () => {
             <Icon iconType='NextButton' onClick={handleNextTrack}/>
           </div>
 
-          <div className='duration-container'>
-            {/* Duration logic goes here */}
-          </div>
+          <input
+            type='range'
+            min='0'
+            max={currentSong.duration || 100}
+            value={songPosition}
+            className='duration-container'
+            onChange={handleProgressBarChange}
+          />
         </div>
 
         <div className='queue-volume-container'>

@@ -6,7 +6,7 @@ export const RECEIVE_ALBUM = 'songs/RECEIVE_ALBUM';
 export const RECEIVE_ALBUMS = 'songs/RECEIVE_ALBUMS';
 export const TOGGLE_PLAY = 'songs/TOGGLE_PLAY';
 export const SET_VOLUME = 'songs/SET_VOLUME';
-export const SET_TRACK_POSITION = 'songs/SET_TRACK_POSITION';
+export const SET_SONG_POSITION = 'songs/SET_SONG_POSITION';
 export const TOGGLE_SHUFFLE = 'songs/TOGGLE_SHUFFLE';
 export const SET_QUEUE = 'songs/SET_QUEUE';
 export const CHANGE_TRACK = 'songs/CHANGE_TRACK';
@@ -48,8 +48,8 @@ export const setVolume = (volume) => ({
   payload: volume
 });
 
-export const setTrackPosition = (position) => ({
-  type: SET_TRACK_POSITION,
+export const setSongPosition = (position) => ({
+  type: SET_SONG_POSITION,
   payload: position
 });
 

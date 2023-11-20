@@ -6,7 +6,7 @@ import {
   RECEIVE_ALBUMS,
   TOGGLE_PLAY,
   SET_VOLUME,
-  SET_TRACK_POSITION,
+  SET_SONG_POSITION,
   TOGGLE_SHUFFLE,
   SET_QUEUE,
   CHANGE_TRACK
@@ -41,8 +41,8 @@ const audioReducer = (state = initialState, action) => {
       return { ...state, isPlaying: !state.isPlaying };
     case SET_VOLUME:
       return { ...state, volume: action.payload };
-    case SET_TRACK_POSITION:
-      return { ...state, trackPosition: action.payload };
+    case SET_SONG_POSITION:
+      return { ...state, songPosition: action.payload };
     case TOGGLE_SHUFFLE:
       return { ...state, shuffle: !state.shuffle };
     case SET_QUEUE:
