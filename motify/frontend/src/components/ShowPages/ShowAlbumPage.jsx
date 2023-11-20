@@ -17,11 +17,11 @@ const ShowPage = () => {
   const [hoveredTrack, setHoveredTrack] = useState(null);
   const dispatch = useDispatch();
   const { albumId } = useParams();
-  const currentSong = useSelector(state => state.audio.currentSong); // Accessing current song
+  const currentSong = useSelector(state => state.audio.currentSong);
   const currentAlbum = useSelector(state => state.audio.currentAlbum);
+  const currentArtist = useSelector(state => state.audio.currentArtist);
   
   // Temporary React State + Hooks Approach
-  const artist = useArtist(1);
   const album = useAlbum(albumId)
 
 
@@ -60,18 +60,14 @@ const ShowPage = () => {
     dispatch(togglePlay()); // Dispatch togglePlay action to play the song
   };
 
-  if (!album) {
-    return <div>Loading...</div>;
+  const artistAboutImg = {
+    backgroundImage: `url(${currentArtist.aboutImg})`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    height: '300px',
+    width: '100%'
   }
-
-  // const artistAboutImg = {
-  //   backgroundImage: `url(${artist.aboutImg})`,
-  //   backgroundSize: 'cover',
-  //   backgroundRepeat: 'no-repeat',
-  //   backgroundPosition: 'center',
-  //   height: '300px',
-  //   width: '100%'
-  // }
 
 
   return (
@@ -82,24 +78,26 @@ const ShowPage = () => {
         <div className='banner-details'>
           <p>Album</p>
           <h1 key={currentAlbum.id}>{currentAlbum.title}</h1>
-          <p className='details-artist'>
+          <div className='details-artist'>
+            <div className='details-artist-mini-pic'>
+              <img src={currentArtist.aboutImg} alt=''></img>
+            </div>
             {currentAlbum.artistName}
             <ReactSVG src={lilDot} className='lilDot'/>
-            {currentAlbum.releaseDate}
+            {Number(currentAlbum.releaseDate)}
             <ReactSVG src={lilDot} className='lilDot'/>
             {`${Object.values(currentAlbum.songs).length} songs, 1 hr 18 min`}
-          </p>
+          </div>
         </div>
       </div>
 
       <div className='show-play-bar'>
-        
-        <div className='show-play-button-container'>
+        {/* <div className='show-play-button-container'>
           <ReactSVG src={playButton} className='svg-image play-svg'/>
           <svg className='svg-image circle-svg' width="60" height="60">
             <circle cx="30" cy="30" r="30" fill="#1DB954" />
           </svg>
-        </div>
+        </div> */}
       </div>
       
       <div className='show-content'>
