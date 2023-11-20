@@ -10,6 +10,10 @@ import { useAlbum } from './Hooks/useAlbum.jsx'
 
 // Redux State
 import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { receiveAlbums, receiveSongs } from '../../../store/audioActions.js'
+import { fetchAlbums, fetchSongs } from '../../../store/audioThunks.js'
+import { Link } from 'react-router-dom'
 
 const Cards = ({ contentType }) => {
   const dispatch = useDispatch();
@@ -42,6 +46,8 @@ const Cards = ({ contentType }) => {
       break;
   }
 
+  
+
   const renderCards = () => {
     switch (contentType) {
       case 'albums':
@@ -49,11 +55,13 @@ const Cards = ({ contentType }) => {
         return (
           Object.values(albums).map((album)=> 
             (
-              <div className='vertical-content-card' key={album.id}>
-                <img src={album.coverImg} alt='' className='vertical-cover'/>
-                <p className='vertical-title'>{album.title}</p>
-                <p className='vertical-artist'>{album.artistName}</p>
-              </div>
+              <Link to={`/albums/${album.id}`}>
+                <div className='vertical-content-card' key={album.id}>
+                  <img src={album.coverImg} alt='' className='vertical-cover'/>
+                  <p className='vertical-title'>{album.title}</p>
+                  <p className='vertical-artist'>{album.artistName}</p>
+                </div>
+              </Link>
             ))
         )
         

@@ -1,0 +1,196 @@
+.show-banner {
+  display: flex;
+  align-items: flex-end;
+}
+
+.album-cover-img {
+  width: 14.375rem;
+  height: 14.375rem;
+}
+
+.banner-details {
+  padding-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.banner-details p {
+  font-size: 0.8rem;
+}
+
+.banner-details h1 {
+  font-size: 3rem;
+  padding-bottom: 1rem;
+}
+
+.details-artist {
+  font-family: 'CircularSpotifyBook';
+  font-size: 0.825rem;
+  color: #FFFFFF;
+  display: flex;
+  gap: 0.1rem;
+  width: 70%;
+}
+
+.details-artist-mini-pic img {
+  width: 18px;
+  height: 18px;
+  border-radius: 100%;
+  margin-right: 0.2rem;
+}
+
+.show-play-bar {
+  display: flex;
+  padding-top: 2.25rem;
+  padding-bottom: 1.75rem;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.show-play-button-container {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+.lilDot {
+  padding: 0rem 0.25rem;
+}
+
+.svg-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.play-svg {
+  z-index: 1;
+  top: 18px;
+  left: 18px;
+}
+
+.like-button {
+  width: 60px;
+  height: 60px;
+}
+
+.show-songs-header {
+  display: flex;
+  height: 3rem;
+  width: 100%;
+  gap: 1.5rem;
+  padding-left: 1.75rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #121212;
+  margin-top: 0;
+  padding-top: 0;
+  align-items: center;
+}
+
+
+.header-text {
+  font-family: 'CircularSpotifyBook';
+  font-size: 0.875rem;
+  opacity: 80%;
+}
+
+
+.show-songs-table {
+  font-size: 0.875rem;
+  opacity: 80%;
+  font-family: 'CircularSpotifyBook';
+}
+
+.show-songs-row-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* padding-top: 0.5rem; */
+  /* padding-bottom: 0.5rem; */
+  padding-left: 1.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  gap: 1.5rem;
+  width: 100%;
+  transition: background-color 0.1s ease;
+  border-radius: 0.5rem;
+}
+
+.show-songs-row-container:hover {
+  background-color: #2A2A2A;
+}
+
+.row-start {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  width: 70%;
+}
+
+.track-num {
+  /* margin-right: 0.5rem; */
+  width: 1.25%;
+}
+
+.song-title-artist-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* This aligns the content to the left */
+  /* justify-content: flex-start; */
+  width: 90%;
+}
+
+.song-title, .song-title-artist-name {
+  margin: 0; /* Remove default paragraph margins if necessary */
+}
+
+.song-title-artist-name {
+  opacity: 70%;
+}
+
+
+
+.like-button-duration {
+  display: flex;
+  gap: 2.5rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 2.5rem;
+  width: 5rem;
+}
+
+.lil-like-button {
+  justify-self: flex-start;
+  width: 5%;
+}
+
+.duration-text {
+  width: 95%;
+}
+
+.anim-play-button {
+  width: 12px;
+  height: 12px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.show-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.show-content hr {
+  border: none; /* Removes default border */
+  height: 1px; /* Sets the height of the line */
+  background-color: #333; /* Sets the color of the line */
+  margin-top: 10px; /* Space above the line */
+  margin-bottom: 10px; /* Space below the line */
+  /* width: 90%; */
+  text-align: center;
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
+}

@@ -1,10 +1,11 @@
 import '../MainPage.css'
 import ContentCard from '../ContentCard/ContentCard.jsx';
 import ShowAlbumPage from '../../ShowPages/ShowAlbumPage.jsx';
+import ShowArtistPage from '../../ShowPages/ShowArtistPage.jsx';
 import { useParams, Route } from 'react-router-dom';
 
 const UserContent = () => {
-  const { albumId } = useParams();
+  const { albumId, artistId } = useParams();
   
   return (
     <>
@@ -13,6 +14,11 @@ const UserContent = () => {
           path="/albums/:albumId" 
           component={ShowAlbumPage}
           albumId={albumId}
+        />
+        <Route
+          path="/artists/:artistId" 
+          component={ShowArtistPage}
+          artistId={artistId}
         />
         <Route
           exact

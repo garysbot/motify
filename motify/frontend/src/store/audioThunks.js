@@ -1,4 +1,4 @@
-import { receiveSongs, receiveSong, receiveAlbum, receiveArtist } from './audioActions';
+import { receiveSongs, receiveSong, receiveAlbums, receiveAlbum, receiveArtist } from './audioActions';
 
 // Abstracted API call
 const fetchFromApi = async (endpoint) => {
@@ -34,7 +34,15 @@ export const fetchAlbum = (albumId) => async (dispatch) => {
   } catch (error) {
     console.error(`Fetch album failed:`, error);
   }
+}
 
+export const fetchAlbums = () => async (dispatch) => {
+  try {
+    const albums = await fetchFromApi(`/albums`);
+    dispatch(receiveAlbums(albums));
+  } catch (error) {
+    console.error(`Fetch albums failed:`, error);
+  }
 }
 
 export const fetchArtist = (artistId) => async (dispatch) => {

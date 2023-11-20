@@ -18,7 +18,8 @@ const PlayBar = () => {
     if (currentSong) {
       audioRef.current.src = currentSong.songUrl;
     }
-  }, [currentSong])
+  }, [currentSong]);
+  
 
   useEffect(() => {
     audioRef.current.onplay = () => handlePlayPause();
@@ -29,12 +30,27 @@ const PlayBar = () => {
   const handlePlayPause = () => {
     if (isPlaying) {
       audioRef.current.pause();
-      dispatch(togglePlay());
     } else {
-      audioRef.current.play();
-      dispatch(togglePlay());
+      audioRef.current.play().catch((error) => {
+        // Handle the error for play() promise rejection here
+      });
     }
+    dispatch(togglePlay());
   };
+  
+
+  useEffect(() => {
+    audioRef.current.onplay = () => {
+      if (!isPlaying) {
+        dispatch(togglePlay());
+      }
+    };
+    audioRef.current.onpause = () => {
+      if (isPlaying) {
+        dispatch(togglePlay());
+      }
+    };
+  }, [dispatch, isPlaying]);
 
   // Next track
   const handleNextTrack = () => {

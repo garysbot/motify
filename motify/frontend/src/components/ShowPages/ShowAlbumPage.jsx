@@ -1,4 +1,4 @@
-import './ShowAlbumPage.css'
+import './ShowPage.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 import playButton from '../../static/playbar/show/show-play-bar-play-button.svg';
@@ -20,7 +20,9 @@ const ShowPage = () => {
   const currentSong = useSelector(state => state.audio.currentSong);
   const currentAlbum = useSelector(state => state.audio.currentAlbum);
   const currentArtist = useSelector(state => state.audio.currentArtist);
-  
+  // Assuming you have a selector to get the current play state
+  const isPlaying = useSelector(state => state.audio.isPlaying);
+
   // Temporary React State + Hooks Approach
   const album = useAlbum(albumId)
 
@@ -38,6 +40,13 @@ const ShowPage = () => {
     fetchAlbumData();
   }, [dispatch, albumId]);
   
+  // New useEffect to set the first song after the album is loaded
+  useEffect(() => {
+    if (currentAlbum && currentAlbum.songs && currentAlbum.songs.length > 0) {
+      dispatch(receiveSong(currentAlbum.songs[0]));
+    }
+  }, [dispatch, currentAlbum]);
+
   useEffect(() => {
     const fetchArtistData = async () => {
       if (currentAlbum && currentAlbum.artistId) {
@@ -54,10 +63,19 @@ const ShowPage = () => {
   }
   
 
+  // // Function to handle play button click
+  // const handlePlaySong = (song) => {
+  //   dispatch(receiveSong(song)); // Dispatch receiveSong action
+  //   dispatch(togglePlay()); // Dispatch togglePlay action to play the song
+  // };
+
   // Function to handle play button click
   const handlePlaySong = (song) => {
-    dispatch(receiveSong(song)); // Dispatch receiveSong action
-    dispatch(togglePlay()); // Dispatch togglePlay action to play the song
+    dispatch(receiveSong(song)); // Dispatch receiveSong action to set the current song
+    // If the player is not currently playing, dispatch togglePlay
+    if (!isPlaying) {
+      dispatch(togglePlay());
+    }
   };
 
   const artistAboutImg = {
