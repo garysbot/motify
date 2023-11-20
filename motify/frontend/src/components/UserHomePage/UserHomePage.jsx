@@ -15,7 +15,7 @@ const UserHomePage = () => {
 
   return (
     <>
-      <body className="user-home-container">
+      <div className="user-home-container">
         <div className='user-home-sidebar'>
           <SidebarMiniHome/>
           <SidebarLibrary/>
@@ -35,7 +35,7 @@ const UserHomePage = () => {
           </div>
         </div>
         <PlayBar currentSong='https://motify-seeds.s3.us-east-2.amazonaws.com/audio/kendrick-lamar-money-trees.m4a' />
-      </body>
+      </div>
     </>
   );
 }

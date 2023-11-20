@@ -8,9 +8,11 @@ import { togglePlay, changeTrack, setVolume } from '../../store/audioActions'; /
 const PlayBar = () => {
   const dispatch = useDispatch();
   const audioRef = useRef(new Audio());
-  const currentSong = useSelector(state => state.audio.currentSong); // Use selector to get current song
-  const isPlaying = useSelector(state => state.audio.isPlaying); // Use selector to get play state
-  const volume = useSelector(state => state.audio.volume); // Use selector to get volume
+  const currentArtist = useSelector(state => state.audio.currentArtist);
+  const currentSong = useSelector(state => state.audio.currentSong);
+  const isPlaying = useSelector(state => state.audio.isPlaying);
+  const volume = useSelector(state => state.audio.volume);
+
 
   useEffect(() => {
     if (currentSong) {

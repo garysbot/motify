@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client'; // Updated import
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
@@ -14,7 +14,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.store = store;
   window.csrfFetch = csrfFetch;
   window.sessionActions = sessionActions;
-};
+}
 
 function Root() {
   return (
@@ -24,14 +24,17 @@ function Root() {
       </BrowserRouter>
     </Provider>
   );
-};
+}
+
+// Updated to use createRoot
+const container = document.getElementById('root');
+const root = createRoot(container); // Create a root
 
 const renderApplication = () => {
-  ReactDOM.render(
+  root.render( // Render using the root
     <React.StrictMode>
       <Root />
-    </React.StrictMode>,
-    document.getElementById('root')
+    </React.StrictMode>
   );
 }
 

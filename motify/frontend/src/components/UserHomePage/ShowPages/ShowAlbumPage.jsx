@@ -44,7 +44,7 @@ const ShowPage = () => {
         <img src={album.coverImg} alt='' className='album-cover-img'></img>
         <div className='banner-details'>
           <p>Album</p>
-          <h1>{album.title}</h1>
+          <h1 key={album.id}>{album.title}</h1>
           <p className='details-artist'>
             {album.artistName}
             <ReactSVG src={lilDot} className='lilDot'/>
