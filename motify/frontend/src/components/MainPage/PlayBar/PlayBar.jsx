@@ -60,8 +60,10 @@ const PlayBar = () => {
   };
 
   // Volume control (this is just a placeholder, you need a method to set the volume)
-  const handleVolumeChange = (newVolume) => {
-    dispatch(setVolume(newVolume));
+  const handleVolumeChange = (event) => {
+    const newVolume = event.target.value / 100; // Convert to a value between 0 and 1
+    audioRef.current.volume = newVolume; // Set the volume of the audio element
+    dispatch(setVolume(newVolume)); // Update the volume in Redux state
   };
 
   return (
@@ -102,10 +104,18 @@ const PlayBar = () => {
 
         <div className='queue-volume-container'>
           {/* <Icon iconType='QueueButtonInactive'/> */}
-          {/* <div className='volume-container'>
+          <div className='volume-container'>
             <Icon iconType='VolumeButton'/>
-            <div className='volume-line' onClick={() => handleVolumeChange(0.5)}></div>
-          </div> */}
+            {/* <div className='volume-line' onClick={() => handleVolumeChange(0.5)}></div> */}
+            <input
+              type='range'
+              min='0'
+              max='100'
+              value={volume * 100}
+              className='volume-line'
+              onChange={handleVolumeChange}
+            />
+          </div>
         </div>
       </div>
     </>

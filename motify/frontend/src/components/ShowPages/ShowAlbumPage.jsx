@@ -63,12 +63,6 @@ const ShowAlbumPage = () => {
   }
   
 
-  // // Function to handle play button click
-  // const handlePlaySong = (song) => {
-  //   dispatch(receiveSong(song)); // Dispatch receiveSong action
-  //   dispatch(togglePlay()); // Dispatch togglePlay action to play the song
-  // };
-
   // Function to handle play button click
   const handlePlaySong = (song) => {
     dispatch(receiveSong(song));
