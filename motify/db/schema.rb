@@ -47,6 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_16_144225) do
     t.datetime "updated_at", null: false
     t.bigint "artist_id", null: false
     t.bigint "album_id", null: false
+    t.string "song_url"
     t.index ["album_id"], name: "index_songs_on_album_id"
     t.index ["artist_id"], name: "index_songs_on_artist_id"
   end

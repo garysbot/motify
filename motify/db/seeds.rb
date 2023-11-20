@@ -26,6 +26,61 @@ ApplicationRecord.transaction do
     optinmarketing: true
   )
 
+  # Create Kendrick Lamar as an artist
+  kendrick_lamar = Artist.create!(
+    artist_name: "Kendrick Lamar",
+    verified: true,
+    about_blurb: "Kendrick Lamar is an American rapper, songwriter, and record producer. He is regarded as one of the most skillful and successful hip hop artists of his generation.",
+    about_img: "https://motify-seeds.s3.us-east-2.amazonaws.com/static/artists/about_img/kendrick-lamar.jpeg", # Replace with an actual image URL
+    global_ranking: 1,
+    monthly_listeners: 30000000
+  )
+
+  # Create the album 'Mr. Morale & the Big Steppers'
+  mr_morale_album = Album.create!(
+    artist_id: kendrick_lamar.id,
+    title: "Mr. Morale & the Big Steppers",
+    genre: "Hip-Hop",
+    cover_img: "https://motify-seeds.s3.us-east-2.amazonaws.com/static/albums/covers/kendrick.png", # Replace with an actual image URL
+    release_date: DateTime.new(2022, 5, 13),
+    record_company: "Top Dawg Entertainment"
+  )
+
+  # List of songs in the album
+  songs = [
+    "United in Grief",
+    "N95",
+    "Worldwide Steppers",
+    "Die Hard",
+    "Father Time",
+    "Rich (Interlude)",
+    "Rich Spirit",
+    "We Cry Together",
+    "Purple Hearts",
+    "Count Me Out",
+    "Crown",
+    "Silent Hill",
+    "Savior (Interlude)",
+    "Savior",
+    "Auntie Diaries",
+    "Mr. Morale",
+    "Mother I Sober",
+    "Mirror"
+  ]
+
+  # Create songs for the album
+  songs.each_with_index do |song_title, index|
+    Song.create!(
+      artist: kendrick_lamar,  
+      album_id: mr_morale_album.id,
+      title: song_title,
+      duration: rand(180..240), # Random duration between 3 to 4 minutes
+      explicit: true,
+      song_url: "https://motify-seeds.s3.us-east-2.amazonaws.com/static/audio/mrmorale/kendrick-mm-song-#{index + 1}.mp3"
+    )
+  end
+  
+
   # More users
   10.times do 
     User.create!({
@@ -52,7 +107,7 @@ ApplicationRecord.transaction do
 
     # Function to create mock albums
     def create_mock_albums(number_of_albums)
-      artist_ids = Artist.pluck(:id)
+      artist_ids = Artist.where.not(id: 1).pluck(:id)
 
       number_of_albums.times do
         Album.create(
@@ -68,11 +123,11 @@ ApplicationRecord.transaction do
 
     # Function to create mock songs
     def create_mock_songs(number_of_songs)
-      album_ids = Album.pluck(:id)
+      album_ids = Album.where.not(artist_id: 1).pluck(:id)
     
       number_of_songs.times do
         Song.create(
-          artist: Artist.all.sample,  # Use artist object
+          artist: Artist.where.not(id: 1).sample,  # Use artist object
           album_id: album_ids.sample, # Use album ID
           title: Faker::Music::RockBand.song,
           duration: rand(120..300),
@@ -80,6 +135,8 @@ ApplicationRecord.transaction do
         )
       end
     end
+
+    
     
     # Create artists, albums, and songs
     create_mock_artists(10)

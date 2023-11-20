@@ -6,6 +6,7 @@ class AddArtistIdToSongs < ActiveRecord::Migration[7.0]
     add_index :songs, :album_id
     remove_column :songs, :artist, :bigint
     remove_column :songs, :album, :bigint
+    add_column :songs, :song_url, :string
   end
 
 end

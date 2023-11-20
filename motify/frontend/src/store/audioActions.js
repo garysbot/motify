@@ -1,23 +1,21 @@
-
-// audioActions.js
-
 // Action Types
-export const PLAY_TRACK = 'PLAY_TRACK';
-export const PAUSE_TRACK = 'PAUSE_TRACK';
-export const SET_VOLUME = 'SET_VOLUME';
-export const SET_TRACK_POSITION = 'SET_TRACK_POSITION';
-export const TOGGLE_SHUFFLE = 'TOGGLE_SHUFFLE';
-export const SET_QUEUE = 'SET_QUEUE';
-export const NEXT_TRACK = 'NEXT_TRACK';
-export const PREVIOUS_TRACK = 'PREVIOUS_TRACK';
+export const RECEIVE_SONG = 'songs/RECEIVE_SONG';
+export const RECEIVE_SONGS = 'songs/RECEIVE_SONGS';
+export const TOGGLE_PLAY = 'songs/TOGGLE_PLAY';
+export const SET_VOLUME = 'songs/SET_VOLUME';
+export const SET_TRACK_POSITION = 'songs/SET_TRACK_POSITION';
+export const TOGGLE_SHUFFLE = 'songs/TOGGLE_SHUFFLE';
+export const SET_QUEUE = 'songs/SET_QUEUE';
+export const CHANGE_TRACK = 'songs/CHANGE_TRACK';
 
 // Action Creators
-export const playTrack = () => ({
-  type: PLAY_TRACK
+export const receiveSong = (song) => ({
+  type: RECEIVE_SONG,
+  payload: song
 });
 
-export const pauseTrack = () => ({
-  type: PAUSE_TRACK
+export const togglePlay = () => ({
+  type: TOGGLE_PLAY
 });
 
 export const setVolume = (volume) => ({
@@ -39,10 +37,7 @@ export const setQueue = (queue) => ({
   payload: queue
 });
 
-export const nextTrack = () => ({
-  type: NEXT_TRACK
-});
-
-export const previousTrack = () => ({
-  type: PREVIOUS_TRACK
+export const changeTrack = (direction) => ({
+  type: CHANGE_TRACK,
+  payload: direction // 'next' or 'previous'
 });
