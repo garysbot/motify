@@ -16,6 +16,18 @@ const UserContent = () => {
         />
         <Route
           exact
+          path="/"
+          render={
+            () => 
+            <>
+              <ContentCard contentType='artists'/>
+              <ContentCard contentType='albums'/>
+              <ContentCard contentType='songs'/>
+            </>
+          }
+        />
+        <Route
+          exact
           path="/artists"
           render={() => <ContentCard contentType='artists' />}
         />

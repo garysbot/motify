@@ -1,6 +1,8 @@
 import {
+  RECEIVE_ARTIST,
   RECEIVE_SONG,
   RECEIVE_SONGS,
+  RECEIVE_ALBUM,
   TOGGLE_PLAY,
   SET_VOLUME,
   SET_TRACK_POSITION,
@@ -11,6 +13,7 @@ import {
 
 const initialState = {
   currentArtist: {},
+  currentAlbum: {},
   currentSong: {},
   isPlaying: false,
   volume: 1,
@@ -23,10 +26,14 @@ const initialState = {
 
 const audioReducer = (state = initialState, action) => {
   switch (action.type) {
+    case RECEIVE_ARTIST:
+      return { ...state, currentArtist: action.payload };
     case RECEIVE_SONG:
-      return { ...state, currentSong: action.payload };
+      return { ...state, currentSong: action.payload, isPlaying: true };
     case RECEIVE_SONGS:
       return { ...state, songs: action.payload };
+    case RECEIVE_ALBUM:
+      return { ...state, currentAlbum: action.payload }
     case TOGGLE_PLAY:
       return { ...state, isPlaying: !state.isPlaying };
     case SET_VOLUME:

@@ -5,16 +5,34 @@ import playButton from '../../static/playbar/show/show-play-bar-play-button.svg'
 import lilPlayButton from '../../static/icons/noun-play-1009801.svg'
 import lilDot from '../../static/icons/dot.svg'
 import { useAlbum } from '../MainPage/ContentCard/Hooks/useAlbum.jsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { receiveSong, togglePlay } from '../../store/audioActions'; // Import relevant actions
-import { useArtist } from '../MainPage/ContentCard/Hooks/useArtist.jsx';
+import { fetchAlbum, fetchArtist } from '../../store/audioThunks.js';
+import { useParams } from 'react-router-dom';
 
-const ShowPage = ({ albumId }) => {
-  const [hoveredTrack, setHoveredTrack] = useState(null);
+const ShowPage = () => {
+  // Redux Setup
   const dispatch = useDispatch();
-  const artist = useArtist(1);
-  const album = useAlbum(1)
-  const currentSong = useSelector(state => state.audio.currentSong); // Accessing current song
+  const { albumId } = useParams();
+  const currentAlbum = useSelector(state => state.audio.currentAlbum);
+  
+  // Temporary React State + Hooks Approach
+  const album = useAlbum(albumId)
+  
+  useEffect(() => {
+    if (albumId) {
+      dispatch(fetchAlbum(albumId));
+    }
+  }, [dispatch, albumId]);
+  
+  useEffect(() => {
+    if (currentAlbum && currentAlbum.artistId) {
+      dispatch(fetchArtist(currentAlbum.artistId));
+    }
+  }, [dispatch, currentAlbum]);
+
+  // Animation State
+  const [hoveredTrack, setHoveredTrack] = useState(null);
 
   // Function to handle play button click
   const handlePlaySong = (song) => {
@@ -26,30 +44,30 @@ const ShowPage = ({ albumId }) => {
     return <div>Loading...</div>;
   }
 
-  const artistAboutImg = {
-    backgroundImage: `url(${artist.aboutImg})`,
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center',
-    height: '300px',
-    width: '100%'
-  }
+  // const artistAboutImg = {
+  //   backgroundImage: `url(${artist.aboutImg})`,
+  //   backgroundSize: 'cover',
+  //   backgroundRepeat: 'no-repeat',
+  //   backgroundPosition: 'center',
+  //   height: '300px',
+  //   width: '100%'
+  // }
 
 
   return (
     <>
-      <div className='show-banner' style={artistAboutImg}>
-        {/* Add BG to this Div? */}
-        <img src={album.coverImg} alt='' className='album-cover-img'></img>
+      {/* <div className='show-banner' style={artistAboutImg}> */}
+      <div className='show-banner'>
+        <img src={currentAlbum.coverImg} alt='' className='album-cover-img'></img>
         <div className='banner-details'>
           <p>Album</p>
-          <h1 key={album.id}>{album.title}</h1>
+          <h1 key={currentAlbum.id}>{currentAlbum.title}</h1>
           <p className='details-artist'>
-            {album.artistName}
+            {currentAlbum.artistName}
             <ReactSVG src={lilDot} className='lilDot'/>
-            {album.releaseDate}
+            {currentAlbum.releaseDate}
             <ReactSVG src={lilDot} className='lilDot'/>
-            {`${Object.values(album.songs).length} songs, 1 hr 18 min`}
+            {`${Object.values(currentAlbum.songs).length} songs, 1 hr 18 min`}
           </p>
         </div>
       </div>
@@ -74,13 +92,13 @@ const ShowPage = ({ albumId }) => {
         <hr></hr>
         <div className='show-songs-table'>
           {
-            album.songs.map((song, trackNum) => 
+            currentAlbum.songs.map((song, trackNum) => 
               <>
                 <div
                   className='show-songs-row-container'
                   onMouseEnter={() => setHoveredTrack(trackNum)}
                   onMouseLeave={() => setHoveredTrack(null)}
-                  onClick={() => handlePlaySong(song)}
+                  onClick={() => handlePlaySong(song)} // ! This is what changes the Redux State
                 >
                   <div className='row-start'>
                     <div className='track-num'>
@@ -88,7 +106,7 @@ const ShowPage = ({ albumId }) => {
                         hoveredTrack === trackNum ? (
                           <ReactSVG src={lilPlayButton} className='anim-play-button' />
                         ) : (
-                        <p>{trackNum}</p>
+                        <p>{trackNum + 1}</p>
                       )}
                     </div>
                     <div className='song-title-artist-container'>
@@ -97,7 +115,7 @@ const ShowPage = ({ albumId }) => {
                       </p>
                       {/* Explicit */}
                       <p className='song-title-artist-name'>
-                        {album.artistName}  
+                        {currentAlbum.artistName}  
                       </p>
                     </div>
                   </div>

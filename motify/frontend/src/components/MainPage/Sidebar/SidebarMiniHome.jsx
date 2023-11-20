@@ -16,11 +16,11 @@ const SidebarMiniHome = () => {
               <Icon iconType='HomeActive'/><p>Home</p>
             </button>
           </NavLink>
-          <NavLink to='/search' className='mini-home-search row-align'>
+          {/* <NavLink to='/search' className='mini-home-search row-align'>
             <button>
               <Icon iconType='SearchInactive' /><p>Search</p>
             </button>
-          </NavLink>
+          </NavLink> */}
       </div>
     </>
   );

@@ -1,11 +1,18 @@
+// Styling
 import './ContentCard.css'
 import Cover1 from '../../../static/albums/covers/cover-midjourney-1.png'
+
+// Temporary Custom React Hooks
 import { useAlbums } from './Hooks/useAlbums.jsx'
 import { useSongs } from './Hooks/useSongs.jsx'
 import { useArtists } from './Hooks/useArtists.jsx'
 import { useAlbum } from './Hooks/useAlbum.jsx'
 
+// Redux State
+import { useDispatch, useSelector } from 'react-redux'
+
 const Cards = ({ contentType }) => {
+  const dispatch = useDispatch();
 
   const albums = useAlbums();
   const songs = useSongs();

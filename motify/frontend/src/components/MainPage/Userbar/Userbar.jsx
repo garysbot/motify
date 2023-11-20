@@ -9,9 +9,9 @@ const Userbar = () => {
     <>
       <div className='user-home-userbar'>
         <div className='userbar-arrow-nav'>
-          <Icon iconType='LeftArrow' />
-          <LeftArrowActive />
-          <RightArrowActive />
+          {/* <Icon iconType='LeftArrow' /> */}
+          {/* <LeftArrowActive /> */}
+          {/* <RightArrowActive /> */}
         </div>
 
         <div className='userbar-profile-container'>

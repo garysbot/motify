@@ -74,7 +74,7 @@ const PlayBar = () => {
             </div>
 
             <Icon iconType='NextButton' onClick={handleNextTrack}/>
-            <Icon iconType='RepeatButtonInactive'/> {/* You can add functionality here as well */}
+            {/* <Icon iconType='RepeatButtonInactive'/> */}
           </div>
 
           <div className='duration-container'>
@@ -83,11 +83,11 @@ const PlayBar = () => {
         </div>
 
         <div className='queue-volume-container'>
-          <Icon iconType='QueueButtonInactive'/>
-          <div className='volume-container'>
+          {/* <Icon iconType='QueueButtonInactive'/> */}
+          {/* <div className='volume-container'>
             <Icon iconType='VolumeButton'/>
-            <div className='volume-line' onClick={() => handleVolumeChange(0.5)}></div> {/* Example volume change */}
-          </div>
+            <div className='volume-line' onClick={() => handleVolumeChange(0.5)}></div>
+          </div> */}
         </div>
       </div>
     </>

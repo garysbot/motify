@@ -1,4 +1,5 @@
 // Action Types
+export const RECEIVE_ARTIST = 'songs/RECEIVE_ARTIST';
 export const RECEIVE_SONG = 'songs/RECEIVE_SONG';
 export const RECEIVE_SONGS = 'songs/RECEIVE_SONGS';
 export const RECEIVE_ALBUM = 'songs/RECEIVE_ALBUM';
@@ -10,14 +11,26 @@ export const SET_QUEUE = 'songs/SET_QUEUE';
 export const CHANGE_TRACK = 'songs/CHANGE_TRACK';
 
 // Action Creators
+export const receiveArtist = (artist) => ({
+  type: RECEIVE_ARTIST,
+  payload: artist
+});
+
+
 export const receiveSong = (song) => ({
   type: RECEIVE_SONG,
   payload: song
 });
 
-export const receiveAlbum = (albumId) => ({
+export const receiveSongs = (songs) => ({
+  type: RECEIVE_SONGS,
+  payload: songs
+});
+
+
+export const receiveAlbum = (album) => ({
   type: RECEIVE_ALBUM,
-  payload: albumId
+  payload: album
 })
 
 export const togglePlay = () => ({
