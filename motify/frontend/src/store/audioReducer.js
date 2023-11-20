@@ -30,7 +30,7 @@ const audioReducer = (state = initialState, action) => {
     case RECEIVE_ARTIST:
       return { ...state, currentArtist: action.payload };
     case RECEIVE_SONG:
-      return { ...state, currentSong: action.payload, isPlaying: true };
+      return { ...state, currentSong: action.payload };
     case RECEIVE_SONGS:
       return { ...state, songs: action.payload };
     case RECEIVE_ALBUM:

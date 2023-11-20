@@ -11,7 +11,7 @@ import { fetchAlbum, fetchArtist } from '../../store/audioThunks.js';
 import { useArtist } from '../MainPage/ContentCard/Hooks/useArtist.jsx';
 import { useParams } from 'react-router-dom';
 
-const ShowPage = () => {
+const ShowAlbumPage = () => {
   // Redux Setup
   const [isLoading, setIsLoading] = useState(true);
   const [hoveredTrack, setHoveredTrack] = useState(null);
@@ -71,11 +71,8 @@ const ShowPage = () => {
 
   // Function to handle play button click
   const handlePlaySong = (song) => {
-    dispatch(receiveSong(song)); // Dispatch receiveSong action to set the current song
-    // If the player is not currently playing, dispatch togglePlay
-    if (!isPlaying) {
-      dispatch(togglePlay());
-    }
+    dispatch(receiveSong(song));
+    dispatch(togglePlay());
   };
 
   const artistAboutImg = {
@@ -179,4 +176,4 @@ const ShowPage = () => {
   );
 }
 
-export default ShowPage;
+export default ShowAlbumPage;
