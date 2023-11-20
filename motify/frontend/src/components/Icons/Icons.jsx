@@ -1,21 +1,5 @@
 import { ReactComponent as HomeActive } from '../../static/icons/home-active.svg';
 import { ReactComponent as HomeInactive } from '../../static/icons/home-inactive.svg';
-<<<<<<< HEAD
-
-import { ReactComponent as SearchActive } from '../../static/icons/search-active.svg'
-import { ReactComponent as SearchInactive } from '../../static/icons/search-inactive.svg'
-
-import { ReactComponent as LibraryActive } from '../../static/icons/library-active.svg'
-import { ReactComponent as LibraryInactive } from '../../static/icons/library-inactive.svg'
-
-
-import { ReactComponent as PlusActive } from '../../static/icons/plus-active.svg'
-
-import { ReactComponent as LeftArrow } from '../../static/icons/left-arrow.svg'
-
-const Icon = ({ iconType }) => {
-
-=======
 import { ReactComponent as SearchActive } from '../../static/icons/search-active.svg';
 import { ReactComponent as SearchInactive } from '../../static/icons/search-inactive.svg';
 import { ReactComponent as LibraryActive } from '../../static/icons/library-active.svg';
@@ -34,7 +18,6 @@ import { ReactComponent as QueueButtonInactive } from '../../static/icons/queue-
 import { ReactComponent as VolumeButton } from '../../static/icons/volume.svg';
 
 const Icon = ({ iconType, onClick }) => {
->>>>>>> 1ecacea65fbf6501191f487682f488e757fa3f65
   const icons = {
     HomeActive,
     HomeInactive,
@@ -43,16 +26,6 @@ const Icon = ({ iconType, onClick }) => {
     LibraryActive,
     LibraryInactive,
     PlusActive,
-<<<<<<< HEAD
-    LeftArrow
-  }
-
-  const IconComponent = icons[iconType]
-  return <IconComponent />
-}
-
-export default Icon;
-=======
     LeftArrow,
     PlayButton,
     PlayButtonCircle,
@@ -71,4 +44,3 @@ export default Icon;
 }
 
 export default Icon;
->>>>>>> 1ecacea65fbf6501191f487682f488e757fa3f65
