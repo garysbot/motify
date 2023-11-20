@@ -13,7 +13,7 @@ function LoginFormPage() {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return <Redirect to="/home" />;
+  if (sessionUser) return <Redirect to="/" />;
 
   const demoLogin = () => {
     return dispatch(sessionActions.login({ credential: 'demo@user.io', password: 'password' }))
