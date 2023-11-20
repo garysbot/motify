@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react';
 import './PlayBar.css';
 import Icon from '../Icons/Icons.jsx';
 import SongDetails from './SongDetails.jsx';
@@ -6,13 +7,31 @@ import { togglePlay, changeTrack, setVolume } from '../../store/audioActions'; /
 
 const PlayBar = () => {
   const dispatch = useDispatch();
+  const audioRef = useRef(new Audio());
   const currentSong = useSelector(state => state.audio.currentSong); // Use selector to get current song
   const isPlaying = useSelector(state => state.audio.isPlaying); // Use selector to get play state
   const volume = useSelector(state => state.audio.volume); // Use selector to get volume
 
+  useEffect(() => {
+    if (currentSong) {
+      audioRef.current.src = currentSong.songUrl;
+    }
+  }, [currentSong])
+
+  useEffect(() => {
+    audioRef.current.onplay = () => handlePlayPause();
+    audioRef.current.onpause = () => handlePlayPause();
+  }, []);
+
   // Play/Pause toggle
   const handlePlayPause = () => {
-    dispatch(togglePlay());
+    if (isPlaying) {
+      audioRef.current.pause();
+      dispatch(togglePlay());
+    } else {
+      audioRef.current.play();
+      dispatch(togglePlay());
+    }
   };
 
   // Next track
@@ -44,7 +63,7 @@ const PlayBar = () => {
                 <Icon
                   iconType={isPlaying ? 'PauseButton' : 'PlayButton'} 
                   currentSong={currentSong} 
-                  className='play-pause-button'
+                  className='play-button-content'
                 />
               </div>
               <div className='play-button-circle-content'>

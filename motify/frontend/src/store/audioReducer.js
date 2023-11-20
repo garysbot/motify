@@ -10,6 +10,7 @@ import {
 } from './audioActions';
 
 const initialState = {
+  currentArtist: {},
   currentSong: {},
   isPlaying: false,
   volume: 1,

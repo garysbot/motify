@@ -1,6 +1,7 @@
 // Action Types
 export const RECEIVE_SONG = 'songs/RECEIVE_SONG';
 export const RECEIVE_SONGS = 'songs/RECEIVE_SONGS';
+export const RECEIVE_ALBUM = 'songs/RECEIVE_ALBUM';
 export const TOGGLE_PLAY = 'songs/TOGGLE_PLAY';
 export const SET_VOLUME = 'songs/SET_VOLUME';
 export const SET_TRACK_POSITION = 'songs/SET_TRACK_POSITION';
@@ -13,6 +14,11 @@ export const receiveSong = (song) => ({
   type: RECEIVE_SONG,
   payload: song
 });
+
+export const receiveAlbum = (albumId) => ({
+  type: RECEIVE_ALBUM,
+  payload: albumId
+})
 
 export const togglePlay = () => ({
   type: TOGGLE_PLAY
