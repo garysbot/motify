@@ -8,31 +8,51 @@ import { useAlbum } from '../MainPage/ContentCard/Hooks/useAlbum.jsx';
 import { useEffect, useState } from 'react';
 import { receiveSong, togglePlay } from '../../store/audioActions'; // Import relevant actions
 import { fetchAlbum, fetchArtist } from '../../store/audioThunks.js';
+import { useArtist } from '../MainPage/ContentCard/Hooks/useArtist.jsx';
 import { useParams } from 'react-router-dom';
 
 const ShowPage = () => {
   // Redux Setup
+  const [isLoading, setIsLoading] = useState(true);
+  const [hoveredTrack, setHoveredTrack] = useState(null);
   const dispatch = useDispatch();
   const { albumId } = useParams();
+  const currentSong = useSelector(state => state.audio.currentSong); // Accessing current song
   const currentAlbum = useSelector(state => state.audio.currentAlbum);
   
   // Temporary React State + Hooks Approach
+  const artist = useArtist(1);
   const album = useAlbum(albumId)
-  
+
+
   useEffect(() => {
-    if (albumId) {
-      dispatch(fetchAlbum(albumId));
-    }
+    const fetchAlbumData = async () => {
+      if (albumId) {
+        setIsLoading(true);
+        await dispatch(fetchAlbum(albumId));
+        // No need to call fetchArtist here
+        setIsLoading(false);
+      }
+    };
+  
+    fetchAlbumData();
   }, [dispatch, albumId]);
   
   useEffect(() => {
-    if (currentAlbum && currentAlbum.artistId) {
-      dispatch(fetchArtist(currentAlbum.artistId));
-    }
+    const fetchArtistData = async () => {
+      if (currentAlbum && currentAlbum.artistId) {
+        await dispatch(fetchArtist(currentAlbum.artistId));
+      }
+    };
+  
+    fetchArtistData();
   }, [dispatch, currentAlbum]);
-
-  // Animation State
-  const [hoveredTrack, setHoveredTrack] = useState(null);
+  
+  // Render loading indicator
+  if (isLoading || !currentAlbum) {
+    return <div>Loading...</div>;
+  }
+  
 
   // Function to handle play button click
   const handlePlaySong = (song) => {
