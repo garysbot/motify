@@ -5,7 +5,32 @@
   margin-top: 3rem;
 }
 
+.new-playlist-body {
+  margin: 0;
+  padding: 0;
+}
+
 .playlist-create .new-playlist-body {
   margin-top: 2rem;
   margin-bottom: 2rem;
+}
+
+.new-playlist-body .playlist-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.new-playlist-body .playlist-header p {
+  color: white;
+  opacity: 60%;
+  font-family: 'CircularSpotifyBook';
+  font-size: 0.8rem;
+}
+
+.new-playlist-body hr {
+  opacity: 10%;
+  height: 1px;
+  margin-bottom: 1rem;
+  margin-top: 3rem;
 }
