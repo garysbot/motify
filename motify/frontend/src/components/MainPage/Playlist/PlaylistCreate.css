@@ -1,3 +1,11 @@
-.user-home-content .playlist-create {
-  
+.playlist-create .search-footer hr {
+  opacity: 10%;
+  height: 1px;
+  margin-bottom: 1rem;
+  margin-top: 3rem;
+}
+
+.playlist-create .new-playlist-body {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }

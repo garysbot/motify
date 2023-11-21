@@ -24,10 +24,27 @@ const PlaylistCreate = () => {
               <img src='' alt=''></img>
             </div>
             {currentUser.username}
-            
           </div>
         </div>
       </div>
+
+      {/* Main Body for Songs Added */}
+      <div className='playlist-create new-playlist-body show-content'>
+        <div className='show-songs-header'>
+          <p className='header-text'>#</p>
+          <p className='header-text'>Title</p>
+          <p className='header-text'>Album</p>
+          <p className='header-text'>Date added</p>
+          <p className='header-text'>Duration</p>
+          <hr></hr>
+        </div>
+      </div>
+      {/* Search body */}
+      <div className='playlist-create search-footer'>
+        <hr></hr>
+        <h3>Let's find something for your playlist</h3>
+      </div>
+
     </div>
 
     </>
