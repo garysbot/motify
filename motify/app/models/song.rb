@@ -2,6 +2,7 @@ class Song < ApplicationRecord
   # Associations
   belongs_to :artist
   belongs_to :album
+  belongs_to :playlist
   has_many :playlists_songs
   has_many :playlists, through: :playlists_songs
   has_many :liked_songs
