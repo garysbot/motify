@@ -34,3 +34,45 @@
   margin-bottom: 1rem;
   margin-top: 3rem;
 }
+
+.search-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 22rem;
+}
+
+.search-input-container .search-icon {
+  position: absolute;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  left: 8px;
+  bottom: 10px;
+}
+
+.search-input-container .close-icon {
+  position: absolute;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  right: 8px;
+  bottom: 10px;
+}
+
+.search-input-container input {
+  margin-top: 1rem;
+  width: 22rem;
+  height: 2.25rem;
+  background-color: #323232;
+  border-style: none;
+  border-radius: 0.3rem;
+  padding-inline-start: 1rem;
+  padding-left: 2rem;
+}
+
+.search-input-container input::placeholder {
+  color: white;
+  opacity: 90%;
+  font-size: 0.8rem;
+}

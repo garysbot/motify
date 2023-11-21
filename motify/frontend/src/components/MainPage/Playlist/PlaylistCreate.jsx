@@ -1,6 +1,7 @@
 import '../MainPage.css'
 import './PlaylistCreate.css'
 import '../../ShowPages/ShowPage.css'
+import SearchField from '../../SearchField/SearchField'
 // Imgs
 import newPlaylistCover from '../../../static/albums/newPlaylistCover.png'
 
@@ -48,11 +49,8 @@ const PlaylistCreate = () => {
       <div className='playlist-create search-footer'>
         <hr></hr>
         <h3>Let's find something for your playlist</h3>
-        
-        <div className='playlist-create-search'>
-          <input type='text'></input>
-        </div>
-        
+        <SearchField/>
+
       </div>
 
     </div>
