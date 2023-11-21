@@ -5,6 +5,8 @@ export const RECEIVE_PLAYLIST = 'playlists/RECEIVE_PLAYLIST'
 export const RECEIVE_PLAYLISTS = 'playlists/RECEIVE_PLAYLISTS'
 export const REMOVE_PLAYLIST = 'playlists/REMOVE_PLAYLIST'
 export const CREATE_PLAYLIST = 'playlists/CREATE_PLAYLIST'
+export const UPDATE_PLAYLIST = 'playlists/UPDATE_PLAYLIST';
+
 
 export const receivePlaylist = (playlist) => ({
   type: RECEIVE_PLAYLIST,
@@ -26,6 +28,10 @@ export const createPlaylist = (playlist) => ({
   payload: playlist
 })
 
+export const updatePlaylist = (playlist) => ({
+  type: UPDATE_PLAYLIST,
+  payload: playlist
+});
 
 // ! Selector Helpers
 export const getPlaylist = (playlistId) => (state) => {
@@ -100,6 +106,31 @@ export const removePlaylistAsync = (playlistId) => async (dispatch) => {
   }
 };
 
+export const updatePlaylistAsync = (playlistData) => async (dispatch) => {
+  try {
+    const response = await csrfFetch(`/playlists/${playlistData.id}`, {
+      method: 'PUT', // Use PUT method to update the playlist
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(playlistData)
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('Playlist update error:', errorData);
+      throw new Error('API request failed');
+    }
+
+    const updatedPlaylist = await response.json();
+    console.log('Server response:', updatedPlaylist);
+    dispatch(updatePlaylist(updatedPlaylist));
+  } catch (error) {
+    console.error(`Update playlist failed:`, error);
+  }
+};
+
+
 const initialState = {};
 
 const playlistsReducer = (state = initialState, action) => {
@@ -132,6 +163,13 @@ const playlistsReducer = (state = initialState, action) => {
         [payload.id]: payload
       };
     }
+    case UPDATE_PLAYLIST: {
+      const { payload } = action;
+      return {
+        ...state,
+        [payload.id]: payload
+      };
+    }    
     default:
       return state;
   }
