@@ -8,5 +8,7 @@ class Artist < ApplicationRecord
   validates :about_blurb, presence: true
   validates :about_img, presence: true
 
-  # Add any custom validations or methods as required
+  def self.search(query)
+    where("artist_name ILIKE ?", "%#{query}%")
+  end
 end

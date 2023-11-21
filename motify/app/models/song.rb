@@ -14,4 +14,8 @@ class Song < ApplicationRecord
   validates :duration, presence: true
   validates :title, presence: true
   validates :explicit, inclusion: { in: [true, false] }
+
+  def self.search(query)
+    where("title ILIKE ?", "%#{query}%")
+  end
 end

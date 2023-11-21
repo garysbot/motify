@@ -5,4 +5,8 @@ class Playlist < ApplicationRecord
 
   validates :user_id, presence: true
   validates :title, presence: true
+
+  def self.search(query)
+    where("title ILIKE ?", "%#{query}%")
+  end
 end

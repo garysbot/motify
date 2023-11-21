@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :users, only: [:create, :show]
     resource :session, only: [:show, :create, :destroy]
+    get 'search', to: 'search#index'
   end
 
   resources :artists, only: [:index, :show]

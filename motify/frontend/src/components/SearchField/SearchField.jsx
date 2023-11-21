@@ -12,11 +12,12 @@ const SearchField = () => {
     const newQuery = event.target.value;
     setInputValue(newQuery);
     if (newQuery) {
-      dispatch(performSearch(newQuery)); // Dispatch Redux action for performing search
+      dispatch(performSearch(newQuery)); // Dispatching performSearch action with new query
     } else {
-      dispatch(clearSearch()); // Clear search if the input is empty
+      dispatch(clearSearch()); // Clearing the search when input is empty
     }
   };
+  
 
   const clearInput = () => {
     setInputValue('');
