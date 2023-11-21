@@ -8,12 +8,16 @@ import configureStore from './store';
 import csrfFetch from './store/csrf';
 import * as sessionActions from './store/session';
 
+// testing playlists Redux
+import * as playlistActions from './store/playlists';
+
 const store = configureStore();
 
 if (process.env.NODE_ENV !== 'production') {
   window.store = store;
   window.csrfFetch = csrfFetch;
   window.sessionActions = sessionActions;
+  window.playlistActions = playlistActions;
 }
 
 function Root() {

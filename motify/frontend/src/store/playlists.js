@@ -1,3 +1,5 @@
+import csrfFetch from "./csrf"
+
 // ! Actions
 export const RECEIVE_PLAYLIST = 'playlists/RECEIVE_PLAYLIST'
 export const RECEIVE_PLAYLISTS = 'playlists/RECEIVE_PLAYLISTS'
@@ -61,7 +63,7 @@ export const fetchPlaylists = () => async (dispatch) => {
 
 export const createPlaylistAsync = (playlistData) => async (dispatch) => {
   try {
-    const response = await fetchFromApi('/playlists', {
+    const response = await csrfFetch('/playlists', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -69,18 +71,24 @@ export const createPlaylistAsync = (playlistData) => async (dispatch) => {
       body: JSON.stringify(playlistData)
     });
 
-    if (!response.ok) throw new Error('API request failed');
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('Playlist creation error:', errorData);
+      throw new Error('API request failed');
+    }
 
     const playlist = await response.json();
+    console.log('Server response:', playlist);
     dispatch(receivePlaylist(playlist));
   } catch (error) {
     console.error(`Create playlist failed:`, error);
   }
 };
 
+
 export const removePlaylistAsync = (playlistId) => async (dispatch) => {
   try {
-    const response = await fetch(`/playlists/${playlistId}`, {
+    const response = await csrfFetch(`/playlists/${playlistId}`, {
       method: 'DELETE'
     });
 

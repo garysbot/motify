@@ -27,6 +27,8 @@ class PlaylistsController < ApplicationController
   # DELETE /playlists/1.json
   def destroy
     @playlist.destroy
+    # Respond to signify successful deletion
+    head :no_content
   end
 
   private
