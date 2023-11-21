@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import searchIcon from '../../static/icons/search-inactive.svg';
 import closeIcon from '../../static/icons/close.svg';
 import { performSearch, clearSearch } from '../../store/search';
+import SearchResultsDropdown from './SearchResultsDropdown';
 
 const SearchField = () => {
   const [inputValue, setInputValue] = useState('');
   const dispatch = useDispatch();
-  const isLoading = useSelector(state => state.search.isLoading);
-  const error = useSelector(state => state.search.error);
+  const { isLoading, error, results } = useSelector(state => state.search);
 
   const handleChange = (event) => {
     const newQuery = event.target.value;
@@ -39,6 +39,21 @@ const SearchField = () => {
       </div>
       {isLoading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
+
+      <SearchResultsDropdown/>
+
+      {/* {results && (
+        <div className='search-results'>
+          <h3>Artists</h3>
+          <ul>
+            {
+              results.artists.map((artist, index)=> (
+                <li key={index}>{artist.name}</li>
+              ))
+            }
+          </ul>
+        </div>
+      )} */}
     </>
   );
 }
