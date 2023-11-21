@@ -58,13 +58,21 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
           )
         }
 
-        {/* {
+        {
           songResults.map((song, index) => 
-            <div className='song-result'>
-              <p key={index}>{song.title}</p>
+            <div className='result-row'>
+              <div className='result-detail'>
+                <img src={song.cover_img} alt=''/>
+
+                <div className='name'>
+                  <p key={index}>{song.title}</p>
+                  <p className='result-label'>{song.artist_id}</p>
+                </div>
+
+              </div>
             </div>
           )
-        } */}
+        }
 
         {
           playlistResults.map((playlist, index) => 
