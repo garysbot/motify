@@ -4,12 +4,14 @@ import session from './session';
 import uiReducer from './uiReducer';
 import audioReducer from './audioReducer';
 import playlistReducer from './playlists'
+import searchReducer from './search'
 
 export const rootReducer = combineReducers({
   session,
   ui: uiReducer,
   audio: audioReducer,
-  playlist: playlistReducer
+  playlist: playlistReducer,
+  search: searchReducer
 });
 
 let enhancer;
