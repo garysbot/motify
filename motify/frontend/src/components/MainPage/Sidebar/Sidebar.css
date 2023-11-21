@@ -1,5 +1,5 @@
 .sidebar-mini-home button {
-  display: flex;
+display: flex;
   align-items: center;
   gap: 1rem
 }
@@ -21,4 +21,23 @@ a {
 .active-link p {
   text-decoration: none;
   color: white;
+}
+
+.library-header {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.library {
+  display: flex;
+  width: 60%;
+  gap: 1rem;
+}
+
+.library-plus {
+  width: 30%;
+  padding-top: 0.25rem;
+  justify-self: flex-end;
 }
