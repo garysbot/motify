@@ -1,6 +1,31 @@
+.result-label {
+  font-size: 0.8rem;
+  opacity: 60%;
+}
+
 .search-results {
   width: 100%;
   display: flex;
   flex-direction: column;
   color: white;
+}
+
+
+.result-row {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.result-detail {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  width: 100%;
+}
+
+.result-detail img {
+  width: 36px;
+  height: 36px;
+  border-radius: 100%;
 }
