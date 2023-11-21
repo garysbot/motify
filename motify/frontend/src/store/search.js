@@ -35,7 +35,8 @@ const initialState = {
   query: '',
   results: [],
   isLoading: false,
-  error: null
+  error: null,
+  searchInitiated: false // New state variable
 };
 
 // Debounce function
@@ -58,7 +59,7 @@ export const performSearch = (query) => (dispatch) => {
 const searchReducer = (state = initialState, action) => {
   switch (action.type) {
     case START_SEARCH:
-      return { ...state, isLoading: true, error: null }
+      return { ...state, isLoading: true, error: null, searchInitiated: true }
     case UPDATE_QUERY:
       return { ...state, query: action.payload };
     case UPDATE_SEARCH_RESULTS:
