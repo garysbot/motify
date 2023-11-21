@@ -2,7 +2,7 @@ import './SearchResultsDropdown.css'
 import searchArrow from '../../static/icons/search-arrow.svg'
 import { Link } from 'react-router-dom'
 
-const SearchResultsDropdown = ({ searchResults, searchInitiated }) => {
+const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
   // Initialize the results as empty arrays
   let albumResults = searchResults.albums || [];
   let artistResults = searchResults.artists || [];
@@ -18,7 +18,11 @@ const SearchResultsDropdown = ({ searchResults, searchInitiated }) => {
   return (
     <>
       <div className="search-results">
-      {!hasResults() && searchInitiated && <p>No results found</p>}
+      {!hasResults() && searchInitiated && 
+        <div className='no-results'>
+          <h3>No results found for "{query}"</h3>
+        </div>
+      }
 
         {
           artistResults.map((artist, index) => 

@@ -8,7 +8,7 @@ import SearchResultsDropdown from './SearchResultsDropdown';
 const SearchField = () => {
   const [inputValue, setInputValue] = useState('');
   const dispatch = useDispatch();
-  const { isLoading, error, results, searchInitiated } = useSelector(state => state.search);
+  const { isLoading, error, results, searchInitiated, query } = useSelector(state => state.search);
 
   const handleChange = (event) => {
     const newQuery = event.target.value;
@@ -39,7 +39,7 @@ const SearchField = () => {
       </div>
       {error && <p>Error: {error.message}</p>}
 
-      <SearchResultsDropdown searchResults={results} searchInitiated={searchInitiated}/>
+      <SearchResultsDropdown query={query} searchResults={results} searchInitiated={searchInitiated}/>
 
       {/* {results && (
         <div className='search-results'>
