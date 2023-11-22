@@ -25,7 +25,7 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
       }
 
         {
-          artistResults.map((artist, index) => 
+          artistResults.map((artist, index) =>
             <Link to={`/artists/${artist.id}`}>
               <div className='result-row'>
                 <div className='result-detail'>
@@ -39,12 +39,12 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
                   <img src={searchArrow} alt='Link' className='search-arrow'/>
                 </div>
               </div>
-            </Link>
+            </Link> 
           )
         }
 
         {
-          albumResults.map((album, index) => 
+          albumResults.map((album, index) =>
             <Link to={`/albums/${album.id}`}>
               <div className='result-row'>
                 <div className='result-detail'>
@@ -58,7 +58,7 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
                   <img src={searchArrow} alt='Link' className='search-arrow'/>
                 </div>
               </div>
-            </Link>
+            </Link> 
           )
         }
 
@@ -67,10 +67,9 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
             <div className='result-row'>
               <div className='result-detail'>
                 <img src={song.cover_img} alt=''/>
-
                 <div className='name'>
                   <p key={index}>{song.title}</p>
-                  <p className='result-label'>{song.artist_id}</p>
+                  <p className='result-label'>{song.duration}</p>
                 </div>
 
               </div>

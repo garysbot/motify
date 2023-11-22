@@ -25,8 +25,6 @@
   display: flex;
   align-items: center;
   margin-top: 1rem;
-  cursor: pointer;
-  text-decoration: none;
   color: white;
 }
 
