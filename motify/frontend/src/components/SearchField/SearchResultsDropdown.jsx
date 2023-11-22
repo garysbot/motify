@@ -24,6 +24,10 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
         </div>
       }
 
+{
+                      console.log(artistResults)
+                    }
+
         {
           artistResults.map((artist, index) =>
             <Link to={`/artists/${artist.id}`}>
@@ -35,6 +39,15 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
                     <p className='result-label'>Artist</p>
                   </div>
                 </div>
+                {/* Temp Result Div to display artist.songs */}
+                <div className='result-detail'>
+                  <div className='name'>
+                  {artist.songs && artist.songs.map((song, songIndex) => (
+            <p key={songIndex}>{song.title}</p>
+          ))}
+                  </div>
+                </div>
+
                 <div className='result-link'>
                   <img src={searchArrow} alt='Link' className='search-arrow'/>
                 </div>

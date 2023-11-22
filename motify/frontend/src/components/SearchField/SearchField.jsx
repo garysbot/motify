@@ -39,6 +39,7 @@ const SearchField = () => {
       </div>
       {error && <p>Error: {error.message}</p>}
 
+      {console.log(results)}
       <SearchResultsDropdown query={query} searchResults={results} searchInitiated={searchInitiated}/>
 
       {/* {results && (

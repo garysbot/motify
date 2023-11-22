@@ -33,7 +33,7 @@ export const clearSearch = () => ({
 
 const initialState = {
   query: '',
-  results: [],
+  results: {},
   isLoading: false,
   error: null,
   searchInitiated: false // New state variable
@@ -44,6 +44,7 @@ const debounceSearch = debounce(async (query, dispatch) => {
   try {
     const response = await csrfFetch(`/api/search?q=${query}`);
     const data = await response.json();
+    // console.log(data);
     dispatch(updateSearchResult(data));
   } catch (error) {
     dispatch(searchError(error));
