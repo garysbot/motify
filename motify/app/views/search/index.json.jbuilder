@@ -13,6 +13,8 @@ json.results do
     when Song
       json.extract! result, :id, :artist_id, :album_id, :title, :duration, :explicit, :song_url
       # Additional song attributes if needed
+      json.cover_img result.album.try(:cover_img)
+
     when Playlist
       json.extract! result, :id, :user_id, :title
       # Additional playlist attributes if needed

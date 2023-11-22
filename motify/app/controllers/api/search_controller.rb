@@ -5,7 +5,7 @@ module Api
       # Example: Search across different models
       @results = {
         artists: Artist.search(params[:q]),
-        songs: Song.search(params[:q]),
+        songs: Song.includes(:album).search(params[:q]),
         albums: Album.search(params[:q]),
         playlists: Playlist.search(params[:q])
       }
