@@ -19,6 +19,18 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
   }
 
   const [hoveredTrack, setHoveredTrack] = useState(null);
+  const [expandedAlbum, setExpandedAlbum] = useState(null);
+
+  // Display all songs in an album on click
+  const toggleSongsDisplay = (albumId) => {
+    if (expandedAlbum === albumId) {
+      setExpandedAlbum(null); // collapse if opened
+    } else {
+      setExpandedAlbum(albumId); // expand the clicked one
+    }
+  };
+
+  const isAlbumExpanded = (albumId) => expandedAlbum === albumId;
 
   return (
     <>
@@ -53,8 +65,8 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
 
         {
           albumResults.map((album, index) =>
-            <Link to={`/albums/${album.id}`}>
-              <div className='result-row'>
+            <>
+              <div className='result-row' onClick={() => toggleSongsDisplay(album.id)}>
                 <div className='result-detail'>
                   <img src={album.coverImg} alt='' className='result-album-img' />
                   <div className='name'>
@@ -66,8 +78,8 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
                   <img src={searchArrow} alt='Link' className='search-arrow'/>
                 </div>
               </div>
-              <AlbumResultPage songs={album.songs} />
-            </Link> 
+              {isAlbumExpanded(album.id) && <AlbumResultPage songs={album.songs} />}
+            </>
           )
         }
 
