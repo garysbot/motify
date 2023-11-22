@@ -25,36 +25,40 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
       }
 
         {
-          artistResults.map((artist, index) => 
-            <div className='result-row'>
-              <div className='result-detail'>
-                <img src={artist.about_img} alt=''/>
-                <div className='name'>
-                  <p key={index}>{artist.artist_name}</p>
-                  <p className='result-label'>Artist</p>
+          artistResults.map((artist, index) =>
+            <Link to={`/artists/${artist.id}`}>
+              <div className='result-row'>
+                <div className='result-detail'>
+                  <img src={artist.about_img} alt=''/>
+                  <div className='name'>
+                    <p key={index}>{artist.artist_name}</p>
+                    <p className='result-label'>Artist</p>
+                  </div>
+                </div>
+                <div className='result-link'>
+                  <img src={searchArrow} alt='Link' className='search-arrow'/>
                 </div>
               </div>
-              <div className='result-link'>
-                <Link to={`/artists/${artist.id}`}><img src={searchArrow} alt='Link' className='search-arrow'/></Link>
-              </div>
-            </div>
+            </Link> 
           )
         }
 
         {
-          albumResults.map((album, index) => 
-            <div className='result-row'>
-              <div className='result-detail'>
-                <img src={album.cover_img} alt='' />
-                <div className='name'>
-                  <p key={index}>{album.title}</p>
-                  <p className='result-label'>Album</p>
+          albumResults.map((album, index) =>
+            <Link to={`/albums/${album.id}`}>
+              <div className='result-row'>
+                <div className='result-detail'>
+                  <img src={album.cover_img} alt='' />
+                  <div className='name'>
+                    <p key={index}>{album.title}</p>
+                    <p className='result-label'>Album</p>
+                  </div>
+                </div>
+                <div className='result-link'>
+                  <img src={searchArrow} alt='Link' className='search-arrow'/>
                 </div>
               </div>
-              <div className='result-link'>
-                <Link to={`/albums/${album.id}`}><img src={searchArrow} alt='Link' className='search-arrow'/></Link>
-              </div>
-            </div>
+            </Link> 
           )
         }
 
@@ -63,10 +67,9 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
             <div className='result-row'>
               <div className='result-detail'>
                 <img src={song.cover_img} alt=''/>
-
                 <div className='name'>
                   <p key={index}>{song.title}</p>
-                  <p className='result-label'>{song.artist_id}</p>
+                  <p className='result-label'>{song.duration}</p>
                 </div>
 
               </div>
