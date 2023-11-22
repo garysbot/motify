@@ -143,6 +143,13 @@
 .userbar-profile-menu li {
   list-style: none;
   padding: 1rem;
+  cursor: pointer;
+}
+
+.userbar-profile-menu a {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
 }
 
 /* ^ Content ----------------------------- */

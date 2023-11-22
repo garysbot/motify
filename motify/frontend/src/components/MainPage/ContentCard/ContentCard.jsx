@@ -83,11 +83,16 @@ const Cards = ({ contentType }) => {
         return (
           Object.values(artists).map((artist) => 
             (
-              <div className='vertical-content-card' key={artist.id}>
-                <img src={artist.aboutImg} alt='' className='vertical-cover'/>
-                <p className='vertical-title'>{artist.artistName}</p>
-                <p className='vertical-artist'>Artist</p>
-              </div>
+              <Link to={{
+                pathname: `/artists/${artist.id}`,
+                state: { data: artist }
+                }}>
+                <div className='vertical-content-card' key={artist.id}>
+                  <img src={artist.aboutImg} alt='' className='vertical-cover'/>
+                  <p className='vertical-title'>{artist.artistName}</p>
+                  <p className='vertical-artist'>Artist</p>
+                </div>
+              </Link>
             ))
           )
       default:
