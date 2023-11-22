@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom'
 
 const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
   // Initialize the results as empty arrays
-  let albumResults = searchResults.albums || [];
-  let artistResults = searchResults.artists || [];
-  let playlistResults = searchResults.playlists || [];
-  let songResults = searchResults.songs || [];
+  const albumResults = searchResults.filter(result => result.type === 'album');
+  const artistResults = searchResults.filter(result => result.type === 'artist');
+  const playlistResults = searchResults.filter(result => result.type === 'playlist');
+  const songResults = searchResults.filter(result => result.type === 'song');
 
   // Function to check if there are any results
   const hasResults = () => {
@@ -23,11 +23,7 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
           <h3>No results found for "{query}"</h3>
         </div>
       }
-
-{
-                      console.log(artistResults)
-                    }
-
+      {console.log(`Current search results: ${searchResults.error}`)}
         {
           artistResults.map((artist, index) =>
             <Link to={`/artists/${artist.id}`}>

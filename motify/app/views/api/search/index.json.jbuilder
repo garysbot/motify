@@ -9,7 +9,7 @@ json.array!(@results[:artists] + @results[:albums] + @results[:songs] + @results
     json.songs result.songs.as_json(only: [:id, :title, :duration, :explicit])
   when Album
     json.extract! result, :id, :artist_id, :title, :genre, :cover_img, :release_date, :record_company
-    # json.songs result.songs.as_json(only: [:id, :title, :duration, :explicit])
+    json.songs result.songs.as_json(only: [:id, :title, :duration, :explicit])
   when Song
     json.extract! result, :id, :artist_id, :album_id, :title, :duration, :explicit, :song_url
     json.cover_img result.album.try(:cover_img)
