@@ -2,6 +2,7 @@ import './SearchResultsDropdown.css'
 import searchArrow from '../../static/icons/search-arrow.svg'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import AlbumResultPage from './ResultsPage/AlbumResultPage'
 
 const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
   const validatedSearchResults = Array.isArray(searchResults) ? searchResults : [];
@@ -22,6 +23,7 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
   return (
     <>
       <div className="search-results">
+        
       {!hasResults() && searchInitiated && 
         <div className='no-results'>
           <h3>No results found for "{query}"</h3>
@@ -64,6 +66,7 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
                   <img src={searchArrow} alt='Link' className='search-arrow'/>
                 </div>
               </div>
+              <AlbumResultPage songs={album.songs} />
             </Link> 
           )
         }
