@@ -23,21 +23,94 @@
 
 .result-row {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  margin-top: 2rem;
+  /* padding-top: 4rem; */
+  margin-top: 1rem;
   color: white;
+  width: 100%;
+  padding: 0.5rem;
+  padding-left: 0.5rem;
+  border-radius: 5px;
+}
+
+.result-row:hover {
+  background-color: #2a2a2a;
 }
 
 .result-detail {
   display: flex;
   gap: 1rem;
   align-items: center;
-  width: 100%;
+  width: 50%;
+  cursor: pointer;
 }
 
-.result-detail img {
+.result-detail a {
+  color: white
+}
+
+.result-artist-img {
   width: 36px;
   height: 36px;
   border-radius: 100%;
 }
 
+.result-song-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 2px;
+}
+
+.result-album-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 2px;
+}
+
+
+.result-album a {
+  color: white;
+  cursor: pointer;
+  opacity: 70%;
+  font-size: 0.8rem;
+}
+
+.result-album a:hover {
+  opacity: 100%;
+  text-decoration: underline;
+}
+
+.result-album p:hover {
+  opacity: 100%;
+  text-decoration: underline;
+}
+.result-link {
+  justify-self: unset;
+}
+
+.result-link img {
+  align-self: flex-end;
+}
+
+.result-link button {
+  color: white;
+  font-family: 'CircularSpotifyBook';
+  opacity: 70%;
+  border-color: white;
+  border-width: 1px;
+  width: 3.75rem;
+  height: 1.875rem;
+  border-radius: 30px;
+  box-shadow: none;
+  /* border-style: inherit; */
+}
+
+.result-link button:hover {
+  opacity: 90%;
+  border-width: 2px;
+}
+
+button {
+  box-shadow: none;
+}

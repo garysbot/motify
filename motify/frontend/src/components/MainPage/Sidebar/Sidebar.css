@@ -16,14 +16,11 @@ display: flex;
 
 .sidebar-mini-home button {
   cursor: pointer;
+  border-style: none;
 }
 
 a {
   text-decoration: none;
-  cursor: pointer;
-}
-
-button {
   cursor: pointer;
 }
 

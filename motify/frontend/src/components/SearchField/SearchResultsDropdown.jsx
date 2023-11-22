@@ -1,6 +1,7 @@
 import './SearchResultsDropdown.css'
 import searchArrow from '../../static/icons/search-arrow.svg'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
 
 const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
   const validatedSearchResults = Array.isArray(searchResults) ? searchResults : [];
@@ -16,6 +17,8 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
             playlistResults.length > 0 || songResults.length > 0;
   }
 
+  const [hoveredTrack, setHoveredTrack] = useState(null);
+
   return (
     <>
       <div className="search-results">
@@ -27,9 +30,12 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
         {
           artistResults.map((artist, index) =>
             <Link to={`/artists/${artist.id}`}>
-              <div className='result-row'>
+              <div className='result-row'
+                onMouseEnter={() => setHoveredTrack(index)}
+                onMouseLeave={() => setHoveredTrack(null)}
+              >
                 <div className='result-detail'>
-                  <img src={artist.aboutImg} alt=''/>
+                  <img src={artist.aboutImg} alt='' className='result-artist-img'/>
                   <div className='name'>
                     <p key={index}>{artist.artistName}</p>
                     <p className='result-label'>Artist</p>
@@ -48,7 +54,7 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
             <Link to={`/albums/${album.id}`}>
               <div className='result-row'>
                 <div className='result-detail'>
-                  <img src={album.coverImg} alt='' />
+                  <img src={album.coverImg} alt='' className='result-album-img' />
                   <div className='name'>
                     <p key={index}>{album.title}</p>
                     <p className='result-label'>Album</p>
@@ -66,12 +72,19 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
           songResults.map((song, index) => 
             <div className='result-row'>
               <div className='result-detail'>
-                <img src={song.coverImg} alt=''/>
-                <div className='name'>
-                  <p key={index}>{song.title}</p>
-                  <p className='result-label'>{song.artistName}</p>
-                </div>
-
+                
+                  <img src={song.coverImg} alt='' className='result-song-img'/>
+                  <div className='name'>
+                    <p key={index}>{song.title}</p>
+                    <Link to={`artists/${song.artistId}`} className='result-album'><p className='result-label'>{song.artistName}</p></Link>
+                  </div>
+              </div>
+              <div className='result-album'>
+                <Link><p>{song.albumTitle}</p></Link>
+              </div>
+              <div className='result-link'>
+                <button>Add</button>
+                {/* ! Need a handler to add to the playlist here */}
               </div>
             </div>
           )

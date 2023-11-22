@@ -14,6 +14,7 @@ json.array!(@results[:artists] + @results[:albums] + @results[:songs] + @results
     json.extract! result, :id, :artist_id, :album_id, :title, :duration, :explicit, :song_url
     json.cover_img result.album.try(:cover_img)
     json.artist_name result.artist.try(:artist_name)
+    json.album_title result.album.try(:title)
   when Playlist
     json.extract! result, :id, :user_id, :title
   end

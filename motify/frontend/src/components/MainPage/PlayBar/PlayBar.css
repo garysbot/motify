@@ -158,6 +158,7 @@
 }
 
 button {
-  border-style: none;
-  background-color: rgba(0, 0, 0, 0);
+  /* border-style: none; */
+  background-color: #121212;
+  /* background-color: rgba(0, 0, 0, 0); */
 }
