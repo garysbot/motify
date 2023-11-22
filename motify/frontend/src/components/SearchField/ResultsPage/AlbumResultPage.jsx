@@ -9,9 +9,9 @@ const AlbumResultPage = ({ songs }) => {
         <div className='result-row'>
           <div className='result-detail'>
             <img src={song.coverImg} alt='' className='result-album-img' />
-            <div className='name'>
+            <div className='result-album'>
               <p>{song.title}</p>
-              <p>{song.artistName}</p>
+              <Link to={`/artists/${song.artistId}`}><p>{song.artistName}</p></Link>
             </div>
           </div>
           <div className='result-album'>

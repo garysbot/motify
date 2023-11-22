@@ -14,7 +14,8 @@ json.array!(@results[:artists] + @results[:albums] + @results[:songs] + @results
       song_attributes.merge!(
         artist_name: song.artist&.artist_name,  # Safely get the artist's name
         album_title: result.title,            # Add the album's title from the current album context
-        cover_img: result.cover_img
+        cover_img: result.cover_img,
+        artist_id: result.artist_id
       )
     }
   when Song
