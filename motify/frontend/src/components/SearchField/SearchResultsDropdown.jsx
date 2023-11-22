@@ -3,6 +3,7 @@ import searchArrow from '../../static/icons/search-arrow.svg'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import AlbumResultPage from './ResultsPage/AlbumResultPage'
+import ArtistResultPage from './ResultsPage/ArtistResultPage'
 
 const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
   const validatedSearchResults = Array.isArray(searchResults) ? searchResults : [];
@@ -20,6 +21,7 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
 
   const [hoveredTrack, setHoveredTrack] = useState(null);
   const [expandedAlbum, setExpandedAlbum] = useState(null);
+  const [expandedArtist, setExpandedArtist] = useState(null);
 
   // Display all songs in an album on click
   const toggleSongsDisplay = (albumId) => {
@@ -30,7 +32,16 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
     }
   };
 
+  const toggleArtistsDisplay = (artistId) => {
+    if (expandedArtist === artistId) {
+      setExpandedArtist(null);
+    } else {
+      setExpandedArtist(artistId);
+    }
+  };
+
   const isAlbumExpanded = (albumId) => expandedAlbum === albumId;
+  const isArtistExpanded = (artistId) => expandedArtist === artistId;
 
   return (
     <>
@@ -43,23 +54,25 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
       }
         {
           artistResults.map((artist, index) =>
-            <Link to={`/artists/${artist.id}`}>
-              <div className='result-row'
-                onMouseEnter={() => setHoveredTrack(index)}
-                onMouseLeave={() => setHoveredTrack(null)}
-              >
-                <div className='result-detail'>
-                  <img src={artist.aboutImg} alt='' className='result-artist-img'/>
-                  <div className='name'>
-                    <p key={index}>{artist.artistName}</p>
-                    <p className='result-label'>Artist</p>
-                  </div>
-                </div>
-                <div className='result-link'>
-                  <img src={searchArrow} alt='Link' className='search-arrow'/>
+          <>
+            <div className='result-row'
+              onMouseEnter={() => setHoveredTrack(index)}
+              onMouseLeave={() => setHoveredTrack(null)}
+              onClick={() => toggleArtistsDisplay(artist.id)}
+            >
+              <div className='result-detail'>
+                <img src={artist.aboutImg} alt='' className='result-artist-img'/>
+                <div className='name'>
+                  <p key={index}>{artist.artistName}</p>
+                  <p className='result-label'>Artist</p>
                 </div>
               </div>
-            </Link> 
+              <div className='result-link'>
+                <img src={searchArrow} alt='Link' className='search-arrow'/>
+              </div>
+            </div>
+            {isArtistExpanded(artist.id) && <ArtistResultPage songs={artist.songs}/>}
+          </>
           )
         }
 
