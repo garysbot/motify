@@ -14,8 +14,13 @@ display: flex;
   color: #ffffff;
 }
 
+.sidebar-mini-home button {
+  cursor: pointer;
+}
+
 a {
   text-decoration: none;
+  cursor: pointer;
 }
 
 .active-link p {
