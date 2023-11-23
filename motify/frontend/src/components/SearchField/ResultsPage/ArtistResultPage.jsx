@@ -13,7 +13,7 @@ const ArtistResultPage = ({ songs }) => {
             </div>
           </div>
           <div className='result-album'>
-            <Link><p>{song.albumTitle}</p></Link>
+            <Link to={`/albums/${song.albumId}`}><p>{song.albumTitle}</p></Link>
           </div>
           <div className='result-link'>
             <button>Add</button>

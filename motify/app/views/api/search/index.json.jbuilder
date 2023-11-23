@@ -6,7 +6,14 @@ json.array!(@results[:artists] + @results[:albums] + @results[:songs] + @results
   case result
   when Artist
     json.extract! result, :id, :artist_name, :verified, :about_blurb, :about_img, :global_ranking, :monthly_listeners
-    json.songs result.songs.as_json(only: [:id, :title, :duration, :explicit])
+    json.songs result.songs.map { |song|
+      song_attributes = song.as_json(only: [:id, :title, :duration, :explicit, :album_id, :artist_id])
+      song_attributes.merge!(
+        cover_img: song.album&.cover_img,  # Safely get the cover image from the song's album
+        album_title: song.album&.title,    # Safely get the album's title
+        artist_name: result.artist_name  # Artist's name from the current artist context
+      )
+    }
   when Album
     json.extract! result, :id, :artist_id, :title, :genre, :cover_img, :release_date, :record_company
     json.songs result.songs.map { |song|
