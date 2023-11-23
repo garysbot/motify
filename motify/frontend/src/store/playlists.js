@@ -82,7 +82,7 @@ export const createPlaylistAsync = (playlistData) => async (dispatch) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(playlistData)
+      body: JSON.stringify({playlist: playlistData})
     });
 
     if (!response.ok) {
@@ -121,7 +121,7 @@ export const updatePlaylistAsync = (playlistData) => async (dispatch) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(playlistData)
+      body: JSON.stringify({playlist: playlistData})
     });
 
     if (!response.ok) {
@@ -159,7 +159,7 @@ const playlistsReducer = (state = initialState, action) => {
       const { payload } = action;
       return {
         ...state,
-        [payload.id]: payload
+        currentPlaylist: payload
       };
     }
     case RECEIVE_PLAYLISTS: {

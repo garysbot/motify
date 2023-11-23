@@ -3,13 +3,16 @@ import './PlaylistCreate.css'
 import '../../ShowPages/ShowPage.css'
 import SearchField from '../../SearchField/SearchField'
 // Imgs
-import newPlaylistCover from '../../../static/albums/newPlaylistCover.png'
+import newPlaylistCover from '../../../static/albums/newPlaylistCover.png';
 
 // Redux state
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 const PlaylistCreate = () => {
+  const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
+  const draftPlaylist = useSelector(state => state.playlist.draftPlaylist);
+  const songs = draftPlaylist.songs;
 
   return (
     <>
@@ -38,11 +41,18 @@ const PlaylistCreate = () => {
           <p>Duration</p>
         </div>
         <hr></hr>
-        <p>Stuff in hjere</p>
-        <p>Stuff in hjere</p>
-        <p>Stuff in hjere</p>
-        <p>Stuff in hjere</p>
-        <p>Stuff in hjere</p>
+        {
+          songs.map((song, trackNum) => (
+            <>
+              <div className='show-songs-row-container'>
+                <p>{trackNum + 1}</p>
+                <p>{song.title}</p>
+                <p>{song.albumTitle}</p>
+                <p>{`${Math.floor(song.duration / 60)}:${String(song.duration % 60).padStart(2, '0')}`}</p>
+              </div>
+            </>
+          ))
+        }
       </div>
       {/* Search body */}
       <div className='playlist-create search-footer'>

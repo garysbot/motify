@@ -105,7 +105,7 @@
 
 .show-songs-row-container {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: space-between;
   /* padding-top: 0.5rem; */
   /* padding-bottom: 0.5rem; */

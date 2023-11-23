@@ -31,6 +31,18 @@ class PlaylistsController < ApplicationController
     head :no_content
   end
 
+  # PUT /playlists/1
+  # PUT /playlists/1.json
+  def update
+    if @playlist.update(playlist_params)
+      # If update is successful, respond with the updated playlist
+      render :show, status: :ok, location: @playlist
+    else
+      # If update fails, respond with the errors
+      render json: @playlist.errors, status: :unprocessable_entity
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_playlist
@@ -39,6 +51,6 @@ class PlaylistsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def playlist_params
-      params.require(:playlist).permit(:user_id, :title)
+      params.require(:playlist).permit(:user_id, :title, songs: [])
     end
 end
