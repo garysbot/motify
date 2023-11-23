@@ -1,5 +1,6 @@
 import './SearchResultsDropdown.css'
 import searchArrow from '../../static/icons/search-arrow.svg'
+import searchArrowLeft from '../../static/icons/search-arrow-left.svg'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import AlbumResultPage from './ResultsPage/AlbumResultPage'
@@ -40,8 +41,15 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
     }
   };
 
+  let resultsReversed = '';
+
   const isAlbumExpanded = (albumId) => expandedAlbum === albumId;
-  const isArtistExpanded = (artistId) => expandedArtist === artistId;
+  const isArtistExpanded = (artistId) => {
+    if (expandedArtist === artistId) {
+      resultsReversed = '-back'
+      return true;
+    }
+  };
 
   return (
     <>
@@ -52,80 +60,93 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
           <h3>No results found for "{query}"</h3>
         </div>
       }
-        {
-          artistResults.map((artist, index) =>
+      {
+        artistResults.map((artist, index) =>
+        <>
+          <div className={`result-row${resultsReversed}`}
+            onMouseEnter={() => setHoveredTrack(index)}
+            onMouseLeave={() => setHoveredTrack(null)}
+            onClick={() => toggleArtistsDisplay(artist.id)}
+          >
+            {
+              isArtistExpanded(artist.id) ? 
+                <>
+                  <div className='result-link'>
+                    <img src={searchArrowLeft} alt='Link' className='search-arrow'/>
+                  </div>
+                  <div className='result-detail-expanded'>
+                    <p key={index}>{artist.artistName}</p>
+                  </div>
+                </>
+              :
+                <>
+                  <div className='result-detail'>
+                    <img src={artist.aboutImg} alt='' className='result-artist-img'/>
+                    <div className='name'>
+                      <p key={index}>{artist.artistName}</p>
+                      <p className='result-label'>Artist</p>
+                    </div>
+                  </div>
+                  <div className='result-link'>
+                    <img src={searchArrow} alt='Link' className='search-arrow'/>
+                  </div>
+                </>
+            }
+
+          </div>
+          {isArtistExpanded(artist.id) && <ArtistResultPage songs={artist.songs}/>}
+        </>
+        )
+      }
+
+      {
+        albumResults.map((album, index) =>
           <>
-            <div className='result-row'
-              onMouseEnter={() => setHoveredTrack(index)}
-              onMouseLeave={() => setHoveredTrack(null)}
-              onClick={() => toggleArtistsDisplay(artist.id)}
-            >
+            <div className='result-row' onClick={() => toggleSongsDisplay(album.id)}>
               <div className='result-detail'>
-                <img src={artist.aboutImg} alt='' className='result-artist-img'/>
+                <img src={album.coverImg} alt='' className='result-album-img' />
                 <div className='name'>
-                  <p key={index}>{artist.artistName}</p>
-                  <p className='result-label'>Artist</p>
+                  <p key={index}>{album.title}</p>
+                  <p className='result-label'>Album</p>
                 </div>
               </div>
               <div className='result-link'>
                 <img src={searchArrow} alt='Link' className='search-arrow'/>
               </div>
             </div>
-            {isArtistExpanded(artist.id) && <ArtistResultPage songs={artist.songs}/>}
+            {isAlbumExpanded(album.id) && <AlbumResultPage songs={album.songs} />}
           </>
-          )
-        }
+        )
+      }
 
-        {
-          albumResults.map((album, index) =>
-            <>
-              <div className='result-row' onClick={() => toggleSongsDisplay(album.id)}>
-                <div className='result-detail'>
-                  <img src={album.coverImg} alt='' className='result-album-img' />
-                  <div className='name'>
-                    <p key={index}>{album.title}</p>
-                    <p className='result-label'>Album</p>
-                  </div>
+      {
+        songResults.map((song, index) => 
+          <div className='result-row'>
+            <div className='result-detail song-result'>
+                <img src={song.coverImg} alt='' className='result-song-img'/>
+                <div className='name'>
+                  <p key={index}>{song.title}</p>
+                  <Link to={`artists/${song.artistId}`} className='result-album'><p className='result-label'>{song.artistName}</p></Link>
                 </div>
-                <div className='result-link'>
-                  <img src={searchArrow} alt='Link' className='search-arrow'/>
-                </div>
-              </div>
-              {isAlbumExpanded(album.id) && <AlbumResultPage songs={album.songs} />}
-            </>
-          )
-        }
-
-        {
-          songResults.map((song, index) => 
-            <div className='result-row'>
-              <div className='result-detail'>
-                
-                  <img src={song.coverImg} alt='' className='result-song-img'/>
-                  <div className='name'>
-                    <p key={index}>{song.title}</p>
-                    <Link to={`artists/${song.artistId}`} className='result-album'><p className='result-label'>{song.artistName}</p></Link>
-                  </div>
-              </div>
-              <div className='result-album'>
-                <Link><p>{song.albumTitle}</p></Link>
-              </div>
-              <div className='result-link'>
-                <button>Add</button>
-                {/* ! Need a handler to add to the playlist here */}
-              </div>
             </div>
-          )
-        }
-
-        {
-          playlistResults.map((playlist, index) => 
-            <div className='playlist-result'>
-              <p key={index}>{playlist.title}</p>
+            <div className='result-album'>
+              <Link><p>{song.albumTitle}</p></Link>
             </div>
-          )
-        }
+            <div className='result-link'>
+              <button>Add</button>
+              {/* ! Need a handler to add to the playlist here */}
+            </div>
+          </div>
+        )
+      }
 
+      {
+        playlistResults.map((playlist, index) => 
+          <div className='playlist-result'>
+            <p key={index}>{playlist.title}</p>
+          </div>
+        )
+      }
 
       </div>
     </>

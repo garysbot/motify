@@ -35,6 +35,12 @@
   cursor: pointer;
 }
 
+.result-row-back {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content:left;
+}
+
 .result-row:hover {
   background-color: #2a2a2a;
 }
@@ -50,6 +56,7 @@
 .result-detail a {
   color: white
 }
+
 
 .result-artist-img {
   width: 36px;
@@ -115,3 +122,10 @@
 button {
   box-shadow: none;
 }
+
+.result-detail-expanded p {
+  font-size: 1.1rem;
+  font-family: 'CircularSpotifyBold';
+  opacity: 70%;
+}
+
