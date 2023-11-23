@@ -6,10 +6,9 @@ import SearchField from '../../SearchField/SearchField'
 import newPlaylistCover from '../../../static/albums/newPlaylistCover.png'
 
 // Redux state
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const PlaylistCreate = () => {
-  const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
 
   return (

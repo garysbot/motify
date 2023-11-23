@@ -131,7 +131,17 @@ export const updatePlaylistAsync = (playlistData) => async (dispatch) => {
 };
 
 
-const initialState = {};
+const initialState = {
+  currentPlaylist: {
+    userId: null,
+    title: ''
+  },
+  draftPlaylist: {
+    userId: null,
+    title: '',
+    songs: []
+  }
+};
 
 const playlistsReducer = (state = initialState, action) => {
   switch (action.type) {

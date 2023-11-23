@@ -1,6 +1,13 @@
 import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux';
 
 const ArtistResultPage = ({ songs }) => {
+  const dispatch = useDispatch();
+  const currentUser = useSelector(state => state.session.user.id)
+  const handleClick = (songId) => {
+    
+  }
+
   return (
     <>
       {songs.map((song, index) => (
@@ -16,7 +23,7 @@ const ArtistResultPage = ({ songs }) => {
             <Link to={`/albums/${song.albumId}`}><p>{song.albumTitle}</p></Link>
           </div>
           <div className='result-link'>
-            <button>Add</button>
+            <button onClick={handleClick}>Add</button>
             {/* ! Need a handler to add to the playlist here */}
           </div>
         </div>
