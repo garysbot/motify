@@ -1,15 +1,25 @@
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
+import { addSongToDraftPlaylist } from '../../../store/playlists';
 
 const ArtistResultPage = ({ songs }) => {
   const dispatch = useDispatch();
-  const currentUser = useSelector(state => state.session.user.id)
-  const handleClick = (songId) => {
-    
+  const currentUserId = useSelector(state => state.session.user.id)
+  const draftPlaylist = useSelector(state => state.playlist.draftPlaylist)
+  const handleClick = (song) => {
+
+    dispatch(addSongToDraftPlaylist({
+      userId: currentUserId,
+      song: song,
+      // title: title in redux too
+    }))
   }
+
+  
 
   return (
     <>
+    {console.log(currentUserId)}
       {songs.map((song, index) => (
         <div className='result-row'>
           <div className='result-detail'>
@@ -23,7 +33,7 @@ const ArtistResultPage = ({ songs }) => {
             <Link to={`/albums/${song.albumId}`}><p>{song.albumTitle}</p></Link>
           </div>
           <div className='result-link'>
-            <button onClick={handleClick}>Add</button>
+            <button onClick={() => handleClick(song)}>Add</button>
             {/* ! Need a handler to add to the playlist here */}
           </div>
         </div>

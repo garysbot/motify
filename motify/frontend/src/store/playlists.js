@@ -1,11 +1,14 @@
 import csrfFetch from "./csrf"
 
 // ! Actions
-export const RECEIVE_PLAYLIST = 'playlists/RECEIVE_PLAYLIST'
-export const RECEIVE_PLAYLISTS = 'playlists/RECEIVE_PLAYLISTS'
-export const REMOVE_PLAYLIST = 'playlists/REMOVE_PLAYLIST'
-export const CREATE_PLAYLIST = 'playlists/CREATE_PLAYLIST'
+export const RECEIVE_PLAYLIST = 'playlists/RECEIVE_PLAYLIST';
+export const RECEIVE_PLAYLISTS = 'playlists/RECEIVE_PLAYLISTS';
+export const REMOVE_PLAYLIST = 'playlists/REMOVE_PLAYLIST';
+
+export const CREATE_PLAYLIST = 'playlists/CREATE_PLAYLIST';
 export const UPDATE_PLAYLIST = 'playlists/UPDATE_PLAYLIST';
+
+export const ADD_SONG_TO_DRAFT_PLAYLIST = 'playlists/ADD_SONG_TO_DRAFT_PLAYLIST';
 
 
 export const receivePlaylist = (playlist) => ({
@@ -31,6 +34,11 @@ export const createPlaylist = (playlist) => ({
 export const updatePlaylist = (playlist) => ({
   type: UPDATE_PLAYLIST,
   payload: playlist
+});
+
+export const addSongToDraftPlaylist = (song) => ({
+  type: ADD_SONG_TO_DRAFT_PLAYLIST,
+  payload: song
 });
 
 // ! Selector Helpers
@@ -133,10 +141,12 @@ export const updatePlaylistAsync = (playlistData) => async (dispatch) => {
 
 const initialState = {
   currentPlaylist: {
+    id: null,
     userId: null,
     title: ''
   },
   draftPlaylist: {
+    id: null,
     userId: null,
     title: '',
     songs: []
@@ -179,7 +189,22 @@ const playlistsReducer = (state = initialState, action) => {
         ...state,
         [payload.id]: payload
       };
-    }    
+    }
+    case ADD_SONG_TO_DRAFT_PLAYLIST: {
+      const newSong = action.payload.song;
+      const userId = action.payload.userId;
+      const title = action.payload.title;
+      return {
+        ...state,
+
+        draftPlaylist: {
+          ...state.draftPlaylist,
+          userId,
+          title,
+          songs: [...state.draftPlaylist.songs, newSong]
+        }
+      }
+    }   
     default:
       return state;
   }
