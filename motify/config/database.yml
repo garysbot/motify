@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: authenticate_me_production
-  username: authenticate_me
-  password: <%= ENV["AUTHENTICATE_ME_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>

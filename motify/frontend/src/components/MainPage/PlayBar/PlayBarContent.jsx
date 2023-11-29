@@ -39,13 +39,13 @@ const PlayBarContent = ({ contentType, currentSong }) => {
 
   const playAudio = () => {
     if (currentSong) {
-      console.log(`Play Clicked`)
+      // console.log(`Play Clicked`)
       audioRef.current.play();
     }
   };
 
   const pauseAudio = () => {
-    console.log(`Pause Clicked`)
+    // console.log(`Pause Clicked`)
     audioRef.current.pause();
   };
 

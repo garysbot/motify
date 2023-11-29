@@ -8,5 +8,20 @@
   },
   "devDependencies": {
     "redux-logger": "^3.0.6"
+  },
+  "name": "motify",
+  "description": "a full stack Spotify clone",
+  "version": "1.0.0",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "npm install --prefix frontend && npm run build --prefix frontend"
+  },
+  "keywords": [],
+  "author": "Gary Jiang",
+  "license": "ISC",
+  "engines": {
+    "node": "18.x"
   }
 }

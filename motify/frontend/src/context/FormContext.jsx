@@ -164,15 +164,15 @@ export const FormProvider = ({ children }) => {
         validateUsername(value)
         break;
       case 'month':
-        console.log(`switch case worked for month`)
+        // console.log(`switch case worked for month`)
         validateMonth(value)
         break;
       case 'day':
-        console.log(`switch case worked for day`)
+        // console.log(`switch case worked for day`)
         validateDay(value)
         break;
       case 'year':
-        console.log(`switch case worked for year`)
+        // console.log(`switch case worked for year`)
         validateYear(value)
         break;
       case 'gender':
@@ -221,8 +221,8 @@ export const FormProvider = ({ children }) => {
 
   // ~ Updated handleNext for frontend error validation next button control
   const handleNext = () => {
-    console.log(`The status of !disablenext() is: ${!disableNext()}`)
-    console.log(`The value we're validating is data.year: ${data.day}`)
+    // console.log(`The status of !disablenext() is: ${!disableNext()}`)
+    // console.log(`The value we're validating is data.year: ${data.day}`)
     if (!disableNext()) {
       setPage(prev => prev + 1);
     }

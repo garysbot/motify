@@ -92,7 +92,7 @@ export const createPlaylistAsync = (playlistData) => async (dispatch) => {
     }
 
     const playlist = await response.json();
-    console.log('Server response:', playlist);
+    // console.log('Server response:', playlist);
     dispatch(receivePlaylist(playlist));
   } catch (error) {
     console.error(`Create playlist failed:`, error);
@@ -131,7 +131,7 @@ export const updatePlaylistAsync = (playlistData) => async (dispatch) => {
     }
 
     const updatedPlaylist = await response.json();
-    console.log('Server response:', updatedPlaylist);
+    // console.log('Server response:', updatedPlaylist);
     dispatch(updatePlaylist(updatedPlaylist));
   } catch (error) {
     console.error(`Update playlist failed:`, error);
