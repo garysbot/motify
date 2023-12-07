@@ -41,18 +41,6 @@ const SearchField = () => {
 
       <SearchResultsDropdown query={query} searchResults={results} searchInitiated={searchInitiated}/>
 
-      {/* {results && (
-        <div className='search-results'>
-          <h3>Artists</h3>
-          <ul>
-            {
-              results.artists.map((artist, index)=> (
-                <li key={index}>{artist.name}</li>
-              ))
-            }
-          </ul>
-        </div>
-      )} */}
     </>
   );
 }
