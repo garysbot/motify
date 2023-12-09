@@ -38,7 +38,7 @@ const ArtistResultPage = ({ songs }) => {
 
   return (
     <>
-    {console.log(currentUserId)}
+    {/* {console.log(currentUserId)} */}
       {songs.map((song, index) => (
         <div className='result-row'>
           <div className='result-detail'>

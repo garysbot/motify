@@ -131,7 +131,7 @@ export const updatePlaylistAsync = (playlistData) => async (dispatch) => {
     }
 
     const updatedPlaylist = await response.json();
-    // console.log('Server response:', updatedPlaylist);
+    console.log('Server response:', updatedPlaylist);
     dispatch(updatePlaylist(updatedPlaylist));
   } catch (error) {
     console.error(`Update playlist failed:`, error);

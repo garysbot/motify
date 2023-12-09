@@ -3,8 +3,10 @@ import thunk from 'redux-thunk';
 import session from './session';
 import uiReducer from './uiReducer';
 import audioReducer from './audioReducer';
-import playlistReducer from './playlists'
+import playlistReducerOld from './playlists'
+import playlistReducer from './playlistSlice'
 import searchReducer from './search'
+
 
 export const rootReducer = combineReducers({
   session,
