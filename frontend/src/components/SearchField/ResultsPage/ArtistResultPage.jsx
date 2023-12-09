@@ -1,38 +1,19 @@
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
-import { addSongToDraftPlaylist, createPlaylistAsync, updatePlaylistAsync } from '../../../store/playlists';
+import { createPlaylistAsync, updatePlaylistAsync } from '../../../store/playlists';
+import { addSong } from '../../../store/playlistSlice'
 
 const ArtistResultPage = ({ songs }) => {
   const dispatch = useDispatch();
   const currentUserId = useSelector(state => state.session.user.id)
-  const draftPlaylist = useSelector(state => state.playlist.draftPlaylist)
+  // const draftPlaylist = useSelector(state => state.playlist.draftPlaylist)
+  const playlist = useSelector(state => state.playlist)
 
   const handleClick = (song) => {
-    const shouldCreateNewPlaylist = draftPlaylist.songs.length === 0;
+    const shouldCreateNewPlaylist = playlist.songs.length === 0;
   
-    // Dispatch addSongToDraftPlaylist action
-    dispatch(addSongToDraftPlaylist({
-      userId: currentUserId,
-      song: song,
-      title: 'Your Playlist Title' // Replace with actual title
-    }));
-  
-    if (shouldCreateNewPlaylist) {
-      // If there were no songs, create the playlist
-      dispatch(createPlaylistAsync({
-        userId: currentUserId,
-        title: 'Your Playlist Title', // Replace with actual title
-        songs: [song]
-      }));
-    } else {
-      // If there are already songs, update the current playlist
-      dispatch(updatePlaylistAsync({
-        id: draftPlaylist.id,
-        userId: currentUserId,
-        title: draftPlaylist.title,
-        songs: [...draftPlaylist.songs, song]
-      }));
-    }
+    dispatch(addSong({song: song}));
+
   };
   
 

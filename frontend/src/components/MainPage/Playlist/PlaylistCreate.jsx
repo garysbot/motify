@@ -11,8 +11,10 @@ import { useSelector, useDispatch } from 'react-redux';
 const PlaylistCreate = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
-  const draftPlaylist = useSelector(state => state.playlist.draftPlaylist);
-  const songs = draftPlaylist.songs;
+  // const draftPlaylist = useSelector(state => state.playlist.draftPlaylist);
+  // const songs = draftPlaylist.songs;
+  const playlist = useSelector(state => state.playlist)
+  const songs = playlist.songs
 
   return (
     <>
@@ -21,7 +23,12 @@ const PlaylistCreate = () => {
         <img src={newPlaylistCover} alt='' className='album-cover-img'></img>
         <div className='banner-details'>
           <p>Playlist</p>
-          <h1>My Playlist</h1>
+          <div className='playlist-name-container'>
+            <form>
+              <input></input>
+              <h1>My Playlist</h1>
+            </form>
+          </div>
           <div className='details-artist'>
             <div className='details-artist-mini-pic'>
               <img src='' alt=''></img>
@@ -42,7 +49,7 @@ const PlaylistCreate = () => {
         </div>
         <hr></hr>
         {
-          songs.map((song, trackNum) => (
+          songs?.map((song, trackNum) => (
             <>
               <div className='show-songs-row-container'>
                 <p>{trackNum + 1}</p>
