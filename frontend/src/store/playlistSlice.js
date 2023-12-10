@@ -76,6 +76,11 @@ export const createPlaylistAsync = newPlaylistData => {
   }
 }
 
+// ! Temporary for dev console backend api testing
+if (process.env.NODE_ENV !== 'production') {
+  window.createPlaylistAsync = createPlaylistAsync;
+}
+
 export const updatePlaylistAsync = updatedPlaylistData => {
 
   return (dispatch) => {

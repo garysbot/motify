@@ -19,11 +19,11 @@ const PlaylistCreate = () => {
   const [title, setTitle] = useState('')
   const dispatch = useDispatch();
 
-  const debouncedChangeHandler = useCallback (
-    debounce((title) => {
-      dispatch(updatePlaylist({ title }))
-    }, 300),
-    []
+const debouncedChangeHandler = useCallback((title) => 
+  debounce((title) => {
+    dispatch(updatePlaylist({ title }))
+  }, 300),
+  [dispatch, playlist?.id]
   )
 
   const handleChange = (e) => {

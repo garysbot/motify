@@ -18,6 +18,7 @@ export const rootReducer = combineReducers({
 
 let enhancer;
 
+
 if (process.env.NODE_ENV === 'production') {
   enhancer = applyMiddleware(thunk);
 } else {
@@ -27,8 +28,22 @@ if (process.env.NODE_ENV === 'production') {
   enhancer = composeEnhancers(applyMiddleware(thunk, logger));
 }
 
+// Production Version
+// const configureStore = (preloadedState) => {
+//     return createStore(rootReducer, preloadedState, enhancer);
+// };
+
+// DevTools backend api testing version
 const configureStore = (preloadedState) => {
-    return createStore(rootReducer, preloadedState, enhancer);
-};
+  const store = createStore(rootReducer, preloadedState, enhancer)
+
+  // Expose store to window obj in dev env
+  if (process.env.NODE_ENV !== 'production') {
+    window.store = store
+  }
+
+  return store
+}
+
 
 export default configureStore;
