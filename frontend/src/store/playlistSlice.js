@@ -1,4 +1,5 @@
-import { createSlice, GetState } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import csrfFetch from './csrf';
 
 export const playlistSlice = createSlice({
   name: 'playlist',
@@ -41,11 +42,29 @@ export const { addSong, removeSong, setPlaylistDetails, setUserID, deletePlaylis
 
 // * Thunk action creators
 export const updatePlaylistDetails = playlistDetails => {
-  return (dispatch, setPlaylistDetails ) => {
-    dispatch(setPlaylistDetails(playlistDetails))
+
+  return (dispatch) => {
+    // Establish playlistId for use with fetch
+    const playlistId = playlistDetails.id
+
+    csrfFetch(`/playlists/${playlistId}`, {
+      method: 'PATCH',
+      body: JSON.stringify({ playlist: playlistDetails })
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Network response failed, playlist not updated`)
+      }
+      return response.json()
+    })
+    .then(updatedPlaylist => {
+      dispatch(setPlaylistDetails(updatedPlaylist))
+    })
+    .catch(error => {
+      console.error(`Error updating the playlist`, error)
+    })
   }
 }
-
 
 // * Reducer
 export default playlistSlice.reducer;
