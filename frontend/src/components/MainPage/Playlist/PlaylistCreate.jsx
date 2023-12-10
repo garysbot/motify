@@ -44,12 +44,12 @@ const PlaylistCreate = () => {
             <div className='playlist-name-container'>
               <form>
                 <input
+                  className='playlist-title-field'
                   type="text"
                   value={title}
                   onChange={handleChange}
-                  placeholder='Hi there'
+                  placeholder='My New Playlist'
                 />
-                <h1>My Playlist</h1>
               </form>
             </div>
 

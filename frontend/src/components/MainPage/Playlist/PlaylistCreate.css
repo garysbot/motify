@@ -76,3 +76,20 @@
   opacity: 90%;
   font-size: 0.8rem;
 }
+
+.playlist-name-container input {
+  font-size: 3rem;
+  background-color: transparent;
+  border-style: none;
+  height: 6rem;
+}
+
+.playlist-name-container input:focus {
+  outline: none;
+}
+
+.playlist-name-container input::placeholder {
+  color: white;
+  font-size: 3rem;
+  font-family: 'CircularSpotifyBold';
+}
