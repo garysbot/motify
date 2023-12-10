@@ -34,14 +34,20 @@ class PlaylistsController < ApplicationController
   # PUT /playlists/1
   # PUT /playlists/1.json
   def update
-    if @playlist.update(playlist_params)
-      # If update is successful, respond with the updated playlist
-      render :show, status: :ok, location: @playlist
+    @playlist = Playlist.find(params[:id])
+  
+    # Fetch the Song objects for the provided IDs
+    song_objects = Song.find(playlist_params[:songs])
+  
+    if @playlist.update(playlist_params.except(:songs))
+      # Update the songs association
+      @playlist.songs = song_objects
+      render 'show', status: :ok
     else
-      # If update fails, respond with the errors
       render json: @playlist.errors, status: :unprocessable_entity
     end
   end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -51,7 +57,7 @@ class PlaylistsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def playlist_params
-      params.require(:playlist).permit(:user_id, :title, :songs)
+      params.require(:playlist).permit(:user_id, :title, songs: [])
     end
     
     
