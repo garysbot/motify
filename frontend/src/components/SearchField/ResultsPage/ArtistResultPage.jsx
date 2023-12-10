@@ -1,19 +1,15 @@
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
-import { createPlaylistAsync, updatePlaylistAsync } from '../../../store/playlists';
-import { addSong } from '../../../store/playlistSlice'
+import { addSong, updatePlaylistAsync } from '../../../store/playlistSlice'
 
 const ArtistResultPage = ({ songs }) => {
   const dispatch = useDispatch();
-  const currentUserId = useSelector(state => state.session.user.id)
+  // const currentUserId = useSelector(state => state.session.user.id)
   // const draftPlaylist = useSelector(state => state.playlist.draftPlaylist)
   const playlist = useSelector(state => state.playlist)
 
   const handleClick = (song) => {
-    const shouldCreateNewPlaylist = playlist.songs.length === 0;
-  
-    dispatch(addSong({song: song}));
-
+    dispatch(updatePlaylistAsync({ song: song }))
   };
   
 

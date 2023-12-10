@@ -13,12 +13,34 @@ export const playlistSlice = createSlice({
 
   reducers: {
     createPlaylist: (state, action) => {
-      const { user_id, title, songs, created_at, updated_at } = action.payload
-      state.user_id = user_id
-      state.title = title
-      state.songs = songs || []
-      state.created_at = created_at
-      state.updated_at = updated_at
+      // & converted to camel cases
+      const { userId, title, songs, createdAt, updatedAt } = action.payload;
+
+      // ! guide from Redux fundamental docs
+      // const { user_id, title, songs, created_at, updated_at } = action.payload
+      
+      return {
+        // & converted to camelcases
+        user_id: userId || state.user_id,
+        title: title || state.title,
+        songs: songs || state.songs,
+        created_at: createdAt || state.created_at,
+        updated_at: updatedAt || state.updated_at
+
+        // ! snake case
+        // ...state,
+        // user_id: user_id || state.user_id,
+        // title: title || state.title,
+        // songs: songs || state.songs,
+        // created_at: created_at || state.created_at,
+        // updated_at: updated_at || state.updated_at
+      }
+      // ! guide from Redux fundamental docs
+      // state.user_id = user_id
+      // state.title = title
+      // state.songs = songs || []
+      // state.created_at = created_at
+      // state.updated_at = updated_at
     },
 
     addSong: (state, action) => {
@@ -68,7 +90,13 @@ export const createPlaylistAsync = newPlaylistData => {
       return response.json()
     })
     .then(newPlaylist => {
-      dispatch(createPlaylist(newPlaylist))
+      // dispatch(createPlaylist(newPlaylist))
+
+      // & Log the response to see if it contains all the necessary fields
+      console.log("Received new playlist data: ", newPlaylist);
+
+      // & Ensure that newPlaylist contains all the necessary fields
+      dispatch(createPlaylist(newPlaylist));
     })
     .catch(error => {
       console.error(`Error creating the playlist`, error)
