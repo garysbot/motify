@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, GetState } from '@reduxjs/toolkit';
 
 export const playlistSlice = createSlice({
   name: 'playlist',
@@ -38,6 +38,14 @@ export const playlistSlice = createSlice({
 
 // * Actions
 export const { addSong, removeSong, setPlaylistDetails, setUserID, deletePlaylist } = playlistSlice.actions
+
+// * Thunk action creators
+export const updatePlaylistDetails = playlistDetails => {
+  return (dispatch, setPlaylistDetails ) => {
+    dispatch(setPlaylistDetails(playlistDetails))
+  }
+}
+
 
 // * Reducer
 export default playlistSlice.reducer;
