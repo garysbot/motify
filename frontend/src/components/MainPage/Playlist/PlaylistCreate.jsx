@@ -7,7 +7,7 @@ import newPlaylistCover from '../../../static/albums/newPlaylistCover.png';
 
 // Redux state
 import { useSelector, useDispatch } from 'react-redux';
-import { setPlaylistDetails } from '../../../store/playlistSlice';
+import { createPlaylistAsync, updatePlaylist } from '../../../store/playlistSlice';
 import { debounce } from 'lodash';
 import { useState, useCallback } from 'react';
 
@@ -19,9 +19,9 @@ const PlaylistCreate = () => {
   const [title, setTitle] = useState('')
   const dispatch = useDispatch();
 
-  const debouncedChangeHandler = useCallback(
+  const debouncedChangeHandler = useCallback (
     debounce((title) => {
-      dispatch(setPlaylistDetails({ title }))
+      dispatch(updatePlaylist({ title }))
     }, 300),
     []
   )
@@ -29,6 +29,19 @@ const PlaylistCreate = () => {
   const handleChange = (e) => {
     setTitle(e.target.value)
     debouncedChangeHandler(e.target.value)
+  }
+
+  const handleNewPlaylistSubmit = (e) => {
+    e.preventDefault()
+    console.log(`handleNewPlaylistSubmit called with title:`, title)
+    const newPlaylistData = {
+      user_id: currentUser.id,
+      title: title,
+      songs: []
+    }
+
+    dispatch(createPlaylistAsync(newPlaylistData))
+
   }
 
 
@@ -48,8 +61,10 @@ const PlaylistCreate = () => {
                   type="text"
                   value={title}
                   onChange={handleChange}
+                  onSubmit={handleNewPlaylistSubmit}
                   placeholder='My New Playlist'
                 />
+                <button type="submit" style={{ display: "none" }}>Submit</button>
               </form>
             </div>
 
