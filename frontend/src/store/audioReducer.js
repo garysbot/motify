@@ -18,7 +18,7 @@ const initialState = {
   currentSong: {},
   isPlaying: false,
   volume: 1,
-  trackPosition: 0,
+  songPosition: 0,
   shuffle: false,
   queue: [],
   currentTrackIndex: 0,

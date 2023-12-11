@@ -45,19 +45,19 @@ const PlaylistCreate = () => {
   }
 
   // Inside your PlaylistCreate component
-  const [songDetails, setSongDetails] = useState([]);
-  useEffect(() => {
-    const fetchSongs = async () => {
-      const details = await Promise.all(songs.map(songId => {
-        // Replace with your actual API endpoint
-        return fetch(`/api/songs/${songId}`).then(res => res.json());
-      }));
+  // const [songDetails, setSongDetails] = useState([]);
+  // useEffect(() => {
+  //   const fetchSongs = async () => {
+  //     const details = await Promise.all(songs.map(songId => {
+  //       // Replace with your actual API endpoint
+  //       return fetch(`/api/songs/${songId}`).then(res => res.json());
+  //     }));
 
-      setSongDetails(details);
-    };
+  //     setSongDetails(details);
+  //   };
 
-    fetchSongs();
-  }, [songs]);
+  //   fetchSongs();
+  // }, [songs]);
 
 
   return (
@@ -103,7 +103,7 @@ const PlaylistCreate = () => {
           </div>
           <hr></hr>
           {
-            songDetails?.map((song, trackNum) => (
+            songs?.map((song, trackNum) => (
               <>
                 <div className='show-songs-row-container'>
                   <p>{trackNum + 1}</p>
