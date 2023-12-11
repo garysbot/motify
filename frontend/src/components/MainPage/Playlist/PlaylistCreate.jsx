@@ -9,7 +9,7 @@ import newPlaylistCover from '../../../static/albums/newPlaylistCover.png';
 import { useSelector, useDispatch } from 'react-redux';
 import { createPlaylistAsync, updatePlaylist } from '../../../store/playlistSlice';
 import { debounce } from 'lodash';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 const PlaylistCreate = () => {
   const currentUser = useSelector(state => state.session.user);
@@ -19,11 +19,11 @@ const PlaylistCreate = () => {
   const [title, setTitle] = useState('')
   const dispatch = useDispatch();
 
-const debouncedChangeHandler = useCallback((title) => 
-  debounce((title) => {
-    dispatch(updatePlaylist({ title }))
-  }, 300),
-  [dispatch, playlist?.id]
+  const debouncedChangeHandler = useCallback((title) => 
+    debounce((title) => {
+      dispatch(updatePlaylist({ title }))
+    }, 300),
+    [dispatch, playlist?.id]
   )
 
   const handleChange = (e) => {
@@ -43,6 +43,21 @@ const debouncedChangeHandler = useCallback((title) =>
     dispatch(createPlaylistAsync(newPlaylistData))
 
   }
+
+  // Inside your PlaylistCreate component
+  const [songDetails, setSongDetails] = useState([]);
+  useEffect(() => {
+    const fetchSongs = async () => {
+      const details = await Promise.all(songs.map(songId => {
+        // Replace with your actual API endpoint
+        return fetch(`/api/songs/${songId}`).then(res => res.json());
+      }));
+
+      setSongDetails(details);
+    };
+
+    fetchSongs();
+  }, [songs]);
 
 
   return (
@@ -88,7 +103,7 @@ const debouncedChangeHandler = useCallback((title) =>
           </div>
           <hr></hr>
           {
-            songs?.map((song, trackNum) => (
+            songDetails?.map((song, trackNum) => (
               <>
                 <div className='show-songs-row-container'>
                   <p>{trackNum + 1}</p>
