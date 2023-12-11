@@ -111,15 +111,20 @@ export const updatePlaylistAsync = updatedPlaylistData => {
   return (dispatch, getState) => {
     // & Retrieve the current playlist state
     const currentState = getState().playlist;
-    const { id: playlistId, songId } = updatedPlaylistData;
-
+    // & Destructure the playlistId and the songId from the payload
+    // const { id: playlistId, songId } = updatedPlaylistData;
+    // ^ Destructure the playlistId and the song obj from the payload
+    const { id: playlistId, song } = updatedPlaylistData
+    
     if (!playlistId) {
       console.error("Playlist ID is undefined");
       return;
     }
 
     // & Create a new array of song IDs, including the new songId
-    const updatedSongs = currentState.songs ? [...currentState.songs, songId] : [songId];
+    // const updatedSongs = currentState.songs ? [...currentState.songs, songId] : [songId];
+    // ^ Create a new array of song obj, including the newly added song
+    const updatedSongs = currentState.songs ? [...currentState.songs, song] : [song];
 
     csrfFetch(`/playlists/${playlistId}`, {
       method: 'PATCH',
@@ -133,7 +138,9 @@ export const updatePlaylistAsync = updatedPlaylistData => {
     })
     .then(updatedPlaylist => {
       // & Dispatch the updated playlist information, including the new songId
-      dispatch(updatePlaylist({ ...updatedPlaylist, songId }))
+      // dispatch(updatePlaylist({ ...updatedPlaylist, songId }))
+      // ^ Dispatch the updated playlist information, including the new song
+      dispatch(updatePlaylist({ ...updatedPlaylist, song }))
     })
     .catch(error => {
       console.error(`Error updating the playlist`, error)
