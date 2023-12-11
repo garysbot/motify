@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
-import { addSong, updatePlaylistAsync } from '../../../store/playlistSlice'
+import { addSong,updatePlaylist, updatePlaylistAsync } from '../../../store/playlistSlice'
 
 const ArtistResultPage = ({ songs }) => {
   const dispatch = useDispatch();

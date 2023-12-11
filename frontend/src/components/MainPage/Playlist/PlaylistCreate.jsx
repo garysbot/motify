@@ -7,18 +7,17 @@ import newPlaylistCover from '../../../static/albums/newPlaylistCover.png';
 
 // Redux state
 import { useSelector, useDispatch } from 'react-redux';
-import { updatePlaylist, updatePlaylistAsync, updateTitle } from '../../../store/playlistSlice';
+import { updateTitle } from '../../../store/playlistSlice';
 import { useState } from 'react';
 
 const PlaylistCreate = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
-  const playlist = useSelector(state => state.playlist)
-  const playlistId = useSelector(state => state.playlist.id)
-  const songs = playlist.songs
-  
-  const [title, setTitle] = useState('')
+  const songIds = useSelector(state => state.playlist)
+  const songs = ['hi', 'bye']
 
+  // ^ Update Playlist Title
+  const [title, setTitle] = useState('')
   const updatePlaylistTitle = (e) => {
     const newTitle = e.target.value
     setTitle(newTitle)
@@ -26,7 +25,7 @@ const PlaylistCreate = () => {
     console.log(`The title is currently ${newTitle}`)
   }
 
-  // ^ Deploy from updatePlaylist? or updatePlaylistAsync?
+  // ^ Render songs in the playlist
 
   return (
     <>

@@ -140,7 +140,7 @@ export const updatePlaylistAsync = updatedPlaylistData => {
 
     csrfFetch(`/playlists/${playlistId}`, {
       method: 'PATCH',
-      body: JSON.stringify({ playlist: { title, songs: updatedSongs.map(song => song.id) } })
+      body: JSON.stringify({ title, playlist: { title, songs: updatedSongs.map(song => song.id) } })
     })
     .then(response => {
       if (!response.ok) {
