@@ -7,7 +7,7 @@ import newPlaylistCover from '../../../static/albums/newPlaylistCover.png';
 
 // Redux state
 import { useSelector, useDispatch } from 'react-redux';
-import { updatePlaylist, updatePlaylistAsync } from '../../../store/playlistSlice';
+import { updatePlaylist, updatePlaylistAsync, updateTitle } from '../../../store/playlistSlice';
 import { useState } from 'react';
 
 const PlaylistCreate = () => {
@@ -22,7 +22,7 @@ const PlaylistCreate = () => {
   const updatePlaylistTitle = (e) => {
     const newTitle = e.target.value
     setTitle(newTitle)
-    dispatch(updatePlaylist({ id: playlistId, title: newTitle }))
+    dispatch(updateTitle(newTitle))
     console.log(`The title is currently ${newTitle}`)
   }
 

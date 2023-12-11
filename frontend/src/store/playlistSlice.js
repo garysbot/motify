@@ -66,12 +66,16 @@ export const playlistSlice = createSlice({
       state.songs = [];
       state.created_at = null;
       state.updated_at = null;
+    },
+
+    updateTitle: (state, action) => {
+      state.title = action.payload
     }
   }
 })
 
 // * Actions
-export const { createPlaylist, addSong, removeSong, updatePlaylist, setUserID, deletePlaylist } = playlistSlice.actions
+export const { createPlaylist, addSong, removeSong, updatePlaylist, setUserID, deletePlaylist, updateTitle } = playlistSlice.actions
 
 // * Thunk action creators
 
@@ -136,7 +140,7 @@ export const updatePlaylistAsync = updatedPlaylistData => {
 
     csrfFetch(`/playlists/${playlistId}`, {
       method: 'PATCH',
-      body: JSON.stringify({ title, playlist: { songs: updatedSongs.map(song => song.id) } })
+      body: JSON.stringify({ playlist: { title, songs: updatedSongs.map(song => song.id) } })
     })
     .then(response => {
       if (!response.ok) {
