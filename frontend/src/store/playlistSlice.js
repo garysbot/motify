@@ -114,7 +114,7 @@ export const updatePlaylistAsync = updatedPlaylistData => {
     // & Destructure the playlistId and the songId from the payload
     // const { id: playlistId, songId } = updatedPlaylistData;
     // ^ Destructure the playlistId and the song obj from the payload
-    const { id: playlistId, song } = updatedPlaylistData
+    const { id: playlistId, song, title } = updatedPlaylistData
     
     if (!playlistId) {
       console.error("Playlist ID is undefined");
@@ -125,6 +125,10 @@ export const updatePlaylistAsync = updatedPlaylistData => {
       console.error("Song object is undefined");
     }
 
+    if (!title) {
+      console.error("Title is undefined or not provided");
+    }
+
     // & Create a new array of song IDs, including the new songId
     // const updatedSongs = currentState.songs ? [...currentState.songs, songId] : [songId];
     // ^ Create a new array of song obj, including the newly added song
@@ -132,7 +136,7 @@ export const updatePlaylistAsync = updatedPlaylistData => {
 
     csrfFetch(`/playlists/${playlistId}`, {
       method: 'PATCH',
-      body: JSON.stringify({ playlist: { songs: updatedSongs.map(song => song.id) } })
+      body: JSON.stringify({ title, playlist: { songs: updatedSongs.map(song => song.id) } })
     })
     .then(response => {
       if (!response.ok) {

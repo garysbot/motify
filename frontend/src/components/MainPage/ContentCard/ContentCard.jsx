@@ -53,9 +53,9 @@ const Cards = ({ contentType }) => {
       case 'albums':
         contentTitle = 'Albums'
         return (
-          Object.values(albums).map((album)=> 
+          Object.values(albums).map((album, idx)=> 
             (
-              <Link to={`/albums/${album.id}`}>
+              <Link to={`/albums/${album.id}`} key={idx}>
                 <div className='vertical-content-card' key={album.id}>
                   <img src={album.coverImg} alt='' className='vertical-cover'/>
                   <p className='vertical-title'>{album.title}</p>
@@ -68,9 +68,9 @@ const Cards = ({ contentType }) => {
       case 'songs':
         contentTitle = 'Songs'
         return (
-        Object.values(songs).map((song) => 
+        Object.values(songs).map((song, idx) => 
           (
-            <div className='vertical-content-card' key={song.id}>
+            <div className='vertical-content-card' key={idx}>
               <img src={Cover1} alt='' className='vertical-cover'/>
               <p className='vertical-title'>{song.title}</p>
               <p className='vertical-artist'>{song.artistName}</p>
@@ -81,13 +81,13 @@ const Cards = ({ contentType }) => {
       case 'artists':
         contentTitle = 'Artists'
         return (
-          Object.values(artists).map((artist) => 
+          Object.values(artists).map((artist, idx) => 
             (
               <Link to={{
                 pathname: `/artists/${artist.id}`,
                 state: { data: artist }
                 }}>
-                <div className='vertical-content-card' key={artist.id}>
+                <div className='vertical-content-card' key={idx}>
                   <img src={artist.aboutImg} alt='' className='vertical-cover'/>
                   <p className='vertical-title'>{artist.artistName}</p>
                   <p className='vertical-artist'>Artist</p>

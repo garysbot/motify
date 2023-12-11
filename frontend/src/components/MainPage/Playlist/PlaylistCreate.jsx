@@ -7,58 +7,26 @@ import newPlaylistCover from '../../../static/albums/newPlaylistCover.png';
 
 // Redux state
 import { useSelector, useDispatch } from 'react-redux';
-import { createPlaylistAsync, updatePlaylist } from '../../../store/playlistSlice';
-import { debounce } from 'lodash';
-import { useState, useCallback, useEffect } from 'react';
+import { updatePlaylist, updatePlaylistAsync } from '../../../store/playlistSlice';
+import { useState } from 'react';
 
 const PlaylistCreate = () => {
+  const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
   const playlist = useSelector(state => state.playlist)
+  const playlistId = useSelector(state => state.playlist.id)
   const songs = playlist.songs
   
   const [title, setTitle] = useState('')
-  const dispatch = useDispatch();
 
-  const debouncedChangeHandler = useCallback((title) => 
-    debounce((title) => {
-      dispatch(updatePlaylist({ title }))
-    }, 300),
-    [dispatch, playlist?.id]
-  )
-
-  const handleChange = (e) => {
-    setTitle(e.target.value)
-    debouncedChangeHandler(e.target.value)
+  const updatePlaylistTitle = (e) => {
+    const newTitle = e.target.value
+    setTitle(newTitle)
+    dispatch(updatePlaylist({ id: playlistId, title: newTitle }))
+    console.log(`The title is currently ${newTitle}`)
   }
 
-  const handleNewPlaylistSubmit = (e) => {
-    e.preventDefault()
-    console.log(`handleNewPlaylistSubmit called with title:`, title)
-    const newPlaylistData = {
-      user_id: currentUser.id,
-      title: title,
-      songs: []
-    }
-
-    dispatch(createPlaylistAsync(newPlaylistData))
-
-  }
-
-  // Inside your PlaylistCreate component
-  // const [songDetails, setSongDetails] = useState([]);
-  // useEffect(() => {
-  //   const fetchSongs = async () => {
-  //     const details = await Promise.all(songs.map(songId => {
-  //       // Replace with your actual API endpoint
-  //       return fetch(`/api/songs/${songId}`).then(res => res.json());
-  //     }));
-
-  //     setSongDetails(details);
-  //   };
-
-  //   fetchSongs();
-  // }, [songs]);
-
+  // ^ Deploy from updatePlaylist? or updatePlaylistAsync?
 
   return (
     <>
@@ -67,17 +35,14 @@ const PlaylistCreate = () => {
           <img src={newPlaylistCover} alt='' className='album-cover-img'></img>
           <div className='banner-details'>
             <p>Playlist</p>
-
-
+            {/* // TODO Attach to Redux state.playlist.title  */}
             <div className='playlist-name-container'>
               <form>
                 <input
                   className='playlist-title-field'
                   type="text"
                   value={title}
-                  onChange={handleChange}
-                  onSubmit={handleNewPlaylistSubmit}
-                  placeholder='My New Playlist'
+                  onChange={updatePlaylistTitle}
                 />
                 <button type="submit" style={{ display: "none" }}>Submit</button>
               </form>
