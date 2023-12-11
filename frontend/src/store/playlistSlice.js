@@ -26,12 +26,12 @@ export const playlistSlice = createSlice({
     },
 
     updatePlaylist: (state, action) => {
-      const { id, title, createdAt, updatedAt, songId } = action.payload;
+      const { id, title, createdAt, updatedAt, song } = action.payload;
     
       // Check if the action payload includes a new songId to add
-      if (songId) {
+      if (song) {
         // If the songs array does not exist, create a new one
-        const updatedSongs = state.songs ? [...state.songs, songId] : [songId];
+        const updatedSongs = state.songs ? [...state.songs, song.id] : [song.id];
     
         return {
           ...state, // Spread the existing state
@@ -121,6 +121,10 @@ export const updatePlaylistAsync = updatedPlaylistData => {
       return;
     }
 
+    if (!song) {
+      console.error("Song object is undefined");
+    }
+
     // & Create a new array of song IDs, including the new songId
     // const updatedSongs = currentState.songs ? [...currentState.songs, songId] : [songId];
     // ^ Create a new array of song obj, including the newly added song
@@ -128,7 +132,7 @@ export const updatePlaylistAsync = updatedPlaylistData => {
 
     csrfFetch(`/playlists/${playlistId}`, {
       method: 'PATCH',
-      body: JSON.stringify({ playlist: { songs: updatedSongs } }) // Send the updated array of song IDs
+      body: JSON.stringify({ playlist: { songs: updatedSongs.map(song => song.id) } })
     })
     .then(response => {
       if (!response.ok) {

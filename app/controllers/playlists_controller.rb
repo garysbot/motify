@@ -36,17 +36,19 @@ class PlaylistsController < ApplicationController
   def update
     @playlist = Playlist.find(params[:id])
   
-    # Fetch the Song objects for the provided IDs
-    song_objects = Song.find(playlist_params[:songs])
-  
     if @playlist.update(playlist_params.except(:songs))
-      # Update the songs association
-      @playlist.songs = song_objects
+      new_song_ids = playlist_params[:songs] || []
+      new_song_ids.each do |song_id|
+        new_song = Song.find_by(id: song_id)
+        @playlist.songs << new_song if new_song && !@playlist.songs.include?(new_song)
+      end
+  
       render 'show', status: :ok
     else
       render json: @playlist.errors, status: :unprocessable_entity
     end
   end
+  
   
 
   private

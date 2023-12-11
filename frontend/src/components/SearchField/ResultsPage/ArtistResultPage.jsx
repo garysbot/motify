@@ -9,8 +9,8 @@ const ArtistResultPage = ({ songs }) => {
   const playlist = useSelector(state => state.playlist)
   const playlistId = playlist.id
 
-  const handleClick = (songId) => {
-    dispatch(updatePlaylistAsync({ id: playlistId, songId }))
+  const handleClick = (song) => {
+    dispatch(updatePlaylistAsync({ id: playlistId, song }))
   };
   
 
@@ -30,7 +30,7 @@ const ArtistResultPage = ({ songs }) => {
             <Link to={`/albums/${song.albumId}`}><p>{song.albumTitle}</p></Link>
           </div>
           <div className='result-link'>
-            <button onClick={() => handleClick(song.id)}>Add</button>
+            <button onClick={() => handleClick(song)}>Add</button>
             {/* ! Need a handler to add to the playlist here */}
           </div>
         </div>
