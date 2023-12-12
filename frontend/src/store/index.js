@@ -1,5 +1,5 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
+import { thunk } from 'redux-thunk';
 import session from './session';
 import uiReducer from './uiReducer';
 import audioReducer from './audioReducer';
@@ -28,22 +28,22 @@ if (process.env.NODE_ENV === 'production') {
   enhancer = composeEnhancers(applyMiddleware(thunk, logger));
 }
 
-// Production Version
-// const configureStore = (preloadedState) => {
-//     return createStore(rootReducer, preloadedState, enhancer);
-// };
-
-// DevTools backend api testing version
+// ! Production Version
 const configureStore = (preloadedState) => {
-  const store = createStore(rootReducer, preloadedState, enhancer)
+    return createStore(rootReducer, preloadedState, enhancer);
+};
 
-  // Expose store to window obj in dev env
-  if (process.env.NODE_ENV !== 'production') {
-    window.store = store
-  }
+// & DevTools backend api testing version
+// const configureStore = (preloadedState) => {
+//   const store = createStore(rootReducer, preloadedState, enhancer)
 
-  return store
-}
+//   // Expose store to window obj in dev env
+//   if (process.env.NODE_ENV !== 'production') {
+//     window.store = store
+//   }
+
+//   return store
+// }
 
 
 export default configureStore;

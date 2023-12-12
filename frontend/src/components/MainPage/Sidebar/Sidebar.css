@@ -47,3 +47,7 @@ a {
   padding-top: 0.25rem;
   justify-self: flex-end;
 }
+
+.library-content {
+  margin: 1rem;
+}

@@ -35,9 +35,13 @@ const SidebarLibrary = () => {
             </Link>
           </div>
         </div>
+
         <div className='library-content'>
           {/* Subcomponents in here */}
+          FUCK OFF
         </div>
+
+        
       </div>
     </>
   );
