@@ -4,8 +4,16 @@ const SET_CURRENT_USER = 'session/setCurrentUser';
 const REMOVE_CURRENT_USER = 'session/removeCurrentUser';
 
 const setCurrentUser = (user) => {
+  // return {
+  //   type: SET_CURRENT_USER,
+  //   payload: user
+  // };
+  // ! Modified to include playlists array to User object slice
+  // Ensure that the user object has a playlists field
+  // const userWithPlaylists = { ...user, playlists: user.playlists || [] };
   return {
     type: SET_CURRENT_USER,
+    // payload: userWithPlaylists
     payload: user
   };
 };
@@ -27,7 +35,7 @@ const storeCurrentUser = user => {
 }
 
 export const signup = (user) => async dispatch => {
-  const { username, email, password, birth_date, gender, optin_marketing } = user;
+  const { username, email, password, birth_date, gender, optin_marketing, playlists } = user;
   const response = await csrfFetch("/api/users", {
     method: "POST",
     body: JSON.stringify({ 
@@ -36,7 +44,8 @@ export const signup = (user) => async dispatch => {
       password,
       birth_date,
       gender,
-      optin_marketing 
+      optin_marketing,
+      playlists 
     })
   });
   const data = await response.json();
@@ -88,7 +97,7 @@ const initialState = {
 const sessionReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_CURRENT_USER:
-      return { ...state, user: action.payload };
+      return { ...state, user: { ...action.payload } };
     case REMOVE_CURRENT_USER:
       return { ...state, user: null };
     default:
