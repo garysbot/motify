@@ -4,17 +4,20 @@ import csrfFetch from './csrf';
 export const playlistSlice = createSlice({
   name: 'playlist',
   initialState: {
-    user_id: null,
-    title: '',
-    songs: [],
-    created_at: null,
-    updated_at: null
+    '1': {
+      user_id: null,
+      title: '',
+      songs: [],
+      created_at: null,
+      updated_at: null
+    }
   },
 
   reducers: {
     createPlaylist: (state, action) => {
       const { id, userId, title, songs, createdAt, updatedAt } = action.payload;
-
+      console.log(`this is id ${id}`)
+      console.log(`this is state.id ${state.id}`)
       return {
         id: id || state.id,
         user_id: userId || state.user_id,

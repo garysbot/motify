@@ -10,7 +10,6 @@ export const useAlbum = (albumId) => {
       const data = await response.json();
       setAlbum(data);
     };
-    // console.log(`albums`)
 
     fetchAlbum();
   }, [albumId]);

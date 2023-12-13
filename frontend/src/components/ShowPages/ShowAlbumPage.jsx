@@ -1,30 +1,21 @@
 import './ShowPage.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { ReactSVG } from 'react-svg';
-import playButton from '../../static/playbar/show/show-play-bar-play-button.svg';
 import lilPlayButton from '../../static/icons/noun-play-1009801.svg'
 import lilDot from '../../static/icons/dot.svg'
 import { useAlbum } from '../MainPage/ContentCard/Hooks/useAlbum.jsx';
 import { useEffect, useState } from 'react';
 import { receiveSong, togglePlay } from '../../store/audioActions'; // Import relevant actions
 import { fetchAlbum, fetchArtist } from '../../store/audioThunks.js';
-import { useArtist } from '../MainPage/ContentCard/Hooks/useArtist.jsx';
 import { useParams } from 'react-router-dom';
 
 const ShowAlbumPage = () => {
-  // Redux Setup
   const [isLoading, setIsLoading] = useState(true);
   const [hoveredTrack, setHoveredTrack] = useState(null);
   const dispatch = useDispatch();
   const { albumId } = useParams();
-  const currentSong = useSelector(state => state.audio.currentSong);
   const currentAlbum = useSelector(state => state.audio.currentAlbum);
   const currentArtist = useSelector(state => state.audio.currentArtist);
-  // Assuming you have a selector to get the current play state
-  const isPlaying = useSelector(state => state.audio.isPlaying);
-
-  // Temporary React State + Hooks Approach
-  const album = useAlbum(albumId)
 
 
   useEffect(() => {
@@ -32,7 +23,6 @@ const ShowAlbumPage = () => {
       if (albumId) {
         setIsLoading(true);
         await dispatch(fetchAlbum(albumId));
-        // No need to call fetchArtist here
         setIsLoading(false);
       }
     };

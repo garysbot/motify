@@ -18,6 +18,7 @@ import { Link } from 'react-router-dom'
 const Cards = ({ contentType }) => {
   const dispatch = useDispatch();
 
+  // & Hooks that fetch from Rails backend
   const albums = useAlbums();
   const songs = useSongs();
   const artists = useArtists();

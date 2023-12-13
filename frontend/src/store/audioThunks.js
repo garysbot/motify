@@ -1,8 +1,9 @@
 import { receiveSongs, receiveSong, receiveAlbums, receiveAlbum, receiveArtist } from './audioActions';
+import csrfFetch from './csrf';
 
 // Abstracted API call
 const fetchFromApi = async (endpoint) => {
-  const response = await fetch(endpoint);
+  const response = await csrfFetch(endpoint);
   if (!response.ok) throw new Error('API request failed');
   return response.json();
 };

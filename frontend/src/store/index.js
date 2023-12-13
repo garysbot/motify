@@ -7,13 +7,16 @@ import playlistReducerOld from './playlists'
 import playlistReducer from './playlistSlice'
 import searchReducer from './search'
 
+import albumReducer from './librarySlice';
+
 
 export const rootReducer = combineReducers({
   session,
   ui: uiReducer,
   audio: audioReducer,
   playlist: playlistReducer,
-  search: searchReducer
+  search: searchReducer,
+  album: albumReducer
 });
 
 let enhancer;
