@@ -1,10 +1,14 @@
-import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import './ShowPage.css'
 
 const ShowArtistPage = ({ artistId }) => {
-  const location = useLocation();
-  const artist = location.state ? location.state.data : null;
+  // const allArtists = useSelector((state) => state.artists)
+  // const artists = Object.values(allArtists)
+  // const artist = artists.filter((artist) => artist.id === artistId)
 
+  const artist = {
+    test: 1
+  }
   // Check if artist data is available before rendering
   if (!artist) {
     return <div>Loading...</div>;

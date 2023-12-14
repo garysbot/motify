@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 const SidebarLibrary = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
+  const playlists = useSelector(state => state.playlists);
+  const userPlaylists = Object.values(playlists)
   
   const handleClick = (e) => {
     dispatch(createPlaylistAsync({
@@ -37,8 +39,17 @@ const SidebarLibrary = () => {
         </div>
 
         <div className='library-content'>
-          {/* Subcomponents in here */}
-          FUCK OFF
+          {
+            userPlaylists.map((playlist, idx) => (
+              <>
+                <div key={playlist.id}>
+                  <Link to={`/playlists/${playlist.id}`}>
+                    <p>{playlist.title}</p>
+                  </Link>
+                </div>
+              </>
+            ))
+          }
         </div>
 
         

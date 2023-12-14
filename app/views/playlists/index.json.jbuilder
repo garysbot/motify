@@ -5,8 +5,7 @@ json.array! @playlists do |playlist|
   json.user_id playlist.user_id
   json.created_at playlist.created_at
   json.updated_at playlist.updated_at
-  json.playlists_songs playlist.playlists_songs
-
+  
   # # User object 
   # json.user do
   #   user = User.find(playlist.user_id)

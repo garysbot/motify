@@ -4,9 +4,10 @@ import ShowAlbumPage from '../../ShowPages/ShowAlbumPage.jsx';
 import ShowArtistPage from '../../ShowPages/ShowArtistPage.jsx';
 import PlaylistCreate from '../Playlist/PlaylistCreate.jsx';
 import { useParams, Route } from 'react-router-dom';
+import ShowPlaylistPage from '../../ShowPages/ShowPlaylistPage.jsx';
 
 const UserContent = () => {
-  const { albumId, artistId } = useParams();
+  const { albumId, artistId, playlistId } = useParams();
   
   return (
     <>
@@ -24,6 +25,11 @@ const UserContent = () => {
           path="/artists/:artistId" 
           component={ShowArtistPage}
           artistId={artistId}
+        />
+        <Route
+          path="/artists/:playlistId" 
+          component={ShowPlaylistPage}
+          playlistId={playlistId}
         />
         <Route
           exact
