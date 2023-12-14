@@ -45,6 +45,8 @@ const Cards = ({ contentType }) => {
     case 'artists':
       contentTitle = 'Artists';
       break;
+    case 'playlists':
+      contentTitle = 'Playlists';
     default:
       contentTitle = 'Your Music';
       break;
@@ -99,6 +101,15 @@ const Cards = ({ contentType }) => {
               </Link>
             ))
           )
+
+      case 'playlists':
+        contentTitle = 'Playlists'
+        return (
+          <>
+            <h1>Hi</h1>
+          </>
+        )
+
       default:
         contentTitle = 'Your Music'
         break;

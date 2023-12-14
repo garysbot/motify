@@ -14,13 +14,14 @@ export const playlistSlice = createSlice({
   },
 
   reducers: {
+
     receivePlaylists: (state, action) => {
       const playlists = action.payload
-
       playlists.forEach(playlist => {
         state[playlist.id] = playlist
       })
     },
+
     createPlaylist: (state, action) => {
       const { id, userId, title, songs, createdAt, updatedAt } = action.payload;
       return {
@@ -35,23 +36,18 @@ export const playlistSlice = createSlice({
 
     updatePlaylist: (state, action) => {
       const { id, title, createdAt, updatedAt, song } = action.payload;
-    
-      // Check if the action payload includes a new songId to add
+
       if (song) {
-        // If the songs array does not exist, create a new one
         const updatedSongs = state.songs ? [...state.songs, song.id] : [song.id];
-    
         return {
-          ...state, // Spread the existing state
+          ...state,
           id: id || state.id,
           title: title || state.title,
-          songs: updatedSongs, // Update the songs array
+          songs: updatedSongs,
           created_at: createdAt || state.created_at,
           updated_at: updatedAt || state.updated_at
         };
       }
-    
-      // If no songId is provided, return the state as is
       return state;
     },
 
@@ -66,14 +62,6 @@ export const playlistSlice = createSlice({
 
     setUserID: (state, action) => {
       state.user_id = action.payload;
-    },
-
-    deletePlaylist: state => {
-      state.user_id = null;
-      state.title = '';
-      state.songs = [];
-      state.created_at = null;
-      state.updated_at = null;
     },
 
     updateTitle: (state, action) => {
@@ -107,41 +95,28 @@ export const createPlaylistAsync = newPlaylistData => {
       method: 'POST',
       body: JSON.stringify({ playlist: newPlaylistData })
     })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`Network respone failed, playlist not created`)
-      }
-      return response.json()
-    })
-    .then(newPlaylist => {
-      // dispatch(createPlaylist(newPlaylist))
-
-      // & Log the response to see if it contains all the necessary fields
-      console.log("Received new playlist data: ", newPlaylist);
-
-      // & Ensure that newPlaylist contains all the necessary fields
-      dispatch(createPlaylist(newPlaylist));
-    })
-    .catch(error => {
-      console.error(`Error creating the playlist`, error)
-    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Network respone failed, playlist not created`)
+        }
+        return response.json()
+      })
+      .then(newPlaylist => {
+        console.log("Received new playlist data: ", newPlaylist);
+        dispatch(createPlaylist(newPlaylist));
+      })
+      .catch(error => {
+        console.error(`Error creating the playlist`, error)
+      })
   }
 }
 
-// ! Temporary for dev console backend api testing
-if (process.env.NODE_ENV !== 'production') {
-  window.createPlaylistAsync = createPlaylistAsync;
-}
 
 export const updatePlaylistAsync = updatedPlaylistData => {
   return (dispatch, getState) => {
-    // & Retrieve the current playlist state
     const currentState = getState().playlist;
-    // & Destructure the playlistId and the songId from the payload
-    // const { id: playlistId, songId } = updatedPlaylistData;
-    // ^ Destructure the playlistId and the song obj from the payload
     const { id: playlistId, song, title } = updatedPlaylistData
-    
+
     if (!playlistId) {
       console.error("Playlist ID is undefined");
       return;
@@ -155,33 +130,30 @@ export const updatePlaylistAsync = updatedPlaylistData => {
       console.error("Title is undefined or not provided");
     }
 
-    // & Create a new array of song IDs, including the new songId
-    // const updatedSongs = currentState.songs ? [...currentState.songs, songId] : [songId];
-    // ^ Create a new array of song obj, including the newly added song
     const updatedSongs = currentState.songs ? [...currentState.songs, song] : [song];
 
     csrfFetch(`/playlists/${playlistId}`, {
       method: 'PATCH',
       body: JSON.stringify({ title, playlist: { title, songs: updatedSongs.map(song => song.id) } })
     })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`Network response failed, playlist not updated`)
-      }
-      return response.json()
-    })
-    .then(updatedPlaylist => {
-      // & Dispatch the updated playlist information, including the new songId
-      // dispatch(updatePlaylist({ ...updatedPlaylist, songId }))
-      // ^ Dispatch the updated playlist information, including the new song
-      dispatch(updatePlaylist({ ...updatedPlaylist, song }))
-    })
-    .catch(error => {
-      console.error(`Error updating the playlist`, error)
-    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Network response failed, playlist not updated`)
+        }
+        return response.json()
+      })
+      .then(updatedPlaylist => {
+        dispatch(updatePlaylist({ ...updatedPlaylist, song }))
+      })
+      .catch(error => {
+        console.error(`Error updating the playlist`, error)
+      })
   }
 }
 
-
-// * Reducer
 export default playlistSlice.reducer;
+
+
+if (process.env.NODE_ENV !== 'production') {
+  window.createPlaylistAsync = createPlaylistAsync;
+}

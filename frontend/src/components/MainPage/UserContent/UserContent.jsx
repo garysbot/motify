@@ -34,6 +34,7 @@ const UserContent = () => {
               <ContentCard contentType='artists'/>
               <ContentCard contentType='albums'/>
               <ContentCard contentType='songs'/>
+              <ContentCard contentType='playlists'/>
             </>
           }
         />
