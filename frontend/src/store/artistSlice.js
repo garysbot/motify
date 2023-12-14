@@ -11,6 +11,15 @@ export const fetchArtists = createAsyncThunk(
   }
 )
 
+export const fetchArtist = (artistId) => createAsyncThunk(
+  'artists/fetchArtist',
+  async () => {
+    const response = await csrfFetch(`/artists/${artistId}`)
+    const artist = await response.json()
+    return artist
+  }
+)
+
 export const artistSlice = createSlice({
   name: 'artists',
   initialState: {},
@@ -21,6 +30,10 @@ export const artistSlice = createSlice({
       artists.forEach(artist => {
         state[artist.id] = artist
       })
+    },
+    receiveArtist: (state, action) => {
+      const artist = action.payload
+      state[artist.id] = artist
     }
   },
   extraReducers: (builder) => {
@@ -31,6 +44,6 @@ export const artistSlice = createSlice({
 })
 
 // * Actions
-export const { receiveArtists } = artistSlice.actions
+export const { receiveArtists, receiveArtist } = artistSlice.actions
 
 export default artistSlice.reducer

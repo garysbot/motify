@@ -27,7 +27,7 @@ const UserContent = () => {
           artistId={artistId}
         />
         <Route
-          path="/artists/:playlistId" 
+          path="/playlists/:playlistId" 
           component={ShowPlaylistPage}
           playlistId={playlistId}
         />
@@ -43,21 +43,6 @@ const UserContent = () => {
               <ContentCard contentType='playlists'/>
             </>
           }
-        />
-        <Route
-          exact
-          path="/artists"
-          render={() => <ContentCard contentType='artists' />}
-        />
-        <Route
-          exact
-          path="/albums"
-          render={() => <ContentCard contentType='albums' />}
-        />
-        <Route
-          exact
-          path="/songs"
-          render={() => <ContentCard contentType='songs' />}
         />
       </div>
     </>
