@@ -2,29 +2,32 @@
 import './ContentCard.css'
 import Cover1 from '../../../static/albums/covers/cover-midjourney-1.png'
 
-// Temporary Custom React Hooks
-import { useAlbums } from './Hooks/useAlbums.jsx'
-import { useSongs } from './Hooks/useSongs.jsx'
-import { useArtists } from './Hooks/useArtists.jsx'
-import { useAlbum } from './Hooks/useAlbum.jsx'
-
 // Redux State
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
-import { receiveAlbums, receiveSongs } from '../../../store/audioActions.js'
-import { fetchAlbums, fetchSongs } from '../../../store/audioThunks.js'
 import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { fetchAlbums } from '../../../store/albumSlice.js'
+import { fetchSongs } from '../../../store/songSlice.js'
+import { fetchArtists } from '../../../store/artistSlice.js'
 
 const Cards = ({ contentType }) => {
   const dispatch = useDispatch();
+  const albums = useSelector((state) => state.albums)
+  const songs = useSelector((state) => state.songs)
+  const artists = useSelector((state) => state.artists)
+  
+  const [isLoaded, setIsLoaded] = useState(false)
+
+  useEffect(() => {
+    if (!isLoaded) {
+      dispatch(fetchAlbums())
+      dispatch(fetchArtists())
+      dispatch(fetchSongs())
+      setIsLoaded(true)
+    }
+  }, [dispatch, isLoaded])
 
   // & Hooks that fetch from Rails backend
-  const albums = useAlbums();
-  const songs = useSongs();
-  const artists = useArtists();
-  const album = useAlbum(1);
-
-  
   // If albums is not yet defined (e.g., before data fetching completes), handle it appropriately
   // Loading states
   if (!albums || !songs || !artists) {
@@ -47,32 +50,32 @@ const Cards = ({ contentType }) => {
       break;
   }
 
-  
+
 
   const renderCards = () => {
     switch (contentType) {
       case 'albums':
         contentTitle = 'Albums'
         return (
-          Object.values(albums).map((album, idx)=> 
-            (
-              <Link to={`/albums/${album.id}`} key={idx}>
-                <div className='vertical-content-card' key={album.id}>
-                  <img src={album.coverImg} alt='' className='vertical-cover'/>
-                  <p className='vertical-title'>{album.title}</p>
-                  <p className='vertical-artist'>{album.artistName}</p>
-                </div>
-              </Link>
-            ))
+          Object.values(albums).map((album, idx) =>
+          (
+            <Link to={`/albums/${album.id}`} key={idx}>
+              <div className='vertical-content-card' key={album.id}>
+                <img src={album.coverImg} alt='' className='vertical-cover' />
+                <p className='vertical-title'>{album.title}</p>
+                <p className='vertical-artist'>{album.artistName}</p>
+              </div>
+            </Link>
+          ))
         )
-        
+
       case 'songs':
         contentTitle = 'Songs'
         return (
-        Object.values(songs).map((song, idx) => 
+          Object.values(songs).map((song, idx) =>
           (
             <div className='vertical-content-card' key={idx}>
-              <img src={Cover1} alt='' className='vertical-cover'/>
+              <img src={Cover1} alt='' className='vertical-cover' />
               <p className='vertical-title'>{song.title}</p>
               <p className='vertical-artist'>{song.artistName}</p>
             </div>
@@ -105,8 +108,8 @@ const Cards = ({ contentType }) => {
   return (
     <>
       <h2 className='cards-content-title'>{contentTitle}</h2>
-        {/* Max - 3x per row; 2x rows */}
-        {/* Min - 2x per row; 3x rows */}
+      {/* Max - 3x per row; 2x rows */}
+      {/* Min - 2x per row; 3x rows */}
       <div className='content-cards'>
         <div className='content-cards-container'>
           {renderCards()}

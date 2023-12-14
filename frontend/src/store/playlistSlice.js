@@ -14,10 +14,15 @@ export const playlistSlice = createSlice({
   },
 
   reducers: {
+    receivePlaylists: (state, action) => {
+      const playlists = action.payload
+
+      playlists.forEach(playlist => {
+        state[playlist.id] = playlist
+      })
+    },
     createPlaylist: (state, action) => {
       const { id, userId, title, songs, createdAt, updatedAt } = action.payload;
-      console.log(`this is id ${id}`)
-      console.log(`this is state.id ${state.id}`)
       return {
         id: id || state.id,
         user_id: userId || state.user_id,
@@ -74,13 +79,27 @@ export const playlistSlice = createSlice({
     updateTitle: (state, action) => {
       state.title = action.payload
     }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchPlaylists.fulfilled, (state, action) => {
+      playlistSlice.caseReducers.receivePlaylists(state, action)
+    })
   }
 })
 
 // * Actions
-export const { createPlaylist, addSong, removeSong, updatePlaylist, setUserID, deletePlaylist, updateTitle } = playlistSlice.actions
+export const { receivePlaylists, createPlaylist, addSong, removeSong, updatePlaylist, setUserID, deletePlaylist, updateTitle } = playlistSlice.actions
 
 // * Thunk action creators
+
+export const fetchPlaylists = createAsyncThunk(
+  'playlists/fetchPlaylists',
+  async () => {
+    const response = await csrfFetch(`/playlists`)
+    const playlists = await response.json()
+    return playlists
+  }
+)
 
 export const createPlaylistAsync = newPlaylistData => {
   return (dispatch) => {

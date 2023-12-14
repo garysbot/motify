@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 import lilPlayButton from '../../static/icons/noun-play-1009801.svg'
 import lilDot from '../../static/icons/dot.svg'
-import { useAlbum } from '../MainPage/ContentCard/Hooks/useAlbum.jsx';
 import { useEffect, useState } from 'react';
 import { receiveSong, togglePlay } from '../../store/audioActions'; // Import relevant actions
 import { fetchAlbum, fetchArtist } from '../../store/audioThunks.js';
@@ -40,7 +39,7 @@ const ShowAlbumPage = () => {
   useEffect(() => {
     const fetchArtistData = async () => {
       if (currentAlbum && currentAlbum.artistId) {
-        await dispatch(fetchArtist(currentAlbum.artistId));
+        dispatch(fetchArtist(currentAlbum.artistId));
       }
     };
   

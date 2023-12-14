@@ -3,11 +3,13 @@ import { thunk } from 'redux-thunk';
 import session from './session';
 import uiReducer from './uiReducer';
 import audioReducer from './audioReducer';
-import playlistReducerOld from './playlists'
 import playlistReducer from './playlistSlice'
 import searchReducer from './search'
 
-import albumReducer from './librarySlice';
+import artistReducer from './artistSlice'
+import albumReducer from './albumSlice';
+import songReducer from './songSlice'
+
 
 
 export const rootReducer = combineReducers({
@@ -16,7 +18,9 @@ export const rootReducer = combineReducers({
   audio: audioReducer,
   playlist: playlistReducer,
   search: searchReducer,
-  album: albumReducer
+  albums: albumReducer,
+  songs: songReducer,
+  artists: artistReducer
 });
 
 let enhancer;
@@ -33,7 +37,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // ! Production Version
 const configureStore = (preloadedState) => {
-    return createStore(rootReducer, preloadedState, enhancer);
+  return createStore(rootReducer, preloadedState, enhancer);
 };
 
 // & DevTools backend api testing version
