@@ -16,8 +16,8 @@ export const rootReducer = combineReducers({
   session,
   ui: uiReducer,
   audio: audioReducer,
-  playlist: playlistReducer,
   search: searchReducer,
+  playlists: playlistReducer,
   albums: albumReducer,
   songs: songReducer,
   artists: artistReducer

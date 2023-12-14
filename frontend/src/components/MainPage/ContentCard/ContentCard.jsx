@@ -9,12 +9,15 @@ import { useEffect, useState } from 'react'
 import { fetchAlbums } from '../../../store/albumSlice.js'
 import { fetchSongs } from '../../../store/songSlice.js'
 import { fetchArtists } from '../../../store/artistSlice.js'
+import { fetchPlaylists } from '../../../store/playlistSlice.js'
 
 const Cards = ({ contentType }) => {
   const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state.session.user)
   const albums = useSelector((state) => state.albums)
   const songs = useSelector((state) => state.songs)
   const artists = useSelector((state) => state.artists)
+  const playlists = useSelector((state) => state.playlists)
   
   const [isLoaded, setIsLoaded] = useState(false)
 
@@ -23,7 +26,9 @@ const Cards = ({ contentType }) => {
       dispatch(fetchAlbums())
       dispatch(fetchArtists())
       dispatch(fetchSongs())
+      dispatch(fetchPlaylists())
       setIsLoaded(true)
+      console.log(`${playlists}`)
     }
   }, [dispatch, isLoaded])
 
@@ -105,9 +110,14 @@ const Cards = ({ contentType }) => {
       case 'playlists':
         contentTitle = 'Playlists'
         return (
-          <>
-            <h1>Hi</h1>
-          </>
+          Object.values(playlists).map((playlist, idx) => (
+            <div className='vertical-content-card' key={idx}>
+              <p className='vertical-title'>{playlist.title}</p>
+              <p className='vertical-artist'>{currentUser.username}</p>
+            </div>
+          ))
+          // <>
+          // </>
         )
 
       default:

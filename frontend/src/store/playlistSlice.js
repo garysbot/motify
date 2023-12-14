@@ -1,17 +1,19 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import csrfFetch from './csrf';
 
+// ! Thunk Action Creators
+export const fetchPlaylists = createAsyncThunk(
+  'playlists/fetchPlaylists',
+  async () => {
+    const response = await csrfFetch(`/playlists`)
+    const playlists = await response.json()
+    return playlists
+  }
+)
+
 export const playlistSlice = createSlice({
   name: 'playlist',
-  initialState: {
-    '1': {
-      user_id: null,
-      title: '',
-      songs: [],
-      created_at: null,
-      updated_at: null
-    }
-  },
+  initialState: {},
 
   reducers: {
 
@@ -79,16 +81,6 @@ export const playlistSlice = createSlice({
 export const { receivePlaylists, createPlaylist, addSong, removeSong, updatePlaylist, setUserID, deletePlaylist, updateTitle } = playlistSlice.actions
 
 // * Thunk action creators
-
-export const fetchPlaylists = createAsyncThunk(
-  'playlists/fetchPlaylists',
-  async () => {
-    const response = await csrfFetch(`/playlists`)
-    const playlists = await response.json()
-    return playlists
-  }
-)
-
 export const createPlaylistAsync = newPlaylistData => {
   return (dispatch) => {
     csrfFetch(`/playlists`, {
