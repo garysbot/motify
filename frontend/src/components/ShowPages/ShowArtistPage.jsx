@@ -5,26 +5,41 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 const ShowArtistPage = () => {
+  const { id } = useParams()
   const dispatch = useDispatch()
-  const allArtists = useSelector((state) => state.artists)
-  const artists = Object.values(allArtists)
-  const artist = artists.filter((artist) => artist.id === artistId)
-
-  const { artistId } = useParams()
+  const allArtists = useSelector((state) => state.artists?.artist)
+  // const artists = Object.values(allArtists)
 
   useEffect(() => {
-    dispatch(fetchArtist(artistId))
+    dispatch(fetchArtist(id))
   })
 
-  // Check if artist data is available before rendering
-  if (!artist) {
-    return <div>Loading...</div>;
-  }
+  // const renderArtist = () => {
+  //   const artist = artists.forEach((artist) => {
+  //     if (artist.id === id) {
+  //       return artist
+  //     } else {
+  //       console.log('artist not found')
+  //     }
+  //   })
 
+  //   if (!artist) {
+  //     return <div>Loading...</div>;
+  //   }
+    
+  //   return (
+  //     <>
+  //       <h3>{artist.artistName}</h3>
+  //     </>
+  //   )
+  // }
+
+  // ! debugging
   const handleClick = () => {
-    console.log(`hello world? ${artists}`)
+    // console.log(`hello world? ${artist}`)
   }
-
+  
+  // ! ----------------------------------
 
   return (
     <>
@@ -32,12 +47,12 @@ const ShowArtistPage = () => {
         <div
           className='banner-details'
         >
-          <h3>{artist.artistName}</h3>
+          {/* {renderArtist()} */}
           <p>Artist</p>
           <h1
             onClick={handleClick}
           >hey?</h1>
-          <h1 key={artistId}>{ }</h1>
+          <h1 key={id}>{ }</h1>
         </div>
       </div>
     </>

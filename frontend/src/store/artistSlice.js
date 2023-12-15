@@ -12,7 +12,7 @@ export const fetchArtists = createAsyncThunk(
 )
 
 export const fetchArtist = (artistId) => createAsyncThunk(
-  'artists/fetchArtist',
+  `artists/fetchArtist/${artistId}`,
   async () => {
     const response = await csrfFetch(`/artists/${artistId}`)
     const artist = await response.json()
