@@ -7,12 +7,13 @@ import { useEffect, useState } from 'react';
 import { receiveSong, togglePlay } from '../../store/audioActions'; // Import relevant actions
 import { fetchAlbum, fetchArtist } from '../../store/audioThunks.js';
 import { useParams } from 'react-router-dom';
+import ShowBanner from './ShowBanner.jsx';
 
 const ShowAlbumPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [hoveredTrack, setHoveredTrack] = useState(null);
   const dispatch = useDispatch();
-  const { albumId } = useParams();
+  const { albumId, artistId, playlistId } = useParams();
   const currentAlbum = useSelector(state => state.audio.currentAlbum);
   const currentArtist = useSelector(state => state.audio.currentArtist);
 
@@ -25,10 +26,10 @@ const ShowAlbumPage = () => {
         setIsLoading(false);
       }
     };
-  
+
     fetchAlbumData();
   }, [dispatch, albumId]);
-  
+
   // New useEffect to set the first song after the album is loaded
   useEffect(() => {
     if (currentAlbum && currentAlbum.songs && currentAlbum.songs.length > 0) {
@@ -42,15 +43,15 @@ const ShowAlbumPage = () => {
         dispatch(fetchArtist(currentAlbum.artistId));
       }
     };
-  
+
     fetchArtistData();
   }, [dispatch, currentAlbum]);
-  
+
   // Render loading indicator
   if (isLoading || !currentAlbum) {
     return <div>Loading...</div>;
   }
-  
+
 
   // Function to handle play button click
   const handlePlaySong = (song) => {
@@ -70,34 +71,8 @@ const ShowAlbumPage = () => {
 
   return (
     <>
-      {/* <div className='show-banner' style={artistAboutImg}> */}
-      <div className='show-banner'>
-        <img src={currentAlbum.coverImg} alt='' className='album-cover-img'></img>
-        <div className='banner-details'>
-          <p>Album</p>
-          <h1 key={currentAlbum.id}>{currentAlbum.title}</h1>
-          <div className='details-artist'>
-            <div className='details-artist-mini-pic'>
-              <img src={currentArtist.aboutImg} alt=''></img>
-            </div>
-            {currentAlbum.artistName}
-            <ReactSVG src={lilDot} className='lilDot'/>
-            {Number(currentAlbum.releaseDate)}
-            <ReactSVG src={lilDot} className='lilDot'/>
-            {`${Object.values(currentAlbum.songs).length} songs, 1 hr 18 min`}
-          </div>
-        </div>
-      </div>
+      <ShowBanner currentAlbum={currentAlbum} currentArtist={currentArtist} />
 
-      <div className='show-play-bar'>
-        {/* <div className='show-play-button-container'>
-          <ReactSVG src={playButton} className='svg-image play-svg'/>
-          <svg className='svg-image circle-svg' width="60" height="60">
-            <circle cx="30" cy="30" r="30" fill="#1DB954" />
-          </svg>
-        </div> */}
-      </div>
-      
       <div className='show-content'>
         <div className='show-songs-header'>
           {/* Album/Playlist Table Header */}
@@ -108,7 +83,7 @@ const ShowAlbumPage = () => {
         <hr></hr>
         <div className='show-songs-table'>
           {
-            currentAlbum.songs.map((song, trackNum) => 
+            currentAlbum.songs.map((song, trackNum) =>
               <>
                 <div
                   className='show-songs-row-container'
@@ -122,8 +97,8 @@ const ShowAlbumPage = () => {
                         hoveredTrack === trackNum ? (
                           <ReactSVG src={lilPlayButton} className='anim-play-button' />
                         ) : (
-                        <p>{trackNum + 1}</p>
-                      )}
+                          <p>{trackNum + 1}</p>
+                        )}
                     </div>
                     <div className='song-title-artist-container'>
                       <p className='song-title'>
@@ -131,11 +106,11 @@ const ShowAlbumPage = () => {
                       </p>
                       {/* Explicit */}
                       <p className='song-title-artist-name'>
-                        {currentAlbum.artistName}  
+                        {currentAlbum.artistName}
                       </p>
                     </div>
                   </div>
-                  
+
                   <div className='row-end'>
                     <div className='like-button-duration'>
                       {/* <ReactSVG src={lilLikeButton} className='lil-like-button'/> */}
