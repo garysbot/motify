@@ -8,31 +8,10 @@ const ShowArtistPage = () => {
   const { id } = useParams()
   const dispatch = useDispatch()
   const allArtists = useSelector((state) => state.artists?.artist)
-  // const artists = Object.values(allArtists)
 
   useEffect(() => {
     dispatch(fetchArtist(id))
   })
-
-  // const renderArtist = () => {
-  //   const artist = artists.forEach((artist) => {
-  //     if (artist.id === id) {
-  //       return artist
-  //     } else {
-  //       console.log('artist not found')
-  //     }
-  //   })
-
-  //   if (!artist) {
-  //     return <div>Loading...</div>;
-  //   }
-    
-  //   return (
-  //     <>
-  //       <h3>{artist.artistName}</h3>
-  //     </>
-  //   )
-  // }
 
   // ! debugging
   const handleClick = () => {

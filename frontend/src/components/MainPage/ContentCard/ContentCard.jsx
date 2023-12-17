@@ -96,10 +96,7 @@ const Cards = ({ contentType }) => {
         return (
           Object.values(artists).map((artist, idx) =>
           (
-            <Link to={{
-              pathname: `/artists/${artist.id}`,
-              state: { data: artist }
-            }}>
+            <Link to={`/artists/${artist.id}`}>
               <div className='vertical-content-card' key={idx}>
                 <img src={artist.aboutImg} alt='' className='vertical-cover' />
                 <p className='vertical-title'>{artist.artistName}</p>
