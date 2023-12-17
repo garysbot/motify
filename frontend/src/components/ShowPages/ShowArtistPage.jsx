@@ -5,33 +5,43 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 const ShowArtistPage = () => {
-  const { id } = useParams()
+  const { artistId } = useParams()
   const dispatch = useDispatch()
-  const allArtists = useSelector((state) => state.artists?.artist)
+  const artist = useSelector((state) => state.artists[artistId])
 
   useEffect(() => {
-    dispatch(fetchArtist(id))
+    dispatch(fetchArtist(artistId))
   })
+
+  const allAlbumsState = useSelector((state) => state.albums)
+  const allAlbums = Object.values(allAlbumsState)
+  const albumsByArtist = allAlbums.filter((album) => album.artistId === artistId)
+
+  // if (albumsByArtist.length === 0) {
+  //   return <div>No albums found for this artist</div>
+  // }
 
   // ! debugging
   const handleClick = () => {
-    // console.log(`hello world? ${artist}`)
+    console.log(`hello world? ${allAlbums[0].recordCompany} ${artistId}`)
   }
-  
+
   // ! ----------------------------------
 
   return (
     <>
       <div className='show-banner'>
-        <div
-          className='banner-details'
-        >
-          {/* {renderArtist()} */}
+        <div className='banner-details'>
           <p>Artist</p>
-          <h1
-            onClick={handleClick}
-          >hey?</h1>
-          <h1 key={id}>{ }</h1>
+          <h1 onClick={handleClick}>{artist.artistName}</h1>
+        </div>
+
+        <div>
+          {
+            albumsByArtist?.map((album) => 
+                <h1>WTF</h1>
+            )
+          }
         </div>
       </div>
     </>
