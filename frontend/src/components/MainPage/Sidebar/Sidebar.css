@@ -49,5 +49,53 @@ a {
 }
 
 .library-content {
-  margin: 1rem;
+  margin: 1rem 0rem;
+}
+
+/* Playlist Items */
+.playlist-item-container {
+  transition: background-color 0.1s ease;
+  border-radius: 0.5rem;
+  height: 4rem;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  padding-left: 0.75rem;
+  padding-top: 0.35rem;
+}
+
+.playlist-item-container:hover {
+  background-color: #2A2A2A;
+}
+
+
+.playlist-item-container a {
+  color: white;
+  cursor: pointer;
+}
+
+.playlist-user-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.playlist-image-details {
+}
+
+.playlist-details {
+  font-size: 0.75rem;
+  opacity: 0.50;
+  display: flex;
+  align-items: center;
+}
+
+.dot {
+  font-size: 0.5rem;
+  margin: 0rem 0.25rem;
+}
+
+.playlist-cover {
+  width: 3.125rem;
+  height: 3.125rem;
+  border-radius: 0.25rem;
 }

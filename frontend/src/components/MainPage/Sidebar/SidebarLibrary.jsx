@@ -4,14 +4,17 @@ import Icon from '../../Icons/Icons.jsx'
 import { Link } from 'react-router-dom'
 import { createPlaylistAsync } from '../../../store/playlistSlice.js'
 import { useDispatch, useSelector } from 'react-redux';
-
+import { useState } from 'react'
 
 const SidebarLibrary = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
   const playlists = useSelector(state => state.playlists);
   const userPlaylists = Object.values(playlists)
-  
+
+  // ! Hover effect
+  const [hoveredPlaylist, setHoveredPlaylist] = useState(null)
+
   const handleClick = (e) => {
     dispatch(createPlaylistAsync({
       user_id: currentUser.id,
@@ -30,7 +33,7 @@ const SidebarLibrary = () => {
           </div>
           <div className='library-plus'>
             <Link to='/create'>
-              <Icon 
+              <Icon
                 iconType='PlusActive'
                 onClick={handleClick}
               />
@@ -42,17 +45,33 @@ const SidebarLibrary = () => {
           {
             userPlaylists.map((playlist, idx) => (
               <>
-                <div key={playlist.id}>
-                  <Link to={`/playlists/${playlist.id}`}>
-                    <p>{playlist.title}</p>
-                  </Link>
+                <div 
+                  key={playlist.id}
+                  className='playlist-item-container' 
+                  onMouseEnter={() => setHoveredPlaylist(idx)}
+                  onMouseLeave={() => setHoveredPlaylist(null)}
+                >
+                  
+                    <div className='playlist-image-details'>
+                      <Link to={`/playlists/${playlist.id}`}>
+                        <img className='playlist-cover' alt='playlist-cover' src="https://motify-seeds.s3.us-east-2.amazonaws.com/static/albums/covers/kendrick.png" ></img>
+                      </Link>
+                    </div>
+                    <div className='playlist-user-details'>
+                      <Link to={`/playlists/${playlist.id}`}>
+                        <p className='playlist-title'>{playlist.title}</p>
+                      </Link>
+                      <Link to={`/playlists/${playlist.id}`}>
+                        <p className='playlist-details'>Playlist  <span className='dot'>•</span>  {currentUser.username} </p>
+                      </Link>
+                    </div>
                 </div>
               </>
             ))
           }
         </div>
 
-        
+
       </div>
     </>
   );
