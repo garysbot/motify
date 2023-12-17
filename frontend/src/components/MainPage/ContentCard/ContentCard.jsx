@@ -18,7 +18,7 @@ const Cards = ({ contentType }) => {
   const songs = useSelector((state) => state.songs)
   const artists = useSelector((state) => state.artists)
   const playlists = useSelector((state) => state.playlists)
-  
+
   const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
@@ -81,43 +81,47 @@ const Cards = ({ contentType }) => {
         return (
           Object.values(songs).map((song, idx) =>
           (
-            <div className='vertical-content-card' key={idx}>
-              <img src={Cover1} alt='' className='vertical-cover' />
-              <p className='vertical-title'>{song.title}</p>
-              <p className='vertical-artist'>{song.artistName}</p>
-            </div>
+            <Link to={`/songs/${song.id}`} key={idx}>
+              <div className='vertical-content-card' key={idx}>
+                <img src={Cover1} alt='' className='vertical-cover' />
+                <p className='vertical-title'>{song.title}</p>
+                <p className='vertical-artist'>{song.artistName}</p>
+              </div>
+            </Link>
           ))
         )
 
       case 'artists':
         contentTitle = 'Artists'
         return (
-          Object.values(artists).map((artist, idx) => 
-            (
-              <Link to={{
-                pathname: `/artists/${artist.id}`,
-                state: { data: artist }
-                }}>
-                <div className='vertical-content-card' key={idx}>
-                  <img src={artist.aboutImg} alt='' className='vertical-cover'/>
-                  <p className='vertical-title'>{artist.artistName}</p>
-                  <p className='vertical-artist'>Artist</p>
-                </div>
-              </Link>
-            ))
-          )
+          Object.values(artists).map((artist, idx) =>
+          (
+            <Link to={{
+              pathname: `/artists/${artist.id}`,
+              state: { data: artist }
+            }}>
+              <div className='vertical-content-card' key={idx}>
+                <img src={artist.aboutImg} alt='' className='vertical-cover' />
+                <p className='vertical-title'>{artist.artistName}</p>
+                <p className='vertical-artist'>Artist</p>
+              </div>
+            </Link>
+          ))
+        )
 
       case 'playlists':
         contentTitle = 'Playlists'
         return (
           Object.values(playlists).map((playlist, idx) => (
-            <div className='vertical-content-card' key={idx}>
-              <p className='vertical-title'>{playlist.title}</p>
-              <p className='vertical-artist'>{currentUser.username}</p>
-            </div>
-          ))
-          // <>
-          // </>
+              <Link to={{
+                pathname: `/playlists/${playlist.id}`
+              }}>
+              <div className='vertical-content-card' key={idx}>
+                <p className='vertical-title'>{playlist.title}</p>
+                <p className='vertical-artist'>{currentUser.username}</p>
+              </div>
+            </Link>
+            ))
         )
 
       default:
