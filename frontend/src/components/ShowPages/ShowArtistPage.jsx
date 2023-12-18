@@ -4,6 +4,8 @@ import { fetchArtist } from '../../store/artistSlice';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import { useAlbumsByArtist } from './CustomShowHooks';
+
 const ShowArtistPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { artistId } = useParams()
@@ -23,6 +25,7 @@ const ShowArtistPage = () => {
     }
     fetchArtistData()
   }, [dispatch, artistId])
+  const albums = useAlbumsByArtist(artistId)
 
   if (isLoading || !artistId) {
     return <div>Loading...</div>;
@@ -36,7 +39,7 @@ const ShowArtistPage = () => {
 
   // ! debugging
   const handleClick = () => {
-    console.log(`hello world? ${allAlbums[0].recordCompany} ${artistId}`)
+    console.log(`hello world? ${albums} ${artistId}`)
   }
 
   // ! ----------------------------------
@@ -51,8 +54,8 @@ const ShowArtistPage = () => {
 
         <div>
           {
-            albumsByArtist?.map((album) => 
-                <h1>WTF</h1>
+            albums?.map((album, idx) => 
+                <h1 key={idx}>{album.albumId}</h1>
             )
           }
         </div>
