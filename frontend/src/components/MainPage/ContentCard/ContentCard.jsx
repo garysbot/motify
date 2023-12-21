@@ -30,7 +30,7 @@ const Cards = ({ contentType }) => {
       setIsLoaded(true)
       console.log(`${playlists}`)
     }
-  }, [dispatch, isLoaded])
+  }, [dispatch, isLoaded, albums, songs, artists, playlists])
 
   // & Hooks that fetch from Rails backend
   // If albums is not yet defined (e.g., before data fetching completes), handle it appropriately

@@ -4,17 +4,14 @@ import { fetchArtist } from '../../store/artistSlice';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useAlbumsByArtist } from './CustomShowHooks';
-
 const ShowArtistPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { artistId } = useParams()
   const dispatch = useDispatch()
   const artist = useSelector((state) => state.artists[artistId])
-  const allAlbumsState = useSelector((state) => state.albums)
-  const allAlbums = Object.values(allAlbumsState)
-  const albumsByArtist = allAlbums.filter((album) => album.artistId === artistId)
-
+  const albums = Object.values(useSelector((state) => state.albums))
+  const artistAlbums = albums.filter((album) => album.artistName === artist.artistName)
+  
   useEffect(() => {
     const fetchArtistData = async () => {
       if (artistId) {
@@ -25,7 +22,16 @@ const ShowArtistPage = () => {
     }
     fetchArtistData()
   }, [dispatch, artistId])
-  const albums = useAlbumsByArtist(artistId)
+  
+  const ArtistAlbums = () => {
+    return albums
+      .filter((album) => album.artistName === artist.artistName)
+      .map((album) => (
+        <div key={album.id}> {/* Ensure each child in a list has a unique key prop */}
+          <p>{album.title}</p>
+        </div>
+      ));
+  }
 
   if (isLoading || !artistId) {
     return <div>Loading...</div>;
@@ -39,7 +45,7 @@ const ShowArtistPage = () => {
 
   // ! debugging
   const handleClick = () => {
-    console.log(`hello world? ${albums} ${artistId}`)
+    console.log(`hello world? ${artistId}`)
   }
 
   // ! ----------------------------------
@@ -51,15 +57,17 @@ const ShowArtistPage = () => {
           <p>Artist</p>
           <h1 onClick={handleClick}>{artist?.artistName}</h1>
         </div>
+      </div>
 
-        <div>
-          {
-            albums?.map((album, idx) => 
-                <h1 key={idx}>{album.albumId}</h1>
-            )
-          }
+      <ArtistAlbums/>
+
+      <div className='show-content'>
+        <div className='show-songs-header'>
+          <p className='header-text'>#</p>
+          <p className='header-text'>Title</p>
         </div>
       </div>
+
     </>
   );
 }
