@@ -5,7 +5,6 @@ import { ReactComponent as SearchInactive } from '../../static/icons/search-inac
 import { ReactComponent as LibraryActive } from '../../static/icons/library-active.svg';
 import { ReactComponent as LibraryInactive } from '../../static/icons/library-inactive.svg';
 import { ReactComponent as PlusActive } from '../../static/icons/plus-active.svg';
-import { ReactComponent as LeftArrow } from '../../static/icons/left-arrow.svg';
 import { ReactComponent as PlayButton } from '../../static/playbar/show/show-play-bar-play-button.svg';
 import { ReactComponent as PlayButtonCircle } from '../../static/playbar/show/show-play-bar-play-circle.svg';
 import { ReactComponent as PauseButton } from '../../static/playbar/show/show-play-bar-pause-button.svg';
@@ -26,7 +25,6 @@ const Icon = ({ iconType, onClick }) => {
     LibraryActive,
     LibraryInactive,
     PlusActive,
-    LeftArrow,
     PlayButton,
     PlayButtonCircle,
     PauseButton,

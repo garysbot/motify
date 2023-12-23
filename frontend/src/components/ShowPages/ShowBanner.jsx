@@ -15,7 +15,7 @@ const ShowBanner = ({ currentAlbum, currentArtist }) => {
             </div>
             {currentAlbum.artistName}
             <span className='dot'>•</span>
-            {Number(currentAlbum.releaseDate)}
+            {currentAlbum.releaseDate}
             <span className='dot'>•</span>
             {`${Object.values(currentAlbum.songs).length} songs, 1 hr 18 min`}
           </div>

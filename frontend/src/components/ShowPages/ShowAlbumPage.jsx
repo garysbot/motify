@@ -2,7 +2,8 @@ import './ShowPage.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 import lilPlayButton from '../../static/icons/noun-play-1009801.svg'
-import lilDot from '../../static/icons/dot.svg'
+import { ReactComponent as PlayButton } from '../../static/icons/banner-play-inactive.svg'
+import { ReactComponent as TimeIcon } from '../../static/icons/time.svg'
 import { useEffect, useState } from 'react';
 import { receiveSong, togglePlay } from '../../store/audioActions'; // Import relevant actions
 import { fetchAlbum, fetchArtist } from '../../store/audioThunks.js';
@@ -74,11 +75,15 @@ const ShowAlbumPage = () => {
       <ShowBanner currentAlbum={currentAlbum} currentArtist={currentArtist} />
 
       <div className='show-content'>
+        <div className='banner-playbar'>
+          <PlayButton/>
+        </div>
         <div className='show-songs-header'>
-          {/* Album/Playlist Table Header */}
-          <p className='header-text'>#</p>
-          <p className='header-text'>Title</p>
-          {/* Time Button */}
+          <div className='song-header-left'>
+            <p className='header-text'>#</p>
+            <p className='header-text'>Title</p>
+          </div>
+          <TimeIcon className='header-time'/>
         </div>
         <hr></hr>
         <div className='show-songs-table'>
