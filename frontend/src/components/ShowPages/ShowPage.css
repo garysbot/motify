@@ -205,4 +205,17 @@
 
 .banner-playbar {
   margin-top: 2rem;
+  margin-bottom: 0.25rem;
+}
+
+.play-button-container {
+  width: 56px; /* Set this to the width of the larger SVG */
+  height: 56px; /* Set this to the height of the larger SVG */
+  position: relative;
+}
+
+.play-button-container svg {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
