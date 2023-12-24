@@ -3,7 +3,6 @@ import { ReactComponent as PlayButtonInactive } from '../../static/icons/banner-
 import { ReactComponent as PlayButtonActive } from '../../static/icons/banner-play-active.svg'
 import './ShowPage.css'
 
-
 const BannerPlaybar = () => {
   const [activePlay, setActivePlay] = useState(false)
 
