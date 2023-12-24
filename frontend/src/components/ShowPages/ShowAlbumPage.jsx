@@ -2,13 +2,13 @@ import './ShowPage.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 import lilPlayButton from '../../static/icons/noun-play-1009801.svg'
-import { ReactComponent as PlayButton } from '../../static/icons/banner-play-inactive.svg'
 import { ReactComponent as TimeIcon } from '../../static/icons/time.svg'
 import { useEffect, useState } from 'react';
 import { receiveSong, togglePlay } from '../../store/audioActions'; // Import relevant actions
 import { fetchAlbum, fetchArtist } from '../../store/audioThunks.js';
 import { useParams } from 'react-router-dom';
 import ShowBanner from './ShowBanner.jsx';
+import BannerPlaybar from './BannerPlaybar.jsx';
 
 const ShowAlbumPage = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -75,9 +75,7 @@ const ShowAlbumPage = () => {
       <ShowBanner currentAlbum={currentAlbum} currentArtist={currentArtist} />
 
       <div className='show-content'>
-        <div className='banner-playbar'>
-          <PlayButton/>
-        </div>
+        <BannerPlaybar/>
         <div className='show-songs-header'>
           <div className='song-header-left'>
             <p className='header-text'>#</p>
