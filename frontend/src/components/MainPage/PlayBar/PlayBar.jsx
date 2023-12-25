@@ -16,7 +16,7 @@ const PlayBar = () => {
   const volume = useSelector(state => state.audio.volume);
   const songPosition = useSelector(state => state.audio.songPosition);
 
-  // Play/Pause toggle
+  // Play/Pause Custom Hook
   const { handlePlayPause, isPlaying } = useAudioPlayer(audioRef)
 
   useEffect(() => {
@@ -25,6 +25,7 @@ const PlayBar = () => {
       if (isPlaying) {
         audioRef.current.play().catch((error) => {
           // Handle the error for play() promise rejection here
+          console.error(`Damn what happened with the PlayBar?!`)
         });
       }
     }
