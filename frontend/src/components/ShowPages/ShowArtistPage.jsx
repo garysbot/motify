@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './ShowPage.css'
 import { fetchArtist } from '../../store/artistSlice';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const ShowArtistPage = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -15,11 +15,11 @@ const ShowArtistPage = () => {
   
   useEffect(() => {
     const fetchArtistData = async () => {
-      setIsLoading(true)
-      dispatch(fetchArtist(artistId))
-          setIsLoading(false)
-      // if (artistId) {
-      // }
+      if (artistId) {
+        setIsLoading(true)
+        dispatch(fetchArtist(artistId))
+        setIsLoading(false)
+      }
       
     }
     fetchArtistData()
@@ -30,7 +30,7 @@ const ShowArtistPage = () => {
       .filter((album) => album.artistName === artist.artistName)
       .map((album) => (
         <div key={album.id}> {/* Ensure each child in a list has a unique key prop */}
-          <p>{album.title}</p>
+          <p><Link to={`/albums/${album.id}`}>{album.title}</Link></p>
         </div>
       ));
   }
@@ -54,7 +54,10 @@ const ShowArtistPage = () => {
 
   return (
     <>
-      <div className='show-banner'>
+      <div 
+        className='show-banner'
+        style={{'background-color':'red'}}
+      >
         <div className='banner-details banner-artist-name'>
           <p>Artist</p>
           <h1 onClick={handleClick}>{artist?.artistName}</h1>
@@ -62,13 +65,6 @@ const ShowArtistPage = () => {
       </div>
 
       <ArtistAlbums/>
-
-      <div className='show-content'>
-        <div className='show-songs-header'>
-          <p className='header-text'>#</p>
-          <p className='header-text'>Title</p>
-        </div>
-      </div>
 
     </>
   );
