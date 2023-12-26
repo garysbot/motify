@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import './ShowPage.css'
+import '../MainPage/ContentCard/ContentCard.css'
 import { fetchArtist } from '../../store/artistSlice';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
@@ -29,8 +30,13 @@ const ShowArtistPage = () => {
     return albums
       .filter((album) => album.artistName === artist.artistName)
       .map((album) => (
-        <div key={album.id}> {/* Ensure each child in a list has a unique key prop */}
-          <p><Link to={`/albums/${album.id}`}>{album.title}</Link></p>
+        <div className='content-cards' key={album.id}> {/* Ensure each child in a list has a unique key prop */}
+          <div className='content-cards-container'>
+            <div className='vertical-content-card'>
+              <p className='vertical-title'><Link to={`/albums/${album.id}`}>{album.title}</Link></p>
+              <p className='vertical-artist'>{artist.artistName}</p>
+            </div>
+          </div>
         </div>
       ));
   }

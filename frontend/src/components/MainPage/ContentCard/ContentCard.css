@@ -1,18 +1,15 @@
+.content-cards {
+  display: flex;
+  align-self: flex-start;
+  padding-top: 1rem;
+}
+
 .content-cards-container {
   display: flex;
   flex-direction: row;
   gap: 1.25rem;
   overflow-y: hidden;
-}
-
-.content-cards-container {
   scrollbar-width: 1rem;
-}
-
-.content-cards {
-  display: flex;
-  align-self: flex-start;
-  padding-top: 1rem;
 }
 
 .vertical-content-card {
