@@ -22,6 +22,11 @@
   height: 14.55rem;
   background-color: #181818;
   border-radius: 0.5rem;
+  transition: background-color, 0.3s ease-in-out;
+}
+
+.vertical-content-card:hover {
+  background-color: #252525;
 }
 
 a .vertical-content-card {
@@ -36,6 +41,7 @@ a .vertical-content-card {
   margin-top: 0.825rem;
   /* padding-top: 0.825rem; */
   border-radius: 0.5rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,.5);
 }
 
 .vertical-text {
