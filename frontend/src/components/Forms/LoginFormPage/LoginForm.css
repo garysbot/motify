@@ -89,11 +89,13 @@
   padding: 0.825rem;
 }
 
-.demo-login p {
+.demo-login {
   margin-top: 1rem;
   text-decoration: underline;
-}
-.demo-login p:hover{
-  color:#1db954;
+  transition: color, 0.3s, ease-in-out;
+  color: white;
   text-decoration: underline;
+}
+.demo-login:hover{
+  color:#1db954;
 }

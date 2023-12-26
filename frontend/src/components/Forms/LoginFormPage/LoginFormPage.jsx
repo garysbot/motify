@@ -86,7 +86,16 @@ function LoginFormPage() {
 
 
 
-            <p className='demo-login'><p onClick={demoLogin}>Demo Account Login</p></p>
+            <p 
+              onClick={demoLogin}
+              className='demo-login'
+              style={{
+                'margin-top':'1rem',
+                'cursor':'pointer'
+              }}
+            >
+              Demo Account Login
+            </p>
 
             <hr />
 
