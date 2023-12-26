@@ -4,12 +4,13 @@
 }
 
 .album-cover-img {
-  width: 14.375rem;
-  height: 14.375rem;
+  width: 13rem;
+  height: 13rem;
+  border-radius: 0.25rem;
 }
 
 .banner-details {
-  padding-left: 1.5rem;
+  margin-left: 1rem;
   display: flex;
   flex-direction: column;
 }
@@ -20,7 +21,7 @@
 
 .banner-details h1 {
   font-size: 3rem;
-  padding-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .details-artist {
