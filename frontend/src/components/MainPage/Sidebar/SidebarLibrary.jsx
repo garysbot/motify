@@ -46,23 +46,23 @@ const SidebarLibrary = () => {
             userPlaylists.map((playlist, idx) => (
               <>
                 <div 
-                  key={playlist.id}
+                  key={playlist?.id}
                   className='playlist-item-container' 
                   onMouseEnter={() => setHoveredPlaylist(idx)}
                   onMouseLeave={() => setHoveredPlaylist(null)}
                 >
                   
                     <div className='playlist-image-details'>
-                      <Link to={`/playlists/${playlist.id}`}>
+                      <Link to={`/playlists/${playlist?.id}`}>
                         <img className='playlist-cover' alt='playlist-cover' src="https://motify-seeds.s3.us-east-2.amazonaws.com/static/albums/covers/kendrick.png" ></img>
                       </Link>
                     </div>
                     <div className='playlist-user-details'>
-                      <Link to={`/playlists/${playlist.id}`}>
+                      <Link to={`/playlists/${playlist?.id}`}>
                         <p className='playlist-title'>{playlist.title}</p>
+                      <Link to={`/playlists/${playlist?.id}`}>
                       </Link>
-                      <Link to={`/playlists/${playlist.id}`}>
-                        <p className='playlist-details'>Playlist  <span className='dot'>•</span>  {currentUser.username} </p>
+                        <p className='playlist-details'>Playlist  <span className='dot'>•</span>  {currentUser?.username} </p>
                       </Link>
                     </div>
                 </div>
