@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import './ShowPage.css'
+import '../MainPage/ContentCard/ContentCard.css'
 import { fetchArtist } from '../../store/artistSlice';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const ShowArtistPage = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -10,7 +11,6 @@ const ShowArtistPage = () => {
   const dispatch = useDispatch()
   const artist = useSelector((state) => state.artists[artistId])
   const albums = Object.values(useSelector((state) => state.albums))
-  const artistAlbums = albums.filter((album) => album.artistName === artist.artistName)
   
   useEffect(() => {
     const fetchArtistData = async () => {
@@ -27,9 +27,13 @@ const ShowArtistPage = () => {
     return albums
       .filter((album) => album.artistName === artist.artistName)
       .map((album) => (
-        <div key={album.id}> {/* Ensure each child in a list has a unique key prop */}
-          <p>{album.title}</p>
-        </div>
+        <Link to={`/albums/${album.id}`}>
+          <div className='vertical-content-card'  key={album.id}>
+            <img src={album.coverImg} alt='' className='vertical-cover'></img>
+            <p className='vertical-title'>{album.title}</p>
+            <p className='vertical-artist'>{artist.artistName}</p>
+          </div>
+        </Link>
       ));
   }
 
@@ -37,37 +41,22 @@ const ShowArtistPage = () => {
     return <div>Loading...</div>;
   }
 
-  
-
-  // if (albumsByArtist.length === 0) {
-  //   return <div>No albums found for this artist</div>
-  // }
-
-  // ! debugging
-  const handleClick = () => {
-    console.log(`hello world? ${artistId}`)
-  }
-
-  // ! ----------------------------------
-
   return (
     <>
-      <div className='show-banner'>
-        <div className='banner-details'>
+      <div 
+        className='show-banner'
+        // style={{'background-color':'red'}}
+      >
+        <div className='banner-details banner-artist-name'>
           <p>Artist</p>
-          <h1 onClick={handleClick}>{artist?.artistName}</h1>
+          <h1>{artist?.artistName}</h1>
         </div>
       </div>
-
-      <ArtistAlbums/>
-
-      <div className='show-content'>
-        <div className='show-songs-header'>
-          <p className='header-text'>#</p>
-          <p className='header-text'>Title</p>
+      <div className='content-cards'>
+        <div className='content-cards-container'>
+          <ArtistAlbums/>
         </div>
       </div>
-
     </>
   );
 }

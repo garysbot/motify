@@ -4,15 +4,20 @@ import Icon from '../../Icons/Icons.jsx';
 import { useSelector, useDispatch } from 'react-redux';
 import { togglePlay, setVolume, receiveSong, setSongPosition } from '../../../store/audioActions.js';
 
+// Custom Hooks
+import { useAudioPlayer } from './useAudioPlayer.jsx';
+
 const PlayBar = () => {
   const dispatch = useDispatch();
   const audioRef = useRef(new Audio());
   const currentAlbum = useSelector(state => state.audio.currentAlbum);
   const currentArtist = useSelector(state => state.audio.currentArtist);
   const currentSong = useSelector(state => state.audio.currentSong);
-  const isPlaying = useSelector(state => state.audio.isPlaying);
   const volume = useSelector(state => state.audio.volume);
   const songPosition = useSelector(state => state.audio.songPosition);
+
+  // Play/Pause Custom Hook
+  const { handlePlayPause, isPlaying } = useAudioPlayer(audioRef)
 
   useEffect(() => {
     if (currentSong) {
@@ -20,6 +25,7 @@ const PlayBar = () => {
       if (isPlaying) {
         audioRef.current.play().catch((error) => {
           // Handle the error for play() promise rejection here
+          console.error(`Damn what happened with the PlayBar?!`)
         });
       }
     }
@@ -46,19 +52,7 @@ const PlayBar = () => {
     dispatch(setSongPosition(newTime));
   };
 
-
-  // Play/Pause toggle
-  const handlePlayPause = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play().catch((error) => {
-        // Handle the error for play() promise rejection here
-      });
-    }
-    dispatch(togglePlay());
-  };
-
+  
   // Next track
   const handleNextTrack = () => {
     const currentSongIndex = currentAlbum.songs.findIndex(song => song.id === currentSong.id);

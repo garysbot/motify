@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg viewBox="0.516 0.86 16 16" xmlns="http://www.w3.org/2000/svg">
-  <g transform="matrix(1, 0, 0, 1, -7.483986854553223, -959.5020141601561)">
-    <path style="opacity: 1; color: #FFFFFF; stroke: none; stroke-width: 3.33333; stroke-linecap: round; stroke-linejoin: round; stroke-miterlimit: 4; stroke-opacity: 1; stroke-dasharray: none; stroke-dashoffset: 0; marker: none; visibility: visible; display: inline; overflow: visible; fill-opacity: 1; fill: #FFFFFF;" d="M 16 960.362 C 11.582 960.362 8 963.944 8 968.362 C 8 972.78 11.582 976.362 16 976.362 C 20.418 976.362 24 972.78 24 968.362 C 24 963.944 20.418 960.362 16 960.362 Z M 17.875 963.785 C 18.167 963.757 18.379 964.056 18.257 964.323 C 18.234 964.372 18.201 964.416 18.161 964.451 L 13.899 968.362 L 18.161 972.267 C 18.379 972.463 18.304 972.822 18.024 972.913 C 17.894 972.956 17.75 972.925 17.649 972.832 L 13.077 968.642 C 12.91 968.491 12.91 968.228 13.077 968.076 L 17.649 963.886 C 17.711 963.828 17.79 963.792 17.875 963.785 Z"/>
-  </g>
-</svg>

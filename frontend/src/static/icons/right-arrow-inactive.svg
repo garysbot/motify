@@ -1,4 +1,16 @@
-<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" data-encore-id="icon" role="img" aria-hidden="true" class="Svg-sc-ytk21e-0 kgVuXA IYDlXmBmmUKHveMzIPCF" viewBox="0 0 25 25" width="25" height="25">
-    <circle cx="12.5" cy="12.5" r="12.5" fill="#121212" fill-opacity="0.25"></circle>
-    <path d="M14.03 13.47a.75.75 0 0 0-1.06 0L6.56 20l6.47 6.47a.75.75 0 0 0 1.06-1.06L8.44 20l5.59-5.53a.75.75 0 0 0 0-1.06z" fill="#FFFFFF" fill-opacity="0.25" transform="rotate(90 12.5 12.5)"></path>
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_16_10)">
+<path d="M16 -1.39876e-06C7.16345 -2.17128e-06 2.17128e-06 7.16344 1.39876e-06 16C6.26248e-07 24.8366 7.16344 32 16 32C24.8366 32 32 24.8366 32 16C32 7.16344 24.8366 -6.26248e-07 16 -1.39876e-06Z" fill="#121212" fill-opacity="0.25"/>
+<g clip-path="url(#clip1_16_10)">
+<path d="M12.9701 23.5299C12.8296 23.3893 12.7507 23.1987 12.7507 22.9999C12.7507 22.8012 12.8296 22.6106 12.9701 22.4699L19.4401 15.9999L12.9701 9.52993C12.8964 9.46126 12.8373 9.37846 12.7963 9.28646C12.7553 9.19447 12.7332 9.09515 12.7315 8.99445C12.7297 8.89375 12.7482 8.79372 12.7859 8.70033C12.8237 8.60694 12.8798 8.52211 12.951 8.45089C13.0222 8.37967 13.1071 8.32353 13.2005 8.2858C13.2938 8.24808 13.3939 8.22956 13.4946 8.23133C13.5953 8.23311 13.6946 8.25515 13.7866 8.29615C13.8786 8.33714 13.9614 8.39624 14.0301 8.46993L21.5601 15.9999L14.0301 23.5299C13.8894 23.6704 13.6988 23.7493 13.5001 23.7493C13.3013 23.7493 13.1107 23.6704 12.9701 23.5299Z" fill="white"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_16_10">
+<rect width="32" height="32" fill="white" transform="translate(32 32) rotate(-180)"/>
+</clipPath>
+<clipPath id="clip1_16_10">
+<rect width="16" height="16" fill="white" transform="translate(24 24) rotate(-180)"/>
+</clipPath>
+</defs>
 </svg>
