@@ -1,8 +1,4 @@
-.content-cards {
-  display: flex;
-  align-self: flex-start;
-  padding-top: 1rem;
-}
+
 
 .content-cards-container {
   display: flex;
@@ -10,6 +6,12 @@
   gap: 1.25rem;
   overflow-y: hidden;
   scrollbar-width: 1rem;
+}
+
+.content-cards {
+  display: flex;
+  align-self: flex-start;
+  padding-top: 1rem;
 }
 
 .vertical-content-card {
@@ -50,6 +52,7 @@ a .vertical-content-card {
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 9.25rem;
+  color: white;
 }
 
 .vertical-artist {
