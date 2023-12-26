@@ -12,13 +12,15 @@ const ShowArtistPage = () => {
   const albums = Object.values(useSelector((state) => state.albums))
   const artistAlbums = albums.filter((album) => album.artistName === artist.artistName)
   
+  
   useEffect(() => {
     const fetchArtistData = async () => {
-      if (artistId) {
-        setIsLoading(true)
-        dispatch(fetchArtist(artistId))
-        setIsLoading(false)
-      }
+      setIsLoading(true)
+      dispatch(fetchArtist(artistId))
+          setIsLoading(false)
+      // if (artistId) {
+      // }
+      
     }
     fetchArtistData()
   }, [dispatch, artistId])
@@ -53,7 +55,7 @@ const ShowArtistPage = () => {
   return (
     <>
       <div className='show-banner'>
-        <div className='banner-details'>
+        <div className='banner-details banner-artist-name'>
           <p>Artist</p>
           <h1 onClick={handleClick}>{artist?.artistName}</h1>
         </div>
