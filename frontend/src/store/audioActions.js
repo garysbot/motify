@@ -4,6 +4,7 @@ export const RECEIVE_SONG = 'songs/RECEIVE_SONG';
 export const RECEIVE_SONGS = 'songs/RECEIVE_SONGS';
 export const RECEIVE_ALBUM = 'songs/RECEIVE_ALBUM';
 export const RECEIVE_ALBUMS = 'songs/RECEIVE_ALBUMS';
+export const RECEIVE_PLAYLIST = 'songs/RECEIVE_PLAYLIST';
 export const TOGGLE_PLAY = 'songs/TOGGLE_PLAY';
 export const SET_VOLUME = 'songs/SET_VOLUME';
 export const SET_SONG_POSITION = 'songs/SET_SONG_POSITION';
@@ -17,6 +18,10 @@ export const receiveArtist = (artist) => ({
   payload: artist
 });
 
+export const receivePlaylist = (playlist) => ({
+  type: RECEIVE_PLAYLIST,
+  payload: playlist
+})
 
 export const receiveSong = (song) => ({
   type: RECEIVE_SONG,

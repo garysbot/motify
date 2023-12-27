@@ -1,4 +1,4 @@
-import { receiveSongs, receiveSong, receiveAlbums, receiveAlbum, receiveArtist } from './audioActions';
+import { receiveSongs, receiveSong, receiveAlbums, receiveAlbum, receiveArtist, receivePlaylist } from './audioActions';
 import csrfFetch from './csrf';
 
 // Abstracted API call
@@ -15,6 +15,15 @@ export const fetchSongs = () => async (dispatch) => {
   } catch (error) {
     console.error('Fetch songs failed:', error);
     // Dispatch error action if needed
+  }
+};
+
+export const fetchPlaylist = (playlistId) => async (dispatch) => {
+  try {
+    const playlist = await fetchFromApi(`/playlists/${playlistId}`);
+    dispatch(receivePlaylist(playlist));
+  } catch (error) {
+    console.error('Fetch playlists failed:', error);
   }
 };
 

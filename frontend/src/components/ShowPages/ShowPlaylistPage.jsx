@@ -2,16 +2,26 @@ import './ShowPage.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 import lilPlayButton from '../../static/icons/noun-play-1009801.svg'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { receiveSong, togglePlay } from '../../store/audioActions.js'; // Import relevant actions
 import { useParams } from 'react-router-dom';
 import { ReactComponent as TimeIcon } from '../../static/icons/time.svg'
+import { fetchPlaylist } from '../../store/audioThunks.js';
 
 const ShowPlaylistPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [hoveredTrack, setHoveredTrack] = useState(null);
   const dispatch = useDispatch();
   const { playlistId } = useParams();
+
+  useEffect(() => {
+    const fetchPlaylistData = async () => {
+      if (playlistId) {
+        dispatch(fetchPlaylist(playlistId))
+      }
+    }
+    fetchPlaylistData()
+  }, [dispatch, playlistId])
 
   // Render loading indicator
   // if (isLoading || !currentPlaylist) {
