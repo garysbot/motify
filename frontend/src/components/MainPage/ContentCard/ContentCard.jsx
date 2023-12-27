@@ -110,9 +110,7 @@ const Cards = ({ contentType }) => {
         contentTitle = 'Playlists'
         return (
           Object.values(playlists).map((playlist, idx) => (
-              <Link to={{
-                pathname: `/playlists/${playlist.id}`
-              }}>
+              <Link to={`/playlists/${playlist.id}`}>
               <div className='vertical-content-card' key={idx}>
                 <p className='vertical-title'>{playlist.title}</p>
                 <p className='vertical-artist'>{currentUser?.username}</p>

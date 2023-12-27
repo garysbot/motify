@@ -14,6 +14,9 @@ function App() {
       <Route path='/create'>
         <MainPage/>
       </Route>
+      <Route path='/playlists'>
+        <MainPage/>
+      </Route>
       <Route path='/albums'>
         <MainPage/>
       </Route>
