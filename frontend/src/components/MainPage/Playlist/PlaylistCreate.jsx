@@ -8,16 +8,33 @@ import newPlaylistCover from '../../../static/albums/newPlaylistCover.png';
 // Redux state
 import { useSelector, useDispatch } from 'react-redux';
 import { updateTitle } from '../../../store/playlistSlice';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { fetchPlaylist } from '../../../store/audioThunks';
 
-const PlaylistCreate = () => {
+
+
+const ShowPlaylistPage = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
   const songIds = useSelector(state => state.playlist)
   const songs = ['hi', 'bye']
 
+  const currentPlaylist = useSelector(state => state.audio.currentPlaylist)
+  const { playlistId } = useParams();
+
+  useEffect(() => {
+    const fetchPlaylistData = async () => {
+      if (playlistId) {
+        dispatch(fetchPlaylist(playlistId))
+      }
+    }
+    fetchPlaylistData()
+  }, [dispatch, playlistId])
+
+
   // ^ Update Playlist Title
-  const [title, setTitle] = useState('')
+  const [title, setTitle] = useState(currentPlaylist.title)
   const updatePlaylistTitle = (e) => {
     const newTitle = e.target.value
     setTitle(newTitle)
@@ -93,4 +110,4 @@ const PlaylistCreate = () => {
   );
 }
 
-export default PlaylistCreate;
+export default ShowPlaylistPage;

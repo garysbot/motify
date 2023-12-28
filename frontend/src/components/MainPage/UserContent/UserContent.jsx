@@ -4,7 +4,7 @@ import ShowAlbumPage from '../../ShowPages/ShowAlbumPage.jsx';
 import ShowArtistPage from '../../ShowPages/ShowArtistPage.jsx';
 import PlaylistCreate from '../Playlist/PlaylistCreate.jsx';
 import { useParams, Route, useHistory, Switch } from 'react-router-dom';
-import ShowPlaylistPage from '../../ShowPages/ShowPlaylistPage.jsx';
+import ShowPlaylistPage from '../../ShowPages/ShowPlaylistPage-Old.jsx';
 import ProfileMenu from '../Userbar/ProfileMenu/ProfileMenu.jsx';
 import { ReactComponent as LeftArrowActive } from '../../../static/icons/left-arrow-active.svg'
 import { ReactComponent as RightArrowActive } from '../../../static/icons/right-arrow-active.svg'
@@ -62,10 +62,15 @@ const UserContent = () => {
             component={ShowArtistPage}
             // artistId={artistId}
           />
-          <Route
+          {/* <Route
             path="/playlists/:playlistId" 
             component={ShowPlaylistPage}
             // playlistId={playlistId}
+          /> */}
+          {/* // & Testing consolidating /create and ShowPlaylist into 1 Playlist page */}
+          <Route
+            path="/playlists/:playlistId" 
+            component={PlaylistCreate}
           />
           <Route
             exact

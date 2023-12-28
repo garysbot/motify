@@ -108,5 +108,3 @@ const ShowPlaylistPage = () => {
     </>
   );
 }
-
-export default ShowPlaylistPage;
