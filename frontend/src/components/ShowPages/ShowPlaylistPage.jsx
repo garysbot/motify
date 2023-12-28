@@ -1,16 +1,15 @@
 import './ShowPage.css'
 import { useSelector, useDispatch } from 'react-redux';
-import { ReactSVG } from 'react-svg';
-import lilPlayButton from '../../static/icons/noun-play-1009801.svg'
 import { useEffect, useState } from 'react';
 import { receiveSong, togglePlay } from '../../store/audioActions.js'; // Import relevant actions
 import { useParams } from 'react-router-dom';
 import { ReactComponent as TimeIcon } from '../../static/icons/time.svg'
 import { fetchPlaylist } from '../../store/audioThunks.js';
+import ShowBanner from './ShowBanner.jsx';
 
 const ShowPlaylistPage = () => {
-  const [isLoading, setIsLoading] = useState(true);
   const [hoveredTrack, setHoveredTrack] = useState(null);
+  const currentPlaylist = useSelector(state => state.audio.currentPlaylist)
   const dispatch = useDispatch();
   const { playlistId } = useParams();
 
@@ -24,9 +23,9 @@ const ShowPlaylistPage = () => {
   }, [dispatch, playlistId])
 
   // Render loading indicator
-  // if (isLoading || !currentPlaylist) {
-  //   return <div>Loading...</div>;
-  // }
+  if (!currentPlaylist) {
+    return <div>Loading...</div>;
+  }
   
   // Function to handle play button click
   const handlePlaySong = (song) => {
@@ -90,6 +89,7 @@ const ShowPlaylistPage = () => {
   return (
     <>
       {/* // & ShowBanner React component */}
+      <ShowBanner currentPlaylist={currentPlaylist} />
       
       <div className='show-content'>
         {/* // & BannerPlaybar React component */}
