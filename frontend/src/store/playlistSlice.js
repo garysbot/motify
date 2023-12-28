@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import csrfFetch from './csrf';
 
-// ! Thunk Action Creators
+// Thunk Action Creators
 export const fetchPlaylists = createAsyncThunk(
   'playlists/fetchPlaylists',
   async () => {
@@ -16,7 +16,6 @@ export const playlistSlice = createSlice({
   initialState: {},
 
   reducers: {
-
     receivePlaylists: (state, action) => {
       const playlists = action.payload
       playlists.forEach(playlist => {
@@ -24,41 +23,22 @@ export const playlistSlice = createSlice({
       })
     },
 
-    // Need to update this so it stores newly created playlist similarly as above
     createPlaylist: (state, action) => {
       const newPlaylist = action.payload;
       state[newPlaylist.id] = newPlaylist;
     },
 
-    // updatePlaylist: (state, action) => {
-    //   const { id, title, createdAt, updatedAt, song } = action.payload;
-
-    //   if (song) {
-    //     const updatedSongs = state.songs ? [...state.songs, song.id] : [song.id];
-    //     return {
-    //       ...state,
-    //       id: id || state.id,
-    //       title: title || state.title,
-    //       songs: updatedSongs,
-    //       created_at: createdAt || state.created_at,
-    //       updated_at: updatedAt || state.updated_at
-    //     };
-    //   }
-    //   return state;
-    // },
-    // & Testing a version of updatePlaylist that accepts optional any action payload
     updatePlaylist: (state, action) => {
-      // & Check if action.payload is undefined or null
+      // Check if action.payload is undefined or null
       if (!action.payload) {
         console.error('Payload is missing in updatePlaylist action');
         return;
       }
-
-      // & Destructure id and changes from the payload
+      //  Destructure id and changes from the payload
       const { id, ...changes } = action.payload;
-
-      // & Check if the playlist with the given id exists
+      //  Check if the playlist with the given id exists
       const playlist = state[id];
+
       if (!playlist) {
         console.error(`Playlist with ID ${id} not found`);
         return;
@@ -66,6 +46,15 @@ export const playlistSlice = createSlice({
 
       // & Update the playlist with the changes
       Object.assign(playlist, changes);
+    },
+
+    deletePlaylist: (state, action) => {
+      const playlistId = action.payload
+      if (!playlistId) {
+        console.error(`deletePlaylist action payload is missing playlistId`)
+        return
+      }
+      delete state[playlistId]
     },
 
     addSong: (state, action) => {
@@ -90,10 +79,17 @@ export const playlistSlice = createSlice({
   }
 })
 
-// * Actions
-export const { receivePlaylists, createPlaylist, addSong, removeSong, updatePlaylist, deletePlaylist } = playlistSlice.actions
+//  Actions
+export const { 
+  receivePlaylists, 
+  createPlaylist, 
+  addSong, 
+  removeSong, 
+  updatePlaylist, 
+  deletePlaylist 
+} = playlistSlice.actions
 
-// * Thunk action creators
+// Thunk action creators
 export const createPlaylistAsync = newPlaylistData => {
   return (dispatch) => {
     csrfFetch(`/playlists`, {
@@ -116,7 +112,6 @@ export const createPlaylistAsync = newPlaylistData => {
   }
 }
 
-
 export const updatePlaylistAsync = updatedPlaylistData => {
   return (dispatch) => {
     const { id: playlistId, ...changes } = updatedPlaylistData;
@@ -125,7 +120,6 @@ export const updatePlaylistAsync = updatedPlaylistData => {
       console.error("Playlist ID is undefined");
       return;
     }
-
     // Make the PATCH request with the changes
     csrfFetch(`/playlists/${playlistId}`, {
       method: 'PATCH',
@@ -147,9 +141,28 @@ export const updatePlaylistAsync = updatedPlaylistData => {
   };
 }
 
+export const deletePlaylistAsync = playlistId => {
+  return dispatch => {
+    return new Promise((resolve, reject) => {
+      csrfFetch(`/playlists/${playlistId}`, {
+        method: 'DELETE'
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Network response failed, playlist not deleted`);
+        }
+        dispatch(deletePlaylist(playlistId));
+        resolve();
+      })
+      .catch(error => {
+        console.error(`Error deleting the playlist`, error);
+        reject(error);
+      });
+    });
+  };
+};
+
+
+
+
 export default playlistSlice.reducer;
-
-
-if (process.env.NODE_ENV !== 'production') {
-  window.createPlaylistAsync = createPlaylistAsync;
-}

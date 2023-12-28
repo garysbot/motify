@@ -1,6 +1,6 @@
 // Redux state
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchPlaylist } from '../../store/audioThunks';
 // Add lodash for debounce
@@ -13,12 +13,13 @@ import './ShowPage.css'
 import SearchField from '../SearchField/SearchField'
 // Imgs
 import newPlaylistCover from '../../static/albums/newPlaylistCover.png';
-import { updatePlaylist, updatePlaylistAsync } from '../../store/playlistSlice';
+import { deletePlaylistAsync, updatePlaylist, updatePlaylistAsync } from '../../store/playlistSlice';
 
 
 
 const ShowPlaylistPage = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const currentUser = useSelector(state => state.session.user);
   const songIds = useSelector(state => state.playlist)
   const songs = ['hi', 'bye']
@@ -59,9 +60,19 @@ const ShowPlaylistPage = () => {
     }
   }, [debouncedTitle, dispatch, currentPlaylist.title, playlistId])
 
-  const handleDelete = (playlistId) => {
-    console.log(`del button pressed ${playlistId}`)
-  }
+  const handleDelete = () => {
+    if (window.confirm("Are you sure you want to delete this playlist?")) {
+      dispatch(deletePlaylistAsync(playlistId))
+        .then(() => {
+          history.push('/');
+        })
+        .catch((error) => {
+          console.error('Failed to delete playlist:', error);
+          // Optionally, handle the error with user feedback
+        });
+    }
+  };
+  
 
   return (
     <>

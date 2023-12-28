@@ -16,8 +16,16 @@ export const rootReducer = combineReducers({
   session,
   ui: uiReducer,
   audio: audioReducer,
+    // includes
+      // currentArtist
+      // currentAlbum
+      // currentPlaylist
+      // currentSong
   search: searchReducer,
+  
+  // playlistSlice
   playlists: playlistReducer,
+
   albums: albumReducer,
   songs: songReducer,
   artists: artistReducer
