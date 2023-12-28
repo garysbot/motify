@@ -30,21 +30,42 @@ export const playlistSlice = createSlice({
       state[newPlaylist.id] = newPlaylist;
     },
 
-    updatePlaylist: (state, action) => {
-      const { id, title, createdAt, updatedAt, song } = action.payload;
+    // updatePlaylist: (state, action) => {
+    //   const { id, title, createdAt, updatedAt, song } = action.payload;
 
-      if (song) {
-        const updatedSongs = state.songs ? [...state.songs, song.id] : [song.id];
-        return {
-          ...state,
-          id: id || state.id,
-          title: title || state.title,
-          songs: updatedSongs,
-          created_at: createdAt || state.created_at,
-          updated_at: updatedAt || state.updated_at
-        };
+    //   if (song) {
+    //     const updatedSongs = state.songs ? [...state.songs, song.id] : [song.id];
+    //     return {
+    //       ...state,
+    //       id: id || state.id,
+    //       title: title || state.title,
+    //       songs: updatedSongs,
+    //       created_at: createdAt || state.created_at,
+    //       updated_at: updatedAt || state.updated_at
+    //     };
+    //   }
+    //   return state;
+    // },
+    // & Testing a version of updatePlaylist that accepts optional any action payload
+    updatePlaylist: (state, action) => {
+      // & Check if action.payload is undefined or null
+      if (!action.payload) {
+        console.error('Payload is missing in updatePlaylist action');
+        return;
       }
-      return state;
+
+      // & Destructure id and changes from the payload
+      const { id, ...changes } = action.payload;
+
+      // & Check if the playlist with the given id exists
+      const playlist = state[id];
+      if (!playlist) {
+        console.error(`Playlist with ID ${id} not found`);
+        return;
+      }
+
+      // & Update the playlist with the changes
+      Object.assign(playlist, changes);
     },
 
     addSong: (state, action) => {
@@ -61,14 +82,6 @@ export const playlistSlice = createSlice({
       state.songs = state.songs.filter(song => song.id !== action.payload)
     },
 
-
-    setUserID: (state, action) => {
-      state.user_id = action.payload;
-    },
-
-    updateTitle: (state, action) => {
-      state.title = action.payload
-    }
   },
   extraReducers: (builder) => {
     builder.addCase(fetchPlaylists.fulfilled, (state, action) => {
@@ -78,7 +91,7 @@ export const playlistSlice = createSlice({
 })
 
 // * Actions
-export const { receivePlaylists, createPlaylist, addSong, removeSong, updatePlaylist, setUserID, deletePlaylist, updateTitle } = playlistSlice.actions
+export const { receivePlaylists, createPlaylist, addSong, removeSong, updatePlaylist, deletePlaylist } = playlistSlice.actions
 
 // * Thunk action creators
 export const createPlaylistAsync = newPlaylistData => {

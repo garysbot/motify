@@ -2,7 +2,7 @@ import '../MainPage.css'
 import ContentCard from '../ContentCard/ContentCard.jsx';
 import ShowAlbumPage from '../../ShowPages/ShowAlbumPage.jsx';
 import ShowArtistPage from '../../ShowPages/ShowArtistPage.jsx';
-import PlaylistCreate from '../Playlist/PlaylistCreate.jsx';
+import PlaylistCreate from '../../ShowPages/ShowPlaylistPage.jsx';
 import { useParams, Route, useHistory, Switch } from 'react-router-dom';
 import ShowPlaylistPage from '../../ShowPages/ShowPlaylistPage-Old.jsx';
 import ProfileMenu from '../Userbar/ProfileMenu/ProfileMenu.jsx';

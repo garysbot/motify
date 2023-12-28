@@ -1,16 +1,19 @@
-import '../MainPage.css'
-import './PlaylistCreate.css'
-import '../../ShowPages/ShowPage.css'
-import SearchField from '../../SearchField/SearchField'
-// Imgs
-import newPlaylistCover from '../../../static/albums/newPlaylistCover.png';
-
 // Redux state
-import { useSelector, useDispatch } from 'react-redux';
-import { updateTitle } from '../../../store/playlistSlice';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchPlaylist } from '../../../store/audioThunks';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchPlaylist } from '../../store/audioThunks';
+// Add lodash for debounce
+import _ from 'lodash';
+
+
+import '../MainPage/MainPage.css'
+import '../MainPage/Playlist/PlaylistCreate.css'
+import './ShowPage.css'
+import SearchField from '../SearchField/SearchField'
+// Imgs
+import newPlaylistCover from '../../static/albums/newPlaylistCover.png';
+import { updatePlaylist } from '../../store/playlistSlice';
 
 
 
@@ -33,16 +36,28 @@ const ShowPlaylistPage = () => {
   }, [dispatch, playlistId])
 
 
-  // ^ Update Playlist Title
+  // ^ Debounced update Playlist Title
   const [title, setTitle] = useState(currentPlaylist.title)
+  const [debouncedTitle, setDebouncedTitle] = useState(title)
+  
+  // & Debounce function to delay the dispatch
+  const debounceTitleUpdate = _.debounce((newTitle) => {
+    setDebouncedTitle(newTitle)
+  }, 1000)
+
   const updatePlaylistTitle = (e) => {
     const newTitle = e.target.value
     setTitle(newTitle)
-    dispatch(updateTitle(newTitle))
+    debounceTitleUpdate(newTitle)
     console.log(`The title is currently ${newTitle}`)
   }
+  
+  useEffect(() => {
+    if (debouncedTitle !== currentPlaylist.title) {
+      dispatch(updatePlaylist({ id: playlistId, title: debouncedTitle }))
+    }
+  }, [debouncedTitle, dispatch, currentPlaylist.title, playlistId])
 
-  // ^ Render songs in the playlist
 
   return (
     <>
