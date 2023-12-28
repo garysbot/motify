@@ -118,42 +118,33 @@ export const createPlaylistAsync = newPlaylistData => {
 
 
 export const updatePlaylistAsync = updatedPlaylistData => {
-  return (dispatch, getState) => {
-    const currentState = getState().playlist;
-    const { id: playlistId, song, title } = updatedPlaylistData
+  return (dispatch) => {
+    const { id: playlistId, ...changes } = updatedPlaylistData;
 
     if (!playlistId) {
-      console.error(`Playlist ID is having issues, current value is: ${playlistId}`);
+      console.error("Playlist ID is undefined");
       return;
     }
 
-    if (!song) {
-      console.error("Song object is undefined");
-    }
-
-    if (!title) {
-      console.error("Title is undefined or not provided");
-    }
-
-    const updatedSongs = currentState.songs ? [...currentState.songs, song] : [song];
-
+    // Make the PATCH request with the changes
     csrfFetch(`/playlists/${playlistId}`, {
       method: 'PATCH',
-      body: JSON.stringify({ title, playlist: { title, songs: updatedSongs.map(song => song.id) } })
+      body: JSON.stringify(changes)
     })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`Network response failed, playlist not updated`)
-        }
-        return response.json()
-      })
-      .then(updatedPlaylist => {
-        dispatch(updatePlaylist({ ...updatedPlaylist, song }))
-      })
-      .catch(error => {
-        console.error(`Error updating the playlist`, error)
-      })
-  }
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Network response failed, playlist not updated`);
+      }
+      return response.json();
+    })
+    .then(updatedPlaylist => {
+      // Dispatch the updatePlaylist action with the updated data from the backend
+      dispatch(updatePlaylist({ id: playlistId, ...updatedPlaylist }));
+    })
+    .catch(error => {
+      console.error(`Error updating the playlist`, error);
+    });
+  };
 }
 
 export default playlistSlice.reducer;

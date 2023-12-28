@@ -13,7 +13,7 @@ import './ShowPage.css'
 import SearchField from '../SearchField/SearchField'
 // Imgs
 import newPlaylistCover from '../../static/albums/newPlaylistCover.png';
-import { updatePlaylist } from '../../store/playlistSlice';
+import { updatePlaylist, updatePlaylistAsync } from '../../store/playlistSlice';
 
 
 
@@ -55,9 +55,13 @@ const ShowPlaylistPage = () => {
   useEffect(() => {
     if (debouncedTitle !== currentPlaylist.title) {
       dispatch(updatePlaylist({ id: playlistId, title: debouncedTitle }))
+      dispatch(updatePlaylistAsync({ id: playlistId, title: debouncedTitle }))
     }
   }, [debouncedTitle, dispatch, currentPlaylist.title, playlistId])
 
+  const handleDelete = (playlistId) => {
+    console.log(`del button pressed ${playlistId}`)
+  }
 
   return (
     <>
@@ -90,6 +94,7 @@ const ShowPlaylistPage = () => {
 
         {/* Main Body for Songs Added */}
         <div className='new-playlist-body'>
+          <button type="submit" onClick={handleDelete}>Delete</button>
           <div className='playlist-header'>
             <p>#</p>
             <p>Title</p>
