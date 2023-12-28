@@ -24,16 +24,10 @@ export const playlistSlice = createSlice({
       })
     },
 
+    // Need to update this so it stores newly created playlist similarly as above
     createPlaylist: (state, action) => {
-      const { id, userId, title, songs, createdAt, updatedAt } = action.payload;
-      return {
-        id: id || state.id,
-        user_id: userId || state.user_id,
-        title: title || state.title,
-        songs: songs || state.songs,
-        created_at: createdAt || state.created_at,
-        updated_at: updatedAt || state.updated_at
-      }
+      const newPlaylist = action.payload;
+      state[newPlaylist.id] = newPlaylist;
     },
 
     updatePlaylist: (state, action) => {
@@ -54,7 +48,13 @@ export const playlistSlice = createSlice({
     },
 
     addSong: (state, action) => {
-      state.songs.push(action.payload);
+      // Adjusting so that it adds song to the corresponding playlist ID
+      const { playlistId, song } = action.payload;
+      if (state[playlistId]) {
+        state[playlistId].songs.push(song)
+      } else {
+        console.error(`Playlist with ID ${playlistId} was not found`)
+      }
     },
 
     removeSong: (state, action) => {
@@ -110,7 +110,7 @@ export const updatePlaylistAsync = updatedPlaylistData => {
     const { id: playlistId, song, title } = updatedPlaylistData
 
     if (!playlistId) {
-      console.error("Playlist ID is undefined");
+      console.error(`Playlist ID is having issues, current value is: ${playlistId}`);
       return;
     }
 

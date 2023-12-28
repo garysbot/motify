@@ -4,14 +4,12 @@ import { addSong,updatePlaylist, updatePlaylistAsync } from '../../../store/play
 
 const ArtistResultPage = ({ songs }) => {
   const dispatch = useDispatch();
-  // const currentUserId = useSelector(state => state.session.user.id)
-  // const draftPlaylist = useSelector(state => state.playlist.draftPlaylist)
-  const playlist = useSelector(state => state.playlist)
-  const playlistId = playlist.id
-  const playlistTitle = useSelector(state => state.playlist.title)
 
   const handleClick = (song) => {
-    dispatch(updatePlaylistAsync({ id: playlistId, song, title: playlistTitle }))
+    // console.log(`I wonder what the playlistId is... ${playlistId}`)
+    // console.log(`What about the song.id... ${song.id}`)
+    // console.log(`And the title?... ${draftPlaylist}`)
+    // dispatch(updatePlaylistAsync({ id: playlistId, song }))
   };
   
 
