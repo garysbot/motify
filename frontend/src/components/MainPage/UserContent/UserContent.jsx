@@ -2,15 +2,13 @@ import '../MainPage.css'
 import ContentCard from '../ContentCard/ContentCard.jsx';
 import ShowAlbumPage from '../../ShowPages/ShowAlbumPage.jsx';
 import ShowArtistPage from '../../ShowPages/ShowArtistPage.jsx';
-import PlaylistCreate from '../../ShowPages/ShowPlaylistPage.jsx';
-import { useParams, Route, useHistory, Switch } from 'react-router-dom';
-import ShowPlaylistPage from '../../ShowPages/ShowPlaylistPage-Old.jsx';
+import ShowPlaylistPage from '../../ShowPages/ShowPlaylistPage.jsx';
+import { Route, useHistory, Switch } from 'react-router-dom';
 import ProfileMenu from '../Userbar/ProfileMenu/ProfileMenu.jsx';
 import { ReactComponent as LeftArrowActive } from '../../../static/icons/left-arrow-active.svg'
 import { ReactComponent as RightArrowActive } from '../../../static/icons/right-arrow-active.svg'
 
 const UserContent = () => {
-  const { albumId, artistId, playlistId } = useParams();
   const history = useHistory(); // Get the history object
 
    // Function to navigate back
@@ -49,28 +47,16 @@ const UserContent = () => {
       <div className='user-home-content'>
         <Switch>
           <Route
-            path="/create"
-            component={PlaylistCreate}
-          />
-          <Route
             path="/albums/:albumId" 
             component={ShowAlbumPage}
-            // albumId={albumId}
           />
           <Route
             path="/artists/:artistId" 
             component={ShowArtistPage}
-            // artistId={artistId}
           />
-          {/* <Route
-            path="/playlists/:playlistId" 
-            component={ShowPlaylistPage}
-            // playlistId={playlistId}
-          /> */}
-          {/* // & Testing consolidating /create and ShowPlaylist into 1 Playlist page */}
           <Route
             path="/playlists/:playlistId" 
-            component={PlaylistCreate}
+            component={ShowPlaylistPage}
           />
           <Route
             exact

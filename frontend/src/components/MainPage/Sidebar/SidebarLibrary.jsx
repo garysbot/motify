@@ -61,8 +61,8 @@ const SidebarLibrary = () => {
                     <div className='playlist-user-details'>
                       <Link to={`/playlists/${playlist?.id}`}>
                         <p className='playlist-title'>{playlist.title}</p>
-                      <Link to={`/playlists/${playlist?.id}`}>
                       </Link>
+                      <Link to={`/playlists/${playlist?.id}`}>
                         <p className='playlist-details'>Playlist  <span className='dot'>•</span>  {currentUser?.username} </p>
                       </Link>
                     </div>
