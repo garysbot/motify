@@ -10,7 +10,8 @@ const SidebarLibrary = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
   const playlists = useSelector(state => state.playlists);
-  const userPlaylists = Object.values(playlists)
+  const allPlaylists = Object.values(playlists)
+  const userPlaylists = allPlaylists.filter((playlist) => playlist.userId === currentUser?.id)
 
   // ! Hover effect
   const [hoveredPlaylist, setHoveredPlaylist] = useState(null)
