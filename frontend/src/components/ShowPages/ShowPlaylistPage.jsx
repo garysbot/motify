@@ -21,12 +21,12 @@ const ShowPlaylistPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const currentUser = useSelector(state => state.session.user);
-  const songIds = useSelector(state => state.playlist)
-  const songs = ['hi', 'bye']
-
   const currentPlaylist = useSelector(state => state.audio.currentPlaylist)
+  const songs = ['hi', 'bye']
+  
+  
+  // ^ Fetches current playlist object from URL via useParams
   const { playlistId } = useParams();
-
   useEffect(() => {
     const fetchPlaylistData = async () => {
       if (playlistId) {
@@ -36,30 +36,7 @@ const ShowPlaylistPage = () => {
     fetchPlaylistData()
   }, [dispatch, playlistId])
 
-
-  // ^ Debounced update Playlist Title
-  const [title, setTitle] = useState(currentPlaylist.title)
-  const [debouncedTitle, setDebouncedTitle] = useState(title)
-  
-  // & Debounce function to delay the dispatch
-  const debounceTitleUpdate = _.debounce((newTitle) => {
-    setDebouncedTitle(newTitle)
-  }, 1000)
-
-  const updatePlaylistTitle = (e) => {
-    const newTitle = e.target.value
-    setTitle(newTitle)
-    debounceTitleUpdate(newTitle)
-    console.log(`The title is currently ${newTitle}`)
-  }
-  
-  useEffect(() => {
-    if (debouncedTitle !== currentPlaylist.title) {
-      dispatch(updatePlaylist({ id: playlistId, title: debouncedTitle }))
-      dispatch(updatePlaylistAsync({ id: playlistId, title: debouncedTitle }))
-    }
-  }, [debouncedTitle, dispatch, currentPlaylist.title, playlistId])
-
+  // ^ Delete handler
   const handleDelete = () => {
     if (window.confirm("Are you sure you want to delete this playlist?")) {
       dispatch(deletePlaylistAsync(playlistId))
@@ -72,6 +49,32 @@ const ShowPlaylistPage = () => {
         });
     }
   };
+
+  // ^ Debounced update Playlist Title
+  // & useEffect logic here is interfering and editing existing playlist titles
+  // 1. Set `title` as currentPlaylist title
+  const [title, setTitle] = useState(currentPlaylist.title)
+  const [debouncedTitle, setDebouncedTitle] = useState(title)
+  
+  //  Debounce function to delay the dispatch
+  const debounceTitleUpdate = _.debounce((newTitle) => {
+    setDebouncedTitle(newTitle)
+  }, 1000)
+
+  // Playlist title update handler
+  const handleTitleUpdate = (e) => {
+    const newTitle = e.target.value
+    debounceTitleUpdate(newTitle)
+  }
+  
+  // Logic checking for title dif to trigger Redux action + backend update
+  // useEffect(() => {
+  //   if (debouncedTitle !== currentPlaylist.title) {
+  //     // dispatch(updatePlaylist({ id: playlistId, title: debouncedTitle }))
+  //     dispatch(updatePlaylistAsync({ id: playlistId, title: debouncedTitle }))
+  //   }
+  // }, [debouncedTitle, dispatch, currentPlaylist.title, playlistId])
+
   
 
   return (
@@ -87,8 +90,9 @@ const ShowPlaylistPage = () => {
                 <input
                   className='playlist-title-field'
                   type="text"
-                  value={title}
-                  onChange={updatePlaylistTitle}
+                  // value={title}
+                  placeholder={currentPlaylist.title}
+                  onChange={handleTitleUpdate}
                 />
                 <button type="submit" style={{ display: "none" }}>Submit</button>
               </form>
