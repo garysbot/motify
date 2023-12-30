@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchPlaylist } from '../../store/audioThunks';
+import { deletePlaylistAsync, updatePlaylist, updatePlaylistAsync } from '../../store/playlistSlice';
 // Add lodash for debounce
 import _ from 'lodash';
 
@@ -11,10 +12,10 @@ import '../MainPage/MainPage.css'
 import '../MainPage/Playlist/PlaylistCreate.css'
 import './ShowPage.css'
 import SearchField from '../SearchField/SearchField'
+import BannerPlaybar from './BannerPlaybar';
+
 // Imgs
 import newPlaylistCover from '../../static/albums/newPlaylistCover.png';
-import { deletePlaylistAsync, updatePlaylist, updatePlaylistAsync } from '../../store/playlistSlice';
-
 
 
 const ShowPlaylistPage = () => {
@@ -64,16 +65,17 @@ const ShowPlaylistPage = () => {
   // Playlist title update handler
   const handleTitleUpdate = (e) => {
     const newTitle = e.target.value
+    setTitle(newTitle)
     debounceTitleUpdate(newTitle)
   }
   
-  // Logic checking for title dif to trigger Redux action + backend update
-  // useEffect(() => {
-  //   if (debouncedTitle !== currentPlaylist.title) {
-  //     // dispatch(updatePlaylist({ id: playlistId, title: debouncedTitle }))
-  //     dispatch(updatePlaylistAsync({ id: playlistId, title: debouncedTitle }))
-  //   }
-  // }, [debouncedTitle, dispatch, currentPlaylist.title, playlistId])
+  // // Logic checking for title dif to trigger Redux action + backend update
+  useEffect(() => {
+    if (debouncedTitle !== title && playlistId === currentPlaylist.id) {
+      // dispatch(updatePlaylist({ id: playlistId, title: debouncedTitle }))
+      dispatch(updatePlaylistAsync({ id: playlistId, title: debouncedTitle }))
+    }
+  }, [debouncedTitle, dispatch, currentPlaylist.title, playlistId])
 
   
 
@@ -90,8 +92,8 @@ const ShowPlaylistPage = () => {
                 <input
                   className='playlist-title-field'
                   type="text"
-                  // value={title}
-                  placeholder={currentPlaylist.title}
+                  value={title}
+                  // placeholder={currentPlaylist.title}
                   onChange={handleTitleUpdate}
                 />
                 <button type="submit" style={{ display: "none" }}>Submit</button>
@@ -106,7 +108,9 @@ const ShowPlaylistPage = () => {
             </div>
           </div>
         </div>
-
+        <div className='show-menu-container'>
+          <BannerPlaybar/>
+        </div>
         {/* Main Body for Songs Added */}
         <div className='new-playlist-body'>
           <button type="submit" onClick={handleDelete}>Delete</button>
