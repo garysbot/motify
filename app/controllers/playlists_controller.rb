@@ -2,7 +2,7 @@ class PlaylistsController < ApplicationController
   before_action :set_playlist, only: %i[ show update destroy ]
 
   def index
-    @playlists = Playlist.includes(songs: :artist).all
+    @playlists = Playlist.includes(songs: [:artist, :album]).all
   end
 
   # POST /playlists
@@ -20,7 +20,7 @@ class PlaylistsController < ApplicationController
   end
 
   def show
-    @playlist = Playlist.includes(songs: :artist).find(params[:id])
+    @playlist = Playlist.includes(songs: [:artist, :album]).find(params[:id])
   end
 
   # DELETE /playlists/1

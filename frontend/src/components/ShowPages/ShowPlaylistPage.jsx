@@ -100,8 +100,6 @@ const ShowPlaylistPage = () => {
           <div className='playlist-header'>
             <p>#</p>
             <p>Title</p>
-            <p>Album</p>
-            <p>Date added</p>
             <p>Duration</p>
           </div>
           <hr></hr>
@@ -111,7 +109,6 @@ const ShowPlaylistPage = () => {
                 <div className='show-songs-row-container'>
                   <p>{trackNum + 1}</p>
                   <p>{song.title}</p>
-                  <p>{song.albumTitle}</p>
                   <p>{`${Math.floor(song.duration / 60)}:${String(song.duration % 60).padStart(2, '0')}`}</p>
                 </div>
               </>

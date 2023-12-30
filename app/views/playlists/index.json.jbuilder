@@ -15,12 +15,14 @@ json.array! @playlists do |playlist|
   # end
 
   # # Songs array
-  # json.songs playlist.songs do |song|
-  #   json.id song.id
-  #   json.title song.title
-  #   json.artistName song.artist.artist_name
-  #   json.duration song.duration
-  #   json.explicit song.explicit
-  #   # Include other song fields as needed
-  # end
+  json.songs playlist.songs do |song|
+    json.extract! song, :id, :title, :duration, :explicit
+    json.albumTitle song.album.title  # Include album title
+    # json.id song.id
+    # json.title song.title
+    # json.artistName song.artist.artist_name
+    # json.duration song.duration
+    # json.explicit song.explicit
+    # Include other song fields as needed
+  end
 end

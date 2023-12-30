@@ -122,16 +122,6 @@ export const updatePlaylistAsync = updatedPlaylistData => {
       return;
     }
 
-    // Prepare the payload. If a song is included, add its ID to the songs array.
-    // let changes = { ...updatedPlaylistData };
-    // if (song) {
-    //   // Ensure that the `songs` field is an array of song IDs.
-    //   // The backend expects song IDs, not full song objects.
-    //   changes = {
-    //     ...changes,
-    //     songs: changes.songs ? [...changes.songs, song.id] : [song.id]
-    //   };
-    // }
     let changes = {};
     if (song) {
       // Send only song IDs as expected by the Rails backend
@@ -155,7 +145,6 @@ export const updatePlaylistAsync = updatedPlaylistData => {
       dispatch(updatePlaylist({ id: playlistId, ...updatedPlaylist }));
 
       // After updating the playlist, fetch the updated details
-      // Assuming you have an action like fetchPlaylist that fetches a single playlist
       dispatch(fetchPlaylist(playlistId));
     })
     .catch(error => {
