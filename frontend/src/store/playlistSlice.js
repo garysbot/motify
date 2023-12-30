@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import csrfFetch from './csrf';
+import { fetchPlaylist } from './audioThunks';
 
 // Thunk Action Creators
 export const fetchPlaylists = createAsyncThunk(
@@ -114,32 +115,55 @@ export const createPlaylistAsync = newPlaylistData => {
 
 export const updatePlaylistAsync = updatedPlaylistData => {
   return (dispatch) => {
-    const { id: playlistId, ...changes } = updatedPlaylistData;
+    const { id: playlistId, song } = updatedPlaylistData;
 
     if (!playlistId) {
       console.error("Playlist ID is undefined");
       return;
     }
-    // Make the PATCH request with the changes
+
+    // Prepare the payload. If a song is included, add its ID to the songs array.
+    // let changes = { ...updatedPlaylistData };
+    // if (song) {
+    //   // Ensure that the `songs` field is an array of song IDs.
+    //   // The backend expects song IDs, not full song objects.
+    //   changes = {
+    //     ...changes,
+    //     songs: changes.songs ? [...changes.songs, song.id] : [song.id]
+    //   };
+    // }
+    let changes = {};
+    if (song) {
+      // Send only song IDs as expected by the Rails backend
+      changes = {
+        songs: [song.id]
+      };
+    }
+
     csrfFetch(`/playlists/${playlistId}`, {
       method: 'PATCH',
-      body: JSON.stringify(changes)
+      body: JSON.stringify({ playlist: changes })
     })
     .then(response => {
       if (!response.ok) {
-        throw new Error(`Network response failed, playlist not updated`);
+        throw new Error(`Network response failed, playlist update failed`);
       }
       return response.json();
     })
     .then(updatedPlaylist => {
       // Dispatch the updatePlaylist action with the updated data from the backend
       dispatch(updatePlaylist({ id: playlistId, ...updatedPlaylist }));
+
+      // After updating the playlist, fetch the updated details
+      // Assuming you have an action like fetchPlaylist that fetches a single playlist
+      dispatch(fetchPlaylist(playlistId));
     })
     .catch(error => {
       console.error(`Error updating the playlist`, error);
     });
   };
-}
+};
+
 
 export const deletePlaylistAsync = playlistId => {
   return dispatch => {

@@ -1,12 +1,8 @@
-// Redux state
 import { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchPlaylist } from '../../store/audioThunks';
-import { deletePlaylistAsync, updatePlaylist, updatePlaylistAsync } from '../../store/playlistSlice';
-// Add lodash for debounce
-import _ from 'lodash';
-
+import { deletePlaylistAsync, updatePlaylistAsync } from '../../store/playlistSlice';
 
 import '../MainPage/MainPage.css'
 import '../MainPage/Playlist/PlaylistCreate.css'
@@ -17,14 +13,14 @@ import BannerPlaybar from './BannerPlaybar';
 // Imgs
 import newPlaylistCover from '../../static/albums/newPlaylistCover.png';
 
-
 const ShowPlaylistPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const currentUser = useSelector(state => state.session.user);
   const currentPlaylist = useSelector(state => state.audio.currentPlaylist)
   const [title, setTitle] = useState(currentPlaylist.title)
-  const songs = ['hi', 'bye']
+  // const songs = ['hi', 'bye']
+  const currentSongs = useSelector(state => state.audio.currentPlaylist.songs)
   
   // ^ Fetches current playlist object from URL via useParams
   const { playlistId } = useParams();
@@ -74,14 +70,12 @@ const ShowPlaylistPage = () => {
           <img src={newPlaylistCover} alt='' className='album-cover-img'></img>
           <div className='banner-details'>
             <p>Playlist</p>
-            {/* // TODO Attach to Redux state.playlist.title  */}
             <div className='playlist-name-container'>
               <form>
                 <input
                   className='playlist-title-field'
                   type="text"
                   value={title}
-                  // placeholder={currentPlaylist.title}
                   onChange={handleTitleUpdate}
                   onBlur={handleTitleSave}
                 />
@@ -112,7 +106,7 @@ const ShowPlaylistPage = () => {
           </div>
           <hr></hr>
           {
-            songs?.map((song, trackNum) => (
+            currentSongs?.map((song, trackNum) => (
               <>
                 <div className='show-songs-row-container'>
                   <p>{trackNum + 1}</p>

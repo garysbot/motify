@@ -1,15 +1,14 @@
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import { addSong,updatePlaylist, updatePlaylistAsync } from '../../../store/playlistSlice'
 
 const ArtistResultPage = ({ songs }) => {
+  const { playlistId } = useParams();
   const dispatch = useDispatch();
 
   const handleClick = (song) => {
-    // console.log(`I wonder what the playlistId is... ${playlistId}`)
-    // console.log(`What about the song.id... ${song.id}`)
-    // console.log(`And the title?... ${draftPlaylist}`)
-    // dispatch(updatePlaylistAsync({ id: playlistId, song }))
+    console.log(`added?`)
+    dispatch(updatePlaylistAsync({ id: playlistId, song }))
   };
   
 
