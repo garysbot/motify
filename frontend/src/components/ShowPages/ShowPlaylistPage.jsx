@@ -25,7 +25,6 @@ const ShowPlaylistPage = () => {
   const currentPlaylist = useSelector(state => state.audio.currentPlaylist)
   const songs = ['hi', 'bye']
   
-  
   // ^ Fetches current playlist object from URL via useParams
   const { playlistId } = useParams();
   useEffect(() => {
@@ -51,33 +50,18 @@ const ShowPlaylistPage = () => {
     }
   };
 
-  // ^ Debounced update Playlist Title
-  // & useEffect logic here is interfering and editing existing playlist titles
-  // 1. Set `title` as currentPlaylist title
+  // ^ Update Playlist Title
   const [title, setTitle] = useState(currentPlaylist.title)
-  const [debouncedTitle, setDebouncedTitle] = useState(title)
-  
-  //  Debounce function to delay the dispatch
-  const debounceTitleUpdate = _.debounce((newTitle) => {
-    setDebouncedTitle(newTitle)
-  }, 1000)
 
-  // Playlist title update handler
   const handleTitleUpdate = (e) => {
-    const newTitle = e.target.value
-    setTitle(newTitle)
-    debounceTitleUpdate(newTitle)
-  }
-  
-  // // Logic checking for title dif to trigger Redux action + backend update
-  useEffect(() => {
-    if (debouncedTitle !== title && playlistId === currentPlaylist.id) {
-      // dispatch(updatePlaylist({ id: playlistId, title: debouncedTitle }))
-      dispatch(updatePlaylistAsync({ id: playlistId, title: debouncedTitle }))
-    }
-  }, [debouncedTitle, dispatch, currentPlaylist.title, playlistId])
+    setTitle(e.target.value);
+  };
 
-  
+  const handleTitleSave = () => {
+    if (title !== currentPlaylist.title) {
+      dispatch(updatePlaylistAsync({ id: playlistId, title }));
+    }
+  };
 
   return (
     <>
@@ -95,6 +79,7 @@ const ShowPlaylistPage = () => {
                   value={title}
                   // placeholder={currentPlaylist.title}
                   onChange={handleTitleUpdate}
+                  onBlur={handleTitleSave}
                 />
                 <button type="submit" style={{ display: "none" }}>Submit</button>
               </form>
