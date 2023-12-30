@@ -14,7 +14,7 @@ const ShowAlbumPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [hoveredTrack, setHoveredTrack] = useState(null);
   const dispatch = useDispatch();
-  const { albumId, artistId, playlistId } = useParams();
+  const { albumId } = useParams();
   const currentAlbum = useSelector(state => state.audio.currentAlbum);
   const currentArtist = useSelector(state => state.audio.currentArtist);
 
@@ -53,22 +53,11 @@ const ShowAlbumPage = () => {
     return <div>Loading...</div>;
   }
 
-
   // Function to handle play button click
   const handlePlaySong = (song) => {
     dispatch(receiveSong(song));
     dispatch(togglePlay());
   };
-
-  const artistAboutImg = {
-    backgroundImage: `url(${currentArtist.aboutImg})`,
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center',
-    height: '300px',
-    width: '100%'
-  }
-
 
   return (
     <>

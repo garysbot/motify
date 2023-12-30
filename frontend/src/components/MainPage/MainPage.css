@@ -37,8 +37,8 @@
   overflow-y: auto;
   padding-left: 0.5rem;
   padding-top: 0.5rem;
-  width: 25rem;
-  max-width: 35%;
+  /* width: 25rem;
+  max-width: 35%; */
 }
 
 .sidebar-mini-home {

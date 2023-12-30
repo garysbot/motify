@@ -65,7 +65,7 @@ const ShowPlaylistPage = () => {
 
   return (
     <>
-      <div className="user-home-content playlist-create">
+      <div className="playlist-create">
         <div className='show-banner'>
           <img src={newPlaylistCover} alt='' className='album-cover-img'></img>
           <div className='banner-details'>
