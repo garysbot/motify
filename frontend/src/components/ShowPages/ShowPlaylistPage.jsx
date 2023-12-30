@@ -23,6 +23,7 @@ const ShowPlaylistPage = () => {
   const history = useHistory();
   const currentUser = useSelector(state => state.session.user);
   const currentPlaylist = useSelector(state => state.audio.currentPlaylist)
+  const [title, setTitle] = useState(currentPlaylist.title)
   const songs = ['hi', 'bye']
   
   // ^ Fetches current playlist object from URL via useParams
@@ -35,6 +36,11 @@ const ShowPlaylistPage = () => {
     }
     fetchPlaylistData()
   }, [dispatch, playlistId])
+
+  // ^ State syncronizing
+  useEffect(() => {
+    setTitle(currentPlaylist.title);
+  }, [currentPlaylist.title]);
 
   // ^ Delete handler
   const handleDelete = () => {
@@ -51,8 +57,6 @@ const ShowPlaylistPage = () => {
   };
 
   // ^ Update Playlist Title
-  const [title, setTitle] = useState(currentPlaylist.title)
-
   const handleTitleUpdate = (e) => {
     setTitle(e.target.value);
   };
