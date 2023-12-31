@@ -75,6 +75,7 @@ const SignUpButtons = () => {
           onClick={handleType}
           className={`sign-up-buttons ${classType}`}
           onChange={handleChange}
+          style={{'cursor':'pointer'}}
         >
           {buttonType}
         </button>

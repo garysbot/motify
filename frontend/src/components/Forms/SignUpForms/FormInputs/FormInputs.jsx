@@ -27,7 +27,8 @@ const FormInputs = () => {
             <SignUpButtons />
             <div className="form-container">
                 <hr />
-                <p className="login-link-hover">Already have an account? <Link to='/login'>Log in here.</Link></p>
+                <p className="login-link-hover">Already have an account?</p>
+                <p className="login-link-hover"><Link to='/login'>Login here</Link></p>
             </div>
         </div>
     )
