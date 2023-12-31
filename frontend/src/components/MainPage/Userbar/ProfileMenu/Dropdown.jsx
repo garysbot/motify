@@ -21,9 +21,7 @@ const Dropdown = () => {
   return (
     <div className="userbar-profile-menu">
       <ul>
-        <li><Link to='/'>Profile</Link></li>
-        <li><Link to='/albums/1'>Album Show</Link></li>
-        <li onClick={handleLogout}>Log out</li>
+        <li onClick={handleLogout}>Logout</li>
       </ul>
     </div>
   );

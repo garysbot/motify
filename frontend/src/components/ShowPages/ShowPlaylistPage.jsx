@@ -96,7 +96,7 @@ const ShowPlaylistPage = () => {
               <div className='details-artist-mini-pic'>
                 <img src='' alt=''></img>
               </div>
-              {currentUser.username}
+              {currentUser?.username}
             </div>
           </div>
         </div>

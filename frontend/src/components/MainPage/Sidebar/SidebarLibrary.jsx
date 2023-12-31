@@ -43,7 +43,7 @@ const SidebarLibrary = () => {
             <Icon iconType='LibraryActive' />
             <p>Your Library</p>
           </div>
-          <div className='library-plus'>
+          <div className='library-plus' style={{'cursor':'pointer', 'width':'12px', 'height': '12px'}}>
               <Icon
                 iconType='PlusActive'
                 onClick={handleClick}

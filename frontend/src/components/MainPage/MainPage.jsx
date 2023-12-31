@@ -7,6 +7,8 @@ import ProfileMenu from './Userbar/ProfileMenu/ProfileMenu.jsx';
 import { ReactComponent as LeftArrowActive } from '../../static/icons/left-arrow-active.svg'
 import { ReactComponent as RightArrowActive } from '../../static/icons/right-arrow-active.svg'
 import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 const MainPage = () => {
   const history = useHistory(); // Get the history object
