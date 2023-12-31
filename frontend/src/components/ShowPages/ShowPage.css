@@ -235,3 +235,12 @@
 .show-menu-container {
   display: flex;
 }
+
+.show-menu-modal {
+  background-color: #3E3E3E;
+  border-radius: 0.5rem;
+  height: 3rem;
+  width: 11rem;
+  padding-left: 1rem;
+  padding-top: 1rem;
+}
