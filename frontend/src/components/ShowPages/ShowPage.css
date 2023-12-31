@@ -210,6 +210,9 @@
 .banner-playbar {
   margin-top: 2rem;
   margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
 }
 
 .play-button-container {

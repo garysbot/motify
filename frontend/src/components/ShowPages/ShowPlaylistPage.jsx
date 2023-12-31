@@ -42,20 +42,6 @@ const ShowPlaylistPage = () => {
     setTitle(currentPlaylist.title);
   }, [currentPlaylist.title]);
 
-  // ^ Delete handler
-  const handleDelete = () => {
-    if (window.confirm("Are you sure you want to delete this playlist?")) {
-      dispatch(deletePlaylistAsync(playlistId))
-        .then(() => {
-          history.push('/');
-        })
-        .catch((error) => {
-          console.error('Failed to delete playlist:', error);
-          // Optionally, handle the error with user feedback
-        });
-    }
-  };
-
   // ^ Update Playlist Title
   const handleTitleUpdate = (e) => {
     setTitle(e.target.value);
@@ -103,7 +89,6 @@ const ShowPlaylistPage = () => {
         {/* Main Body for Songs Added */}
         <div className='show-menu-container'>
           <BannerPlaybar/>
-          <button type="submit" onClick={handleDelete}>Delete</button>
         </div>
         <div className='new-playlist-body'>
           <div className='show-songs-header'>
