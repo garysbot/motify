@@ -35,20 +35,14 @@
   gap: 0.5rem;
   height: 100%;
   overflow-y: auto;
-  padding-left: 0.5rem;
-  padding-top: 0.5rem;
-  /* width: 25rem;
-  max-width: 35%; */
+  margin-left: 0.5rem;
 }
 
 .sidebar-mini-home {
-  box-sizing: border-box;
   background-color: #121212;
   color: #B3B3B3;
   height: 8rem;
-  width: 100%;
   border-radius: 0.5rem;
-  padding-left: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
@@ -63,16 +57,21 @@
   /* width: 20rem; */
   overflow-y: auto;
   /* flex-grow: 1; */
-  padding-left: 1.5rem;
-  padding-top: 1rem;
+  /* padding-left: 1.5rem; */
+  margin-left: 0.1rem;
+  /* padding-top: 1rem; */
   width: 100%;
   border-radius: 0.5rem;
 }
 
+.library-header {
+  margin: 1rem;
+}
+
 .mini-home-icon {
   display: flex;
-  /* justify-content:space-between; */
   gap: 1rem;
+  margin-left: 1.25rem;
 }
 
 
@@ -85,22 +84,19 @@
   display: flex;
   flex-direction: column;
   width: 75%;
-  margin-top: 0.5rem;
   margin-left: 0.5rem;
   border-radius: 0.5rem;
-  flex: 2;
   height: 100%;
 }
 
 .user-home-userbar {
   box-sizing: border-box;
   display: flex;
-  /* flex-direction: row; */
   justify-content: space-between;
   align-items: center;
   padding-top: 1rem;
   padding-left: 1.25rem;
-  /* padding-bottom: 1rem; */
+
   padding-right: 1.25rem;
   width: 100%;
   height: 5rem;
@@ -113,10 +109,6 @@
   flex-direction: row;
   justify-content: space-between;
   gap: 0.5rem;
-}
-
-.userbar-profile-container {
-
 }
 
 .userbar-profile-pic {
@@ -155,9 +147,9 @@
   box-sizing: border-box;
   max-width: 100%;
   height: 100vh;
-  padding-top: 1rem;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
+  margin-top: 1rem;
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
   overflow-y: auto;
 }
 

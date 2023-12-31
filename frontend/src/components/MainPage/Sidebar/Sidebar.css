@@ -56,12 +56,11 @@ a {
 .playlist-item-container {
   transition: background-color 0.1s ease;
   border-radius: 0.5rem;
-  height: 4rem;
+  height: 4.25rem;
   display: flex;
   gap: 0.75rem;
   align-items: center;
-  padding-left: 0.75rem;
-  padding-top: 0.35rem;
+  margin: 1rem;
 }
 
 .playlist-item-container:hover {
@@ -77,9 +76,6 @@ a {
 .playlist-user-details {
   display: flex;
   flex-direction: column;
-}
-
-.playlist-image-details {
 }
 
 .playlist-details {
@@ -98,4 +94,10 @@ a {
   width: 3.125rem;
   height: 3.125rem;
   border-radius: 0.25rem;
+}
+
+.playlist-title {
+    /* white-space: nowrap; */
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
