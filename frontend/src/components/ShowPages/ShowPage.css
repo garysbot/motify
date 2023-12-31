@@ -87,6 +87,7 @@
   background-color: #121212;
   margin-left: 1.5rem;
   justify-content: space-between;
+  width: 90%;
 }
 
 .song-header-left {
@@ -95,7 +96,7 @@
 }
 
 .header-time {
-
+  position: relative;
 }
 
 
@@ -224,4 +225,8 @@
 /* & ShowArtistPage */
 .banner-artist-name {
   
+}
+
+.show-menu-container {
+  display: flex;
 }

@@ -64,13 +64,13 @@ const ShowAlbumPage = () => {
       <ShowBanner currentAlbum={currentAlbum} currentArtist={currentArtist} />
 
       <div className='show-content'>
-        <BannerPlaybar/>
+        <BannerPlaybar />
         <div className='show-songs-header'>
           <div className='song-header-left'>
             <p className='header-text'>#</p>
             <p className='header-text'>Title</p>
           </div>
-          <TimeIcon className='header-time'/>
+          <TimeIcon className='header-time' />
         </div>
         <hr></hr>
         <div className='show-songs-table'>
@@ -85,32 +85,22 @@ const ShowAlbumPage = () => {
                 >
                   <div className='row-start'>
                     <div className='track-num'>
-                      {
-                        hoveredTrack === trackNum ? (
-                          <ReactSVG src={lilPlayButton} className='anim-play-button' />
-                        ) : (
-                          <p>{trackNum + 1}</p>
-                        )}
+                      {hoveredTrack === trackNum 
+                        ?
+                        (<ReactSVG src={lilPlayButton} className='anim-play-button' />)
+                        :
+                        (<p>{trackNum + 1}</p>)
+                      }
                     </div>
                     <div className='song-title-artist-container'>
-                      <p className='song-title'>
-                        {song.title}
-                      </p>
-                      {/* Explicit */}
-                      <p className='song-title-artist-name'>
-                        {currentAlbum.artistName}
-                      </p>
+                      <p className='song-title'>{song.title}</p>
+                      <p className='song-title-artist-name'>{currentAlbum.artistName}</p>
                     </div>
                   </div>
 
                   <div className='row-end'>
                     <div className='like-button-duration'>
-                      {/* <ReactSVG src={lilLikeButton} className='lil-like-button'/> */}
-                      <p className='duration-text'>
-                        {
-                          `${Math.floor(song.duration / 60)}:${String(song.duration % 60).padStart(2, '0')}`
-                        }
-                      </p>
+                      <p className='duration-text header-time'>{`${Math.floor(song.duration / 60)}:${String(song.duration % 60).padStart(2, '0')}`}</p>
                     </div>
                   </div>
 

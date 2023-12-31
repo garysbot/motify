@@ -3,6 +3,10 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchPlaylist } from '../../store/audioThunks';
 import { deletePlaylistAsync, updatePlaylistAsync } from '../../store/playlistSlice';
+import { ReactComponent as TimeIcon } from '../../static/icons/time.svg'
+import { ReactSVG } from 'react-svg'
+import lilPlayButton from '../../static/icons/noun-play-1009801.svg'
+import { receiveSong, togglePlay } from '../../store/audioActions'; // Import relevant actions
 
 import '../MainPage/MainPage.css'
 import '../MainPage/Playlist/PlaylistCreate.css'
@@ -16,10 +20,10 @@ import newPlaylistCover from '../../static/albums/newPlaylistCover.png';
 const ShowPlaylistPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const [hoveredTrack, setHoveredTrack] = useState(null);
   const currentUser = useSelector(state => state.session.user);
   const currentPlaylist = useSelector(state => state.audio.currentPlaylist)
   const [title, setTitle] = useState(currentPlaylist.title)
-  // const songs = ['hi', 'bye']
   const currentSongs = useSelector(state => state.audio.currentPlaylist.songs)
   
   // ^ Fetches current playlist object from URL via useParams
@@ -63,6 +67,12 @@ const ShowPlaylistPage = () => {
     }
   };
 
+  // Function to handle play button click
+  const handlePlaySong = (song) => {
+    dispatch(receiveSong(song));
+    dispatch(togglePlay());
+  };
+
   return (
     <>
       <div className="playlist-create">
@@ -91,40 +101,59 @@ const ShowPlaylistPage = () => {
             </div>
           </div>
         </div>
+        {/* Main Body for Songs Added */}
         <div className='show-menu-container'>
           <BannerPlaybar/>
-        </div>
-        {/* Main Body for Songs Added */}
-        <div className='new-playlist-body'>
           <button type="submit" onClick={handleDelete}>Delete</button>
-          <div className='playlist-header'>
-            <p>#</p>
-            <p>Title</p>
-            <p>Duration</p>
+        </div>
+        <div className='new-playlist-body'>
+          <div className='show-songs-header'>
+            <div className='song-header-left'>
+              <p className='header-text'>#</p>
+              <p className='header-text'>Title</p>
+            </div>
+            <TimeIcon className='header-time'/>
           </div>
           <hr></hr>
           {
             currentSongs?.map((song, trackNum) => (
               <>
-                <div className='show-songs-row-container'>
-                  <p>{trackNum + 1}</p>
-                  <p>{song.title}</p>
-                  <p>{`${Math.floor(song.duration / 60)}:${String(song.duration % 60).padStart(2, '0')}`}</p>
+                <div 
+                  className='show-songs-row-container'
+                  onMouseEnter={() => setHoveredTrack(trackNum)}
+                  onMouseLeave={() => setHoveredTrack(null)}
+                  onClick={() => handlePlaySong(song)} // ! This is what changes the Redux State
+                >
+                  <div className='row-start'>
+                    <div className='track-num'>
+                      {
+                        hoveredTrack === trackNum ? 
+                        (<ReactSVG src={lilPlayButton} className='anim-play-button' />) 
+                          : 
+                        (<p>{trackNum + 1}</p>)
+                      }
+                    </div>
+                    <div className='song-title-artist-container'>
+                      <p className='song-title'>{song.title}</p>
+                    </div>
+                  </div>
+
+                  <div className='row-end'>
+                    <div className='like-button-duration'>
+                      <p className='duration-text header-time'>{`${Math.floor(song.duration / 60)}:${String(song.duration % 60).padStart(2, '0')}`}</p>
+                    </div>
+                  </div>
                 </div>
               </>
             ))
           }
         </div>
-        {/* Search body */}
         <div className='playlist-create search-footer'>
           <hr></hr>
           <h3>Let's find something for your playlist</h3>
           <SearchField />
-
         </div>
-
       </div>
-
     </>
   );
 }

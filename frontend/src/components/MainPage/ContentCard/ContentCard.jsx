@@ -22,15 +22,28 @@ const Cards = ({ contentType }) => {
   const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
+    // Check if data is already present in the Redux store
+    const shouldFetchAlbums = Object.keys(albums).length === 0;
+    const shouldFetchSongs = Object.keys(songs).length === 0;
+    const shouldFetchArtists = Object.keys(artists).length === 0;
+    const shouldFetchPlaylists = Object.keys(playlists).length === 0;
+  
     if (!isLoaded) {
-      dispatch(fetchAlbums())
-      dispatch(fetchArtists())
-      dispatch(fetchSongs())
-      dispatch(fetchPlaylists())
-      setIsLoaded(true)
-      console.log(`${playlists}`)
+      if (shouldFetchAlbums) {
+        dispatch(fetchAlbums());
+      }
+      if (shouldFetchSongs) {
+        dispatch(fetchSongs());
+      }
+      if (shouldFetchArtists) {
+        dispatch(fetchArtists());
+      }
+      if (shouldFetchPlaylists) {
+        dispatch(fetchPlaylists());
+      }
+      setIsLoaded(true);
     }
-  }, [dispatch, isLoaded, albums, songs, artists, playlists])
+  }, [dispatch, isLoaded, albums, songs, artists, playlists]);
 
   // & Hooks that fetch from Rails backend
   // If albums is not yet defined (e.g., before data fetching completes), handle it appropriately
