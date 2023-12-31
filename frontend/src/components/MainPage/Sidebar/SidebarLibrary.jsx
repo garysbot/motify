@@ -1,27 +1,39 @@
 import '../MainPage.css'
 import './Sidebar.css'
 import Icon from '../../Icons/Icons.jsx'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { createPlaylistAsync } from '../../../store/playlistSlice.js'
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const SidebarLibrary = () => {
   const dispatch = useDispatch();
+  const history = useHistory(); // Add this line
   const currentUser = useSelector(state => state.session.user);
   const playlists = useSelector(state => state.playlists);
   const userPlaylists = Object.values(playlists)
+  const [lastPlaylistCount, setLastPlaylistCount] = useState(userPlaylists.length);
 
   // ! Hover effect
   const [hoveredPlaylist, setHoveredPlaylist] = useState(null)
 
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     dispatch(createPlaylistAsync({
       user_id: currentUser.id,
       title: 'My New Playlist',
       songs: []
-    }))
+    }));
+
   }
+
+  useEffect(() => {
+    // Check if the number of playlists has increased
+    if (userPlaylists.length > lastPlaylistCount) {
+      const newPlaylist = userPlaylists[userPlaylists.length - 1];
+      history.push(`/playlists/${newPlaylist.id}`);
+      setLastPlaylistCount(userPlaylists.length); // Update the last known count
+    }
+  }, [userPlaylists, history, lastPlaylistCount]);
 
   return (
     <>
@@ -32,12 +44,10 @@ const SidebarLibrary = () => {
             <p>Your Library</p>
           </div>
           <div className='library-plus'>
-            <Link to='/create'>
               <Icon
                 iconType='PlusActive'
                 onClick={handleClick}
               />
-            </Link>
           </div>
         </div>
 
