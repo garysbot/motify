@@ -83,16 +83,13 @@ const ShowPlaylistPage = () => {
           <div className='banner-details'>
             <p>Playlist</p>
             <div className='playlist-name-container'>
-              <form>
-                <input
-                  className='playlist-title-field'
-                  type="text"
-                  value={title}
-                  onChange={handleTitleUpdate}
-                  onBlur={handleTitleSave}
-                />
-                <button type="submit" style={{ display: "none" }}>Submit</button>
-              </form>
+              <input
+                className='playlist-title-field'
+                type="text"
+                value={title}
+                onChange={handleTitleUpdate}
+                onBlur={handleTitleSave}
+              />
             </div>
 
             <div className='details-artist'>

@@ -60,6 +60,9 @@ a {
   gap: 0.75rem;
   align-items: center;
   margin: 1rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding-left: 0.5rem;
 }
 
 .playlist-item-container:hover {

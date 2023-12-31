@@ -39,8 +39,8 @@ const MainPage = () => {
             <UserContent/>
           </div>
         </div>
-        <PlayBar currentSong=''/>
       </div>
+      <PlayBar currentSong=''/>
     </>
   );
 }
