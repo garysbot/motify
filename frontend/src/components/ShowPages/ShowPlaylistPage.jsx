@@ -64,6 +64,8 @@ const ShowPlaylistPage = () => {
   const handleTitleSave = () => {
     if (title !== currentPlaylist.title) {
       dispatch(updatePlaylistAsync({ id: playlistId, title }));
+      // fixing ActinController::ParameterMissing
+      // dispatch(updatePlaylistAsync({ id: playlistId, playlist: { title: title } }));
     }
   };
 

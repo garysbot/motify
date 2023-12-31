@@ -115,7 +115,7 @@ export const createPlaylistAsync = newPlaylistData => {
 
 export const updatePlaylistAsync = updatedPlaylistData => {
   return (dispatch) => {
-    const { id: playlistId, song } = updatedPlaylistData;
+    const { id: playlistId, song, title } = updatedPlaylistData;
 
     if (!playlistId) {
       console.error("Playlist ID is undefined");
@@ -128,6 +128,11 @@ export const updatePlaylistAsync = updatedPlaylistData => {
       changes = {
         songs: [song.id]
       };
+    }
+
+    // If a title is provided, include it in the changes
+    if (title !== undefined) {
+      changes.title = title;
     }
 
     csrfFetch(`/playlists/${playlistId}`, {
