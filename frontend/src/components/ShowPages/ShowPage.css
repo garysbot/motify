@@ -87,7 +87,7 @@
   background-color: #121212;
   margin-left: 1.5rem;
   justify-content: space-between;
-  width: 90%;
+  width: 80%;
 }
 
 .song-header-left {
@@ -117,18 +117,20 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-left: 1.5rem;
+  padding-left: 1rem;
+  margin-left: 0.5rem;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
   gap: 1.5rem;
-  width: 100%;
+  width: 95%;
   transition: background-color 0.1s ease;
   border-radius: 0.5rem;
+  height: 3rem;
 }
 
 .show-songs-row-container:hover {
   background-color: #2A2A2A;
-  width: 100%;
+  /* width: 100%; */
 }
 
 .row-start {

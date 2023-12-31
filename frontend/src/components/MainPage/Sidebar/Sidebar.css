@@ -31,7 +31,6 @@ a {
 
 .library-header {
   display: flex;
-  width: 100%;
   justify-content: flex-start;
   gap: 1rem;
 }

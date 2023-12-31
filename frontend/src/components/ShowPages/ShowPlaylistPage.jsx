@@ -117,38 +117,40 @@ const ShowPlaylistPage = () => {
             <TimeIcon className='header-time'/>
           </div>
           <hr></hr>
-          {
-            currentSongs?.map((song, trackNum) => (
-              <>
-                <div 
-                  className='show-songs-row-container'
-                  onMouseEnter={() => setHoveredTrack(trackNum)}
-                  onMouseLeave={() => setHoveredTrack(null)}
-                  onClick={() => handlePlaySong(song)} // ! This is what changes the Redux State
-                >
-                  <div className='row-start'>
-                    <div className='track-num'>
-                      {
-                        hoveredTrack === trackNum ? 
-                        (<ReactSVG src={lilPlayButton} className='anim-play-button' />) 
-                          : 
-                        (<p>{trackNum + 1}</p>)
-                      }
+          <div className='show-songs-table'>
+            {
+              currentSongs?.map((song, trackNum) => (
+                <>
+                  <div 
+                    className='show-songs-row-container'
+                    onMouseEnter={() => setHoveredTrack(trackNum)}
+                    onMouseLeave={() => setHoveredTrack(null)}
+                    onClick={() => handlePlaySong(song)} // ! This is what changes the Redux State
+                  >
+                    <div className='row-start'>
+                      <div className='track-num'>
+                        {
+                          hoveredTrack === trackNum ? 
+                          (<ReactSVG src={lilPlayButton} className='anim-play-button' />) 
+                            : 
+                          (<p>{trackNum + 1}</p>)
+                        }
+                      </div>
+                      <div className='song-title-artist-container'>
+                        <p className='song-title'>{song.title}</p>
+                      </div>
                     </div>
-                    <div className='song-title-artist-container'>
-                      <p className='song-title'>{song.title}</p>
-                    </div>
-                  </div>
 
-                  <div className='row-end'>
-                    <div className='like-button-duration'>
-                      <p className='duration-text header-time'>{`${Math.floor(song.duration / 60)}:${String(song.duration % 60).padStart(2, '0')}`}</p>
+                    <div className='row-end'>
+                      <div className='like-button-duration'>
+                        <p className='duration-text header-time'>{`${Math.floor(song.duration / 60)}:${String(song.duration % 60).padStart(2, '0')}`}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </>
-            ))
-          }
+                </>
+              ))
+            }
+          </div>
         </div>
         <div className='playlist-create search-footer'>
           <hr></hr>
