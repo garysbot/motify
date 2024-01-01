@@ -31,8 +31,15 @@ a {
 
 .library-header {
   display: flex;
-  justify-content: flex-start;
+  align-items: flex-start;
   gap: 1rem;
+  background-color: #121212;
+  height: 3rem;
+  width: 100%;
+  border-top-right-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+  padding: 1rem;
+  padding-bottom: 1rem;
 }
 
 .library {

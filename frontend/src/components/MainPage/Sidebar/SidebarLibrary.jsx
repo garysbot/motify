@@ -37,20 +37,20 @@ const SidebarLibrary = () => {
 
   return (
     <>
-      <div className='sidebar-library'>
-        <div className='library-header'>
-          <div className='library'>
-            <Icon iconType='LibraryActive' />
-            <p>Your Library</p>
-          </div>
-          <div className='library-plus' style={{'cursor':'pointer', 'width':'12px', 'height': '12px'}}>
-              <Icon
-                iconType='PlusActive'
-                onClick={handleClick}
-              />
-          </div>
+      <div className='library-header'>
+        <div className='library'>
+          <Icon iconType='LibraryActive' />
+          <p>Your Library</p>
         </div>
+        <div className='library-plus' style={{'cursor':'pointer', 'width':'12px', 'height': '12px'}}>
+            <Icon
+              iconType='PlusActive'
+              onClick={handleClick}
+            />
+        </div>
+      </div>
 
+      <div className='sidebar-library'>
         <div className='library-content'>
           {
             userPlaylists.map((playlist, idx) => (
