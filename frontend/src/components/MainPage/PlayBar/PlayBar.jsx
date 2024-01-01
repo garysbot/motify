@@ -1,23 +1,28 @@
-import { useRef, useEffect } from 'react';
-import './PlayBar.css';
-import Icon from '../../Icons/Icons.jsx';
-import { useSelector, useDispatch } from 'react-redux';
-import { togglePlay, setVolume, receiveSong, setSongPosition } from '../../../store/audioActions.js';
+import { useRef, useEffect } from "react";
+import "./PlayBar.css";
+import Icon from "../../Icons/Icons.jsx";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  togglePlay,
+  setVolume,
+  receiveSong,
+  setSongPosition,
+} from "../../../store/audioActions.js";
 
 // Custom Hooks
-import { useAudioPlayer } from './useAudioPlayer.jsx';
+import { useAudioPlayer } from "./useAudioPlayer.jsx";
 
 const PlayBar = () => {
   const dispatch = useDispatch();
   const audioRef = useRef(new Audio());
-  const currentAlbum = useSelector(state => state.audio.currentAlbum);
-  const currentArtist = useSelector(state => state.audio.currentArtist);
-  const currentSong = useSelector(state => state.audio.currentSong);
-  const volume = useSelector(state => state.audio.volume);
-  const songPosition = useSelector(state => state.audio.songPosition);
+  const currentAlbum = useSelector((state) => state.audio.currentAlbum);
+  const currentArtist = useSelector((state) => state.audio.currentArtist);
+  const currentSong = useSelector((state) => state.audio.currentSong);
+  const volume = useSelector((state) => state.audio.volume);
+  const songPosition = useSelector((state) => state.audio.songPosition);
 
   // Play/Pause Custom Hook
-  const { handlePlayPause, isPlaying } = useAudioPlayer(audioRef)
+  const { handlePlayPause, isPlaying } = useAudioPlayer(audioRef);
 
   useEffect(() => {
     if (currentSong) {
@@ -25,7 +30,7 @@ const PlayBar = () => {
       if (isPlaying) {
         audioRef.current.play().catch((error) => {
           // Handle the error for play() promise rejection here
-          console.error(`Damn what happened with the PlayBar?!`)
+          console.error(`Damn what happened with the PlayBar?!`);
         });
       }
     }
@@ -39,10 +44,10 @@ const PlayBar = () => {
       dispatch(setSongPosition(audio.currentTime));
     };
 
-    audio.addEventListener('timeupdate', updateTime);
+    audio.addEventListener("timeupdate", updateTime);
 
     return () => {
-      audio.removeEventListener('timeupdate', updateTime);
+      audio.removeEventListener("timeupdate", updateTime);
     };
   }, [dispatch]);
 
@@ -52,10 +57,11 @@ const PlayBar = () => {
     dispatch(setSongPosition(newTime));
   };
 
-  
   // Next track
   const handleNextTrack = () => {
-    const currentSongIndex = currentAlbum.songs.findIndex(song => song.id === currentSong.id);
+    const currentSongIndex = currentAlbum.songs.findIndex(
+      (song) => song.id === currentSong.id
+    );
     const nextSongIndex = (currentSongIndex + 1) % currentAlbum.songs.length; // Loop back to the start
     const nextSong = currentAlbum.songs[nextSongIndex];
     dispatch(receiveSong(nextSong));
@@ -66,8 +72,12 @@ const PlayBar = () => {
   };
 
   const handlePrevTrack = () => {
-    const currentSongIndex = currentAlbum.songs.findIndex(song => song.id === currentSong.id);
-    const prevSongIndex = (currentSongIndex - 1 + currentAlbum.songs.length) % currentAlbum.songs.length; // Loop to the end
+    const currentSongIndex = currentAlbum.songs.findIndex(
+      (song) => song.id === currentSong.id
+    );
+    const prevSongIndex =
+      (currentSongIndex - 1 + currentAlbum.songs.length) %
+      currentAlbum.songs.length; // Loop to the end
     const prevSong = currentAlbum.songs[prevSongIndex];
     dispatch(receiveSong(prevSong));
 
@@ -85,56 +95,63 @@ const PlayBar = () => {
 
   return (
     <>
-      <div className='play-bar-container'>
-        <div className='song-details-container'>
-          <img src={currentAlbum.coverImg} alt='' className='song-details-cover'></img>
-          <div className='song-details'>
+      <div className="play-bar-container">
+        {/* // ^  Song Details -- bottom left w/ img */}
+        <div className="song-details-container">
+          <img
+            src={currentAlbum.coverImg}
+            alt=""
+            className="song-details-cover"
+          ></img>
+          <div className="song-details">
             <h3>{currentSong.title}</h3>
             <p>{currentArtist.artistName}</p>
           </div>
         </div>
 
-        <div className='controls-duration-container'>
-          <div className='controls-container'>
-            <Icon iconType='PrevButton' onClick={handlePrevTrack}/>
+        {/* // ^  Center portion w/ prev + next +play/pause */}
+        <div className="controls-duration-container">
+          <div className="controls-container">
+            <Icon iconType="PrevButton" onClick={handlePrevTrack} />
 
-            <div className='play-pause-button' onClick={handlePlayPause}>
-              <div className='play-button-content'>
+            {/* // ^  Play/Pause */}
+            <div className="play-pause-button" onClick={handlePlayPause}>
+              <div className="play-button-content">
                 <Icon
-                  iconType={isPlaying ? 'PauseButton' : 'PlayButton'} 
-                  currentSong={currentSong} 
-                  className='play-button-content'
+                  iconType={isPlaying ? "PauseButton" : "PlayButton"}
+                  currentSong={currentSong}
+                  className="play-button-content"
                 />
               </div>
-              <div className='play-button-circle-content'>
-                <Icon iconType='PlayButtonCircle'/>
+              <div className="play-button-circle-content">
+                <Icon iconType="PlayButtonCircle" />
               </div>
             </div>
 
-            <Icon iconType='NextButton' onClick={handleNextTrack}/>
+            <Icon iconType="NextButton" onClick={handleNextTrack} />
           </div>
 
+          {/* // ^ Progress Bar */}
           <input
-            type='range'
-            min='0'
+            type="range"
+            min="0"
             max={currentSong.duration || 100}
             value={songPosition}
-            className='duration-container'
+            className="duration-container"
             onChange={handleProgressBarChange}
           />
         </div>
 
-        <div className='queue-volume-container'>
-          {/* <Icon iconType='QueueButtonInactive'/> */}
-          <div className='volume-container'>
-            <Icon iconType='VolumeButton'/>
-            {/* <div className='volume-line' onClick={() => handleVolumeChange(0.5)}></div> */}
+        {/* // ^  Volume Controls */}
+        <div className="queue-volume-container">
+          <div className="volume-container">
+            <Icon iconType="VolumeButton" />
             <input
-              type='range'
-              min='0'
-              max='100'
+              type="range"
+              min="0"
+              max="100"
               value={volume * 100}
-              className='volume-line'
+              className="volume-line"
               onChange={handleVolumeChange}
             />
           </div>
@@ -142,6 +159,6 @@ const PlayBar = () => {
       </div>
     </>
   );
-}
+};
 
 export default PlayBar;
