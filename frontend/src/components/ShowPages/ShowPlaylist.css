@@ -1,4 +1,4 @@
-.playlist-create .search-footer hr {
+.search-footer hr {
   opacity: 10%;
   height: 1px;
   margin-bottom: 1rem;
@@ -8,6 +8,7 @@
 .new-playlist-body {
   margin: 0;
   padding: 0;
+  width: 100%;
 }
 
 .playlist-create .new-playlist-body {
@@ -15,11 +16,6 @@
   margin-bottom: 2rem;
 }
 
-.new-playlist-body .playlist-header {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
 
 .new-playlist-body .playlist-header p {
   color: white;
@@ -33,6 +29,7 @@
   height: 1px;
   margin-bottom: 1rem;
   margin-top: 1.25rem;
+  background-color: #333;
 }
 
 .search-input-container {
@@ -93,3 +90,24 @@
   font-size: 3rem;
   font-family: 'CircularSpotifyBold';
 }
+
+.tracks-header {
+  display: flex;
+  width: 100%;
+}
+
+
+.row-start {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  width: 70%;
+}
+
+.row-end {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+

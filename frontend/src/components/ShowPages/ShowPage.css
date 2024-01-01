@@ -133,12 +133,6 @@
   /* width: 100%; */
 }
 
-.row-start {
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-  width: 70%;
-}
 
 .track-num {
   /* margin-right: 0.5rem; */
