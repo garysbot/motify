@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchPlaylist } from '../../store/audioThunks';
-import { deletePlaylistAsync, updatePlaylistAsync } from '../../store/playlistSlice';
+import { updatePlaylistAsync } from '../../store/playlistSlice';
 import { ReactComponent as TimeIcon } from '../../static/icons/time.svg'
 import { ReactSVG } from 'react-svg'
 import lilPlayButton from '../../static/icons/noun-play-1009801.svg'
@@ -19,7 +19,6 @@ import newPlaylistCover from '../../static/albums/newPlaylistCover.png';
 
 const ShowPlaylistPage = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const [hoveredTrack, setHoveredTrack] = useState(null);
   const currentUser = useSelector(state => state.session.user);
   const currentPlaylist = useSelector(state => state.audio.currentPlaylist)
@@ -91,14 +90,21 @@ const ShowPlaylistPage = () => {
           <BannerPlaybar/>
         </div>
         <div className='new-playlist-body'>
-          <div className='show-songs-header'>
-            <div className='song-header-left'>
+
+          <div className='show-songs-row-container'>
+            <div className='row-start'>
               <p className='header-text'>#</p>
               <p className='header-text'>Title</p>
+              <div className='song-title-artist-container'>
+                <p className='header-text'>Album</p>
+              </div>
             </div>
-            <TimeIcon className='header-time'/>
+            <div className='song-title-artist-container'>
+              <TimeIcon className='header-time'/>
+            </div>
           </div>
           <hr></hr>
+          
           <div className='show-songs-table'>
             {
               currentSongs?.map((song, trackNum) => (
@@ -120,6 +126,10 @@ const ShowPlaylistPage = () => {
                       </div>
                       <div className='song-title-artist-container'>
                         <p className='song-title'>{song.title}</p>
+                        <p className='song-title-artist-name'>{song.artist.artistName}</p>
+                      </div>
+                      <div className='song-title-artist-container'>
+                        <p className='song-title'>{song.album.title}</p>
                       </div>
                     </div>
 
