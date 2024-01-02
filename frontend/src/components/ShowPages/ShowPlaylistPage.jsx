@@ -25,6 +25,8 @@ const ShowPlaylistPage = () => {
   const [title, setTitle] = useState(currentPlaylist.title)
   const currentSongs = useSelector(state => state.audio.currentPlaylist.songs)
   
+  const [playlistCover, setPlaylistCover] = useState()
+
   // ^ Fetches current playlist object from URL via useParams
   const { playlistId } = useParams();
   useEffect(() => {
@@ -49,8 +51,6 @@ const ShowPlaylistPage = () => {
   const handleTitleSave = () => {
     if (title !== currentPlaylist.title) {
       dispatch(updatePlaylistAsync({ id: playlistId, title }));
-      // fixing ActinController::ParameterMissing
-      // dispatch(updatePlaylistAsync({ id: playlistId, playlist: { title: title } }));
     }
   };
 
@@ -63,7 +63,16 @@ const ShowPlaylistPage = () => {
   return (
     <>
       <div className='show-banner'>
-        <img src={newPlaylistCover} alt='' className='album-cover-img'></img>
+        {
+          newPlaylistCover ? 
+          <>
+            <img src={newPlaylistCover} alt='' className='album-cover-img'></img>            
+          </> 
+          : 
+          <>
+            <img src={newPlaylistCover} alt='' className='album-cover-img'></img>
+          </>
+        }
         <div className='banner-details'>
           <p>Playlist</p>
           <div className='playlist-name-container'>

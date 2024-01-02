@@ -1,20 +1,20 @@
 import { Link, useParams } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux';
-import { addSong,updatePlaylist, updatePlaylistAsync } from '../../../store/playlistSlice'
+import { useDispatch } from 'react-redux';
+import { updatePlaylistAsync, addSongAndUpdateCoverThunk } from '../../../store/playlistSlice'
 
 const ArtistResultPage = ({ songs }) => {
   const { playlistId } = useParams();
   const dispatch = useDispatch();
 
   const handleClick = (song) => {
-    console.log(`added?`)
-    dispatch(updatePlaylistAsync({ id: playlistId, song }))
+    // dispatch(updatePlaylistAsync({ id: playlistId, song }))
+    console.log(`Trying to get to the song's album cover image ${song.coverImg}`)
+    dispatch(addSongAndUpdateCoverThunk(playlistId, song))
   };
   
 
   return (
     <>
-    {/* {console.log(currentUserId)} */}
       {songs.map((song, index) => (
         <div className='result-row'>
           <div className='result-detail'>

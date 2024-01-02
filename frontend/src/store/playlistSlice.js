@@ -72,6 +72,17 @@ export const playlistSlice = createSlice({
       state.songs = state.songs.filter(song => song.id !== action.payload)
     },
 
+    updateCover: (state, action) => {
+      const { id, coverImage } = action.payload
+      // Find playlist by ID and update its cover image
+      const playlist = state[id]
+      if (playlist) {
+        playlist.coverImg = coverImage
+      } else {
+        console.error(`Error with updateCover reducer, payload contents: ${id}, ${coverImage}`)
+      }
+    },
+
   },
   extraReducers: (builder) => {
     builder.addCase(fetchPlaylists.fulfilled, (state, action) => {
@@ -87,7 +98,8 @@ export const {
   addSong, 
   removeSong, 
   updatePlaylist, 
-  deletePlaylist 
+  deletePlaylist,
+  updateCover 
 } = playlistSlice.actions
 
 // Thunk action creators
@@ -178,6 +190,26 @@ export const deletePlaylistAsync = playlistId => {
       });
     });
   };
+};
+
+// Action Creator Thunk for updating the playlist including its cover image
+export const addSongAndUpdateCoverThunk = (playlistId, song) => async (dispatch, getState) => {
+  try {
+    // Dispatch the action to add the song to the playlist
+    dispatch(updatePlaylistAsync({ id: playlistId, song }));
+
+    // After the song has been added, check if it's the first song
+    const state = getState();
+    const currentPlaylist = state.audio.currentPlaylist;
+    if (currentPlaylist.songs.length === 1) {
+      // If it's the first song, dispatch an action to update the playlist cover
+      const coverImage = song.coverImg; // Assuming song object has an album property with coverImg
+      dispatch(updateCover({ id: playlistId, coverImage }));
+    }
+  } catch (error) {
+    console.error('Failed to add song and update cover: ', error);
+    // Handle the error state properly here
+  }
 };
 
 
