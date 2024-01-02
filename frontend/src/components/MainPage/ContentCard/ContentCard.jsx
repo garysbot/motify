@@ -125,8 +125,8 @@ const Cards = ({ contentType }) => {
           Object.values(playlists).map((playlist, idx) => (
               <Link to={`/playlists/${playlist.id}`}>
               <div className='vertical-content-card' key={idx}>
+                <img src={playlist.coverImg} alt='' className='vertical-cover' />
                 <p className='vertical-title'>{playlist.title}</p>
-                {/* <img src={artist.aboutImg} alt='' className='vertical-cover' /> */}
                 <p className='vertical-artist'>{currentUser?.username}</p>
               </div>
             </Link>

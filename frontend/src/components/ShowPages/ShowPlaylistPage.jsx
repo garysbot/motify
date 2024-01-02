@@ -19,16 +19,17 @@ import newPlaylistCover from '../../static/albums/newPlaylistCover.png';
 
 const ShowPlaylistPage = () => {
   const dispatch = useDispatch();
+  const { playlistId } = useParams();
   const [hoveredTrack, setHoveredTrack] = useState(null);
   const currentUser = useSelector(state => state.session.user);
   const currentPlaylist = useSelector(state => state.audio.currentPlaylist)
   const [title, setTitle] = useState(currentPlaylist.title)
   const currentSongs = useSelector(state => state.audio.currentPlaylist.songs)
+  const playlistCoverImg = useSelector(state => state.playlists[playlistId].coverImg)
   
-  const [playlistCover, setPlaylistCover] = useState()
+  const [playlistCover, setPlaylistCover] = useState(newPlaylistCover)
 
   // ^ Fetches current playlist object from URL via useParams
-  const { playlistId } = useParams();
   useEffect(() => {
     const fetchPlaylistData = async () => {
       if (playlistId) {
@@ -64,9 +65,9 @@ const ShowPlaylistPage = () => {
     <>
       <div className='show-banner'>
         {
-          newPlaylistCover ? 
+          playlistCoverImg ? 
           <>
-            <img src={newPlaylistCover} alt='' className='album-cover-img'></img>            
+            <img src={playlistCoverImg} alt='' className='album-cover-img'></img>            
           </> 
           : 
           <>
