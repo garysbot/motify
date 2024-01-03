@@ -151,7 +151,7 @@ ApplicationRecord.transaction do
     "Ramona Park Is Yankee Stadium",
     "Yeah Right",
     "Homage",
-    "Samo",
+    "SAMO",
     "Party People",
     "BagBak",
     "Rain Come Down"
@@ -164,7 +164,7 @@ ApplicationRecord.transaction do
       title: song_title,
       duration: rand(180..240), # Random duration between 3 to 4 minutes
       explicit: true,
-      song_url: "https://motify-seeds.s3.us-east-2.amazonaws.com/static/audio/mrmorale/kendrick-mm-song-#{index + 1}.mp3"
+      song_url: "https://motify-seeds.s3.us-east-2.amazonaws.com/static/audio/big-fish/vince-big-fish-song-#{index + 1}.mp3"
     )
   end
 
@@ -185,7 +185,6 @@ ApplicationRecord.transaction do
     "Range Brothers",
     "Issues",
     "Gorgeous",
-    "South Africa",
     "Lost Souls",
     "Cocoa",
     "Family Ties",
@@ -205,7 +204,7 @@ ApplicationRecord.transaction do
       title: song_title,
       duration: rand(180..240), # Random duration between 3 to 4 minutes
       explicit: true,
-      song_url: "https://motify-seeds.s3.us-east-2.amazonaws.com/static/audio/mrmorale/kendrick-mm-song-#{index + 1}.mp3"
+      song_url: "https://motify-seeds.s3.us-east-2.amazonaws.com/static/audio/melodic-blue/baby-keem-melodic-blue-song-#{index + 1}.mp3"
     )
   end
 
