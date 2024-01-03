@@ -128,14 +128,6 @@ const ShowPlaylistPage = () => {
               </>
             )}
           </div>
-
-          {/* <div className='details-artist'>
-            <div className='details-artist-mini-pic'>
-              <img src='' alt=''></img>
-            </div>
-            {currentUser?.username}
-          </div> */}
-
         </div>
 
       </div>
