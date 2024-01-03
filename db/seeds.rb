@@ -137,7 +137,7 @@ ApplicationRecord.transaction do
     artist_id: vince_staples.id,
     title: "Big Fish Theory",
     genre: "Hip-Hop",
-    cover_img: "https://motify-seeds.s3.us-east-2.amazonaws.com/static/albums/covers/kendrick.png", # Replace with an actual image URL
+    cover_img: "https://motify-seeds.s3.us-east-2.amazonaws.com/static/albums/covers/vince-staples-big-fish.jpeg", # Replace with an actual image URL
     release_date: DateTime.new(2017, 6, 23),
     record_company: "Blacksmith Records & Def Jam Recordings"
   )
@@ -173,7 +173,7 @@ ApplicationRecord.transaction do
     artist_id: baby_keem.id,
     title: "The Melodic Blue",
     genre: "Hip-Hop",
-    cover_img: "https://motify-seeds.s3.us-east-2.amazonaws.com/static/albums/covers/kendrick.png", # Replace with an actual image URL
+    cover_img: "https://motify-seeds.s3.us-east-2.amazonaws.com/static/albums/covers/baby-keem-melodic-blue.jpeg", # Replace with an actual image URL
     release_date: DateTime.new(2021, 9, 10),
     record_company: "PGLang & Columbia Records"
   )
@@ -213,7 +213,7 @@ ApplicationRecord.transaction do
     artist_id: oliver_malcolm.id,
     title: "Are You Living In The Real World?",
     genre: "Hip-Hop",
-    cover_img: "https://motify-seeds.s3.us-east-2.amazonaws.com/static/albums/covers/kendrick.png", # Replace with an actual image URL
+    cover_img: "https://motify-seeds.s3.us-east-2.amazonaws.com/static/albums/covers/oliver-malcolm-real-world.jpeg", # Replace with an actual image URL
     release_date: DateTime.new(2021, 5, 20),
     record_company: "Darkroom & Interscope"
   )
@@ -237,16 +237,16 @@ ApplicationRecord.transaction do
       title: song_title,
       duration: rand(180..240), # Random duration between 3 to 4 minutes
       explicit: true,
-      song_url: "https://motify-seeds.s3.us-east-2.amazonaws.com/static/audio/mrmorale/kendrick-mm-song-#{index + 1}.mp3"
+      song_url: "https://motify-seeds.s3.us-east-2.amazonaws.com/static/audio/real-world/oliver-malcolm-real-world-song-#{index + 1}.mp3"
     )
   end
 
   # ~ 'Nothing Great About Britain by Slowthai' ------------------------------------------------
   nothing_great_album = Album.create!(
     artist_id: slowthai.id,
-    title: "Are You Living In The Real World?",
+    title: "Nothing Great About Britan",
     genre: "Hip-Hop",
-    cover_img: "https://motify-seeds.s3.us-east-2.amazonaws.com/static/albums/covers/kendrick.png", # Replace with an actual image URL
+    cover_img: "https://motify-seeds.s3.us-east-2.amazonaws.com/static/albums/covers/slowthai-nothing-great.png", # Replace with an actual image URL
     release_date: DateTime.new(2019, 5, 17),
     record_company: "METHOD"
   )
@@ -273,7 +273,7 @@ ApplicationRecord.transaction do
       title: song_title,
       duration: rand(180..240), # Random duration between 3 to 4 minutes
       explicit: true,
-      song_url: "https://motify-seeds.s3.us-east-2.amazonaws.com/static/audio/mrmorale/kendrick-mm-song-#{index + 1}.mp3"
+      song_url: "https://motify-seeds.s3.us-east-2.amazonaws.com/static/audio/nothing-great/slowthai-nothing-great-song-#{index + 1}.mp3"
     )
   end
 
@@ -282,7 +282,7 @@ ApplicationRecord.transaction do
     artist_id: kenny_beats.id,
     title: "Louie",
     genre: "Hip-Hop",
-    cover_img: "https://motify-seeds.s3.us-east-2.amazonaws.com/static/albums/covers/kendrick.png", # Replace with an actual image URL
+    cover_img: "https://motify-seeds.s3.us-east-2.amazonaws.com/static/albums/covers/kenny-beats-louie.png", # Replace with an actual image URL
     release_date: DateTime.new(2022, 8, 31),
     record_company: "XL Recordings"
   )
@@ -315,7 +315,7 @@ ApplicationRecord.transaction do
       title: song_title,
       duration: rand(180..240), # Random duration between 3 to 4 minutes
       explicit: true,
-      song_url: "https://motify-seeds.s3.us-east-2.amazonaws.com/static/audio/mrmorale/kendrick-mm-song-#{index + 1}.mp3"
+      song_url: "https://motify-seeds.s3.us-east-2.amazonaws.com/static/audio/louie/kenny-beats-louie-song-#{index + 1}.mp3"
     )
   end
   
