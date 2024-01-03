@@ -21,9 +21,9 @@ const SidebarLibrary = () => {
     dispatch(createPlaylistAsync({
       user_id: currentUser.id,
       title: 'My New Playlist',
+      playlist_cover_img: 'https://motify-seeds.s3.us-east-2.amazonaws.com/static/playlists/blank-playlist-cover.png',
       songs: []
     }));
-
   }
 
   useEffect(() => {
