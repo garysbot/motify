@@ -63,15 +63,19 @@ const ShowAlbumPage = () => {
       {/* // TODO Remove props and replace with useSelector in ShowBanner */}
       <ShowBanner currentAlbum={currentAlbum} currentArtist={currentArtist} />
 
-      <div className='show-content'>
-        <BannerPlaybar />
+      <div className='show-menu-container'>
+        <BannerPlaybar/>
+      </div>
 
-        <div className='show-songs-header'>
-          <div className='song-header-left'>
+      <div className='show-content'>
+        <div className='tracks-header'>
+          <div className='row-start'>
             <p className='header-text'>#</p>
             <p className='header-text'>Title</p>
           </div>
-          <TimeIcon className='header-time' />
+          <div className='row-end'>
+            <TimeIcon className='header-time'/>
+          </div>
         </div>
         <hr></hr>
 
@@ -97,6 +101,9 @@ const ShowAlbumPage = () => {
                     <div className='song-title-artist-container'>
                       <p className='song-title'>{song.title}</p>
                       <p className='song-title-artist-name'>{currentAlbum.artistName}</p>
+                    </div>
+                    <div className='song-title-artist-container'>
+                      <p className='song-title'>{song.album?.title}</p>
                     </div>
                   </div>
 

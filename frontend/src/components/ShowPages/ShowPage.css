@@ -127,15 +127,14 @@
   margin-top: 1rem;
   margin-bottom: 0.5rem;
   gap: 1.5rem;
-  width: 95%;
   transition: background-color 0.1s ease;
   border-radius: 0.5rem;
   height: 3rem;
+  width: 90%;
 }
 
 .show-songs-row-container:hover {
   background-color: #2A2A2A;
-  /* width: 100%; */
 }
 
 

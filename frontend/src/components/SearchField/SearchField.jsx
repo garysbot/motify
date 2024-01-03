@@ -38,9 +38,7 @@ const SearchField = () => {
         <img src={closeIcon} alt='Close' className='close-icon' onClick={clearInput}/>
       </div>
       {error && <p>Error: {error.message}</p>}
-
       <SearchResultsDropdown query={query} searchResults={results} searchInitiated={searchInitiated}/>
-
     </>
   );
 }

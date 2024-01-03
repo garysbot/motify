@@ -1,14 +1,16 @@
+.search-footer {
+  margin: 3rem, 0rem;
+}
+
+.search-footer h3 {
+  margin-left: 1rem;
+}
+
 .search-footer hr {
   opacity: 10%;
   height: 1px;
   margin-bottom: 1rem;
   margin-top: 3rem;
-}
-
-.new-playlist-body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
 }
 
 .playlist-create .new-playlist-body {
@@ -24,19 +26,12 @@
   font-size: 0.8rem;
 }
 
-.new-playlist-body hr {
-  opacity: 10%;
-  height: 1px;
-  margin-bottom: 1rem;
-  margin-top: 1.25rem;
-  background-color: #333;
-}
-
 .search-input-container {
   position: relative;
   display: flex;
   align-items: center;
   width: 22rem;
+  margin-left: 1rem;
 }
 
 .search-input-container .search-icon {
@@ -93,7 +88,11 @@
 
 .tracks-header {
   display: flex;
-  width: 100%;
+  width: 80%;
+  height: 2rem;
+  align-items: center;
+  margin-top: 1rem;
+  margin-left: 1.5rem;
 }
 
 

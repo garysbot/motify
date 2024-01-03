@@ -135,12 +135,14 @@ const ShowPlaylistPage = () => {
       <div className='show-menu-container'>
         <BannerPlaybar/>
       </div>
-      <div className='new-playlist-body'>
 
+      <div className='show-content'>
         <div className='tracks-header'>
           <div className='row-start'>
             <p className='header-text'>#</p>
             <p className='header-text'>Title</p>
+          </div>
+          <div className='row-start'>
             <p className='header-text'>Album</p>
           </div>
           <div className='row-end'>
