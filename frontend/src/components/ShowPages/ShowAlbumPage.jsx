@@ -18,12 +18,11 @@ const ShowAlbumPage = () => {
   const currentAlbum = useSelector(state => state.audio.currentAlbum);
   const currentArtist = useSelector(state => state.audio.currentArtist);
 
-
   useEffect(() => {
     const fetchAlbumData = async () => {
       if (albumId) {
         setIsLoading(true);
-        await dispatch(fetchAlbum(albumId));
+        dispatch(fetchAlbum(albumId));
         setIsLoading(false);
       }
     };
@@ -61,10 +60,12 @@ const ShowAlbumPage = () => {
 
   return (
     <>
+      {/* // TODO Remove props and replace with useSelector in ShowBanner */}
       <ShowBanner currentAlbum={currentAlbum} currentArtist={currentArtist} />
 
       <div className='show-content'>
         <BannerPlaybar />
+
         <div className='show-songs-header'>
           <div className='song-header-left'>
             <p className='header-text'>#</p>
@@ -73,9 +74,10 @@ const ShowAlbumPage = () => {
           <TimeIcon className='header-time' />
         </div>
         <hr></hr>
+
         <div className='show-songs-table'>
           {
-            currentAlbum.songs.map((song, trackNum) =>
+            currentAlbum.songs?.map((song, trackNum) =>
               <>
                 <div
                   className='show-songs-row-container'
@@ -108,8 +110,6 @@ const ShowAlbumPage = () => {
               </>
             )
           }
-
-
         </div>
       </div>
     </>

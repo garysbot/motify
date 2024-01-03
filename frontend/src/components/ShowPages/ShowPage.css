@@ -34,6 +34,11 @@
   align-items: center;
 }
 
+.details-artist-mini-pic {
+  display: flex;
+  align-items: center;
+}
+
 .details-artist-mini-pic img {
   width: 18px;
   height: 18px;

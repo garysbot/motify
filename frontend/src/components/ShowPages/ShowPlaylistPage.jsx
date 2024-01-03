@@ -61,6 +61,32 @@ const ShowPlaylistPage = () => {
     dispatch(togglePlay());
   };
 
+  // Format the dateString
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
+  }
+
+  // Format the playlist length
+  function formatLength(currentSongs) {
+    let totalLength = 0;
+    currentSongs.map((song) => totalLength += song.duration)
+    
+    let mins = Math.floor(totalLength / 60)
+
+    if (mins < 60) {
+      return `${mins} mins`
+    }
+
+    if (mins >= 60) {
+      let hours = Math.floor(mins / 60)
+      mins -= 60
+      return `${hours} hr, ${mins} mins`
+    }
+
+  }
+
   return (
     <>
       <div className='show-banner'>
@@ -87,12 +113,31 @@ const ShowPlaylistPage = () => {
           </div>
 
           <div className='details-artist'>
+            {currentPlaylist?.id && (
+              <>
+                <div className='details-artist-mini-pic'>
+                  <img src={currentUser?.aboutImg} alt=''></img>
+                </div>
+                {currentUser?.username}
+                <span className='dot'>•</span>
+                {formatDate(currentPlaylist?.createdAt)}
+                <span className='dot'>•</span>
+                {`${Object.values(currentPlaylist?.songs).length} songs`}
+                <span className='dot'>•</span>
+                {formatLength(currentSongs)}
+              </>
+            )}
+          </div>
+
+          {/* <div className='details-artist'>
             <div className='details-artist-mini-pic'>
               <img src='' alt=''></img>
             </div>
             {currentUser?.username}
-          </div>
+          </div> */}
+
         </div>
+
       </div>
       {/* Main Body for Songs Added */}
       <div className='show-menu-container'>
@@ -104,7 +149,7 @@ const ShowPlaylistPage = () => {
           <div className='row-start'>
             <p className='header-text'>#</p>
             <p className='header-text'>Title</p>
-              <p className='header-text'>Album</p>
+            <p className='header-text'>Album</p>
           </div>
           <div className='row-end'>
             <TimeIcon className='header-time'/>

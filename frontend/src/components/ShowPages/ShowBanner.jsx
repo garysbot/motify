@@ -8,23 +8,11 @@ const ShowBanner = ({
   return (
     <>
       <div className='show-banner'>
-        {currentPlaylist.title && (
-          <>
-            {/* // TODO Playlist Image Needed */}
-          </>
-        )}
-
         {currentAlbum.coverImg && (
           <img src={currentAlbum.coverImg} alt='' className='album-cover-img'></img>
         )}
 
         <div className='banner-details'>
-          {currentPlaylist.title && (
-            <>
-              <p>Playlist</p>
-              <h1 key={currentPlaylist.id}>{currentPlaylist.title}</h1>
-            </>
-          )}
           {currentAlbum.coverImg && (
             <>
               <p>Album</p>
