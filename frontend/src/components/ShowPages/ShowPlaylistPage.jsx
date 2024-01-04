@@ -25,7 +25,7 @@ const ShowPlaylistPage = () => {
   const currentPlaylist = useSelector(state => state.audio.currentPlaylist)
   const [title, setTitle] = useState(currentPlaylist.title)
   const currentSongs = useSelector(state => state.audio.currentPlaylist.songs)
-  const playlistCoverImg = useSelector(state => state.playlists[playlistId].coverImg)
+  const playlistCoverImg = useSelector(state => state.playlists[playlistId].playlistCoverImg)
   
   const [playlistCover, setPlaylistCover] = useState(newPlaylistCover)
 

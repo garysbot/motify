@@ -73,13 +73,13 @@ export const playlistSlice = createSlice({
     },
 
     updateCover: (state, action) => {
-      const { id, coverImage } = action.payload
+      const { id, playlistCoverImage } = action.payload
       // Find playlist by ID and update its cover image
       const playlist = state[id]
       if (playlist) {
-        playlist.coverImg = coverImage
+        playlist.playlistCoverImg = playlistCoverImage
       } else {
-        console.error(`Error with updateCover reducer, payload contents: ${id}, ${coverImage}`)
+        console.error(`Error with updateCover reducer, payload contents: ${id}, ${playlistCoverImage}`)
       }
     },
 
@@ -127,7 +127,7 @@ export const createPlaylistAsync = newPlaylistData => {
 
 export const updatePlaylistAsync = updatedPlaylistData => {
   return (dispatch) => {
-    const { id: playlistId, song, title } = updatedPlaylistData;
+    const { id: playlistId, song, title, playlistCoverImage } = updatedPlaylistData;
 
     if (!playlistId) {
       console.error("Playlist ID is undefined");
@@ -145,6 +145,11 @@ export const updatePlaylistAsync = updatedPlaylistData => {
     // If a title is provided, include it in the changes
     if (title !== undefined) {
       changes.title = title;
+    }
+
+    // If new cover image is provided, include it in the changes
+    if (playlistCoverImage !== undefined) {
+      changes.playlistCoverImage = playlistCoverImage;
     }
 
     csrfFetch(`/playlists/${playlistId}`, {
@@ -201,10 +206,11 @@ export const addSongAndUpdateCoverThunk = (playlistId, song) => async (dispatch,
     // After the song has been added, check if it's the first song
     const state = getState();
     const currentPlaylist = state.audio.currentPlaylist;
-    if (currentPlaylist.songs.length === 1) {
+    if (currentPlaylist.songs.length === 0) {
       // If it's the first song, dispatch an action to update the playlist cover
-      const coverImage = song.coverImg; // Assuming song object has an album property with coverImg
-      dispatch(updateCover({ id: playlistId, coverImage }));
+      const coverImage = song?.coverImg; // Assuming song object has an album property with coverImg
+      dispatch(updateCover({ id: playlistId, playlistCoverImage: coverImage }));
+      dispatch(updatePlaylistAsync({ id: playlistId, playlistCoverImage: coverImage }));
     }
   } catch (error) {
     console.error('Failed to add song and update cover: ', error);

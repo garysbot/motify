@@ -1,5 +1,5 @@
 # app/views/playlists/show.json.jbuilder
-json.extract! @playlist, :id, :title, :user_id, :created_at, :updated_at
+json.extract! @playlist, :id, :title, :user_id, :playlist_cover_img, :created_at, :updated_at
 # json.songs @playlist.songs, :id, :title, :duration, :artist_id, :album_id
 json.songs @playlist.songs do |song|
   json.id song.id
