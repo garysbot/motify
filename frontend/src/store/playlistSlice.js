@@ -46,6 +46,7 @@ export const playlistSlice = createSlice({
       }
 
       // & Update the playlist with the changes
+      console.log(`updatePlaylist action triggered successfully`)
       Object.assign(playlist, changes);
     },
 
@@ -125,6 +126,27 @@ export const createPlaylistAsync = newPlaylistData => {
   }
 }
 
+export const deletePlaylistAsync = playlistId => {
+  return dispatch => {
+    return new Promise((resolve, reject) => {
+      csrfFetch(`/playlists/${playlistId}`, {
+        method: 'DELETE'
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Network response failed, playlist not deleted`);
+        }
+        dispatch(deletePlaylist(playlistId));
+        resolve();
+      })
+      .catch(error => {
+        console.error(`Error deleting the playlist`, error);
+        reject(error);
+      });
+    });
+  };
+};
+
 export const updatePlaylistAsync = updatedPlaylistData => {
   return (dispatch) => {
     const { id: playlistId, song, title, playlistCoverImage } = updatedPlaylistData;
@@ -175,28 +197,6 @@ export const updatePlaylistAsync = updatedPlaylistData => {
   };
 };
 
-
-export const deletePlaylistAsync = playlistId => {
-  return dispatch => {
-    return new Promise((resolve, reject) => {
-      csrfFetch(`/playlists/${playlistId}`, {
-        method: 'DELETE'
-      })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`Network response failed, playlist not deleted`);
-        }
-        dispatch(deletePlaylist(playlistId));
-        resolve();
-      })
-      .catch(error => {
-        console.error(`Error deleting the playlist`, error);
-        reject(error);
-      });
-    });
-  };
-};
-
 // Action Creator Thunk for updating the playlist including its cover image
 export const addSongAndUpdateCoverThunk = (playlistId, song) => async (dispatch, getState) => {
   try {
@@ -210,7 +210,8 @@ export const addSongAndUpdateCoverThunk = (playlistId, song) => async (dispatch,
       // If it's the first song, dispatch an action to update the playlist cover
       const coverImage = song?.coverImg; // Assuming song object has an album property with coverImg
       dispatch(updateCover({ id: playlistId, playlistCoverImage: coverImage }));
-      dispatch(updatePlaylistAsync({ id: playlistId, playlistCoverImage: coverImage }));
+      dispatch(updatePlaylist({ id: playlistId, playlistCoverImage: coverImage }))
+      // dispatch(updatePlaylistAsync({ id: playlistId, playlistCoverImage: coverImage }));
     }
   } catch (error) {
     console.error('Failed to add song and update cover: ', error);
