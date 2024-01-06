@@ -64,7 +64,9 @@ const SidebarLibrary = () => {
                   
                     <div className='playlist-image-details'>
                       <Link to={`/playlists/${playlist?.id}`}>
-                        <img className='playlist-cover' alt='playlist-cover' src={playlist?.playlistCoverImage} ></img>
+                        {/* // & Related to state.playlists -> playlistCoverImg */}
+                        {/* <img className='playlist-cover' alt='playlist-cover' src={playlist?.playlistCoverImg} ></img> */}
+                        <img className='playlist-cover' alt='playlist-cover' src={playlist?.playlistCoverImg} ></img>
                       </Link>
                     </div>
                     <div className='playlist-user-details'>

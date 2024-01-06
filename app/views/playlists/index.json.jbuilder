@@ -2,6 +2,7 @@
 json.array! @playlists do |playlist|
   json.id playlist.id
   json.title playlist.title
+  json.playlist_cover_img playlist.playlist_cover_img
   json.user_id playlist.user_id
   json.created_at playlist.created_at
   json.updated_at playlist.updated_at
