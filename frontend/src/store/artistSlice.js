@@ -11,14 +11,15 @@ export const fetchArtists = createAsyncThunk(
   }
 )
 
-export const fetchArtist = (artistId) => createAsyncThunk(
-  `artists/fetchArtist/${artistId}`,
-  async () => {
-    const response = await csrfFetch(`/artists/${artistId}`)
-    const artist = await response.json()
-    return artist
+export const fetchArtist = createAsyncThunk(
+  'artists/fetchArtist',
+  async (artistId) => {
+    const response = await csrfFetch(`/artists/${artistId}`);
+    const artist = await response.json();
+    return artist;
   }
-)
+);
+
 
 export const artistSlice = createSlice({
   name: 'artists',
@@ -37,9 +38,13 @@ export const artistSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchArtists.fulfilled, (state, action) => {
+    builder
+    .addCase(fetchArtists.fulfilled, (state, action) => {
       artistSlice.caseReducers.receiveArtists(state, action)
     })
+    .addCase(fetchArtist.fulfilled, (state, action) => {
+      artistSlice.caseReducers.receiveArtist(state, action)
+    });
   }
 })
 

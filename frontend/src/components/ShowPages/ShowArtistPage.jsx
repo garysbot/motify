@@ -6,50 +6,56 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 const ShowArtistPage = () => {
-  const [isLoading, setIsLoading] = useState(true);
   const { artistId } = useParams()
+  const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch()
   const artist = useSelector((state) => state.artists[artistId])
-  const albums = Object.values(useSelector((state) => state.albums))
+  const albums = useSelector((state) => state.artists[artistId]?.albums)
+  // const albums = Object.values(useSelector((state) => state.albums))
+  // const albums = artist.albums
   
   useEffect(() => {
-    const fetchArtistData = async () => {
-      if (artistId) {
-        setIsLoading(true)
-        dispatch(fetchArtist(artistId))
-        setIsLoading(false)
-      }
+    if (artistId && !artist) {
+      setIsLoading(true);
+      dispatch(fetchArtist(artistId))
+        .then(() => setIsLoading(false))
+        .catch((error) => {
+          console.error("Failed to fetch artist:", error);
+          setIsLoading(false);
+        });
+    } else {
+      setIsLoading(false);
     }
-    fetchArtistData()
-  }, [dispatch, artistId])
+  }, [dispatch, artistId, artist])
   
   const ArtistAlbums = () => {
     return albums
-      .filter((album) => album.artistName === artist.artistName)
+      // .filter((album) => album.artistName === artist?.artistName)
       .map((album) => (
-        <Link to={`/albums/${album.id}`}>
-          <div className='vertical-content-card'  key={album.id}>
-            <img src={album.coverImg} alt='' className='vertical-cover'></img>
-            <p className='vertical-title'>{album.title}</p>
-            <p className='vertical-artist'>{artist.artistName}</p>
+        <div className='vertical-content-card'  key={album.id}>
+            <Link to={`/albums/${album.id}`}>
+              <img src={album.cover_img} alt='' className='vertical-cover'></img>
+              <p className='vertical-title'>{album.title}</p>
+            </Link>
+            <p className='vertical-artist'>{artist?.artistName}</p>
           </div>
-        </Link>
       ));
   }
 
-  if (isLoading || !artistId) {
+  if (isLoading) {
     return <div>Loading...</div>;
+  }
+
+  if (!artist) {
+    return <div>Artist not found.</div>;
   }
 
   return (
     <>
-      <div 
-        className='show-banner'
-        // style={{'background-color':'red'}}
-      >
+      <div className='show-banner'>
         <div className='banner-details banner-artist-name'>
           <p>Artist</p>
-          <h1>{artist?.artistName}</h1>
+          <h1>{artist.artistName}</h1>
         </div>
       </div>
       <div className='content-cards'>

@@ -79,13 +79,13 @@ const Cards = ({ contentType }) => {
         return (
           Object.values(albums).map((album, idx) =>
           (
-            <Link to={`/albums/${album.id}`} key={idx}>
-              <div className='vertical-content-card' key={album.id}>
-                <img src={album.coverImg} alt='' className='vertical-cover' />
-                <p className='vertical-title'>{album.title}</p>
+            <div className='vertical-content-card' key={album.id}>
+                <Link to={`/albums/${album.id}`} key={idx}>
+                  <img src={album.coverImg} alt='' className='vertical-cover' />
+                  <p className='vertical-title'>{album.title}</p>
+                </Link>
                 <p className='vertical-artist'>{album.artistName}</p>
               </div>
-            </Link>
           ))
         )
 
@@ -94,13 +94,13 @@ const Cards = ({ contentType }) => {
         return (
           Object.values(songs).map((song, idx) =>
           (
-            <Link to={`/songs/${song.id}`} key={idx}>
-              <div className='vertical-content-card' key={idx}>
-                <img src={Cover1} alt='' className='vertical-cover' />
-                <p className='vertical-title'>{song.title}</p>
+            <div className='vertical-content-card' key={idx}>
+                <Link to={`/songs/${song.id}`} key={idx}>
+                  <img src={Cover1} alt='' className='vertical-cover' />
+                  <p className='vertical-title'>{song.title}</p>
+                </Link>
                 <p className='vertical-artist'>{song.artistName}</p>
               </div>
-            </Link>
           ))
         )
 
@@ -109,13 +109,13 @@ const Cards = ({ contentType }) => {
         return (
           Object.values(artists).map((artist, idx) =>
           (
-            <Link to={`/artists/${artist.id}`}>
-              <div className='vertical-content-card' key={idx}>
-                <img src={artist.aboutImg} alt='' className='vertical-cover' />
-                <p className='vertical-title'>{artist.artistName}</p>
+            <div className='vertical-content-card' key={idx}>
+                <Link to={`/artists/${artist.id}`}>
+                  <img src={artist.aboutImg} alt='' className='vertical-cover' />
+                  <p className='vertical-title'>{artist.artistName}</p>
+                </Link>
                 <p className='vertical-artist'>Artist</p>
               </div>
-            </Link>
           ))
         )
 
@@ -123,13 +123,13 @@ const Cards = ({ contentType }) => {
         contentTitle = 'Playlists'
         return (
           Object.values(playlists).map((playlist, idx) => (
-              <Link to={`/playlists/${playlist.id}`}>
-              <div className='vertical-content-card' key={idx}>
-                <img src={playlist.coverImg} alt='' className='vertical-cover' />
-                <p className='vertical-title'>{playlist.title}</p>
+            <div className='vertical-content-card' key={idx}>
+                <Link to={`/playlists/${playlist.id}`}>
+                  <img src={playlist.coverImg} alt='' className='vertical-cover' />
+                  <p className='vertical-title'>{playlist.title}</p>
+                </Link>
                 <p className='vertical-artist'>{currentUser?.username}</p>
               </div>
-            </Link>
             ))
         )
 
