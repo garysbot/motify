@@ -65,6 +65,7 @@ const Cards = ({ contentType }) => {
       break;
     case 'playlists':
       contentTitle = 'Playlists';
+      break;
     default:
       contentTitle = 'Your Music';
       break;
