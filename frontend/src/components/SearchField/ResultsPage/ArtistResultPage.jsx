@@ -14,6 +14,7 @@ const ArtistResultPage = ({ songs }) => {
 
   return (
     <>
+      {/* // & Artist Results Displayed When Expanded */}
       {songs.map((song, index) => (
         <div className='result-row' id={song.id}>
           <div className='result-detail'>

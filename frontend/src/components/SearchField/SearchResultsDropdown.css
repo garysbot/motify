@@ -39,11 +39,16 @@
 
 .result-row-back {
   display: flex;
-  flex-direction: row-reverse;
+  gap: 1rem;
   justify-content:left;
+  cursor: pointer;
 }
 
 .result-row:hover {
+  background-color: #2a2a2a;
+}
+
+.result-row-back:hover {
   background-color: #2a2a2a;
 }
 
@@ -123,6 +128,13 @@
 
 button {
   box-shadow: none;
+}
+
+.result-detail-expanded {
+  width: 100%;
+  display: flex;
+  justify-content: ;
+  align-items: center;
 }
 
 .result-detail-expanded p {

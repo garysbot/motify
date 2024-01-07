@@ -63,37 +63,42 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
       {
         artistResults.map((artist, index) =>
         <>
-          <div className={`result-row${resultsReversed}`}
-            onMouseEnter={() => setHoveredTrack(index)}
-            onMouseLeave={() => setHoveredTrack(null)}
-            onClick={() => toggleArtistsDisplay(artist.id)}
-          >
-            {
-              isArtistExpanded(artist.id) ? 
-                <>
+          {
+            isArtistExpanded(artist.id) ? 
+            <>
+              <div className={`result-row${resultsReversed}`}
+                onMouseEnter={() => setHoveredTrack(index)}
+                onMouseLeave={() => setHoveredTrack(null)}
+                onClick={() => toggleArtistsDisplay(artist.id)}
+              >
                   <div className='result-link'>
-                    <img src={searchArrowLeft} alt='Link' className='search-arrow'/>
                   </div>
                   <div className='result-detail-expanded'>
                     <p key={index}>{artist.artistName}</p>
+                    <img src={searchArrowLeft} alt='Link' className='search-arrow'/>
                   </div>
-                </>
-              :
-                <>
-                  <div className='result-detail'>
-                    <img src={artist.aboutImg} alt='' className='result-artist-img'/>
-                    <div className='name'>
-                      <p key={index}>{artist.artistName}</p>
-                      <p className='result-label'>Artist</p>
-                    </div>
+              </div>
+            </>
+            :
+            <>
+              <div className={`result-row${resultsReversed}`}
+                onMouseEnter={() => setHoveredTrack(index)}
+                onMouseLeave={() => setHoveredTrack(null)}
+                onClick={() => toggleArtistsDisplay(artist.id)}
+              >
+                <div className='result-detail'>
+                  <img src={artist.aboutImg} alt='' className='result-artist-img'/>
+                  <div className='name'>
+                    <p key={index}>{artist.artistName}</p>
+                    <p className='result-label'>Artist</p>
                   </div>
-                  <div className='result-link'>
-                    <img src={searchArrow} alt='Link' className='search-arrow'/>
-                  </div>
-                </>
+                </div>
+                <div className='result-link'>
+                  <img src={searchArrow} alt='Link' className='search-arrow'/>
+                </div>
+              </div>
+            </>
             }
-
-          </div>
           {isArtistExpanded(artist.id) && <ArtistResultPage songs={artist.songs}/>}
         </>
         )
