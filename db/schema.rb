@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_03_183332) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_07_013831) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,10 +19,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_03_183332) do
     t.string "title", null: false
     t.string "genre", null: false
     t.string "cover_img", null: false
-    t.bigint "release_date", null: false
     t.string "record_company"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "release_date"
     t.index ["artist_id"], name: "index_albums_on_artist_id"
     t.index ["title"], name: "index_albums_on_title", unique: true
   end

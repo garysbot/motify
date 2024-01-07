@@ -58,6 +58,19 @@ const ShowAlbumPage = () => {
     dispatch(togglePlay());
   };
 
+  // Format the dateString
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
+  }
+
+  function formatYear(dateString) {
+    const date = new Date(dateString);
+    const options = { year: 'numeric'};
+    return date.toLocaleDateString('en-US', options);
+  }
+
   return (
     <>
       {/* // TODO Remove props and replace with useSelector in ShowBanner */}
@@ -117,6 +130,29 @@ const ShowAlbumPage = () => {
               </>
             )
           }
+        </div>
+        <div className='album-footer'
+          style={{
+            'margin-top': '1rem',
+            'margin-left': '0.25rem',
+            'opacity': '70%'
+          }}
+        >
+          <p
+            style={{
+              'font-size':'0.85rem'
+            }}
+          >{formatDate(currentAlbum?.releaseDate)}</p>
+          <p
+            style={{
+              'font-size':'0.75rem'
+            }}
+            >{currentAlbum?.recordCompany}</p>
+          <p
+            style={{
+              'font-size':'0.75rem'
+            }}
+          >{`© ${formatYear(currentAlbum?.releaseDate)} ${currentAlbum?.recordCompany}`}</p>
         </div>
       </div>
     </>

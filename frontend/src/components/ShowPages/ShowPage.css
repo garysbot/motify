@@ -191,6 +191,7 @@
   flex-direction: column;
   justify-content: center;
   width: 100%;
+  margin-bottom: 2rem;
 }
 
 .show-content hr {
