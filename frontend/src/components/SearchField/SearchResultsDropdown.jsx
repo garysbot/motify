@@ -1,6 +1,7 @@
 import './SearchResultsDropdown.css'
 import searchArrow from '../../static/icons/search-arrow.svg'
 import searchArrowLeft from '../../static/icons/search-arrow-left.svg'
+import searchArrowDown from '../../static/icons/search-arrow-down.svg'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import AlbumResultPage from './ResultsPage/AlbumResultPage'
@@ -66,21 +67,23 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
           {
             isArtistExpanded(artist.id) ? 
             <>
+            {/* // & Artist Result Expanded */}
               <div className={`result-row${resultsReversed}`}
                 onMouseEnter={() => setHoveredTrack(index)}
                 onMouseLeave={() => setHoveredTrack(null)}
                 onClick={() => toggleArtistsDisplay(artist.id)}
               >
-                  <div className='result-link'>
-                  </div>
                   <div className='result-detail-expanded'>
                     <p key={index}>{artist.artistName}</p>
-                    <img src={searchArrowLeft} alt='Link' className='search-arrow'/>
+                  </div>
+                  <div className='result-link'>
+                    <img src={searchArrowDown} alt='Link' className='search-arrow'/>
                   </div>
               </div>
             </>
             :
             <>
+            {/* // & Artist Result Not Expanded */}
               <div className={`result-row${resultsReversed}`}
                 onMouseEnter={() => setHoveredTrack(index)}
                 onMouseLeave={() => setHoveredTrack(null)}

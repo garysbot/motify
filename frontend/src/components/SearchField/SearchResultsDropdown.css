@@ -24,24 +24,36 @@
 
 .result-row {
   display: flex;
-  gap: 1rem;
-  justify-content: flex-start;
+  /* gap: 1rem; */
+  /* justify-content: flex-start; */
   align-items: center;
   margin-top: 1rem;
   margin-left: 1rem;
   color: white;
-  width: 90%;
+  /* width: 90%; */
   padding: 0.5rem;
   padding-left: 0.5rem;
   border-radius: 5px;
   cursor: pointer;
 }
 
-.result-row-back {
+/* .result-row-back {
   display: flex;
   gap: 1rem;
   justify-content:left;
   cursor: pointer;
+} */
+.result-row-back {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  color: white;
+  padding: 0.5rem;
+  padding-left: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 90%;
 }
 
 .result-row:hover {
