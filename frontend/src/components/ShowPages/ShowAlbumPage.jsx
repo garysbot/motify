@@ -10,6 +10,8 @@ import { useParams } from 'react-router-dom';
 import ShowBanner from './ShowBanner.jsx';
 import BannerPlaybar from './BannerPlaybar.jsx';
 
+import SongsTable from '../SongsTable/SongsTable.jsx';
+
 const ShowAlbumPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [hoveredTrack, setHoveredTrack] = useState(null);
@@ -31,11 +33,11 @@ const ShowAlbumPage = () => {
   }, [dispatch, albumId]);
 
   // New useEffect to set the first song after the album is loaded
-  useEffect(() => {
-    if (currentAlbum && currentAlbum.songs && currentAlbum.songs.length > 0) {
-      dispatch(receiveSong(currentAlbum.songs[0]));
-    }
-  }, [dispatch, currentAlbum]);
+  // useEffect(() => {
+  //   if (currentAlbum && currentAlbum.songs && currentAlbum.songs.length > 0) {
+  //     dispatch(receiveSong(currentAlbum.songs[0]));
+  //   }
+  // }, [dispatch, currentAlbum]);
 
   useEffect(() => {
     const fetchArtistData = async () => {
@@ -90,8 +92,8 @@ const ShowAlbumPage = () => {
             <TimeIcon className='header-time'/>
           </div>
         </div>
-        <hr></hr>
-
+          <hr></hr>
+        <SongsTable/>
         <div className='show-songs-table'>
           {
             currentAlbum.songs?.map((song, trackNum) =>
@@ -102,7 +104,9 @@ const ShowAlbumPage = () => {
                   onMouseLeave={() => setHoveredTrack(null)}
                   onClick={() => handlePlaySong(song)} // ! This is what changes the Redux State
                 >
-                  <div className='row-start'>
+                  <div className='row-start'
+                    // onClick={}
+                  >
                     <div className='track-num'>
                       {hoveredTrack === trackNum 
                         ?
@@ -131,10 +135,16 @@ const ShowAlbumPage = () => {
             )
           }
         </div>
+        <hr
+          style={{
+            'margin-top':'3rem'
+          }}
+        ></hr>
         <div className='album-footer'
           style={{
-            'margin-top': '1rem',
+            'margin-top': '0.75rem',
             'margin-left': '0.25rem',
+            'margin-bottom': '2rem',
             'opacity': '70%'
           }}
         >

@@ -11,6 +11,7 @@ import {
 
 // Custom Hooks
 import { useAudioPlayer } from "./useAudioPlayer.jsx";
+import { useState } from "react";
 
 const PlayBar = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,9 @@ const PlayBar = () => {
   const currentSong = useSelector((state) => state.audio.currentSong);
   const volume = useSelector((state) => state.audio.volume);
   const songPosition = useSelector((state) => state.audio.songPosition);
+
+  // song container onclick select
+  const [songSelected, setSong] = useState(false)
 
   // Play/Pause Custom Hook
   const { handlePlayPause, isPlaying } = useAudioPlayer(audioRef);
@@ -93,19 +97,20 @@ const PlayBar = () => {
     dispatch(setVolume(newVolume)); // Update the volume in Redux state
   };
 
+
   return (
     <>
       <div className="play-bar-container">
         {/* // ^  Song Details -- bottom left w/ img */}
         <div className="song-details-container">
           <img
-            src={currentAlbum.coverImg}
+            src={currentSong.album.coverImg}
             alt=""
             className="song-details-cover"
           ></img>
           <div className="song-details">
             <h3>{currentSong.title}</h3>
-            <p>{currentArtist.artistName}</p>
+            <p>{currentSong.artist.artistName}</p>
           </div>
         </div>
 

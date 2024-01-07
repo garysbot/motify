@@ -10,6 +10,7 @@ import { fetchAlbums } from '../../../store/albumSlice.js'
 import { fetchSongs } from '../../../store/songSlice.js'
 import { fetchArtists } from '../../../store/artistSlice.js'
 import { fetchPlaylists } from '../../../store/playlistSlice.js'
+import SongCards from './SongCards.jsx'
 
 const Cards = ({ contentType }) => {
   const dispatch = useDispatch();
@@ -95,15 +96,15 @@ const Cards = ({ contentType }) => {
       case 'songs':
         contentTitle = 'Songs'
         return (
-          Object.values(songs).map((song, idx) =>
+          Object.values(songs).map((song) =>
           (
-            <div className='vertical-content-card' key={idx}>
-                <Link to={`/songs/${song.id}`} key={idx}>
-                  <img src={Cover1} alt='' className='vertical-cover' />
-                  <p className='vertical-title'>{song.title}</p>
-                </Link>
-                <p className='vertical-artist'>{song.artistName}</p>
-              </div>
+            <div className='vertical-content-card' key={song.id}>
+            <Link to={`/songs/${song.id}`}>
+              <img src={song.coverImg} alt='' className='vertical-cover' />
+              <p className='vertical-title'>{song.title}</p>
+            </Link>
+            <p className='vertical-artist'>{song.artistName}</p>
+          </div>
           ))
         )
 
