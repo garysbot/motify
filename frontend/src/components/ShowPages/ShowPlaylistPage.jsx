@@ -6,6 +6,7 @@ import { updatePlaylistAsync } from '../../store/playlistSlice';
 import { ReactComponent as TimeIcon } from '../../static/icons/time.svg'
 import { ReactSVG } from 'react-svg'
 import lilPlayButton from '../../static/icons/noun-play-1009801.svg'
+import equaliser from '../../static/icons/equalizer.gif'
 import { receiveSong, togglePlay } from '../../store/audioActions'; // Import relevant actions
 
 import '../MainPage/MainPage.css'
