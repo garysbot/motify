@@ -104,13 +104,13 @@ const PlayBar = () => {
         {/* // ^  Song Details -- bottom left w/ img */}
         <div className="song-details-container">
           <img
-            src={currentSong.album.coverImg}
+            src={currentSong.album?.coverImg}
             alt=""
             className="song-details-cover"
           ></img>
           <div className="song-details">
             <h3>{currentSong.title}</h3>
-            <p>{currentSong.artist.artistName}</p>
+            <p>{currentSong.artist?.artistName}</p>
           </div>
         </div>
 

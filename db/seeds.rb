@@ -21,7 +21,7 @@ ApplicationRecord.transaction do
     username: 'Gary Jiang (Demo)', 
     email: 'demo@user.io', 
     password: 'password',
-    user_prof_img: '',
+    user_prof_img: 'https://motify-seeds.s3.us-east-2.amazonaws.com/static/temp-prof.png',
     birth_date: DateTime.new(1992, 11, 25),
     gender: 'Man',
     optinmarketing: true

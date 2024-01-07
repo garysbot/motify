@@ -9,6 +9,7 @@ import lilPlayButton from '../../static/icons/noun-play-1009801.svg'
 import equaliser from '../../static/icons/equalizer.gif'
 import { receiveSong, togglePlay } from '../../store/audioActions'; // Import relevant actions
 
+
 import '../MainPage/MainPage.css'
 import './ShowPlaylist.css'
 import './ShowPage.css'
@@ -117,7 +118,7 @@ const ShowPlaylistPage = () => {
             {currentPlaylist?.id && (
               <>
                 <div className='details-artist-mini-pic'>
-                  <img src={currentUser?.aboutImg} alt=''></img>
+                  <img src={currentUser?.userProfImg} alt=''></img>
                 </div>
                 {currentUser?.username}
                 <span className='dot'>•</span>
