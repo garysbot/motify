@@ -1,13 +1,12 @@
 import { Link, useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
-import { updatePlaylistAsync, addSongAndUpdateCoverThunk } from '../../../store/playlistSlice'
+import { addSongAndUpdateCoverThunk } from '../../../store/playlistSlice'
 
 const ArtistResultPage = ({ songs }) => {
   const { playlistId } = useParams();
   const dispatch = useDispatch();
 
   const handleClick = (song) => {
-    // dispatch(updatePlaylistAsync({ id: playlistId, song }))
     console.log(`Trying to get to the song's album cover image ${song.coverImg}`)
     dispatch(addSongAndUpdateCoverThunk(playlistId, song))
   };
@@ -16,7 +15,7 @@ const ArtistResultPage = ({ songs }) => {
   return (
     <>
       {songs.map((song, index) => (
-        <div className='result-row'>
+        <div className='result-row' id={song.id}>
           <div className='result-detail'>
             <img src={song.coverImg} alt='' className='result-album-img' />
             <div className='result-album'>

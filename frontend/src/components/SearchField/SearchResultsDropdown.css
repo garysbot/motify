@@ -24,12 +24,13 @@
 
 .result-row {
   display: flex;
-  justify-content: space-between;
+  gap: 1rem;
+  justify-content: flex-start;
   align-items: center;
-  /* padding-top: 4rem; */
   margin-top: 1rem;
+  margin-left: 1rem;
   color: white;
-  width: 100%;
+  width: 90%;
   padding: 0.5rem;
   padding-left: 0.5rem;
   border-radius: 5px;
