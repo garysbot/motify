@@ -167,7 +167,7 @@ const ShowPlaylistPage = () => {
                         hoveredTrack === trackNum ? 
                         (<ReactSVG src={lilPlayButton} className='anim-play-button' />) 
                           : 
-                        (<p>{trackNum + 1}</p>)
+                        (<p style={{'height':'12px', 'width':'12px'}}>{trackNum + 1}</p>)
                       }
                     </div>
                     <div className='song-title-artist-container'>

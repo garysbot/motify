@@ -95,7 +95,7 @@ const ShowAlbumPage = () => {
                         ?
                         (<ReactSVG src={lilPlayButton} className='anim-play-button' />)
                         :
-                        (<p>{trackNum + 1}</p>)
+                        (<p style={{'width':'12px', 'height':'12px'}}>{trackNum + 1}</p>)
                       }
                     </div>
                     <div className='song-title-artist-container'>
