@@ -47,7 +47,7 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
   const isAlbumExpanded = (albumId) => expandedAlbum === albumId;
   const isArtistExpanded = (artistId) => {
     if (expandedArtist === artistId) {
-      resultsReversed = '-back'
+      resultsReversed = '-expanded'
       return true;
     }
   };
@@ -68,23 +68,31 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
             isArtistExpanded(artist.id) ? 
             <>
             {/* // & Artist Result Expanded */}
-              <div className={`result-row${resultsReversed}`}
+              <div 
+                className={`result-row${resultsReversed}`}
+                style={isArtistExpanded(artist.id) ? { maxHeight: '500px' } : { maxHeight: '0' }} // Adjust 500px as needed
+                style={index === 0 ? { marginTop: '2rem' } : {}}
                 onMouseEnter={() => setHoveredTrack(index)}
                 onMouseLeave={() => setHoveredTrack(null)}
                 onClick={() => toggleArtistsDisplay(artist.id)}
               >
-                  <div className='result-detail-expanded'>
-                    <p key={index}>{artist.artistName}</p>
-                  </div>
-                  <div className='result-link'>
-                    <img src={searchArrowDown} alt='Link' className='search-arrow'/>
-                  </div>
+                <div className='result-detail-expanded'>
+                  <p key={index}>{artist.artistName}</p>
+                </div>
+                <div className='result-link'>
+                  <img 
+                    src={searchArrowDown}
+                    alt='expanded-search-arrow-down' 
+                  />
+                </div>
               </div>
             </>
             :
             <>
             {/* // & Artist Result Not Expanded */}
-              <div className={`result-row${resultsReversed}`}
+              <div 
+                className={`result-row${resultsReversed}`}
+                style={index === 0 ? { marginTop: '2rem' } : {}}
                 onMouseEnter={() => setHoveredTrack(index)}
                 onMouseLeave={() => setHoveredTrack(null)}
                 onClick={() => toggleArtistsDisplay(artist.id)}
@@ -97,7 +105,11 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
                   </div>
                 </div>
                 <div className='result-link'>
-                  <img src={searchArrow} alt='Link' className='search-arrow'/>
+                  <img 
+                    src={searchArrow} 
+                    className='search-arrow'
+                    alt='Link' 
+                  />
                 </div>
               </div>
             </>
@@ -110,7 +122,10 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
       {
         albumResults.map((album, index) =>
           <>
-            <div className='result-row' onClick={() => toggleSongsDisplay(album.id)}>
+            <div 
+              className='result-row' 
+              style={index === 0 ? { marginTop: '2rem' } : {}}
+              onClick={() => toggleSongsDisplay(album.id)}>
               <div className='result-detail'>
                 <img src={album.coverImg} alt='' className='result-album-img' />
                 <div className='name'>
@@ -129,7 +144,10 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
 
       {
         songResults.map((song, index) => 
-          <div className='result-row'>
+          <div 
+            className='result-row'
+            style={index === 0 ? { marginTop: '2rem' } : {}}
+          >
             <div className='result-detail song-result'>
                 <img src={song.coverImg} alt='' className='result-song-img'/>
                 <div className='name'>
@@ -150,7 +168,10 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
 
       {
         playlistResults.map((playlist, index) => 
-          <div className='playlist-result'>
+          <div 
+            className='playlist-result'
+            style={index === 0 ? { marginTop: '2rem' } : {}}
+          >
             <p key={index}>{playlist.title}</p>
           </div>
         )
