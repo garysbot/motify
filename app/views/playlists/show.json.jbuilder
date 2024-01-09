@@ -9,8 +9,10 @@ json.songs @playlist.songs do |song|
   json.album do
     json.title song.album.title
     json.cover_img song.album.cover_img
+    json.id song.album.id
   end
   json.artist do
     json.artist_name song.artist.artist_name
+    json.artist_id song.artist.id
   end
 end

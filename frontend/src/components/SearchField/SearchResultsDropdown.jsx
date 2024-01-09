@@ -42,12 +42,12 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
     }
   };
 
-  let resultsReversed = '';
+  let expanded = '';
 
   const isAlbumExpanded = (albumId) => expandedAlbum === albumId;
   const isArtistExpanded = (artistId) => {
     if (expandedArtist === artistId) {
-      resultsReversed = '-expanded'
+      expanded = '-expanded'
       return true;
     }
   };
@@ -69,15 +69,18 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
             <>
             {/* // & Artist Result Expanded */}
               <div 
-                className={`result-row${resultsReversed}`}
-                style={isArtistExpanded(artist.id) ? { maxHeight: '500px' } : { maxHeight: '0' }} // Adjust 500px as needed
+                className={`result-row${expanded}`}
                 style={index === 0 ? { marginTop: '2rem' } : {}}
                 onMouseEnter={() => setHoveredTrack(index)}
                 onMouseLeave={() => setHoveredTrack(null)}
                 onClick={() => toggleArtistsDisplay(artist.id)}
               >
-                <div className='result-detail-expanded'>
-                  <p key={index}>{artist.artistName}</p>
+                <div className='result-detail'>
+                  <img src={artist.aboutImg} alt='' className='result-artist-img'/>
+                  <div className='name'>
+                    <p key={index}>{artist.artistName}</p>
+                    <p className='result-label'>Artist</p>
+                  </div>
                 </div>
                 <div className='result-link'>
                   <img 
@@ -91,7 +94,7 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
             <>
             {/* // & Artist Result Not Expanded */}
               <div 
-                className={`result-row${resultsReversed}`}
+                className={`result-row${expanded}`}
                 style={index === 0 ? { marginTop: '2rem' } : {}}
                 onMouseEnter={() => setHoveredTrack(index)}
                 onMouseLeave={() => setHoveredTrack(null)}

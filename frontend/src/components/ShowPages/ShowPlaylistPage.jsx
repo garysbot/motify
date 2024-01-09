@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchPlaylist } from '../../store/audioThunks';
 import { updatePlaylistAsync } from '../../store/playlistSlice';
@@ -8,7 +8,6 @@ import { ReactSVG } from 'react-svg'
 import lilPlayButton from '../../static/icons/noun-play-1009801.svg'
 import equaliser from '../../static/icons/equalizer.gif'
 import { receiveSong, togglePlay } from '../../store/audioActions'; // Import relevant actions
-
 
 import '../MainPage/MainPage.css'
 import './ShowPlaylist.css'
@@ -174,10 +173,10 @@ const ShowPlaylistPage = () => {
                     </div>
                     <div className='song-title-artist-container'>
                       <p className='song-title'>{song.title}</p>
-                      <p className='song-title-artist-name'>{song.artist.artistName}</p>
+                      <Link to={`/artists/${song.artist.artistId}`}><p className='song-title-artist-name'>{song.artist.artistName}</p></Link>
                     </div>
                     <div className='song-title-artist-container'>
-                      <p className='song-title'>{song.album.title}</p>
+                      <Link to={`/albums/${song.album.id}`}><p className='song-title'>{song.album.title}</p></Link>
                     </div>
                   </div>
 

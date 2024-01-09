@@ -17,7 +17,7 @@ const ArtistResultPage = ({ songs }) => {
       {/* // & Artist Results Displayed When Expanded */}
       {songs.map((song, index) => (
         <div className='result-row' id={song.id}>
-          <div className='result-detail'>
+          <div className='result-detail' style={{'width': '50%'}}>
             <img src={song.coverImg} alt='' className='result-album-img' />
             <div className='result-album'>
               <p>{song.title}</p>
