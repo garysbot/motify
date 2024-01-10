@@ -110,3 +110,8 @@
   justify-content: center;
 }
 
+.row-end-menu {
+  margin: 1rem;
+  justify-self: flex-end;
+}
+

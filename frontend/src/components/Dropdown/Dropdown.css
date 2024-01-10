@@ -1,0 +1,20 @@
+/* song menu */
+.song-menu {
+  position:fixed;
+  right: 1.75rem;
+  background-color: #3E3E3E;
+  border-radius: 0.5rem;
+  width: 10rem;
+}
+
+.song-menu li {
+  list-style: none;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.song-menu a {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}

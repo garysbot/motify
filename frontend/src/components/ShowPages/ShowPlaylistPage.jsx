@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchPlaylist } from '../../store/audioThunks';
@@ -8,6 +8,10 @@ import { ReactSVG } from 'react-svg'
 import lilPlayButton from '../../static/icons/noun-play-1009801.svg'
 import equaliser from '../../static/icons/equalizer.gif'
 import { receiveSong, togglePlay } from '../../store/audioActions'; // Import relevant actions
+import '../Dropdown/Dropdown.css'
+
+// Dropdown
+import Dropdown from '../Dropdown/Dropdown';
 
 import '../MainPage/MainPage.css'
 import './ShowPlaylist.css'
@@ -29,6 +33,7 @@ const ShowPlaylistPage = () => {
   const playlistCoverImg = useSelector(state => state.playlists[playlistId]?.playlistCoverImg)
   
   const [playlistCover, setPlaylistCover] = useState(newPlaylistCover)
+  const [toggleSongMenu, setSongMenu] = useState(false)
 
   // ^ Fetches current playlist object from URL via useParams
   useEffect(() => {
@@ -86,6 +91,38 @@ const ShowPlaylistPage = () => {
       return `${hours} hr, ${mins} mins`
     }
 
+  }
+
+  // closing the song menu
+  // Detect click outside of menu to close it
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setSongMenu(true)
+      }
+    }
+
+    if (toggleSongMenu) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+
+  }, [toggleSongMenu, dispatch])
+
+  
+
+
+  const handleSongMenu = async () => {
+    console.log(`handleSongMenu activated`)
+    if (!toggleSongMenu) {
+      setSongMenu(true)
+    }
+    console.log(`toggleSongMenu is currently ${toggleSongMenu}`)
   }
 
   return (
@@ -160,7 +197,7 @@ const ShowPlaylistPage = () => {
                   className='show-songs-row-container'
                   onMouseEnter={() => setHoveredTrack(trackNum)}
                   onMouseLeave={() => setHoveredTrack(null)}
-                  onClick={() => handlePlaySong(song)} // ! This is what changes the Redux State
+                  // onClick={() => handlePlaySong(song)} // ! This is what changes the Redux State
                 >
                   <div className='row-start'>
                     <div className='track-num'>
@@ -183,6 +220,14 @@ const ShowPlaylistPage = () => {
                   <div className='row-end'>
                     <div className=''>
                       <p className='duration-text header-time'>{`${Math.floor(song.duration / 60)}:${String(song.duration % 60).padStart(2, '0')}`}</p>
+                    </div>
+                    <div className='row-end-menu'>
+                      <Dropdown 
+                        type={`song`}
+                        onClick={handleSongMenu()}
+                        ref={dropdownRef}
+                        state={setSongMenu}
+                        />
                     </div>
                   </div>
                 </div>

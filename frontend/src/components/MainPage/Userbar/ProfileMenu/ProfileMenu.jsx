@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleDropdown } from '../../../../store/uiReducer.js';
 import '../../MainPage.css'
-import Dropdown from './Dropdown.jsx';
+import Dropdown from '../../../Dropdown/Dropdown.jsx';
 import tempProf from '../../../../static/temp-prof.png'
 
 const ProfileMenu = () => {
@@ -42,7 +42,7 @@ const ProfileMenu = () => {
           className='userbar-profile-pic'
         />
       </div>
-      {isDropdownOpen && <div ref={dropdownRef}><Dropdown /></div>}
+      {isDropdownOpen && <div ref={dropdownRef}><Dropdown type={`user`} /></div>}
     </div>
   );
 
