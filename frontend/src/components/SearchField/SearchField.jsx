@@ -8,7 +8,7 @@ import SearchResultsDropdown from './SearchResultsDropdown';
 const SearchField = () => {
   const [inputValue, setInputValue] = useState('');
   const dispatch = useDispatch();
-  const { isLoading, error, results, searchInitiated, query } = useSelector(state => state.search);
+  const { error, results, searchInitiated, query } = useSelector(state => state.search);
 
   const handleChange = (event) => {
     const newQuery = event.target.value;

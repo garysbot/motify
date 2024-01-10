@@ -69,6 +69,10 @@
   font-size: 0.8rem;
 }
 
+.search-input-container input:focus {
+  outline: none;
+}
+
 .playlist-name-container input {
   font-size: 3rem;
   background-color: transparent;
