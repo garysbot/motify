@@ -27,6 +27,9 @@ npm run start
 <br>
 
 ## Highlighted Features
+### Dynamic Search
+Dynamic real-time search fetching from Rails backend for Songs, Albums, Artists, and Playlists that match the search query.
+
 ![Dynamic Search](./readme/dynamic-search.gif)
 ```javascript
 const SearchField = () => {
@@ -69,6 +72,13 @@ const SearchField = () => {
 
 export default SearchField;
 ```
+
+### SongsTable UI/UX with Redux State Management
+Redux state management for globalized state enhancing user experience and user interface design. Song row style changes based on current song playing state.
+
+![Song State Redux](./readme/hover-state.png)
+
+
 
 ## Future Features
 - Enhanced user and artist profiles.
