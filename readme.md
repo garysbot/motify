@@ -4,12 +4,6 @@ Motify is a full-stack clone of Spotify designed to emulate the core functionali
 ![Motify Overview](https://github.com/garysbot/motify/raw/main/readme/motify-overview.png)
 
 ## Core Features
--   **User Authentication**: 
-  Secure login, registration, and session management with demo account access.
-  ![Motify Signup Flow](./readme/motify-signup-flow.gif)
-  ![Motify Signup Flow](./readme/motify-login-flow.gif)
-<br>
-
 -   **Play Bar**: 
   Interactive play bar for music playback and controls.
 <br>
@@ -18,13 +12,20 @@ Motify is a full-stack clone of Spotify designed to emulate the core functionali
 Comprehensive playlist management, including CRUD operations, song addition/removal, and custom playlist titles.
 <br>
 
+-   **Hosting**: 
+Application deployment on Render.
+<br>
+
 -   **Dynamic Search**: 
 Real-time search across artists, songs, albums, and playlists.
 ![Dynamic Search](https://github.com/garysbot/motify/raw/main/readme/dynamic-search.gif)
 <br>
 
--   **Hosting**: 
-Application deployment on Render.
+-   **User Authentication**: 
+  Secure login, registration, and session management with demo account access.
+  ![Motify Signup Flow](./readme/motify-signup-flow.gif)
+  ![Motify Signup Flow](./readme/motify-login-flow.gif)
+<br>
 
 
 
