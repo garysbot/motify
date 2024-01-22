@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { receiveSong, togglePlay } from '../../store/audioActions'; // Import relevant actions
 import { ReactSVG } from 'react-svg';
 import lilPlayButton from '../../static/icons/noun-play-1009801.svg'
@@ -25,7 +25,6 @@ const SongsTable = () => {
               onClick={() => handlePlaySong(song)} // ! This is what changes the Redux State
             >
               <div className='row-start'
-                // onClick={}
               >
                 <div className='track-num'>
                   {hoveredTrack === trackNum 
