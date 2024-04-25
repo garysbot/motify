@@ -2,12 +2,16 @@ import './SearchResultsDropdown.css'
 import searchArrow from '../../static/icons/search-arrow.svg'
 import searchArrowLeft from '../../static/icons/search-arrow-left.svg'
 import searchArrowDown from '../../static/icons/search-arrow-down.svg'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useState } from 'react'
 import AlbumResultPage from './ResultsPage/AlbumResultPage'
 import ArtistResultPage from './ResultsPage/ArtistResultPage'
+import { useDispatch } from 'react-redux'
+import { addSongAndUpdateCoverThunk } from '../../store/playlistSlice'
 
 const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
+  const { playlistId } = useParams();
+  const dispatch = useDispatch();
   const validatedSearchResults = Array.isArray(searchResults) ? searchResults : [];
   // Initialize the results as empty arrays
   const albumResults = validatedSearchResults.filter(result => result.type === 'album');
@@ -50,6 +54,11 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
       expanded = '-expanded'
       return true;
     }
+  };
+
+  const handleClick = (song) => {
+    console.log(`Trying to get to the song's album cover image ${song.coverImg}`)
+    dispatch(addSongAndUpdateCoverThunk(playlistId, song))
   };
 
   return (
@@ -162,7 +171,7 @@ const SearchResultsDropdown = ({ query, searchResults, searchInitiated }) => {
               <Link><p>{song.albumTitle}</p></Link>
             </div>
             <div className='result-link'>
-              <button>Add</button>
+              <button onClick={() => handleClick(song)}>Add</button>              
               {/* ! Need a handler to add to the playlist here */}
             </div>
           </div>

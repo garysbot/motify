@@ -6,7 +6,6 @@ class PlaylistsController < ApplicationController
   end
 
   # POST /playlists
-  # POST /playlists.json
   def create
     @playlist = Playlist.new(playlist_params)
 
@@ -24,7 +23,6 @@ class PlaylistsController < ApplicationController
   end
 
   # DELETE /playlists/1
-  # DELETE /playlists/1.json
   def destroy
     @playlist.destroy
     # Respond to signify successful deletion
@@ -32,7 +30,6 @@ class PlaylistsController < ApplicationController
   end
 
   # PUT /playlists/1
-  # PUT /playlists/1.json
   def update
     @playlist = Playlist.find(params[:id])
   

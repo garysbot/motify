@@ -153,6 +153,7 @@
 
 .song-title, .song-title-artist-name {
   margin: 0; /* Remove default paragraph margins if necessary */
+  color: white;
 }
 
 .song-title-artist-name {

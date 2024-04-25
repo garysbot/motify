@@ -1,6 +1,5 @@
 # app/views/search/index.json.jbuilder
 
-
 json.array!(@results[:artists] + @results[:albums] + @results[:songs] + @results[:playlists]) do |result|
   json.type result.class.name.downcase
   case result

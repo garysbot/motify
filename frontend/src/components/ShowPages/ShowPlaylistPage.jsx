@@ -222,12 +222,6 @@ const ShowPlaylistPage = () => {
                       <p className='duration-text header-time'>{`${Math.floor(song.duration / 60)}:${String(song.duration % 60).padStart(2, '0')}`}</p>
                     </div>
                     <div className='row-end-menu'>
-                      <Dropdown 
-                        type={`song`}
-                        onClick={handleSongMenu()}
-                        ref={dropdownRef}
-                        state={setSongMenu}
-                        />
                     </div>
                   </div>
                 </div>

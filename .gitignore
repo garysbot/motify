@@ -1,4 +1,4 @@
 node_modules
 /public
-/log
-/log/development.log
+*/log
+*/log/development.log
