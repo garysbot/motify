@@ -26,6 +26,7 @@ const ShowPlaylistPage = () => {
   const dispatch = useDispatch();
   const { playlistId } = useParams();
   const [hoveredTrack, setHoveredTrack] = useState(null);
+
   const currentUser = useSelector(state => state.session.user);
   const currentPlaylist = useSelector(state => state.audio.currentPlaylist)
   const [title, setTitle] = useState(currentPlaylist.title)
@@ -45,7 +46,7 @@ const ShowPlaylistPage = () => {
     fetchPlaylistData()
   }, [dispatch, playlistId])
 
-  // ^ State syncronizing
+  // ^ State synchronizing
   useEffect(() => {
     setTitle(currentPlaylist.title);
   }, [currentPlaylist.title]);
@@ -114,9 +115,6 @@ const ShowPlaylistPage = () => {
 
   }, [toggleSongMenu, dispatch])
 
-  
-
-
   const handleSongMenu = async () => {
     console.log(`handleSongMenu activated`)
     if (!toggleSongMenu) {
@@ -167,9 +165,8 @@ const ShowPlaylistPage = () => {
             )}
           </div>
         </div>
-
       </div>
-      {/* Main Body for Songs Added */}
+      {/*  Main Body for Songs Added */}
       <div className='show-menu-container'>
         <BannerPlaybar/>
       </div>

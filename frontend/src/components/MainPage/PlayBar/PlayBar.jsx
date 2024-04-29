@@ -104,7 +104,8 @@ const PlayBar = () => {
         {/* // ^  Song Details -- bottom left w/ img */}
         <div className="song-details-container">
           <img
-            src={currentSong.album?.coverImg}
+            // src={currentSong.album?.coverImg}
+            src={currentAlbum?.coverImg}
             alt=""
             className="song-details-cover"
           ></img>
