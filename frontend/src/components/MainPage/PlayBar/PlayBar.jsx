@@ -75,6 +75,7 @@ const PlayBar = () => {
     }
   };
 
+  // handles previous track
   const handlePrevTrack = () => {
     const currentSongIndex = currentAlbum.songs.findIndex(
       (song) => song.id === currentSong.id
@@ -105,6 +106,7 @@ const PlayBar = () => {
         <div className="song-details-container">
           <img
             // src={currentSong.album?.coverImg}
+            // src={currentAlbum?.coverImg}
             src={currentAlbum?.coverImg}
             alt=""
             className="song-details-cover"
