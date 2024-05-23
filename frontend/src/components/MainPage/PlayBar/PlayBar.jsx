@@ -77,6 +77,7 @@ const PlayBar = () => {
 
   // handles previous track
   const handlePrevTrack = () => {
+    // using state, find current song 
     const currentSongIndex = currentAlbum.songs.findIndex(
       (song) => song.id === currentSong.id
     );
