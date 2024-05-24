@@ -81,6 +81,7 @@ const PlayBar = () => {
     const currentSongIndex = currentAlbum.songs.findIndex(
       (song) => song.id === currentSong.id
     );
+    // handles moving to the previous track
     const prevSongIndex =
       (currentSongIndex - 1 + currentAlbum.songs.length) %
       currentAlbum.songs.length; // Loop to the end
