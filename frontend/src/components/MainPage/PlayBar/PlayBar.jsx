@@ -88,6 +88,7 @@ const PlayBar = () => {
     const prevSong = currentAlbum.songs[prevSongIndex];
     dispatch(receiveSong(prevSong));
 
+    // checking if isPlaying, dispatch toggle play
     if (!isPlaying) {
       dispatch(togglePlay());
     }
